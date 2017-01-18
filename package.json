@@ -5,6 +5,7 @@
   "scripts": {
     "clean": "rm -rf dist && mkdir dist",
     "start": "node ./dist/server/server.js",
+    "watch-wp": "webpack -w",
     "build-server": "webpack -d",
     "build": "npm run clean && npm run build-server"
   },
@@ -17,6 +18,7 @@
     "morgan": "~1.7.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-router": "^3.0.1",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {

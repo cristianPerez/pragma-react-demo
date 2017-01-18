@@ -1,7 +1,7 @@
 /**
  * Module dependencies.
  */
-import app from './server-app';
+import app from './app';
 import http from 'http';
 
 /**
