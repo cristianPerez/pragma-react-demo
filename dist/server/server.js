@@ -173,7 +173,7 @@
 
 	var _Page2 = _interopRequireDefault(_Page);
 
-	var _Routes = __webpack_require__(337);
+	var _Routes = __webpack_require__(341);
 
 	var _Routes2 = _interopRequireDefault(_Routes);
 
@@ -62421,7 +62421,7 @@
 
 	var _Posts2 = _interopRequireDefault(_Posts);
 
-	var _About = __webpack_require__(336);
+	var _About = __webpack_require__(340);
 
 	var _About2 = _interopRequireDefault(_About);
 
@@ -62773,6 +62773,10 @@
 
 	var _ImgPost2 = _interopRequireDefault(_ImgPost);
 
+	var _DescriptionPost = __webpack_require__(345);
+
+	var _DescriptionPost2 = _interopRequireDefault(_DescriptionPost);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -62839,7 +62843,7 @@
 	                                { className: 'col-xs-12 col-sm-6' },
 	                                _react2.default.createElement(
 	                                    'div',
-	                                    { className: 'img-caption-low' },
+	                                    { className: _DescriptionPost2.default.imgcaptionlow },
 	                                    _react2.default.createElement(_ImgPost2.default, {
 	                                        picture: this.props.picture,
 	                                        width: this.props.width,
@@ -62904,7 +62908,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ImgPost = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./ImgPost.css\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _ImgPost = __webpack_require__(343);
 
 	var _ImgPost2 = _interopRequireDefault(_ImgPost);
 
@@ -62913,18 +62917,18 @@
 	function ImgPost(props) {
 	    return _react2.default.createElement(
 	        'div',
-	        { className: _ImgPost2.default.img - container },
+	        { className: _ImgPost2.default.imgcontainer },
 	        _react2.default.createElement(
 	            'figure',
 	            { className: '' },
-	            _react2.default.createElement('img', { className: _ImgPost2.default.media - object, width: props.width, height: props.height, src: 'http://lorempixel.com/600/' + props.height + '/technics/' + props.picture })
+	            _react2.default.createElement('img', { className: _ImgPost2.default.mediaobject, width: props.width, height: props.height, src: 'http://lorempixel.com/600/' + props.height + '/technics/' + props.picture })
 	        ),
 	        _react2.default.createElement(
 	            'div',
-	            { className: _ImgPost2.default.caption - container, id: 'Title' },
+	            { className: _ImgPost2.default.captioncontainer, id: 'Title' },
 	            _react2.default.createElement(
 	                'p',
-	                { className: _ImgPost2.default.text - caption },
+	                { className: _ImgPost2.default.textcaption },
 	                '  ',
 	                props.post_name
 	            )
@@ -62937,7 +62941,11 @@
 	exports.default = ImgPost;
 
 /***/ },
-/* 336 */
+/* 336 */,
+/* 337 */,
+/* 338 */,
+/* 339 */,
+/* 340 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -62991,7 +62999,7 @@
 	exports.default = About;
 
 /***/ },
-/* 337 */
+/* 341 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63008,7 +63016,7 @@
 
 	var _reactRouter = __webpack_require__(290);
 
-	var _Layout = __webpack_require__(338);
+	var _Layout = __webpack_require__(342);
 
 	var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -63052,7 +63060,7 @@
 	exports.default = router;
 
 /***/ },
-/* 338 */
+/* 342 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -63094,6 +63102,21 @@
 	}
 
 	exports.default = Layout;
+
+/***/ },
+/* 343 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"imgcontainer":"_22Jz96tL6AKnlzI63LmUQ8","caption-container":"AoTD33WwAMlx1AlzHE7Kq","captioncontainer":"_1QsSKWWsfwitA66r2giqWX","textcaption":"_1Ef76vWpOVrOMqmkYdep-4"};
+
+/***/ },
+/* 344 */,
+/* 345 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"imgcaptionlow":"_2VNrsqMxt0DEXCa3NMJR-_"};
 
 /***/ }
 /******/ ]);
