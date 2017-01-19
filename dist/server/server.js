@@ -173,7 +173,7 @@
 
 	var _Page2 = _interopRequireDefault(_Page);
 
-	var _Routes = __webpack_require__(343);
+	var _Routes = __webpack_require__(347);
 
 	var _Routes2 = _interopRequireDefault(_Routes);
 
@@ -62417,11 +62417,11 @@
 
 	var _Home2 = _interopRequireDefault(_Home);
 
-	var _Posts = __webpack_require__(332);
+	var _Posts = __webpack_require__(338);
 
 	var _Posts2 = _interopRequireDefault(_Posts);
 
-	var _About = __webpack_require__(342);
+	var _About = __webpack_require__(346);
 
 	var _About2 = _interopRequireDefault(_About);
 
@@ -62518,6 +62518,10 @@
 
 	var _Navigation2 = _interopRequireDefault(_Navigation);
 
+	var _Header = __webpack_require__(336);
+
+	var _Header2 = _interopRequireDefault(_Header);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -62569,6 +62573,10 @@
 
 	var _reactRouter = __webpack_require__(290);
 
+	var _Navigation = __webpack_require__(332);
+
+	var _Navigation2 = _interopRequireDefault(_Navigation);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -62591,15 +62599,16 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'nav',
-	                { role: 'navigation' },
+	                { className: 'navContainer', role: 'navigation' },
+	                _react2.default.createElement('img', { className: _Navigation2.default.logoSm }),
 	                _react2.default.createElement(
 	                    _reactRouter.Link,
-	                    { to: '/' },
+	                    { className: _Navigation2.default.pageLink, to: '/' },
 	                    'Home'
 	                ),
 	                _react2.default.createElement(
 	                    _reactRouter.Link,
-	                    { to: '/posts' },
+	                    { className: _Navigation2.default.pageLink, to: '/posts' },
 	                    'posts'
 	                )
 	            );
@@ -62613,6 +62622,23 @@
 
 /***/ },
 /* 332 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"navContainer":"_3m1_3vC4Yorr99jpCgw9YS","pageLink":"_2tDAgSU4StUWxF3uxzdXk7","logoSm":"_1F1_40NLM19y4BLqNoqCmm"};
+
+/***/ },
+/* 333 */,
+/* 334 */,
+/* 335 */,
+/* 336 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 337 */,
+/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62631,11 +62657,11 @@
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _ContentHeader = __webpack_require__(333);
+	var _ContentHeader = __webpack_require__(339);
 
 	var _ContentHeader2 = _interopRequireDefault(_ContentHeader);
 
-	var _DescriptionPost = __webpack_require__(334);
+	var _DescriptionPost = __webpack_require__(340);
 
 	var _DescriptionPost2 = _interopRequireDefault(_DescriptionPost);
 
@@ -62680,7 +62706,7 @@
 	exports.default = Posts;
 
 /***/ },
-/* 333 */
+/* 339 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62754,7 +62780,7 @@
 	exports.default = ContentHeader;
 
 /***/ },
-/* 334 */
+/* 340 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62769,11 +62795,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ImgPost = __webpack_require__(335);
+	var _ImgPost = __webpack_require__(341);
 
 	var _ImgPost2 = _interopRequireDefault(_ImgPost);
 
-	var _DescriptionPost = __webpack_require__(340);
+	var _DescriptionPost = __webpack_require__(344);
 
 	var _DescriptionPost2 = _interopRequireDefault(_DescriptionPost);
 
@@ -62942,7 +62968,7 @@
 	exports.default = DescriptionPost;
 
 /***/ },
-/* 335 */
+/* 341 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62955,7 +62981,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ImgPost = __webpack_require__(336);
+	var _ImgPost = __webpack_require__(342);
 
 	var _ImgPost2 = _interopRequireDefault(_ImgPost);
 
@@ -62988,25 +63014,23 @@
 	exports.default = ImgPost;
 
 /***/ },
-/* 336 */
+/* 342 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"imgcontainer":"_22Jz96tL6AKnlzI63LmUQ8","captioncontainer":"_1QsSKWWsfwitA66r2giqWX","textcaption":"_1Ef76vWpOVrOMqmkYdep-4","imgpostcontainer":"Vl40ct87iTGRuA6zeA8vl"};
 
 /***/ },
-/* 337 */,
-/* 338 */,
-/* 339 */,
-/* 340 */
+/* 343 */,
+/* 344 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"imgcaptionlow":"_2VNrsqMxt0DEXCa3NMJR-_"};
 
 /***/ },
-/* 341 */,
-/* 342 */
+/* 345 */,
+/* 346 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -63060,7 +63084,7 @@
 	exports.default = About;
 
 /***/ },
-/* 343 */
+/* 347 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63077,7 +63101,7 @@
 
 	var _reactRouter = __webpack_require__(290);
 
-	var _Layout = __webpack_require__(344);
+	var _Layout = __webpack_require__(348);
 
 	var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -63121,7 +63145,7 @@
 	exports.default = router;
 
 /***/ },
-/* 344 */
+/* 348 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

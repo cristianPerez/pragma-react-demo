@@ -1,0 +1,20 @@
+.navContainer{
+    display:inline-block;
+}
+
+.pageLink{
+    margin-left:10px;
+}
+
+.logoSm{
+    background-image: url(http://www.downgraf.com/wp-content/uploads/2014/01/Minimalist-Logo-Design-1.jpg);
+    background-position-x: -117px;
+    background-position-y: -68px;
+    background-repeat: no-repeat;
+    width: 121px;
+    height: 121px;
+    display: inline-block;
+    margin: 1px;
+    padding: 0;
+    transform: scale(0.5);
+}

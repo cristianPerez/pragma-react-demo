@@ -25432,11 +25432,11 @@
 
 	var _Home2 = _interopRequireDefault(_Home);
 
-	var _Posts = __webpack_require__(220);
+	var _Posts = __webpack_require__(226);
 
 	var _Posts2 = _interopRequireDefault(_Posts);
 
-	var _About = __webpack_require__(230);
+	var _About = __webpack_require__(234);
 
 	var _About2 = _interopRequireDefault(_About);
 
@@ -25510,6 +25510,10 @@
 
 	var _Navigation2 = _interopRequireDefault(_Navigation);
 
+	var _Header = __webpack_require__(224);
+
+	var _Header2 = _interopRequireDefault(_Header);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	class Header extends _react.Component {
@@ -25540,21 +25544,26 @@
 
 	var _reactRouter = __webpack_require__(178);
 
+	var _Navigation = __webpack_require__(220);
+
+	var _Navigation2 = _interopRequireDefault(_Navigation);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	class Navigation extends _react.Component {
 	    render() {
 	        return _react2.default.createElement(
 	            'nav',
-	            { role: 'navigation' },
+	            { className: 'navContainer', role: 'navigation' },
+	            _react2.default.createElement('img', { className: _Navigation2.default.logoSm }),
 	            _react2.default.createElement(
 	                _reactRouter.Link,
-	                { to: '/' },
+	                { className: _Navigation2.default.pageLink, to: '/' },
 	                'Home'
 	            ),
 	            _react2.default.createElement(
 	                _reactRouter.Link,
-	                { to: '/posts' },
+	                { className: _Navigation2.default.pageLink, to: '/posts' },
 	                'posts'
 	            )
 	        );
@@ -25565,6 +25574,23 @@
 
 /***/ },
 /* 220 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"navContainer":"_3m1_3vC4Yorr99jpCgw9YS","pageLink":"_2tDAgSU4StUWxF3uxzdXk7","logoSm":"_1F1_40NLM19y4BLqNoqCmm"};
+
+/***/ },
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 225 */,
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25581,11 +25607,11 @@
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _ContentHeader = __webpack_require__(221);
+	var _ContentHeader = __webpack_require__(227);
 
 	var _ContentHeader2 = _interopRequireDefault(_ContentHeader);
 
-	var _DescriptionPost = __webpack_require__(222);
+	var _DescriptionPost = __webpack_require__(228);
 
 	var _DescriptionPost2 = _interopRequireDefault(_DescriptionPost);
 
@@ -25611,7 +25637,7 @@
 	exports.default = Posts;
 
 /***/ },
-/* 221 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25666,7 +25692,7 @@
 	exports.default = ContentHeader;
 
 /***/ },
-/* 222 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25679,11 +25705,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ImgPost = __webpack_require__(223);
+	var _ImgPost = __webpack_require__(229);
 
 	var _ImgPost2 = _interopRequireDefault(_ImgPost);
 
-	var _DescriptionPost = __webpack_require__(228);
+	var _DescriptionPost = __webpack_require__(232);
 
 	var _DescriptionPost2 = _interopRequireDefault(_DescriptionPost);
 
@@ -25832,7 +25858,7 @@
 	exports.default = DescriptionPost;
 
 /***/ },
-/* 223 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25845,7 +25871,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ImgPost = __webpack_require__(224);
+	var _ImgPost = __webpack_require__(230);
 
 	var _ImgPost2 = _interopRequireDefault(_ImgPost);
 
@@ -25878,25 +25904,23 @@
 	exports.default = ImgPost;
 
 /***/ },
-/* 224 */
+/* 230 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"imgcontainer":"_22Jz96tL6AKnlzI63LmUQ8","captioncontainer":"_1QsSKWWsfwitA66r2giqWX","textcaption":"_1Ef76vWpOVrOMqmkYdep-4","imgpostcontainer":"Vl40ct87iTGRuA6zeA8vl"};
 
 /***/ },
-/* 225 */,
-/* 226 */,
-/* 227 */,
-/* 228 */
+/* 231 */,
+/* 232 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"imgcaptionlow":"_2VNrsqMxt0DEXCa3NMJR-_"};
 
 /***/ },
-/* 229 */,
-/* 230 */
+/* 233 */,
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
