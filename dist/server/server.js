@@ -62823,7 +62823,8 @@
 
 	        _this.state = {
 	            loading: true,
-	            posts: _this.props.posts
+	            posts: _this.props.posts,
+	            count: 0
 	        };
 	        return _this;
 	    }

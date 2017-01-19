@@ -9,6 +9,7 @@ class GridPost extends Component {
         this.state = {
             loading: true,
             posts: this.props.posts,
+            count: 0
         };
     }
 
