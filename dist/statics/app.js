@@ -25436,7 +25436,7 @@
 
 	var _Posts2 = _interopRequireDefault(_Posts);
 
-	var _About = __webpack_require__(230);
+	var _About = __webpack_require__(228);
 
 	var _About2 = _interopRequireDefault(_About);
 
@@ -25683,7 +25683,7 @@
 
 	var _ImgPost2 = _interopRequireDefault(_ImgPost);
 
-	var _DescriptionPost = __webpack_require__(228);
+	var _DescriptionPost = __webpack_require__(231);
 
 	var _DescriptionPost2 = _interopRequireDefault(_DescriptionPost);
 
@@ -25795,7 +25795,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ImgPost = __webpack_require__(224);
+	var _ImgPost = __webpack_require__(229);
 
 	var _ImgPost2 = _interopRequireDefault(_ImgPost);
 
@@ -25828,25 +25828,11 @@
 	exports.default = ImgPost;
 
 /***/ },
-/* 224 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-	module.exports = {"imgcontainer":"_22Jz96tL6AKnlzI63LmUQ8","caption-container":"AoTD33WwAMlx1AlzHE7Kq","captioncontainer":"_1QsSKWWsfwitA66r2giqWX","textcaption":"_1Ef76vWpOVrOMqmkYdep-4"};
-
-/***/ },
+/* 224 */,
 /* 225 */,
 /* 226 */,
 /* 227 */,
 /* 228 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-	module.exports = {"imgcaptionlow":"_2VNrsqMxt0DEXCa3NMJR-_"};
-
-/***/ },
-/* 229 */,
-/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25877,6 +25863,21 @@
 	}
 
 	exports.default = About;
+
+/***/ },
+/* 229 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"imgcontainer":"_22Jz96tL6AKnlzI63LmUQ8","captioncontainer":"_1QsSKWWsfwitA66r2giqWX","textcaption":"_1Ef76vWpOVrOMqmkYdep-4"};
+
+/***/ },
+/* 230 */,
+/* 231 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"imgcaptionlow":"_2VNrsqMxt0DEXCa3NMJR-_"};
 
 /***/ }
 /******/ ]);

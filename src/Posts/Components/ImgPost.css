@@ -4,7 +4,7 @@
     height: auto;
 }
 
-.imgcontainer :hover  ~ .caption-container {
+.imgcontainer :hover  ~ .captioncontainer {
     background-color: #4267b2;
 }
 

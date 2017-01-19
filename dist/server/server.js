@@ -173,7 +173,7 @@
 
 	var _Page2 = _interopRequireDefault(_Page);
 
-	var _Routes = __webpack_require__(343);
+	var _Routes = __webpack_require__(341);
 
 	var _Routes2 = _interopRequireDefault(_Routes);
 
@@ -62421,7 +62421,7 @@
 
 	var _Posts2 = _interopRequireDefault(_Posts);
 
-	var _About = __webpack_require__(342);
+	var _About = __webpack_require__(340);
 
 	var _About2 = _interopRequireDefault(_About);
 
@@ -62773,7 +62773,7 @@
 
 	var _ImgPost2 = _interopRequireDefault(_ImgPost);
 
-	var _DescriptionPost = __webpack_require__(340);
+	var _DescriptionPost = __webpack_require__(345);
 
 	var _DescriptionPost2 = _interopRequireDefault(_DescriptionPost);
 
@@ -62908,7 +62908,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ImgPost = __webpack_require__(336);
+	var _ImgPost = __webpack_require__(343);
 
 	var _ImgPost2 = _interopRequireDefault(_ImgPost);
 
@@ -62941,25 +62941,11 @@
 	exports.default = ImgPost;
 
 /***/ },
-/* 336 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-	module.exports = {"imgcontainer":"_22Jz96tL6AKnlzI63LmUQ8","caption-container":"AoTD33WwAMlx1AlzHE7Kq","captioncontainer":"_1QsSKWWsfwitA66r2giqWX","textcaption":"_1Ef76vWpOVrOMqmkYdep-4"};
-
-/***/ },
+/* 336 */,
 /* 337 */,
 /* 338 */,
 /* 339 */,
 /* 340 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-	module.exports = {"imgcaptionlow":"_2VNrsqMxt0DEXCa3NMJR-_"};
-
-/***/ },
-/* 341 */,
-/* 342 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -63013,7 +62999,7 @@
 	exports.default = About;
 
 /***/ },
-/* 343 */
+/* 341 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63030,7 +63016,7 @@
 
 	var _reactRouter = __webpack_require__(290);
 
-	var _Layout = __webpack_require__(344);
+	var _Layout = __webpack_require__(342);
 
 	var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -63074,7 +63060,7 @@
 	exports.default = router;
 
 /***/ },
-/* 344 */
+/* 342 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -63117,6 +63103,21 @@
 	}
 
 	exports.default = Layout;
+
+/***/ },
+/* 343 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"imgcontainer":"_22Jz96tL6AKnlzI63LmUQ8","captioncontainer":"_1QsSKWWsfwitA66r2giqWX","textcaption":"_1Ef76vWpOVrOMqmkYdep-4"};
+
+/***/ },
+/* 344 */,
+/* 345 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"imgcaptionlow":"_2VNrsqMxt0DEXCa3NMJR-_"};
 
 /***/ }
 /******/ ]);
