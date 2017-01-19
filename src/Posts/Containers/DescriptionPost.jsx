@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ImgPost from '../components/ImgPost.jsx'
 
+import styles from './DescriptionPost.css'
+
 /* Componentes contenedores que muestran puros internamente */
 class DescriptionPost extends Component {
     constructor(props) {
@@ -33,7 +35,7 @@ class DescriptionPost extends Component {
                     <div className="col-xs-12 col-sm-6">
                         <div className="row">
                             <div className="col-xs-12 col-sm-6">
-                                <div className="img-caption-low">
+                                <div className={styles.imgcaptionlow}>
                                     <ImgPost
                                         picture={this.props.picture}
                                         width={this.props.width}

@@ -1,14 +1,14 @@
-.img-container {
+.imgcontainer {
     position: relative;
     width: 100%;
     height: auto;
 }
 
-.img-container :hover  ~ .caption-container {
+.imgcontainer :hover  ~ .caption-container {
     background-color: #4267b2;
 }
 
-.caption-container {
+.captioncontainer {
     position: absolute;
     width: 100%;
     height: 50px;
@@ -19,13 +19,9 @@
     -webkit-transition:0.4s ease all;
 }
 
-.text-caption {
+.textcaption {
     color: white;
     text-align: center;
     padding: 1%;
     font-size: 20px;
-}
-
-.img-caption-low {
-    margin-bottom: 5px;
 }
