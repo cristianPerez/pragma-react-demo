@@ -6,6 +6,7 @@ function  Layout(props) {
             <meta charSet="utf-8"/>
             <title>{props.title}</title>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+            <link rel="stylesheet" href="http://localhost:3001/styles.css"/>
         </head>
         <body>
         <div id="render-target"
