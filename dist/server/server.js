@@ -173,7 +173,7 @@
 
 	var _Page2 = _interopRequireDefault(_Page);
 
-	var _Routes = __webpack_require__(333);
+	var _Routes = __webpack_require__(334);
 
 	var _Routes2 = _interopRequireDefault(_Routes);
 
@@ -62421,7 +62421,7 @@
 
 	var _Posts2 = _interopRequireDefault(_Posts);
 
-	var _About = __webpack_require__(334);
+	var _About = __webpack_require__(333);
 
 	var _About2 = _interopRequireDefault(_About);
 
@@ -62433,7 +62433,7 @@
 	        { role: 'application' },
 	        _react2.default.createElement(_reactRouter.Match, { pattern: '/', exactly: true, component: _Home2.default }),
 	        _react2.default.createElement(_reactRouter.Match, { pattern: '/posts', exactly: true, component: _Posts2.default }),
-	        _react2.default.createElement(_reactRouter.Match, { pattern: '/posts', exactly: true, component: _About2.default })
+	        _react2.default.createElement(_reactRouter.Match, { pattern: '/about', exactly: true, component: _About2.default })
 	    );
 	} /**
 	   * Created by Juan on 1/19/2017.
@@ -62492,7 +62492,6 @@
 	                    null,
 	                    'Home'
 	                ),
-	                _react2.default.createElement(_Navigation2.default, null),
 	                _react2.default.createElement(_ContentHeader2.default, { title: 'Pragma Engineering', subtitle: 'Some random quote of the day - Donald Trump' })
 	            );
 	        }
@@ -62616,22 +62615,17 @@
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
-	                'section',
-	                { name: 'home' },
+	                'nav',
+	                { role: 'navigation' },
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/' },
+	                    'Home'
+	                ),
 	                _react2.default.createElement(
 	                    _reactRouter.Link,
 	                    { to: '/posts' },
 	                    'posts'
-	                ),
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: '/news' },
-	                    'news'
-	                ),
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: '/projects' },
-	                    'projects'
 	                )
 	            );
 	        }
@@ -62646,7 +62640,7 @@
 /* 332 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -62657,6 +62651,14 @@
 	var _react = __webpack_require__(120);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _ContentHeader = __webpack_require__(330);
+
+	var _ContentHeader2 = _interopRequireDefault(_ContentHeader);
+
+	var _Navigation = __webpack_require__(331);
+
+	var _Navigation2 = _interopRequireDefault(_Navigation);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -62676,17 +62678,18 @@
 	    }
 
 	    _createClass(Posts, [{
-	        key: "render",
+	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
-	                "section",
-	                { name: "posts" },
+	                'section',
+	                { name: 'posts' },
+	                _react2.default.createElement(_Navigation2.default, null),
 	                _react2.default.createElement(
-	                    "h1",
+	                    'h1',
 	                    null,
-	                    "Posts"
+	                    'Posts'
 	                ),
-	                _react2.default.createElement(ContentHeader, { title: "posts" })
+	                _react2.default.createElement(_ContentHeader2.default, { title: 'posts' })
 	            );
 	        }
 	    }]);
@@ -62698,60 +62701,6 @@
 
 /***/ },
 /* 333 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _react = __webpack_require__(120);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _server = __webpack_require__(150);
-
-	var _reactRouter = __webpack_require__(290);
-
-	var _Page = __webpack_require__(328);
-
-	var _Page2 = _interopRequireDefault(_Page);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	/* GET home page. */
-	var router = function router(req, res, next) {
-
-	    var context = (0, _reactRouter.createServerRenderContext)();
-
-	    res.setHeader('Content-Type', 'text/html');
-
-	    var html = (0, _server.renderToString)(_react2.default.createElement(
-	        _reactRouter.ServerRouter,
-	        { location: req.originalUrl, context: context },
-	        _react2.default.createElement(_Page2.default, null)
-	    ));
-
-	    var result = context.getResult();
-
-	    if (result.redirect) {
-	        res.writeHead(301, { Location: result.redirect.pathname });
-	        res.end();
-	    }
-
-	    if (result.missed) {
-	        res.writeHead(404);
-	    }
-
-	    res.write(html);
-	    res.end();
-	};
-
-	exports.default = router;
-
-/***/ },
-/* 334 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -62803,6 +62752,111 @@
 	}(_react.Component);
 
 	exports.default = About;
+
+/***/ },
+/* 334 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(120);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _server = __webpack_require__(150);
+
+	var _reactRouter = __webpack_require__(290);
+
+	var _Layout = __webpack_require__(335);
+
+	var _Layout2 = _interopRequireDefault(_Layout);
+
+	var _Page = __webpack_require__(328);
+
+	var _Page2 = _interopRequireDefault(_Page);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/* GET home page. */
+	var router = function router(req, res, next) {
+
+	    var context = (0, _reactRouter.createServerRenderContext)();
+
+	    res.setHeader('Content-Type', 'text/html');
+
+	    var html = (0, _server.renderToString)(_react2.default.createElement(
+	        _reactRouter.ServerRouter,
+	        { location: req.originalUrl, context: context },
+	        _react2.default.createElement(_Page2.default, null)
+	    ));
+
+	    var result = context.getResult();
+
+	    if (result.redirect) {
+	        res.writeHead(301, { Location: result.redirect.pathname });
+	        res.end();
+	    }
+
+	    if (result.missed) {
+	        res.writeHead(404);
+	    }
+
+	    res.write((0, _server.renderToStaticMarkup)(_react2.default.createElement(_Layout2.default, {
+	        title: 'Pragma Engineering',
+	        content: html
+	    })));
+	    res.end();
+	};
+
+	exports.default = router;
+
+/***/ },
+/* 335 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(120);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function Layout(props) {
+	    return _react2.default.createElement(
+	        "html",
+	        null,
+	        _react2.default.createElement(
+	            "head",
+	            null,
+	            _react2.default.createElement("meta", { charSet: "utf-8" }),
+	            _react2.default.createElement(
+	                "title",
+	                null,
+	                props.title
+	            )
+	        ),
+	        _react2.default.createElement(
+	            "body",
+	            null,
+	            _react2.default.createElement("div", { id: "render-target",
+	                dangerouslySetInnerHTML: {
+	                    __html: props.content
+	                } }),
+	            _react2.default.createElement("script", { src: "http://localhost:3001/app.js" })
+	        )
+	    );
+	}
+
+	exports.default = Layout;
 
 /***/ }
 /******/ ]);

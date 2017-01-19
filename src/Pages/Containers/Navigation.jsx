@@ -4,17 +4,14 @@ import {Link} from 'react-router';
 class Navigation extends Component {
     render(){
         return(
-            <section name="home">
+            <nav role="navigation">
+                <Link to="/">
+                    Home
+                </Link>
                 <Link to="/posts">
                     posts
                 </Link>
-                <Link to="/news">
-                    news
-                </Link>
-                <Link to="/projects">
-                    projects
-                </Link>
-            </section>
+            </nav>
         );
     }
 }

@@ -1,8 +1,9 @@
 import React from 'react'
-import { renderToString } from 'react-dom/server';
+import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { ServerRouter, createServerRenderContext } from 'react-router';
 
-import Pages from './Page.jsx'
+import Layout from '../components/Layout.jsx';
+import Pages from './Page.jsx';
 
 /* GET home page. */
 var router = function(req, res, next) {
@@ -28,7 +29,12 @@ var router = function(req, res, next) {
         res.writeHead(404);
     }
 
-    res.write(html);
+    res.write(renderToStaticMarkup(
+        <Layout
+            title="Pragma Engineering"
+            content={html}
+        />
+    ));
     res.end();
 
 };

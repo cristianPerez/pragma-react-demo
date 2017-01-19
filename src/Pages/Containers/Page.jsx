@@ -13,7 +13,7 @@ function Pages(){
         <main role="application">
             <Match pattern="/" exactly component={Home}/>
             <Match pattern="/posts" exactly component={Posts}/>
-            <Match pattern="/posts" exactly component={About}/>
+            <Match pattern="/about" exactly component={About}/>
         </main>
     )
 }
