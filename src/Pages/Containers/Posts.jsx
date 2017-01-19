@@ -11,7 +11,7 @@ class Posts extends Component {
                 <Header/>
                 <ContentHeader title="Los posts"/>
                 <h1>Posts</h1>
-                <DescriptionPost post_name="Pragma" picture="2" width="100%" height="350"/>
+                <DescriptionPost post_name="Pragma" picture="2" width="100%" height="320"/>
             </section>
         );
     }

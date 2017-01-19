@@ -173,7 +173,7 @@
 
 	var _Page2 = _interopRequireDefault(_Page);
 
-	var _Routes = __webpack_require__(341);
+	var _Routes = __webpack_require__(347);
 
 	var _Routes2 = _interopRequireDefault(_Routes);
 
@@ -62417,11 +62417,11 @@
 
 	var _Home2 = _interopRequireDefault(_Home);
 
-	var _Posts = __webpack_require__(332);
+	var _Posts = __webpack_require__(338);
 
 	var _Posts2 = _interopRequireDefault(_Posts);
 
-	var _About = __webpack_require__(340);
+	var _About = __webpack_require__(346);
 
 	var _About2 = _interopRequireDefault(_About);
 
@@ -62518,7 +62518,7 @@
 
 	var _Navigation2 = _interopRequireDefault(_Navigation);
 
-	var _Header = __webpack_require__(349);
+	var _Header = __webpack_require__(336);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
@@ -62573,7 +62573,7 @@
 
 	var _reactRouter = __webpack_require__(290);
 
-	var _Navigation = __webpack_require__(347);
+	var _Navigation = __webpack_require__(332);
 
 	var _Navigation2 = _interopRequireDefault(_Navigation);
 
@@ -62622,6 +62622,23 @@
 
 /***/ },
 /* 332 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"navContainer":"_3m1_3vC4Yorr99jpCgw9YS","pageLink":"_2tDAgSU4StUWxF3uxzdXk7","logoSm":"_1F1_40NLM19y4BLqNoqCmm"};
+
+/***/ },
+/* 333 */,
+/* 334 */,
+/* 335 */,
+/* 336 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 337 */,
+/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62640,11 +62657,11 @@
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _ContentHeader = __webpack_require__(333);
+	var _ContentHeader = __webpack_require__(339);
 
 	var _ContentHeader2 = _interopRequireDefault(_ContentHeader);
 
-	var _DescriptionPost = __webpack_require__(334);
+	var _DescriptionPost = __webpack_require__(340);
 
 	var _DescriptionPost2 = _interopRequireDefault(_DescriptionPost);
 
@@ -62678,7 +62695,7 @@
 	                    null,
 	                    'Posts'
 	                ),
-	                _react2.default.createElement(_DescriptionPost2.default, { post_name: 'Pragma', picture: '2', width: '100%', height: '350' })
+	                _react2.default.createElement(_DescriptionPost2.default, { post_name: 'Pragma', picture: '2', width: '100%', height: '320' })
 	            );
 	        }
 	    }]);
@@ -62689,7 +62706,7 @@
 	exports.default = Posts;
 
 /***/ },
-/* 333 */
+/* 339 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62763,7 +62780,7 @@
 	exports.default = ContentHeader;
 
 /***/ },
-/* 334 */
+/* 340 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62778,11 +62795,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ImgPost = __webpack_require__(335);
+	var _ImgPost = __webpack_require__(341);
 
 	var _ImgPost2 = _interopRequireDefault(_ImgPost);
 
-	var _DescriptionPost = __webpack_require__(345);
+	var _DescriptionPost = __webpack_require__(344);
 
 	var _DescriptionPost2 = _interopRequireDefault(_DescriptionPost);
 
@@ -62830,71 +62847,118 @@
 	                { className: 'row' },
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'container' },
+	                    { className: 'col-xs-12 col-sm-6' },
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'col-xs-12 col-sm-6' },
+	                        { className: 'box' },
 	                        _react2.default.createElement(_ImgPost2.default, {
 	                            picture: this.props.picture,
 	                            width: this.props.width,
 	                            height: this.props.height,
 	                            post_name: this.props.post_name
 	                        })
-	                    ),
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'col-xs-12 col-sm-6' },
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'col-xs-12 col-sm-6' },
+	                        { className: 'row' },
 	                        _react2.default.createElement(
 	                            'div',
-	                            { className: 'row' },
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'col-xs-12 col-sm-6' },
-	                                _react2.default.createElement(
-	                                    'div',
-	                                    { className: _DescriptionPost2.default.imgcaptionlow },
-	                                    _react2.default.createElement(_ImgPost2.default, {
-	                                        picture: this.props.picture,
-	                                        width: this.props.width,
-	                                        height: '150',
-	                                        post_name: this.props.post_name
-	                                    })
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'col-xs-12 col-sm-6' },
-	                                _react2.default.createElement(_ImgPost2.default, {
-	                                    picture: this.props.picture,
-	                                    width: this.props.width,
-	                                    height: '150',
-	                                    post_name: this.props.post_name
-	                                })
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'col-xs-12 col-sm-6' },
-	                                _react2.default.createElement(_ImgPost2.default, {
-	                                    picture: this.props.picture,
-	                                    width: this.props.width,
-	                                    height: '150',
-	                                    post_name: this.props.post_name
-	                                })
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'col-xs-12 col-sm-6' },
-	                                _react2.default.createElement(_ImgPost2.default, {
-	                                    picture: this.props.picture,
-	                                    width: this.props.width,
-	                                    height: '150',
-	                                    post_name: this.props.post_name
-	                                })
-	                            )
+	                            { className: 'col-xs-12 col-sm-6' },
+	                            _react2.default.createElement(_ImgPost2.default, {
+	                                picture: this.props.picture,
+	                                width: this.props.width,
+	                                height: '160',
+	                                post_name: this.props.post_name
+	                            })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-xs-12 col-sm-6' },
+	                            _react2.default.createElement(_ImgPost2.default, {
+	                                picture: this.props.picture,
+	                                width: this.props.width,
+	                                height: '160',
+	                                post_name: this.props.post_name
+	                            })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-xs-12 col-sm-6' },
+	                            _react2.default.createElement(_ImgPost2.default, {
+	                                picture: this.props.picture,
+	                                width: this.props.width,
+	                                height: '160',
+	                                post_name: this.props.post_name
+	                            })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-xs-12 col-sm-6' },
+	                            _react2.default.createElement(_ImgPost2.default, {
+	                                picture: this.props.picture,
+	                                width: this.props.width,
+	                                height: '160',
+	                                post_name: this.props.post_name
+	                            })
 	                        )
 	                    )
 	                )
-	            );
+	            )
+	            /*<div className="row">
+	             <div className="container">
+	             <div className="col-xs-12 col-sm-6">
+	             <ImgPost
+	             picture={this.props.picture}
+	             width={this.props.width}
+	             height={this.props.height}
+	             post_name={this.props.post_name}
+	             />
+	             </div>
+	             <div className="col-xs-12 col-sm-6">
+	             <div className="row">
+	             <div className="col-xs-12 col-sm-6">
+	             <div className={styles.imgcaptionlow}>
+	             <ImgPost
+	             picture={this.props.picture}
+	             width={this.props.width}
+	             height='150'
+	             post_name={this.props.post_name}
+	             />
+	             </div>
+	              </div>
+	             <div className="col-xs-12 col-sm-6">
+	             <ImgPost
+	             picture={this.props.picture}
+	             width={this.props.width}
+	             height='150'
+	             post_name={this.props.post_name}
+	             />
+	             </div>
+	             <div className="col-xs-12 col-sm-6">
+	             <ImgPost
+	             picture={this.props.picture}
+	             width={this.props.width}
+	             height='150'
+	             post_name={this.props.post_name}
+	             />
+	             </div>
+	             <div className="col-xs-12 col-sm-6">
+	             <ImgPost
+	             picture={this.props.picture}
+	             width={this.props.width}
+	             height='150'
+	             post_name={this.props.post_name}
+	             />
+	             </div>
+	             </div>
+	             </div>
+	             </div>
+	             </div>*/
+	            ;
 	        }
 	    }]);
 
@@ -62904,7 +62968,7 @@
 	exports.default = DescriptionPost;
 
 /***/ },
-/* 335 */
+/* 341 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62917,7 +62981,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ImgPost = __webpack_require__(343);
+	var _ImgPost = __webpack_require__(342);
 
 	var _ImgPost2 = _interopRequireDefault(_ImgPost);
 
@@ -62929,7 +62993,7 @@
 	        { className: _ImgPost2.default.imgcontainer },
 	        _react2.default.createElement(
 	            'figure',
-	            { className: '' },
+	            { className: _ImgPost2.default.imgpostcontainer },
 	            _react2.default.createElement('img', { className: _ImgPost2.default.mediaobject, width: props.width, height: props.height, src: 'http://lorempixel.com/600/' + props.height + '/technics/' + props.picture })
 	        ),
 	        _react2.default.createElement(
@@ -62950,11 +63014,23 @@
 	exports.default = ImgPost;
 
 /***/ },
-/* 336 */,
-/* 337 */,
-/* 338 */,
-/* 339 */,
-/* 340 */
+/* 342 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"imgcontainer":"_22Jz96tL6AKnlzI63LmUQ8","captioncontainer":"_1QsSKWWsfwitA66r2giqWX","textcaption":"_1Ef76vWpOVrOMqmkYdep-4","imgpostcontainer":"Vl40ct87iTGRuA6zeA8vl"};
+
+/***/ },
+/* 343 */,
+/* 344 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"imgcaptionlow":"_2VNrsqMxt0DEXCa3NMJR-_"};
+
+/***/ },
+/* 345 */,
+/* 346 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -63008,7 +63084,7 @@
 	exports.default = About;
 
 /***/ },
-/* 341 */
+/* 347 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63025,7 +63101,7 @@
 
 	var _reactRouter = __webpack_require__(290);
 
-	var _Layout = __webpack_require__(342);
+	var _Layout = __webpack_require__(348);
 
 	var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -63069,7 +63145,7 @@
 	exports.default = router;
 
 /***/ },
-/* 342 */
+/* 348 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -63097,7 +63173,7 @@
 	                null,
 	                props.title
 	            ),
-	            _react2.default.createElement("link", { rel: "stylesheet", href: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" }),
+	            _react2.default.createElement("link", { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" }),
 	            _react2.default.createElement("link", { rel: "stylesheet", href: "http://localhost:3001/styles.css" })
 	        ),
 	        _react2.default.createElement(
@@ -63113,36 +63189,6 @@
 	}
 
 	exports.default = Layout;
-
-/***/ },
-/* 343 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-	module.exports = {"imgcontainer":"_22Jz96tL6AKnlzI63LmUQ8","captioncontainer":"_1QsSKWWsfwitA66r2giqWX","textcaption":"_1Ef76vWpOVrOMqmkYdep-4"};
-
-/***/ },
-/* 344 */,
-/* 345 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-	module.exports = {"imgcaptionlow":"_2VNrsqMxt0DEXCa3NMJR-_"};
-
-/***/ },
-/* 346 */,
-/* 347 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-	module.exports = {"navContainer":"_3m1_3vC4Yorr99jpCgw9YS","pageLink":"_2tDAgSU4StUWxF3uxzdXk7","logoSm":"_1F1_40NLM19y4BLqNoqCmm"};
-
-/***/ },
-/* 348 */,
-/* 349 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);
