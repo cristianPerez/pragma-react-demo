@@ -33,10 +33,17 @@ class GridPost extends Component {
             )}
             <div className="col-xs-12 col-sm-3">
                 <div className={styles.margin_bot}>
-                    {this.state.posts.map((post) => {
-                        console.log(post.id + " ---  "+ post.post_name + "---" + post.picture);
-                        <ImgPost id={post.id} post_name={post.name} picture={post.picture} width={post.width} height={post.height} {...post}/>
-                    })}
+                    {
+                        this.state.posts.map(function (post) {
+                            console.log(post.post_name);
+                            return <ImgPost
+                                key={post.id}
+                                picture={post.picture}
+                                post_name={post.post_name}
+                                width={post.width}
+                                height={post.height}/>
+                        })
+                    }
                 </div>
             </div>
         </div>

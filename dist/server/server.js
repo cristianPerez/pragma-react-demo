@@ -62599,17 +62599,21 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'nav',
-	                { className: 'navContainer', role: 'navigation' },
-	                _react2.default.createElement('img', { className: _Navigation2.default.logoSm }),
+	                { role: 'navigation' },
+	                _react2.default.createElement('img', { className: _Navigation2.default.logoSm, src: 'http://www-cdr.stanford.edu/~petrie/blank.gif' }),
 	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { className: _Navigation2.default.pageLink, to: '/' },
-	                    'Home'
-	                ),
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { className: _Navigation2.default.pageLink, to: '/posts' },
-	                    'posts'
+	                    'div',
+	                    { className: _Navigation2.default.navLinkContainer },
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { className: _Navigation2.default.pageLink, to: '/' },
+	                        'Home'
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { className: _Navigation2.default.pageLink, to: '/posts' },
+	                        'posts'
+	                    )
 	                )
 	            );
 	        }
@@ -62625,7 +62629,7 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"navContainer":"_3m1_3vC4Yorr99jpCgw9YS","pageLink":"_2tDAgSU4StUWxF3uxzdXk7","logoSm":"_1F1_40NLM19y4BLqNoqCmm"};
+	module.exports = {"navContainer":"_3m1_3vC4Yorr99jpCgw9YS","pageLink":"_2tDAgSU4StUWxF3uxzdXk7","navLinkContainer":"_3TVuwakRXHTb6VTIZUoWDH","logoSm":"_1F1_40NLM19y4BLqNoqCmm"};
 
 /***/ },
 /* 333 */,
@@ -62661,7 +62665,7 @@
 
 	var _ContentHeader2 = _interopRequireDefault(_ContentHeader);
 
-	var _GridPost = __webpack_require__(340);
+	var _GridPost = __webpack_require__(349);
 
 	var _GridPost2 = _interopRequireDefault(_GridPost);
 
@@ -62782,100 +62786,7 @@
 	exports.default = ContentHeader;
 
 /***/ },
-/* 340 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(120);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _ImgPost = __webpack_require__(341);
-
-	var _ImgPost2 = _interopRequireDefault(_ImgPost);
-
-	var _DescriptionPost = __webpack_require__(344);
-
-	var _DescriptionPost2 = _interopRequireDefault(_DescriptionPost);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var GridPost = function (_Component) {
-	    _inherits(GridPost, _Component);
-
-	    function GridPost(props) {
-	        _classCallCheck(this, GridPost);
-
-	        var _this = _possibleConstructorReturn(this, (GridPost.__proto__ || Object.getPrototypeOf(GridPost)).call(this, props));
-
-	        _this.state = {
-	            loading: true,
-	            posts: _this.props.posts
-	        };
-	        return _this;
-	    }
-
-	    _createClass(GridPost, [{
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            //const posts = await api.posts.getList(this.state.page);
-
-	            this.setState({
-	                //posts,
-	                //page: this.state.page + 1,
-	                loading: false
-	            });
-	            console.log('Aca se deberia hacer la petición a la API');
-	            console.log('hay ' + this.props.posts.length + ' posts');
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                { className: 'row' },
-	                this.state.loading && _react2.default.createElement(
-	                    'h2',
-	                    null,
-	                    'loading posts...'
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'col-xs-12 col-sm-3' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: _DescriptionPost2.default.margin_bot },
-	                        this.state.posts.map(function (post) {
-	                            console.log(post.id + " ---  " + post.post_name + "---" + post.picture);
-	                            _react2.default.createElement(_ImgPost2.default, _extends({ id: post.id, post_name: post.name, picture: post.picture, width: post.width, height: post.height }, post));
-	                        })
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-
-	    return GridPost;
-	}(_react.Component);
-
-	exports.default = GridPost;
-
-/***/ },
+/* 340 */,
 /* 341 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -63083,6 +62994,7 @@
 	            ),
 	            _react2.default.createElement("link", { href: "https://fonts.googleapis.com/css?family=Roboto", rel: "stylesheet" }),
 	            _react2.default.createElement("link", { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" }),
+	            _react2.default.createElement("link", { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" }),
 	            _react2.default.createElement("link", { rel: "stylesheet", href: "http://localhost:3001/styles.css" })
 	        ),
 	        _react2.default.createElement(
@@ -63098,6 +63010,103 @@
 	}
 
 	exports.default = Layout;
+
+/***/ },
+/* 349 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(120);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _ImgPost = __webpack_require__(341);
+
+	var _ImgPost2 = _interopRequireDefault(_ImgPost);
+
+	var _DescriptionPost = __webpack_require__(344);
+
+	var _DescriptionPost2 = _interopRequireDefault(_DescriptionPost);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var GridPost = function (_Component) {
+	    _inherits(GridPost, _Component);
+
+	    function GridPost(props) {
+	        _classCallCheck(this, GridPost);
+
+	        var _this = _possibleConstructorReturn(this, (GridPost.__proto__ || Object.getPrototypeOf(GridPost)).call(this, props));
+
+	        _this.state = {
+	            loading: true,
+	            posts: _this.props.posts
+	        };
+	        return _this;
+	    }
+
+	    _createClass(GridPost, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            //const posts = await api.posts.getList(this.state.page);
+
+	            this.setState({
+	                //posts,
+	                //page: this.state.page + 1,
+	                loading: false
+	            });
+	            console.log('Aca se deberia hacer la petición a la API');
+	            console.log('hay ' + this.props.posts.length + ' posts');
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'row' },
+	                this.state.loading && _react2.default.createElement(
+	                    'h2',
+	                    null,
+	                    'loading posts...'
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'col-xs-12 col-sm-3' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: _DescriptionPost2.default.margin_bot },
+	                        this.state.posts.map(function (post) {
+	                            console.log(post.post_name);
+	                            return _react2.default.createElement(_ImgPost2.default, {
+	                                key: post.id,
+	                                picture: post.picture,
+	                                post_name: post.post_name,
+	                                width: post.width,
+	                                height: post.height });
+	                        })
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return GridPost;
+	}(_react.Component);
+
+	exports.default = GridPost;
 
 /***/ }
 /******/ ]);

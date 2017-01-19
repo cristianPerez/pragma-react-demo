@@ -1,22 +1,42 @@
+img{
+    border:0;
+}
 ._3m1_3vC4Yorr99jpCgw9YS{
     display:inline-block;
 }
 
 ._2tDAgSU4StUWxF3uxzdXk7{
-    margin-left:10px;
+    margin:0 10px;
+    color:black;
+    text-transform: uppercase;
+    text-decoration:none;
+}
+
+._2tDAgSU4StUWxF3uxzdXk7:hover{
+    padding-bottom:2px;
+    border-bottom:4px solid black;
+}
+
+._3TVuwakRXHTb6VTIZUoWDH{
+    position: absolute;
+    height: 20px;
+    top: 50%;
+    margin-top: -10px;
+    margin-left: 100px;
 }
 
 ._1F1_40NLM19y4BLqNoqCmm{
-    background-image: url(http://www.downgraf.com/wp-content/uploads/2014/01/Minimalist-Logo-Design-1.jpg);
-    background-position-x: -117px;
-    background-position-y: -68px;
+    background-image: url(https://chilli.be/uploads/images/LOGOS/vrijmoed_ontwerp_logo.png);
+    background-position-x: -310px;
+    background-position-y: -192px;
     background-repeat: no-repeat;
-    width: 121px;
-    height: 121px;
-    display: inline-block;
-    margin: 1px;
+    width: 161px;
+    height: 147px;
+    margin: -35px;
     padding: 0;
     transform: scale(0.5);
+}header{
+    position:relative;
 }._22Jz96tL6AKnlzI63LmUQ8 {
     position: relative;
     width: 100%;
