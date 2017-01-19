@@ -62518,6 +62518,10 @@
 
 	var _Navigation2 = _interopRequireDefault(_Navigation);
 
+	var _Header = __webpack_require__(349);
+
+	var _Header2 = _interopRequireDefault(_Header);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -62569,6 +62573,10 @@
 
 	var _reactRouter = __webpack_require__(290);
 
+	var _Navigation = __webpack_require__(347);
+
+	var _Navigation2 = _interopRequireDefault(_Navigation);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -62591,15 +62599,16 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'nav',
-	                { role: 'navigation' },
+	                { className: 'navContainer', role: 'navigation' },
+	                _react2.default.createElement('img', { className: _Navigation2.default.logoSm }),
 	                _react2.default.createElement(
 	                    _reactRouter.Link,
-	                    { to: '/' },
+	                    { className: _Navigation2.default.pageLink, to: '/' },
 	                    'Home'
 	                ),
 	                _react2.default.createElement(
 	                    _reactRouter.Link,
-	                    { to: '/posts' },
+	                    { className: _Navigation2.default.pageLink, to: '/posts' },
 	                    'posts'
 	                )
 	            );
@@ -63119,6 +63128,21 @@
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"imgcaptionlow":"_2VNrsqMxt0DEXCa3NMJR-_"};
+
+/***/ },
+/* 346 */,
+/* 347 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"navContainer":"_3m1_3vC4Yorr99jpCgw9YS","pageLink":"_2tDAgSU4StUWxF3uxzdXk7","logoSm":"_1F1_40NLM19y4BLqNoqCmm"};
+
+/***/ },
+/* 348 */,
+/* 349 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);
