@@ -63088,7 +63088,8 @@
 	                null,
 	                props.title
 	            ),
-	            _react2.default.createElement("link", { rel: "stylesheet", href: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" })
+	            _react2.default.createElement("link", { rel: "stylesheet", href: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" }),
+	            _react2.default.createElement("link", { rel: "stylesheet", href: "http://localhost:3001/styles.css" })
 	        ),
 	        _react2.default.createElement(
 	            "body",
