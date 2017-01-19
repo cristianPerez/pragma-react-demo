@@ -25436,7 +25436,7 @@
 
 	var _Posts2 = _interopRequireDefault(_Posts);
 
-	var _About = __webpack_require__(224);
+	var _About = __webpack_require__(228);
 
 	var _About2 = _interopRequireDefault(_About);
 
@@ -25791,7 +25791,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ImgPost = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./ImgPost.css\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _ImgPost = __webpack_require__(224);
 
 	var _ImgPost2 = _interopRequireDefault(_ImgPost);
 
@@ -25825,6 +25825,16 @@
 
 /***/ },
 /* 224 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"img-container":"_2yMCXMlYJS13g3e0CqrqXM","caption-container":"AoTD33WwAMlx1AlzHE7Kq","text-caption":"_39eHU5VFu_BAJXuzMLw09i","img-caption-low":"_14W14bsjLav_GrLghD0FhF"};
+
+/***/ },
+/* 225 */,
+/* 226 */,
+/* 227 */,
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

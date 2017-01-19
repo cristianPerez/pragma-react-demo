@@ -173,7 +173,7 @@
 
 	var _Page2 = _interopRequireDefault(_Page);
 
-	var _Routes = __webpack_require__(337);
+	var _Routes = __webpack_require__(341);
 
 	var _Routes2 = _interopRequireDefault(_Routes);
 
@@ -62421,7 +62421,7 @@
 
 	var _Posts2 = _interopRequireDefault(_Posts);
 
-	var _About = __webpack_require__(336);
+	var _About = __webpack_require__(340);
 
 	var _About2 = _interopRequireDefault(_About);
 
@@ -62904,7 +62904,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ImgPost = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./ImgPost.css\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _ImgPost = __webpack_require__(336);
 
 	var _ImgPost2 = _interopRequireDefault(_ImgPost);
 
@@ -62938,6 +62938,16 @@
 
 /***/ },
 /* 336 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"img-container":"_2yMCXMlYJS13g3e0CqrqXM","caption-container":"AoTD33WwAMlx1AlzHE7Kq","text-caption":"_39eHU5VFu_BAJXuzMLw09i","img-caption-low":"_14W14bsjLav_GrLghD0FhF"};
+
+/***/ },
+/* 337 */,
+/* 338 */,
+/* 339 */,
+/* 340 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -62991,7 +63001,7 @@
 	exports.default = About;
 
 /***/ },
-/* 337 */
+/* 341 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63008,7 +63018,7 @@
 
 	var _reactRouter = __webpack_require__(290);
 
-	var _Layout = __webpack_require__(338);
+	var _Layout = __webpack_require__(342);
 
 	var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -63052,7 +63062,7 @@
 	exports.default = router;
 
 /***/ },
-/* 338 */
+/* 342 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -63079,7 +63089,8 @@
 	                "title",
 	                null,
 	                props.title
-	            )
+	            ),
+	            _react2.default.createElement("link", { rel: "stylesheet", href: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" })
 	        ),
 	        _react2.default.createElement(
 	            "body",
