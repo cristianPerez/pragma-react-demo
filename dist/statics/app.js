@@ -25824,7 +25824,8 @@
 
 	        this.state = {
 	            loading: true,
-	            posts: this.props.posts
+	            posts: this.props.posts,
+	            count: 0
 	        };
 	    }
 
@@ -25856,7 +25857,8 @@
 	                    'div',
 	                    { className: _DescriptionPost2.default.margin_bot },
 	                    this.state.posts.map(function (post) {
-	                        console.log(post.post_name);
+	                        this.state.count++;
+
 	                        return _react2.default.createElement(_ImgPost2.default, {
 	                            key: post.id,
 	                            picture: post.picture,

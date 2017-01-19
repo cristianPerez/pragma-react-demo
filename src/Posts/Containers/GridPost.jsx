@@ -10,6 +10,7 @@ class GridPost extends Component {
         this.state = {
             loading: true,
             posts: this.props.posts,
+            count: 0
         };
     }
 
@@ -35,7 +36,8 @@ class GridPost extends Component {
                 <div className={styles.margin_bot}>
                     {
                         this.state.posts.map(function (post) {
-                            console.log(post.post_name);
+                            this.state.count++;
+
                             return <ImgPost
                                 key={post.id}
                                 picture={post.picture}
