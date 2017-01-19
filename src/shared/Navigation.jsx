@@ -6,14 +6,16 @@ import styles from './Navigation.css'
 class Navigation extends Component {
     render(){
         return(
-            <nav className="navContainer" role="navigation">
-                <img className={styles.logoSm}/>
-                <Link className={styles.pageLink} to="/">
-                    Home
-                </Link>
-                <Link className={styles.pageLink} to="/posts">
-                    posts
-                </Link>
+            <nav role="navigation">
+                <img className={styles.logoSm} src="http://www-cdr.stanford.edu/~petrie/blank.gif"/>
+                <div className={styles.navLinkContainer}>
+                    <Link className={styles.pageLink} to="/">
+                        Home
+                    </Link>
+                    <Link className={styles.pageLink} to="/posts">
+                        posts
+                    </Link>
+                </div>
             </nav>
         );
     }
