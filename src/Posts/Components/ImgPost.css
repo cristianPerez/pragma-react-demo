@@ -45,3 +45,7 @@
 body {
     font-family: Roboto;
 }
+
+.margin_bot {
+    margin-bottom: 10px !important;
+}
