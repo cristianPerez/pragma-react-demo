@@ -23,10 +23,10 @@ module.exports = {
             },
             {
                 test:/\.css$/,
-                loader:ExtractTextPlugin.extract('style','css=modules'),
-                plugins:[new ExtractTextPlugin('../statics/styles.css')]
+                loader:ExtractTextPlugin.extract('style','css=modules')
             }
         ]
     },
-    target : 'web'
+    target : 'web',
+    plugins:[new ExtractTextPlugin('../statics/styles.css')]
 };

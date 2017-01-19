@@ -22,10 +22,10 @@ module.exports = {
             },
             {
                 test:/\.css$/,
-                loader:ExtractTextPlugin.extract('style','css?modules'),
-                plugins:[new ExtractTextPlugin('../statics/styles.css')]
+                loader:ExtractTextPlugin.extract('style','css=modules')
             }
         ]
     },
-    target : 'node'
+    target : 'node',
+    plugins:[new ExtractTextPlugin('../statics/styles.css')]
 };

@@ -173,7 +173,7 @@
 
 	var _Page2 = _interopRequireDefault(_Page);
 
-	var _Routes = __webpack_require__(334);
+	var _Routes = __webpack_require__(337);
 
 	var _Routes2 = _interopRequireDefault(_Routes);
 
@@ -62421,7 +62421,7 @@
 
 	var _Posts2 = _interopRequireDefault(_Posts);
 
-	var _About = __webpack_require__(333);
+	var _About = __webpack_require__(336);
 
 	var _About2 = _interopRequireDefault(_About);
 
@@ -62456,13 +62456,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ContentHeader = __webpack_require__(330);
+	var _Header = __webpack_require__(330);
 
-	var _ContentHeader2 = _interopRequireDefault(_ContentHeader);
-
-	var _Navigation = __webpack_require__(331);
-
-	var _Navigation2 = _interopRequireDefault(_Navigation);
+	var _Header2 = _interopRequireDefault(_Header);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -62487,12 +62483,12 @@
 	            return _react2.default.createElement(
 	                'section',
 	                { name: 'home' },
+	                _react2.default.createElement(_Header2.default, null),
 	                _react2.default.createElement(
 	                    'h1',
 	                    null,
 	                    'Home'
-	                ),
-	                _react2.default.createElement(_ContentHeader2.default, { title: 'Pragma Engineering', subtitle: 'Some random quote of the day - Donald Trump' })
+	                )
 	            );
 	        }
 	    }]);
@@ -62518,7 +62514,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRouter = __webpack_require__(290);
+	var _Navigation = __webpack_require__(331);
+
+	var _Navigation2 = _interopRequireDefault(_Navigation);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -62528,53 +62526,30 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var ContentHeader = function (_Component) {
-	    _inherits(ContentHeader, _Component);
+	var Header = function (_Component) {
+	    _inherits(Header, _Component);
 
-	    function ContentHeader(props) {
-	        _classCallCheck(this, ContentHeader);
+	    function Header() {
+	        _classCallCheck(this, Header);
 
-	        var _this = _possibleConstructorReturn(this, (ContentHeader.__proto__ || Object.getPrototypeOf(ContentHeader)).call(this, props));
-
-	        _this.state = {
-	            open: false
-	        };
-	        return _this;
+	        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
 	    }
 
-	    _createClass(ContentHeader, [{
+	    _createClass(Header, [{
 	        key: 'render',
 	        value: function render() {
-	            return _react2.default.createElement(Header, {
-	                title: this.props.title,
-	                subtitle: this.props.subtitle
-	            });
+	            return _react2.default.createElement(
+	                'header',
+	                null,
+	                _react2.default.createElement(_Navigation2.default, null)
+	            );
 	        }
 	    }]);
 
-	    return ContentHeader;
+	    return Header;
 	}(_react.Component);
 
-	function Header(props) {
-	    var title = props.title;
-	    var subtitle = props.subtitle;
-	    return _react2.default.createElement(
-	        'section',
-	        { name: 'content-header' },
-	        _react2.default.createElement(
-	            'h1',
-	            null,
-	            title
-	        ),
-	        _react2.default.createElement(
-	            'h2',
-	            null,
-	            subtitle
-	        )
-	    );
-	}
-
-	exports.default = ContentHeader;
+	exports.default = Header;
 
 /***/ },
 /* 331 */
@@ -62652,13 +62627,17 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ContentHeader = __webpack_require__(330);
+	var _Header = __webpack_require__(330);
+
+	var _Header2 = _interopRequireDefault(_Header);
+
+	var _ContentHeader = __webpack_require__(333);
 
 	var _ContentHeader2 = _interopRequireDefault(_ContentHeader);
 
-	var _Navigation = __webpack_require__(331);
+	var _DescriptionPost = __webpack_require__(334);
 
-	var _Navigation2 = _interopRequireDefault(_Navigation);
+	var _DescriptionPost2 = _interopRequireDefault(_DescriptionPost);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -62683,13 +62662,14 @@
 	            return _react2.default.createElement(
 	                'section',
 	                { name: 'posts' },
-	                _react2.default.createElement(_Navigation2.default, null),
+	                _react2.default.createElement(_Header2.default, null),
+	                _react2.default.createElement(_ContentHeader2.default, { title: 'Los posts' }),
 	                _react2.default.createElement(
 	                    'h1',
 	                    null,
 	                    'Posts'
 	                ),
-	                _react2.default.createElement(_ContentHeader2.default, { title: 'posts' })
+	                _react2.default.createElement(_DescriptionPost2.default, { post_name: 'Pragma', picture: '2', width: '100%', height: '350' })
 	            );
 	        }
 	    }]);
@@ -62701,6 +62681,263 @@
 
 /***/ },
 /* 333 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(120);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(290);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ContentHeader = function (_Component) {
+	    _inherits(ContentHeader, _Component);
+
+	    function ContentHeader(props) {
+	        _classCallCheck(this, ContentHeader);
+
+	        var _this = _possibleConstructorReturn(this, (ContentHeader.__proto__ || Object.getPrototypeOf(ContentHeader)).call(this, props));
+
+	        _this.state = {
+	            open: false
+	        };
+	        return _this;
+	    }
+
+	    _createClass(ContentHeader, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(Header, {
+	                title: this.props.title,
+	                subtitle: this.props.subtitle
+	            });
+	        }
+	    }]);
+
+	    return ContentHeader;
+	}(_react.Component);
+
+	function Header(props) {
+	    var title = props.title;
+	    var subtitle = props.subtitle;
+	    return _react2.default.createElement(
+	        'section',
+	        { name: 'content-header' },
+	        _react2.default.createElement(
+	            'h1',
+	            null,
+	            title
+	        ),
+	        _react2.default.createElement(
+	            'h2',
+	            null,
+	            subtitle
+	        )
+	    );
+	}
+
+	exports.default = ContentHeader;
+
+/***/ },
+/* 334 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(120);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _ImgPost = __webpack_require__(335);
+
+	var _ImgPost2 = _interopRequireDefault(_ImgPost);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	/* Componentes contenedores que muestran puros internamente */
+	var DescriptionPost = function (_Component) {
+	    _inherits(DescriptionPost, _Component);
+
+	    function DescriptionPost(props) {
+	        _classCallCheck(this, DescriptionPost);
+
+	        var _this = _possibleConstructorReturn(this, (DescriptionPost.__proto__ || Object.getPrototypeOf(DescriptionPost)).call(this, props));
+
+	        _this.state = {
+	            count: 0
+	        };
+	        _this.handleClick = _this.handleClick.bind(_this);
+	        return _this;
+	    }
+
+	    _createClass(DescriptionPost, [{
+	        key: 'handleClick',
+	        value: function handleClick() {
+	            this.setState({
+	                count: this.state.count + 1
+	            });
+	        }
+	    }, {
+	        key: 'handleMouseEnter',
+	        value: function handleMouseEnter(event) {
+	            console.log(event.target);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'row' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'container' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-xs-12 col-sm-6' },
+	                        _react2.default.createElement(_ImgPost2.default, {
+	                            picture: this.props.picture,
+	                            width: this.props.width,
+	                            height: this.props.height,
+	                            post_name: this.props.post_name
+	                        })
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-xs-12 col-sm-6' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'col-xs-12 col-sm-6' },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'img-caption-low' },
+	                                    _react2.default.createElement(_ImgPost2.default, {
+	                                        picture: this.props.picture,
+	                                        width: this.props.width,
+	                                        height: '150',
+	                                        post_name: this.props.post_name
+	                                    })
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'col-xs-12 col-sm-6' },
+	                                _react2.default.createElement(_ImgPost2.default, {
+	                                    picture: this.props.picture,
+	                                    width: this.props.width,
+	                                    height: '150',
+	                                    post_name: this.props.post_name
+	                                })
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'col-xs-12 col-sm-6' },
+	                                _react2.default.createElement(_ImgPost2.default, {
+	                                    picture: this.props.picture,
+	                                    width: this.props.width,
+	                                    height: '150',
+	                                    post_name: this.props.post_name
+	                                })
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'col-xs-12 col-sm-6' },
+	                                _react2.default.createElement(_ImgPost2.default, {
+	                                    picture: this.props.picture,
+	                                    width: this.props.width,
+	                                    height: '150',
+	                                    post_name: this.props.post_name
+	                                })
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return DescriptionPost;
+	}(_react.Component);
+
+	exports.default = DescriptionPost;
+
+/***/ },
+/* 335 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(120);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _ImgPost = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./ImgPost.css\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var _ImgPost2 = _interopRequireDefault(_ImgPost);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function ImgPost(props) {
+	    return _react2.default.createElement(
+	        'div',
+	        { className: _ImgPost2.default.img - container },
+	        _react2.default.createElement(
+	            'figure',
+	            { className: '' },
+	            _react2.default.createElement('img', { className: _ImgPost2.default.media - object, width: props.width, height: props.height, src: 'http://lorempixel.com/600/' + props.height + '/technics/' + props.picture })
+	        ),
+	        _react2.default.createElement(
+	            'div',
+	            { className: _ImgPost2.default.caption - container, id: 'Title' },
+	            _react2.default.createElement(
+	                'p',
+	                { className: _ImgPost2.default.text - caption },
+	                '  ',
+	                props.post_name
+	            )
+	        )
+	    );
+	}
+
+	/* Función pura - componentes puro solo de IU*/
+
+	exports.default = ImgPost;
+
+/***/ },
+/* 336 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -62754,7 +62991,7 @@
 	exports.default = About;
 
 /***/ },
-/* 334 */
+/* 337 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62771,7 +63008,7 @@
 
 	var _reactRouter = __webpack_require__(290);
 
-	var _Layout = __webpack_require__(335);
+	var _Layout = __webpack_require__(338);
 
 	var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -62815,7 +63052,7 @@
 	exports.default = router;
 
 /***/ },
-/* 335 */
+/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

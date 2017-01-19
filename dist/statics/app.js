@@ -25436,7 +25436,7 @@
 
 	var _Posts2 = _interopRequireDefault(_Posts);
 
-	var _About = __webpack_require__(221);
+	var _About = __webpack_require__(224);
 
 	var _About2 = _interopRequireDefault(_About);
 
@@ -25469,13 +25469,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ContentHeader = __webpack_require__(218);
+	var _Header = __webpack_require__(218);
 
-	var _ContentHeader2 = _interopRequireDefault(_ContentHeader);
-
-	var _Navigation = __webpack_require__(219);
-
-	var _Navigation2 = _interopRequireDefault(_Navigation);
+	var _Header2 = _interopRequireDefault(_Header);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25484,12 +25480,12 @@
 	        return _react2.default.createElement(
 	            'section',
 	            { name: 'home' },
+	            _react2.default.createElement(_Header2.default, null),
 	            _react2.default.createElement(
 	                'h1',
 	                null,
 	                'Home'
-	            ),
-	            _react2.default.createElement(_ContentHeader2.default, { title: 'Pragma Engineering', subtitle: 'Some random quote of the day - Donald Trump' })
+	            )
 	        );
 	    }
 	}
@@ -25510,46 +25506,23 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRouter = __webpack_require__(178);
+	var _Navigation = __webpack_require__(219);
+
+	var _Navigation2 = _interopRequireDefault(_Navigation);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	class ContentHeader extends _react.Component {
-	    constructor(props) {
-	        super(props);
-	        this.state = {
-	            open: false
-	        };
-	    }
-
+	class Header extends _react.Component {
 	    render() {
-	        return _react2.default.createElement(Header, {
-	            title: this.props.title,
-	            subtitle: this.props.subtitle
-	        });
+	        return _react2.default.createElement(
+	            'header',
+	            null,
+	            _react2.default.createElement(_Navigation2.default, null)
+	        );
 	    }
 	}
 
-	function Header(props) {
-	    const title = props.title;
-	    const subtitle = props.subtitle;
-	    return _react2.default.createElement(
-	        'section',
-	        { name: 'content-header' },
-	        _react2.default.createElement(
-	            'h1',
-	            null,
-	            title
-	        ),
-	        _react2.default.createElement(
-	            'h2',
-	            null,
-	            subtitle
-	        )
-	    );
-	}
-
-	exports.default = ContentHeader;
+	exports.default = Header;
 
 /***/ },
 /* 219 */
@@ -25604,13 +25577,17 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ContentHeader = __webpack_require__(218);
+	var _Header = __webpack_require__(218);
+
+	var _Header2 = _interopRequireDefault(_Header);
+
+	var _ContentHeader = __webpack_require__(221);
 
 	var _ContentHeader2 = _interopRequireDefault(_ContentHeader);
 
-	var _Navigation = __webpack_require__(219);
+	var _DescriptionPost = __webpack_require__(222);
 
-	var _Navigation2 = _interopRequireDefault(_Navigation);
+	var _DescriptionPost2 = _interopRequireDefault(_DescriptionPost);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25619,13 +25596,14 @@
 	        return _react2.default.createElement(
 	            'section',
 	            { name: 'posts' },
-	            _react2.default.createElement(_Navigation2.default, null),
+	            _react2.default.createElement(_Header2.default, null),
+	            _react2.default.createElement(_ContentHeader2.default, { title: 'Los posts' }),
 	            _react2.default.createElement(
 	                'h1',
 	                null,
 	                'Posts'
 	            ),
-	            _react2.default.createElement(_ContentHeader2.default, { title: 'posts' })
+	            _react2.default.createElement(_DescriptionPost2.default, { post_name: 'Pragma', picture: '2', width: '100%', height: '350' })
 	        );
 	    }
 	}
@@ -25634,6 +25612,219 @@
 
 /***/ },
 /* 221 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(178);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	class ContentHeader extends _react.Component {
+	    constructor(props) {
+	        super(props);
+	        this.state = {
+	            open: false
+	        };
+	    }
+
+	    render() {
+	        return _react2.default.createElement(Header, {
+	            title: this.props.title,
+	            subtitle: this.props.subtitle
+	        });
+	    }
+	}
+
+	function Header(props) {
+	    const title = props.title;
+	    const subtitle = props.subtitle;
+	    return _react2.default.createElement(
+	        'section',
+	        { name: 'content-header' },
+	        _react2.default.createElement(
+	            'h1',
+	            null,
+	            title
+	        ),
+	        _react2.default.createElement(
+	            'h2',
+	            null,
+	            subtitle
+	        )
+	    );
+	}
+
+	exports.default = ContentHeader;
+
+/***/ },
+/* 222 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _ImgPost = __webpack_require__(223);
+
+	var _ImgPost2 = _interopRequireDefault(_ImgPost);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/* Componentes contenedores que muestran puros internamente */
+	class DescriptionPost extends _react.Component {
+	    constructor(props) {
+	        super(props);
+	        this.state = {
+	            count: 0
+	        };
+	        this.handleClick = this.handleClick.bind(this);
+	    }
+	    handleClick() {
+	        this.setState({
+	            count: this.state.count + 1
+	        });
+	    }
+	    handleMouseEnter(event) {
+	        console.log(event.target);
+	    }
+	    render() {
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'row' },
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'container' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'col-xs-12 col-sm-6' },
+	                    _react2.default.createElement(_ImgPost2.default, {
+	                        picture: this.props.picture,
+	                        width: this.props.width,
+	                        height: this.props.height,
+	                        post_name: this.props.post_name
+	                    })
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'col-xs-12 col-sm-6' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-xs-12 col-sm-6' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'img-caption-low' },
+	                                _react2.default.createElement(_ImgPost2.default, {
+	                                    picture: this.props.picture,
+	                                    width: this.props.width,
+	                                    height: '150',
+	                                    post_name: this.props.post_name
+	                                })
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-xs-12 col-sm-6' },
+	                            _react2.default.createElement(_ImgPost2.default, {
+	                                picture: this.props.picture,
+	                                width: this.props.width,
+	                                height: '150',
+	                                post_name: this.props.post_name
+	                            })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-xs-12 col-sm-6' },
+	                            _react2.default.createElement(_ImgPost2.default, {
+	                                picture: this.props.picture,
+	                                width: this.props.width,
+	                                height: '150',
+	                                post_name: this.props.post_name
+	                            })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-xs-12 col-sm-6' },
+	                            _react2.default.createElement(_ImgPost2.default, {
+	                                picture: this.props.picture,
+	                                width: this.props.width,
+	                                height: '150',
+	                                post_name: this.props.post_name
+	                            })
+	                        )
+	                    )
+	                )
+	            )
+	        );
+	    }
+	}
+	exports.default = DescriptionPost;
+
+/***/ },
+/* 223 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _ImgPost = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./ImgPost.css\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var _ImgPost2 = _interopRequireDefault(_ImgPost);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function ImgPost(props) {
+	    return _react2.default.createElement(
+	        'div',
+	        { className: _ImgPost2.default.img - container },
+	        _react2.default.createElement(
+	            'figure',
+	            { className: '' },
+	            _react2.default.createElement('img', { className: _ImgPost2.default.media - object, width: props.width, height: props.height, src: 'http://lorempixel.com/600/' + props.height + '/technics/' + props.picture })
+	        ),
+	        _react2.default.createElement(
+	            'div',
+	            { className: _ImgPost2.default.caption - container, id: 'Title' },
+	            _react2.default.createElement(
+	                'p',
+	                { className: _ImgPost2.default.text - caption },
+	                '  ',
+	                props.post_name
+	            )
+	        )
+	    );
+	}
+
+	/* Función pura - componentes puro solo de IU*/
+
+	exports.default = ImgPost;
+
+/***/ },
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

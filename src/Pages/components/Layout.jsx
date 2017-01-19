@@ -4,7 +4,8 @@ function  Layout(props) {
         <html>
         <head>
             <meta charSet="utf-8"/>
-            <title>{props.title}</title></head>
+            <title>{props.title}</title>
+        </head>
         <body>
         <div id="render-target"
              dangerouslySetInnerHTML={{
