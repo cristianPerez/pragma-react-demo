@@ -62661,9 +62661,9 @@
 
 	var _ContentHeader2 = _interopRequireDefault(_ContentHeader);
 
-	var _DescriptionPost = __webpack_require__(340);
+	var _GridPost = __webpack_require__(340);
 
-	var _DescriptionPost2 = _interopRequireDefault(_DescriptionPost);
+	var _GridPost2 = _interopRequireDefault(_GridPost);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -62672,6 +62672,8 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var posts = [{ id: 1, post_name: "Post 1", picture: "1", width: "100%", height: "145" }, { id: 2, post_name: "Post 2", picture: "2", width: "100%", height: "145" }, { id: 3, post_name: "Post 3", picture: "3", width: "100%", height: "145" }, { id: 4, post_name: "Post 4", picture: "4", width: "100%", height: "145" }, { id: 5, post_name: "Post 5", picture: "5", width: "100%", height: "145" }, { id: 6, post_name: "Post 6", picture: "6", width: "100%", height: "145" }, { id: 7, post_name: "Post 7", picture: "7", width: "100%", height: "145" }, { id: 8, post_name: "Post 8", picture: "8", width: "100%", height: "145" }];
 
 	var Posts = function (_Component) {
 	    _inherits(Posts, _Component);
@@ -62695,7 +62697,7 @@
 	                    null,
 	                    'Posts'
 	                ),
-	                _react2.default.createElement(_DescriptionPost2.default, { post_name: 'Pragma', picture: '2', width: '100%', height: '320' })
+	                _react2.default.createElement(_GridPost2.default, { posts: posts })
 	            );
 	        }
 	    }]);
@@ -62789,6 +62791,8 @@
 	    value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(120);
@@ -62811,33 +62815,33 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	/* Componentes contenedores que muestran puros internamente */
-	var DescriptionPost = function (_Component) {
-	    _inherits(DescriptionPost, _Component);
+	var GridPost = function (_Component) {
+	    _inherits(GridPost, _Component);
 
-	    function DescriptionPost(props) {
-	        _classCallCheck(this, DescriptionPost);
+	    function GridPost(props) {
+	        _classCallCheck(this, GridPost);
 
-	        var _this = _possibleConstructorReturn(this, (DescriptionPost.__proto__ || Object.getPrototypeOf(DescriptionPost)).call(this, props));
+	        var _this = _possibleConstructorReturn(this, (GridPost.__proto__ || Object.getPrototypeOf(GridPost)).call(this, props));
 
 	        _this.state = {
-	            count: 0
+	            loading: true,
+	            posts: _this.props.posts
 	        };
-	        _this.handleClick = _this.handleClick.bind(_this);
 	        return _this;
 	    }
 
-	    _createClass(DescriptionPost, [{
-	        key: 'handleClick',
-	        value: function handleClick() {
+	    _createClass(GridPost, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            //const posts = await api.posts.getList(this.state.page);
+
 	            this.setState({
-	                count: this.state.count + 1
+	                //posts,
+	                //page: this.state.page + 1,
+	                loading: false
 	            });
-	        }
-	    }, {
-	        key: 'handleMouseEnter',
-	        value: function handleMouseEnter(event) {
-	            console.log(event.target);
+	            console.log('Aca se deberia hacer la petición a la API');
+	            console.log('hay ' + this.props.posts.length + ' posts');
 	        }
 	    }, {
 	        key: 'render',
@@ -62845,127 +62849,31 @@
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'row' },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'col-xs-12 col-sm-6' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'box' },
-	                        _react2.default.createElement(_ImgPost2.default, {
-	                            picture: this.props.picture,
-	                            width: this.props.width,
-	                            height: this.props.height,
-	                            post_name: this.props.post_name
-	                        })
-	                    )
+	                this.state.loading && _react2.default.createElement(
+	                    'h2',
+	                    null,
+	                    'loading posts...'
 	                ),
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'col-xs-12 col-sm-6' },
+	                    { className: 'col-xs-12 col-sm-3' },
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'row' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'col-xs-12 col-sm-6' },
-	                            _react2.default.createElement(_ImgPost2.default, {
-	                                picture: this.props.picture,
-	                                width: this.props.width,
-	                                height: '160',
-	                                post_name: this.props.post_name
-	                            })
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'col-xs-12 col-sm-6' },
-	                            _react2.default.createElement(_ImgPost2.default, {
-	                                picture: this.props.picture,
-	                                width: this.props.width,
-	                                height: '160',
-	                                post_name: this.props.post_name
-	                            })
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'col-xs-12 col-sm-6' },
-	                            _react2.default.createElement(_ImgPost2.default, {
-	                                picture: this.props.picture,
-	                                width: this.props.width,
-	                                height: '160',
-	                                post_name: this.props.post_name
-	                            })
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'col-xs-12 col-sm-6' },
-	                            _react2.default.createElement(_ImgPost2.default, {
-	                                picture: this.props.picture,
-	                                width: this.props.width,
-	                                height: '160',
-	                                post_name: this.props.post_name
-	                            })
-	                        )
+	                        { className: _DescriptionPost2.default.margin_bot },
+	                        this.state.posts.map(function (post) {
+	                            console.log(post.id + " ---  " + post.post_name + "---" + post.picture);
+	                            _react2.default.createElement(_ImgPost2.default, _extends({ id: post.id, post_name: post.name, picture: post.picture, width: post.width, height: post.height }, post));
+	                        })
 	                    )
 	                )
-	            )
-	            /*<div className="row">
-	             <div className="container">
-	             <div className="col-xs-12 col-sm-6">
-	             <ImgPost
-	             picture={this.props.picture}
-	             width={this.props.width}
-	             height={this.props.height}
-	             post_name={this.props.post_name}
-	             />
-	             </div>
-	             <div className="col-xs-12 col-sm-6">
-	             <div className="row">
-	             <div className="col-xs-12 col-sm-6">
-	             <div className={styles.imgcaptionlow}>
-	             <ImgPost
-	             picture={this.props.picture}
-	             width={this.props.width}
-	             height='150'
-	             post_name={this.props.post_name}
-	             />
-	             </div>
-	              </div>
-	             <div className="col-xs-12 col-sm-6">
-	             <ImgPost
-	             picture={this.props.picture}
-	             width={this.props.width}
-	             height='150'
-	             post_name={this.props.post_name}
-	             />
-	             </div>
-	             <div className="col-xs-12 col-sm-6">
-	             <ImgPost
-	             picture={this.props.picture}
-	             width={this.props.width}
-	             height='150'
-	             post_name={this.props.post_name}
-	             />
-	             </div>
-	             <div className="col-xs-12 col-sm-6">
-	             <ImgPost
-	             picture={this.props.picture}
-	             width={this.props.width}
-	             height='150'
-	             post_name={this.props.post_name}
-	             />
-	             </div>
-	             </div>
-	             </div>
-	             </div>
-	             </div>*/
-	            ;
+	            );
 	        }
 	    }]);
 
-	    return DescriptionPost;
+	    return GridPost;
 	}(_react.Component);
 
-	exports.default = DescriptionPost;
+	exports.default = GridPost;
 
 /***/ },
 /* 341 */
@@ -62994,7 +62902,7 @@
 	        _react2.default.createElement(
 	            'figure',
 	            { className: _ImgPost2.default.imgpostcontainer },
-	            _react2.default.createElement('img', { className: _ImgPost2.default.mediaobject, width: props.width, height: props.height, src: 'http://lorempixel.com/600/' + props.height + '/technics/' + props.picture })
+	            _react2.default.createElement('img', { className: _ImgPost2.default.mediaobject, width: props.width, height: props.height, src: 'http://lorempixel.com/600/' + props.height + '/technics/' })
 	        ),
 	        _react2.default.createElement(
 	            'div',
@@ -63026,7 +62934,7 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"imgcaptionlow":"_2VNrsqMxt0DEXCa3NMJR-_"};
+	module.exports = {"container_post":"_2BgL7zs1LdKIJl5Zrwa7Y2","margin_bot":"_3t5qy2mQmJtAPa7I7Egsj2"};
 
 /***/ },
 /* 345 */,
@@ -63173,6 +63081,7 @@
 	                null,
 	                props.title
 	            ),
+	            _react2.default.createElement("link", { href: "https://fonts.googleapis.com/css?family=Roboto", rel: "stylesheet" }),
 	            _react2.default.createElement("link", { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" }),
 	            _react2.default.createElement("link", { rel: "stylesheet", href: "http://localhost:3001/styles.css" })
 	        ),

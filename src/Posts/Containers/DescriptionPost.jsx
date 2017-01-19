@@ -25,9 +25,9 @@ class DescriptionPost extends Component {
 
     render() {
         return (
-            <div className="row">
-                <div className="col-xs-12 col-sm-6">
-                    <div className="box">
+            <div className={styles.container_post}>
+                <div className="row">
+                    <div className="col-xs-12 col-sm-6">
                         <ImgPost
                             picture={this.props.picture}
                             width={this.props.width}
@@ -35,95 +35,98 @@ class DescriptionPost extends Component {
                             post_name={this.props.post_name}
                         />
                     </div>
+                    <div className="col-xs-12 col-sm-6">
+                        <div className="row">
+                            <div className="col-xs-12 col-sm-6">
+                                <div className={styles.margin_bot}>
+                                    <ImgPost
+                                        picture={this.props.picture}
+                                        width={this.props.width}
+                                        height='145'
+                                        post_name={this.props.post_name}
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-xs-12 col-sm-6">
+                                <div className={styles.margin_bot}>
+                                    <ImgPost
+                                        picture={this.props.picture}
+                                        width={this.props.width}
+                                        height='145'
+                                        post_name={this.props.post_name}
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-xs-12 col-sm-6">
+                                <div className={styles.margin_bot}>
+                                    <ImgPost
+                                        picture={this.props.picture}
+                                        width={this.props.width}
+                                        height='145'
+                                        post_name={this.props.post_name}
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-xs-12 col-sm-6">
+                                <div className={styles.margin_bot}>
+                                    <ImgPost
+                                        picture={this.props.picture}
+                                        width={this.props.width}
+                                        height='145'
+                                        post_name={this.props.post_name}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="col-xs-12 col-sm-6">
-                    <div className="row">
-                        <div className="col-xs-12 col-sm-6">
+                <div className="row">
+                    <div className="col-xs-12 col-sm-3">
+                        <div className={styles.margin_bot}>
                             <ImgPost
                                 picture={this.props.picture}
                                 width={this.props.width}
-                                height='160'
+                                height='145'
                                 post_name={this.props.post_name}
                             />
                         </div>
-                        <div className="col-xs-12 col-sm-6">
+                    </div>
+
+                    <div className="col-xs-12 col-sm-3">
+                        <div className={styles.margin_bot}>
                             <ImgPost
                                 picture={this.props.picture}
                                 width={this.props.width}
-                                height='160'
+                                height='145'
                                 post_name={this.props.post_name}
                             />
                         </div>
-                        <div className="col-xs-12 col-sm-6">
+                    </div>
+
+                    <div className="col-xs-12 col-sm-3">
+                        <div className={styles.margin_bot}>
                             <ImgPost
                                 picture={this.props.picture}
                                 width={this.props.width}
-                                height='160'
+                                height='145'
                                 post_name={this.props.post_name}
                             />
                         </div>
-                        <div className="col-xs-12 col-sm-6">
+                    </div>
+
+                    <div className="col-xs-12 col-sm-3">
+                        <div className={styles.margin_bot}>
                             <ImgPost
                                 picture={this.props.picture}
                                 width={this.props.width}
-                                height='160'
+                                height='145'
                                 post_name={this.props.post_name}
                             />
                         </div>
                     </div>
                 </div>
             </div>
-            /*<div className="row">
-             <div className="container">
-             <div className="col-xs-12 col-sm-6">
-             <ImgPost
-             picture={this.props.picture}
-             width={this.props.width}
-             height={this.props.height}
-             post_name={this.props.post_name}
-             />
-             </div>
-             <div className="col-xs-12 col-sm-6">
-             <div className="row">
-             <div className="col-xs-12 col-sm-6">
-             <div className={styles.imgcaptionlow}>
-             <ImgPost
-             picture={this.props.picture}
-             width={this.props.width}
-             height='150'
-             post_name={this.props.post_name}
-             />
-             </div>
 
-             </div>
-             <div className="col-xs-12 col-sm-6">
-             <ImgPost
-             picture={this.props.picture}
-             width={this.props.width}
-             height='150'
-             post_name={this.props.post_name}
-             />
-             </div>
-             <div className="col-xs-12 col-sm-6">
-             <ImgPost
-             picture={this.props.picture}
-             width={this.props.width}
-             height='150'
-             post_name={this.props.post_name}
-             />
-             </div>
-             <div className="col-xs-12 col-sm-6">
-             <ImgPost
-             picture={this.props.picture}
-             width={this.props.width}
-             height='150'
-             post_name={this.props.post_name}
-             />
-             </div>
-             </div>
-             </div>
-             </div>
-             </div>*/
         );
     }
 }
