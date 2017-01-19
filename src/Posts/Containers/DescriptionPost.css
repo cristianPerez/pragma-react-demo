@@ -1,3 +1,7 @@
-.imgcaptionlow {
-    margin-bottom: 5px;
+.container_post{
+    padding: 2% 10%;
+}
+
+.margin_bot {
+    margin-bottom: 10px !important;
 }

@@ -2,10 +2,21 @@
     position: relative;
     width: 100%;
     height: auto;
+    transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+
 }
 
 .imgcontainer :hover  ~ .captioncontainer {
-    background-color: #4267b2;
+    background-color: #4267b2 !important;
+}
+
+
+.imgcontainer:hover {
+    -ms-transform: scale(1.01); /* IE 9 */
+    -webkit-transform: scale(1.01); /* Safari */
+    transform: scale(1.01);
 }
 
 .captioncontainer {
@@ -22,12 +33,15 @@
 .textcaption {
     color: white;
     text-align: center;
-    padding: 1%;
-    font-size: 20px;
+    font-size: 17px;
 }
 
 .imgpostcontainer {
     width: 100%;
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: Roboto;
 }
