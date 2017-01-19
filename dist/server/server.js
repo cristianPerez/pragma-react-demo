@@ -173,7 +173,7 @@
 
 	var _Page2 = _interopRequireDefault(_Page);
 
-	var _Routes = __webpack_require__(347);
+	var _Routes = __webpack_require__(346);
 
 	var _Routes2 = _interopRequireDefault(_Routes);
 
@@ -62421,7 +62421,7 @@
 
 	var _Posts2 = _interopRequireDefault(_Posts);
 
-	var _About = __webpack_require__(346);
+	var _About = __webpack_require__(345);
 
 	var _About2 = _interopRequireDefault(_About);
 
@@ -62677,7 +62677,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var posts = [{ id: 1, post_name: "Post 1", picture: "1", width: "100%", height: "145" }, { id: 2, post_name: "Post 2", picture: "2", width: "100%", height: "145" }, { id: 3, post_name: "Post 3", picture: "3", width: "100%", height: "145" }, { id: 4, post_name: "Post 4", picture: "4", width: "100%", height: "145" }, { id: 5, post_name: "Post 5", picture: "5", width: "100%", height: "145" }, { id: 6, post_name: "Post 6", picture: "6", width: "100%", height: "145" }, { id: 7, post_name: "Post 7", picture: "7", width: "100%", height: "145" }, { id: 8, post_name: "Post 8", picture: "8", width: "100%", height: "145" }];
+	var posts = [{ id: 1, post_name: "Post 1", picture: "1", width: "100%", height: "145", class_other: "col-xs-12 col-sm-3" }, { id: 2, post_name: "Post 2", picture: "2", width: "100%", height: "145", class_other: "col-xs-12 col-sm-3" }, { id: 3, post_name: "Post 3", picture: "3", width: "100%", height: "145", class_other: "col-xs-12 col-sm-3" }, { id: 4, post_name: "Post 4", picture: "4", width: "100%", height: "145", class_other: "col-xs-12 col-sm-3" }, { id: 5, post_name: "Post 5", picture: "5", width: "100%", height: "145", class_other: "col-xs-12 col-sm-3" }, { id: 6, post_name: "Post 6", picture: "6", width: "100%", height: "145", class_other: "col-xs-12 col-sm-3" }, { id: 7, post_name: "Post 7", picture: "7", width: "100%", height: "145", class_other: "col-xs-12 col-sm-3" }, { id: 8, post_name: "Post 8", picture: "8", width: "100%", height: "145", class_other: "col-xs-12 col-sm-3" }];
 
 	var Posts = function (_Component) {
 	    _inherits(Posts, _Component);
@@ -62805,10 +62805,6 @@
 
 	var _ImgPost2 = _interopRequireDefault(_ImgPost);
 
-	var _DescriptionPost = __webpack_require__(344);
-
-	var _DescriptionPost2 = _interopRequireDefault(_DescriptionPost);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -62836,9 +62832,9 @@
 	    _createClass(GridPost, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-	            this.setState({
-	                loading: false
-	            });
+	            /*this.setState({
+	                loading: false,
+	            })*/
 	        }
 	    }, {
 	        key: 'render',
@@ -62846,27 +62842,15 @@
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'row' },
-	                this.state.loading && _react2.default.createElement(
-	                    'h2',
-	                    null,
-	                    'loading posts...'
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'col-xs-12' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: _DescriptionPost2.default.margin_bot },
-	                        this.state.posts.map(function (post) {
-	                            return _react2.default.createElement(_ImgPost2.default, {
-	                                key: post.id,
-	                                picture: post.picture,
-	                                post_name: post.post_name,
-	                                width: post.width,
-	                                height: post.height });
-	                        })
-	                    )
-	                )
+	                this.state.posts.map(function (post, index) {
+	                    var large = index === 0;
+	                    return _react2.default.createElement(_ImgPost2.default, {
+	                        key: post.id,
+	                        picture: post.picture,
+	                        post_name: post.post_name,
+	                        type: large
+	                    });
+	                })
 	            );
 	        }
 	    }]);
@@ -62890,7 +62874,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ImgPost = __webpack_require__(342);
+	var _classnames = __webpack_require__(342);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _ImgPost = __webpack_require__(343);
 
 	var _ImgPost2 = _interopRequireDefault(_ImgPost);
 
@@ -62899,19 +62887,29 @@
 	function ImgPost(props) {
 	    return _react2.default.createElement(
 	        'div',
-	        { className: _ImgPost2.default.imgcontainer + ' ' + _ImgPost2.default.imgpostcontainer },
-	        _react2.default.createElement(
-	            'figure',
-	            { className: _ImgPost2.default.imgpostcontainer },
-	            _react2.default.createElement('img', { src: 'http://lorempixel.com/600/' + props.height + '/technics/' })
-	        ),
+	        { className: (0, _classnames2.default)("col-xs-6", { "col-xs-12": props.type }) },
 	        _react2.default.createElement(
 	            'div',
-	            { className: _ImgPost2.default.captioncontainer, id: 'Title' },
+	            { className: _ImgPost2.default.margin_bot },
 	            _react2.default.createElement(
-	                'p',
-	                { className: _ImgPost2.default.textcaption },
-	                props.post_name
+	                'div',
+	                { className: _ImgPost2.default.imgcontainer },
+	                _react2.default.createElement(
+	                    'figure',
+	                    { className: _ImgPost2.default.imgpostcontainer },
+	                    _react2.default.createElement('img', { className: _ImgPost2.default.mediaobject, width: props.width, height: props.height,
+	                        src: 'http://lorempixel.com/600/200/technics/' + props.picture })
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: _ImgPost2.default.captioncontainer, id: 'Title' },
+	                    _react2.default.createElement(
+	                        'p',
+	                        { className: _ImgPost2.default.textcaption },
+	                        '  ',
+	                        props.post_name
+	                    )
+	                )
 	            )
 	        )
 	    );
@@ -62923,22 +62921,68 @@
 
 /***/ },
 /* 342 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	  Copyright (c) 2016 Jed Watson.
+	  Licensed under the MIT License (MIT), see
+	  http://jedwatson.github.io/classnames
+	*/
+	/* global define */
+
+	(function () {
+		'use strict';
+
+		var hasOwn = {}.hasOwnProperty;
+
+		function classNames () {
+			var classes = [];
+
+			for (var i = 0; i < arguments.length; i++) {
+				var arg = arguments[i];
+				if (!arg) continue;
+
+				var argType = typeof arg;
+
+				if (argType === 'string' || argType === 'number') {
+					classes.push(arg);
+				} else if (Array.isArray(arg)) {
+					classes.push(classNames.apply(null, arg));
+				} else if (argType === 'object') {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
+					}
+				}
+			}
+
+			return classes.join(' ');
+		}
+
+		if (typeof module !== 'undefined' && module.exports) {
+			module.exports = classNames;
+		} else if (true) {
+			// register as 'classnames', consistent with npm package name
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+				return classNames;
+			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else {
+			window.classNames = classNames;
+		}
+	}());
+
+
+/***/ },
+/* 343 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"imgcontainer":"_22Jz96tL6AKnlzI63LmUQ8","captioncontainer":"_1QsSKWWsfwitA66r2giqWX","textcaption":"_1Ef76vWpOVrOMqmkYdep-4","imgpostcontainer":"Vl40ct87iTGRuA6zeA8vl"};
+	module.exports = {"imgcontainer":"_22Jz96tL6AKnlzI63LmUQ8","captioncontainer":"_1QsSKWWsfwitA66r2giqWX","textcaption":"_1Ef76vWpOVrOMqmkYdep-4","imgpostcontainer":"Vl40ct87iTGRuA6zeA8vl","margin_bot":"_39YvfJahRw-OFUHzazGhhA"};
 
 /***/ },
-/* 343 */,
-/* 344 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-	module.exports = {"container_post":"_2BgL7zs1LdKIJl5Zrwa7Y2","margin_bot":"_3t5qy2mQmJtAPa7I7Egsj2"};
-
-/***/ },
-/* 345 */,
-/* 346 */
+/* 344 */,
+/* 345 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -62992,7 +63036,7 @@
 	exports.default = About;
 
 /***/ },
-/* 347 */
+/* 346 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63009,7 +63053,7 @@
 
 	var _reactRouter = __webpack_require__(290);
 
-	var _Layout = __webpack_require__(348);
+	var _Layout = __webpack_require__(347);
 
 	var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -63053,7 +63097,7 @@
 	exports.default = router;
 
 /***/ },
-/* 348 */
+/* 347 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

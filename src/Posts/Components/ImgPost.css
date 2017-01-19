@@ -36,12 +36,20 @@
     font-size: 17px;
 }
 
-.imgpostcontainer {
+.imgpostcontainer{
     width: 100%;
     margin: 0;
     padding: 0;
 }
 
+figure.imgpostcontainer > img{
+    width:100%;
+}
+
 body {
     font-family: Roboto;
+}
+
+.margin_bot {
+    margin-bottom: 10px !important;
 }
