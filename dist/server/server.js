@@ -46,7 +46,7 @@
 
 	'use strict';
 
-	var _app = __webpack_require__(385);
+	var _app = __webpack_require__(1);
 
 	var _app2 = _interopRequireDefault(_app);
 
@@ -136,7 +136,80 @@
 	}
 
 /***/ },
-/* 1 */,
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(__dirname) {'use strict';
+
+	var _express = __webpack_require__(2);
+
+	var _express2 = _interopRequireDefault(_express);
+
+	var _path = __webpack_require__(35);
+
+	var _path2 = _interopRequireDefault(_path);
+
+	var _morgan = __webpack_require__(85);
+
+	var _morgan2 = _interopRequireDefault(_morgan);
+
+	var _cookieParser = __webpack_require__(88);
+
+	var _cookieParser2 = _interopRequireDefault(_cookieParser);
+
+	var _bodyParser = __webpack_require__(89);
+
+	var _bodyParser2 = _interopRequireDefault(_bodyParser);
+
+	var _react = __webpack_require__(120);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _server = __webpack_require__(150);
+
+	var _reactRouter = __webpack_require__(290);
+
+	var _Page = __webpack_require__(328);
+
+	var _Page2 = _interopRequireDefault(_Page);
+
+	var _Routes = __webpack_require__(333);
+
+	var _Routes2 = _interopRequireDefault(_Routes);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var app = (0, _express2.default)();
+	app.use((0, _morgan2.default)('dev'));
+	app.use(_bodyParser2.default.json());
+	app.use(_bodyParser2.default.urlencoded({ extended: false }));
+	app.use((0, _cookieParser2.default)());
+	app.use(_express2.default.static(_path2.default.join(__dirname, 'static')));
+
+	app.all('/*?', _Routes2.default);
+
+	// catch 404 and forward to error handler
+	app.use(function (req, res, next) {
+	  var err = new Error('Not Found');
+	  err.status = 404;
+	  next(err);
+	});
+
+	// error handler
+	app.use(function (err, req, res, next) {
+	  // set locals, only providing error in development
+	  res.locals.message = err.message;
+	  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+	  // render the error page
+	  res.status(err.status || 500);
+	  //res.render('error');
+	});
+
+	module.exports = app;
+	/* WEBPACK VAR INJECTION */}.call(exports, "/"))
+
+/***/ },
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -176,8 +249,8 @@
 	var proto = __webpack_require__(6);
 	var Route = __webpack_require__(22);
 	var Router = __webpack_require__(21);
-	var req = __webpack_require__(71);
-	var res = __webpack_require__(86);
+	var req = __webpack_require__(68);
+	var res = __webpack_require__(80);
 
 	/**
 	 * Expose `createApplication()`.
@@ -226,7 +299,7 @@
 	 */
 
 	exports.query = __webpack_require__(39);
-	exports.static = __webpack_require__(90);
+	exports.static = __webpack_require__(84);
 
 	/**
 	 * Replace removed middleware with an appropriate error message.
@@ -5396,7 +5469,7 @@
 
 	  if (!opts.engines[this.ext]) {
 	    // load engine
-	    opts.engines[this.ext] = __webpack_require__(70)(this.ext.substr(1)).__express;
+	    opts.engines[this.ext] = __webpack_require__(67)(this.ext.substr(1)).__express;
 	  }
 
 	  // store loaded engine
@@ -5518,10 +5591,10 @@
 	var flatten = __webpack_require__(23);
 	var mime = __webpack_require__(48).mime;
 	var basename = __webpack_require__(35).basename;
-	var etag = __webpack_require__(58);
-	var proxyaddr = __webpack_require__(65);
+	var etag = __webpack_require__(56);
+	var proxyaddr = __webpack_require__(62);
 	var qs = __webpack_require__(40);
-	var querystring = __webpack_require__(69);
+	var querystring = __webpack_require__(66);
 
 	/**
 	 * Return strong ETag for `body`.
@@ -6493,20 +6566,20 @@
 	var createError = __webpack_require__(49)
 	var debug = __webpack_require__(8)('send')
 	var deprecate = __webpack_require__(29)('send')
-	var destroy = __webpack_require__(55)
-	var encodeUrl = __webpack_require__(57)
+	var destroy = __webpack_require__(53)
+	var encodeUrl = __webpack_require__(55)
 	var escapeHtml = __webpack_require__(15)
-	var etag = __webpack_require__(58)
+	var etag = __webpack_require__(56)
 	var EventEmitter = __webpack_require__(4).EventEmitter
-	var fresh = __webpack_require__(60)
+	var fresh = __webpack_require__(58)
 	var fs = __webpack_require__(13)
-	var mime = __webpack_require__(61)
-	var ms = __webpack_require__(63)
+	var mime = __webpack_require__(59)
+	var ms = __webpack_require__(12)
 	var onFinished = __webpack_require__(16)
-	var parseRange = __webpack_require__(64)
+	var parseRange = __webpack_require__(61)
 	var path = __webpack_require__(35)
-	var statuses = __webpack_require__(51)
-	var Stream = __webpack_require__(56)
+	var statuses = __webpack_require__(18)
+	var Stream = __webpack_require__(54)
 	var util = __webpack_require__(10)
 
 	/**
@@ -7445,8 +7518,8 @@
 	 */
 
 	var setPrototypeOf = __webpack_require__(50)
-	var statuses = __webpack_require__(51)
-	var inherits = __webpack_require__(53)
+	var statuses = __webpack_require__(18)
+	var inherits = __webpack_require__(51)
 
 	/**
 	 * Module exports.
@@ -7678,203 +7751,17 @@
 /* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/*!
-	 * statuses
-	 * Copyright(c) 2014 Jonathan Ong
-	 * Copyright(c) 2016 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	'use strict'
-
-	/**
-	 * Module dependencies.
-	 * @private
-	 */
-
-	var codes = __webpack_require__(52)
-
-	/**
-	 * Module exports.
-	 * @public
-	 */
-
-	module.exports = status
-
-	// array of status codes
-	status.codes = populateStatusesMap(status, codes)
-
-	// status codes for redirects
-	status.redirect = {
-	  300: true,
-	  301: true,
-	  302: true,
-	  303: true,
-	  305: true,
-	  307: true,
-	  308: true
-	}
-
-	// status codes for empty bodies
-	status.empty = {
-	  204: true,
-	  205: true,
-	  304: true
-	}
-
-	// status codes for when you should retry the request
-	status.retry = {
-	  502: true,
-	  503: true,
-	  504: true
-	}
-
-	/**
-	 * Populate the statuses map for given codes.
-	 * @private
-	 */
-
-	function populateStatusesMap (statuses, codes) {
-	  var arr = []
-
-	  Object.keys(codes).forEach(function forEachCode (code) {
-	    var message = codes[code]
-	    var status = Number(code)
-
-	    // Populate properties
-	    statuses[status] = message
-	    statuses[message] = status
-	    statuses[message.toLowerCase()] = status
-
-	    // Add to array
-	    arr.push(status)
-	  })
-
-	  return arr
-	}
-
-	/**
-	 * Get the status code.
-	 *
-	 * Given a number, this will throw if it is not a known status
-	 * code, otherwise the code will be returned. Given a string,
-	 * the string will be parsed for a number and return the code
-	 * if valid, otherwise will lookup the code assuming this is
-	 * the status message.
-	 *
-	 * @param {string|number} code
-	 * @returns {number}
-	 * @public
-	 */
-
-	function status (code) {
-	  if (typeof code === 'number') {
-	    if (!status[code]) throw new Error('invalid status code: ' + code)
-	    return code
-	  }
-
-	  if (typeof code !== 'string') {
-	    throw new TypeError('code must be a number or string')
-	  }
-
-	  // '403'
-	  var n = parseInt(code, 10)
-	  if (!isNaN(n)) {
-	    if (!status[n]) throw new Error('invalid status code: ' + n)
-	    return n
-	  }
-
-	  n = status[code.toLowerCase()]
-	  if (!n) throw new Error('invalid status message: "' + code + '"')
-	  return n
-	}
-
-
-/***/ },
-/* 52 */
-/***/ function(module, exports) {
-
-	module.exports = {
-		"100": "Continue",
-		"101": "Switching Protocols",
-		"102": "Processing",
-		"200": "OK",
-		"201": "Created",
-		"202": "Accepted",
-		"203": "Non-Authoritative Information",
-		"204": "No Content",
-		"205": "Reset Content",
-		"206": "Partial Content",
-		"207": "Multi-Status",
-		"208": "Already Reported",
-		"226": "IM Used",
-		"300": "Multiple Choices",
-		"301": "Moved Permanently",
-		"302": "Found",
-		"303": "See Other",
-		"304": "Not Modified",
-		"305": "Use Proxy",
-		"306": "(Unused)",
-		"307": "Temporary Redirect",
-		"308": "Permanent Redirect",
-		"400": "Bad Request",
-		"401": "Unauthorized",
-		"402": "Payment Required",
-		"403": "Forbidden",
-		"404": "Not Found",
-		"405": "Method Not Allowed",
-		"406": "Not Acceptable",
-		"407": "Proxy Authentication Required",
-		"408": "Request Timeout",
-		"409": "Conflict",
-		"410": "Gone",
-		"411": "Length Required",
-		"412": "Precondition Failed",
-		"413": "Payload Too Large",
-		"414": "URI Too Long",
-		"415": "Unsupported Media Type",
-		"416": "Range Not Satisfiable",
-		"417": "Expectation Failed",
-		"418": "I'm a teapot",
-		"421": "Misdirected Request",
-		"422": "Unprocessable Entity",
-		"423": "Locked",
-		"424": "Failed Dependency",
-		"425": "Unordered Collection",
-		"426": "Upgrade Required",
-		"428": "Precondition Required",
-		"429": "Too Many Requests",
-		"431": "Request Header Fields Too Large",
-		"451": "Unavailable For Legal Reasons",
-		"500": "Internal Server Error",
-		"501": "Not Implemented",
-		"502": "Bad Gateway",
-		"503": "Service Unavailable",
-		"504": "Gateway Timeout",
-		"505": "HTTP Version Not Supported",
-		"506": "Variant Also Negotiates",
-		"507": "Insufficient Storage",
-		"508": "Loop Detected",
-		"509": "Bandwidth Limit Exceeded",
-		"510": "Not Extended",
-		"511": "Network Authentication Required"
-	};
-
-/***/ },
-/* 53 */
-/***/ function(module, exports, __webpack_require__) {
-
 	try {
 	  var util = __webpack_require__(10);
 	  if (typeof util.inherits !== 'function') throw '';
 	  module.exports = util.inherits;
 	} catch (e) {
-	  module.exports = __webpack_require__(54);
+	  module.exports = __webpack_require__(52);
 	}
 
 
 /***/ },
-/* 54 */
+/* 52 */
 /***/ function(module, exports) {
 
 	if (typeof Object.create === 'function') {
@@ -7903,7 +7790,7 @@
 
 
 /***/ },
-/* 55 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -7920,7 +7807,7 @@
 	 */
 
 	var ReadStream = __webpack_require__(13).ReadStream
-	var Stream = __webpack_require__(56)
+	var Stream = __webpack_require__(54)
 
 	/**
 	 * Module exports.
@@ -7984,13 +7871,13 @@
 
 
 /***/ },
-/* 56 */
+/* 54 */
 /***/ function(module, exports) {
 
 	module.exports = require("stream");
 
 /***/ },
-/* 57 */
+/* 55 */
 /***/ function(module, exports) {
 
 	/*!
@@ -8056,7 +7943,7 @@
 
 
 /***/ },
-/* 58 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -8079,7 +7966,7 @@
 	 * @private
 	 */
 
-	var crypto = __webpack_require__(59)
+	var crypto = __webpack_require__(57)
 	var Stats = __webpack_require__(13).Stats
 
 	/**
@@ -8194,13 +8081,13 @@
 
 
 /***/ },
-/* 59 */
+/* 57 */
 /***/ function(module, exports) {
 
 	module.exports = require("crypto");
 
 /***/ },
-/* 60 */
+/* 58 */
 /***/ function(module, exports) {
 
 	
@@ -8263,7 +8150,7 @@
 
 
 /***/ },
-/* 61 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var path = __webpack_require__(35);
@@ -8352,7 +8239,7 @@
 	var mime = new Mime();
 
 	// Define built-in types
-	mime.define(__webpack_require__(62));
+	mime.define(__webpack_require__(60));
 
 	// Default type
 	mime.default_type = mime.lookup('bin');
@@ -8377,7 +8264,7 @@
 
 
 /***/ },
-/* 62 */
+/* 60 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -10968,138 +10855,7 @@
 	};
 
 /***/ },
-/* 63 */
-/***/ function(module, exports) {
-
-	/**
-	 * Helpers.
-	 */
-
-	var s = 1000;
-	var m = s * 60;
-	var h = m * 60;
-	var d = h * 24;
-	var y = d * 365.25;
-
-	/**
-	 * Parse or format the given `val`.
-	 *
-	 * Options:
-	 *
-	 *  - `long` verbose formatting [false]
-	 *
-	 * @param {String|Number} val
-	 * @param {Object} options
-	 * @return {String|Number}
-	 * @api public
-	 */
-
-	module.exports = function(val, options){
-	  options = options || {};
-	  if ('string' == typeof val) return parse(val);
-	  return options.long
-	    ? long(val)
-	    : short(val);
-	};
-
-	/**
-	 * Parse the given `str` and return milliseconds.
-	 *
-	 * @param {String} str
-	 * @return {Number}
-	 * @api private
-	 */
-
-	function parse(str) {
-	  str = '' + str;
-	  if (str.length > 10000) return;
-	  var match = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(str);
-	  if (!match) return;
-	  var n = parseFloat(match[1]);
-	  var type = (match[2] || 'ms').toLowerCase();
-	  switch (type) {
-	    case 'years':
-	    case 'year':
-	    case 'yrs':
-	    case 'yr':
-	    case 'y':
-	      return n * y;
-	    case 'days':
-	    case 'day':
-	    case 'd':
-	      return n * d;
-	    case 'hours':
-	    case 'hour':
-	    case 'hrs':
-	    case 'hr':
-	    case 'h':
-	      return n * h;
-	    case 'minutes':
-	    case 'minute':
-	    case 'mins':
-	    case 'min':
-	    case 'm':
-	      return n * m;
-	    case 'seconds':
-	    case 'second':
-	    case 'secs':
-	    case 'sec':
-	    case 's':
-	      return n * s;
-	    case 'milliseconds':
-	    case 'millisecond':
-	    case 'msecs':
-	    case 'msec':
-	    case 'ms':
-	      return n;
-	  }
-	}
-
-	/**
-	 * Short format for `ms`.
-	 *
-	 * @param {Number} ms
-	 * @return {String}
-	 * @api private
-	 */
-
-	function short(ms) {
-	  if (ms >= d) return Math.round(ms / d) + 'd';
-	  if (ms >= h) return Math.round(ms / h) + 'h';
-	  if (ms >= m) return Math.round(ms / m) + 'm';
-	  if (ms >= s) return Math.round(ms / s) + 's';
-	  return ms + 'ms';
-	}
-
-	/**
-	 * Long format for `ms`.
-	 *
-	 * @param {Number} ms
-	 * @return {String}
-	 * @api private
-	 */
-
-	function long(ms) {
-	  return plural(ms, d, 'day')
-	    || plural(ms, h, 'hour')
-	    || plural(ms, m, 'minute')
-	    || plural(ms, s, 'second')
-	    || ms + ' ms';
-	}
-
-	/**
-	 * Pluralization helper.
-	 */
-
-	function plural(ms, n, name) {
-	  if (ms < n) return;
-	  if (ms < n * 1.5) return Math.floor(ms / n) + ' ' + name;
-	  return Math.ceil(ms / n) + ' ' + name + 's';
-	}
-
-
-/***/ },
-/* 64 */
+/* 61 */
 /***/ function(module, exports) {
 
 	/*!
@@ -11263,7 +11019,7 @@
 
 
 /***/ },
-/* 65 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -11286,8 +11042,8 @@
 	 * Module dependencies.
 	 */
 
-	var forwarded = __webpack_require__(66);
-	var ipaddr = __webpack_require__(67);
+	var forwarded = __webpack_require__(63);
+	var ipaddr = __webpack_require__(64);
 
 	/**
 	 * Variables.
@@ -11590,7 +11346,7 @@
 
 
 /***/ },
-/* 66 */
+/* 63 */
 /***/ function(module, exports) {
 
 	/*!
@@ -11631,7 +11387,7 @@
 
 
 /***/ },
-/* 67 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {(function() {
@@ -12169,10 +11925,10 @@
 
 	}).call(this);
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(68)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(65)(module)))
 
 /***/ },
-/* 68 */
+/* 65 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -12188,13 +11944,13 @@
 
 
 /***/ },
-/* 69 */
+/* 66 */
 /***/ function(module, exports) {
 
 	module.exports = require("querystring");
 
 /***/ },
-/* 70 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
@@ -12206,10 +11962,10 @@
 		"./middleware/init.js": 38,
 		"./middleware/query": 39,
 		"./middleware/query.js": 39,
-		"./request": 71,
-		"./request.js": 71,
-		"./response": 86,
-		"./response.js": 86,
+		"./request": 68,
+		"./request.js": 68,
+		"./response": 80,
+		"./response.js": 80,
 		"./router/index": 21,
 		"./router/index.js": 21,
 		"./router/layer": 24,
@@ -12232,11 +11988,11 @@
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 70;
+	webpackContext.id = 67;
 
 
 /***/ },
-/* 71 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -12254,15 +12010,15 @@
 	 * @private
 	 */
 
-	var accepts = __webpack_require__(72);
+	var accepts = __webpack_require__(69);
 	var deprecate = __webpack_require__(29)('express');
 	var isIP = __webpack_require__(14).isIP;
-	var typeis = __webpack_require__(81);
+	var typeis = __webpack_require__(78);
 	var http = __webpack_require__(27);
-	var fresh = __webpack_require__(60);
-	var parseRange = __webpack_require__(64);
+	var fresh = __webpack_require__(58);
+	var parseRange = __webpack_require__(61);
 	var parse = __webpack_require__(36);
-	var proxyaddr = __webpack_require__(65);
+	var proxyaddr = __webpack_require__(62);
 
 	/**
 	 * Request prototype.
@@ -12744,7 +12500,7 @@
 
 
 /***/ },
-/* 72 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -12761,8 +12517,8 @@
 	 * @private
 	 */
 
-	var Negotiator = __webpack_require__(73)
-	var mime = __webpack_require__(78)
+	var Negotiator = __webpack_require__(70)
+	var mime = __webpack_require__(75)
 
 	/**
 	 * Module exports.
@@ -12981,7 +12737,7 @@
 
 
 /***/ },
-/* 73 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -13088,16 +12844,16 @@
 	  // This uses a switch for static require analysis
 	  switch (moduleName) {
 	    case 'charset':
-	      module = __webpack_require__(74);
+	      module = __webpack_require__(71);
 	      break;
 	    case 'encoding':
-	      module = __webpack_require__(75);
+	      module = __webpack_require__(72);
 	      break;
 	    case 'language':
-	      module = __webpack_require__(76);
+	      module = __webpack_require__(73);
 	      break;
 	    case 'mediaType':
-	      module = __webpack_require__(77);
+	      module = __webpack_require__(74);
 	      break;
 	    default:
 	      throw new Error('Cannot find module \'' + moduleName + '\'');
@@ -13111,7 +12867,7 @@
 
 
 /***/ },
-/* 74 */
+/* 71 */
 /***/ function(module, exports) {
 
 	/**
@@ -13286,7 +13042,7 @@
 
 
 /***/ },
-/* 75 */
+/* 72 */
 /***/ function(module, exports) {
 
 	/**
@@ -13476,7 +13232,7 @@
 
 
 /***/ },
-/* 76 */
+/* 73 */
 /***/ function(module, exports) {
 
 	/**
@@ -13661,7 +13417,7 @@
 
 
 /***/ },
-/* 77 */
+/* 74 */
 /***/ function(module, exports) {
 
 	/**
@@ -13961,7 +13717,7 @@
 
 
 /***/ },
-/* 78 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -13978,7 +13734,7 @@
 	 * @private
 	 */
 
-	var db = __webpack_require__(79)
+	var db = __webpack_require__(76)
 	var extname = __webpack_require__(35).extname
 
 	/**
@@ -14155,7 +13911,7 @@
 
 
 /***/ },
-/* 79 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -14168,11 +13924,11 @@
 	 * Module exports.
 	 */
 
-	module.exports = __webpack_require__(80)
+	module.exports = __webpack_require__(77)
 
 
 /***/ },
-/* 80 */
+/* 77 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -22817,7 +22573,7 @@
 	};
 
 /***/ },
-/* 81 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -22834,8 +22590,8 @@
 	 * @private
 	 */
 
-	var typer = __webpack_require__(82)
-	var mime = __webpack_require__(83)
+	var typer = __webpack_require__(79)
+	var mime = __webpack_require__(75)
 
 	/**
 	 * Module exports.
@@ -23085,7 +22841,7 @@
 
 
 /***/ },
-/* 82 */
+/* 79 */
 /***/ function(module, exports) {
 
 	/*!
@@ -23361,8863 +23117,7 @@
 
 
 /***/ },
-/* 83 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/*!
-	 * mime-types
-	 * Copyright(c) 2014 Jonathan Ong
-	 * Copyright(c) 2015 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	'use strict'
-
-	/**
-	 * Module dependencies.
-	 * @private
-	 */
-
-	var db = __webpack_require__(84)
-	var extname = __webpack_require__(35).extname
-
-	/**
-	 * Module variables.
-	 * @private
-	 */
-
-	var extractTypeRegExp = /^\s*([^;\s]*)(?:;|\s|$)/
-	var textTypeRegExp = /^text\//i
-
-	/**
-	 * Module exports.
-	 * @public
-	 */
-
-	exports.charset = charset
-	exports.charsets = { lookup: charset }
-	exports.contentType = contentType
-	exports.extension = extension
-	exports.extensions = Object.create(null)
-	exports.lookup = lookup
-	exports.types = Object.create(null)
-
-	// Populate the extensions/types maps
-	populateMaps(exports.extensions, exports.types)
-
-	/**
-	 * Get the default charset for a MIME type.
-	 *
-	 * @param {string} type
-	 * @return {boolean|string}
-	 */
-
-	function charset (type) {
-	  if (!type || typeof type !== 'string') {
-	    return false
-	  }
-
-	  // TODO: use media-typer
-	  var match = extractTypeRegExp.exec(type)
-	  var mime = match && db[match[1].toLowerCase()]
-
-	  if (mime && mime.charset) {
-	    return mime.charset
-	  }
-
-	  // default text/* to utf-8
-	  if (match && textTypeRegExp.test(match[1])) {
-	    return 'UTF-8'
-	  }
-
-	  return false
-	}
-
-	/**
-	 * Create a full Content-Type header given a MIME type or extension.
-	 *
-	 * @param {string} str
-	 * @return {boolean|string}
-	 */
-
-	function contentType (str) {
-	  // TODO: should this even be in this module?
-	  if (!str || typeof str !== 'string') {
-	    return false
-	  }
-
-	  var mime = str.indexOf('/') === -1
-	    ? exports.lookup(str)
-	    : str
-
-	  if (!mime) {
-	    return false
-	  }
-
-	  // TODO: use content-type or other module
-	  if (mime.indexOf('charset') === -1) {
-	    var charset = exports.charset(mime)
-	    if (charset) mime += '; charset=' + charset.toLowerCase()
-	  }
-
-	  return mime
-	}
-
-	/**
-	 * Get the default extension for a MIME type.
-	 *
-	 * @param {string} type
-	 * @return {boolean|string}
-	 */
-
-	function extension (type) {
-	  if (!type || typeof type !== 'string') {
-	    return false
-	  }
-
-	  // TODO: use media-typer
-	  var match = extractTypeRegExp.exec(type)
-
-	  // get extensions
-	  var exts = match && exports.extensions[match[1].toLowerCase()]
-
-	  if (!exts || !exts.length) {
-	    return false
-	  }
-
-	  return exts[0]
-	}
-
-	/**
-	 * Lookup the MIME type for a file path/extension.
-	 *
-	 * @param {string} path
-	 * @return {boolean|string}
-	 */
-
-	function lookup (path) {
-	  if (!path || typeof path !== 'string') {
-	    return false
-	  }
-
-	  // get the extension ("ext" or ".ext" or full path)
-	  var extension = extname('x.' + path)
-	    .toLowerCase()
-	    .substr(1)
-
-	  if (!extension) {
-	    return false
-	  }
-
-	  return exports.types[extension] || false
-	}
-
-	/**
-	 * Populate the extensions and types maps.
-	 * @private
-	 */
-
-	function populateMaps (extensions, types) {
-	  // source preference (least -> most)
-	  var preference = ['nginx', 'apache', undefined, 'iana']
-
-	  Object.keys(db).forEach(function forEachMimeType (type) {
-	    var mime = db[type]
-	    var exts = mime.extensions
-
-	    if (!exts || !exts.length) {
-	      return
-	    }
-
-	    // mime -> extensions
-	    extensions[type] = exts
-
-	    // extension -> mime
-	    for (var i = 0; i < exts.length; i++) {
-	      var extension = exts[i]
-
-	      if (types[extension]) {
-	        var from = preference.indexOf(db[types[extension]].source)
-	        var to = preference.indexOf(mime.source)
-
-	        if (types[extension] !== 'application/octet-stream' &&
-	          from > to || (from === to && types[extension].substr(0, 12) === 'application/')) {
-	          // skip the remapping
-	          continue
-	        }
-	      }
-
-	      // set the extension -> mime
-	      types[extension] = type
-	    }
-	  })
-	}
-
-
-/***/ },
-/* 84 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/*!
-	 * mime-db
-	 * Copyright(c) 2014 Jonathan Ong
-	 * MIT Licensed
-	 */
-
-	/**
-	 * Module exports.
-	 */
-
-	module.exports = __webpack_require__(85)
-
-
-/***/ },
-/* 85 */
-/***/ function(module, exports) {
-
-	module.exports = {
-		"application/1d-interleaved-parityfec": {
-			"source": "iana"
-		},
-		"application/3gpdash-qoe-report+xml": {
-			"source": "iana"
-		},
-		"application/3gpp-ims+xml": {
-			"source": "iana"
-		},
-		"application/a2l": {
-			"source": "iana"
-		},
-		"application/activemessage": {
-			"source": "iana"
-		},
-		"application/alto-costmap+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/alto-costmapfilter+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/alto-directory+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/alto-endpointcost+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/alto-endpointcostparams+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/alto-endpointprop+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/alto-endpointpropparams+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/alto-error+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/alto-networkmap+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/alto-networkmapfilter+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/aml": {
-			"source": "iana"
-		},
-		"application/andrew-inset": {
-			"source": "iana",
-			"extensions": [
-				"ez"
-			]
-		},
-		"application/applefile": {
-			"source": "iana"
-		},
-		"application/applixware": {
-			"source": "apache",
-			"extensions": [
-				"aw"
-			]
-		},
-		"application/atf": {
-			"source": "iana"
-		},
-		"application/atfx": {
-			"source": "iana"
-		},
-		"application/atom+xml": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"atom"
-			]
-		},
-		"application/atomcat+xml": {
-			"source": "iana",
-			"extensions": [
-				"atomcat"
-			]
-		},
-		"application/atomdeleted+xml": {
-			"source": "iana"
-		},
-		"application/atomicmail": {
-			"source": "iana"
-		},
-		"application/atomsvc+xml": {
-			"source": "iana",
-			"extensions": [
-				"atomsvc"
-			]
-		},
-		"application/atxml": {
-			"source": "iana"
-		},
-		"application/auth-policy+xml": {
-			"source": "iana"
-		},
-		"application/bacnet-xdd+zip": {
-			"source": "iana"
-		},
-		"application/batch-smtp": {
-			"source": "iana"
-		},
-		"application/bdoc": {
-			"compressible": false,
-			"extensions": [
-				"bdoc"
-			]
-		},
-		"application/beep+xml": {
-			"source": "iana"
-		},
-		"application/calendar+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/calendar+xml": {
-			"source": "iana"
-		},
-		"application/call-completion": {
-			"source": "iana"
-		},
-		"application/cals-1840": {
-			"source": "iana"
-		},
-		"application/cbor": {
-			"source": "iana"
-		},
-		"application/ccmp+xml": {
-			"source": "iana"
-		},
-		"application/ccxml+xml": {
-			"source": "iana",
-			"extensions": [
-				"ccxml"
-			]
-		},
-		"application/cdfx+xml": {
-			"source": "iana"
-		},
-		"application/cdmi-capability": {
-			"source": "iana",
-			"extensions": [
-				"cdmia"
-			]
-		},
-		"application/cdmi-container": {
-			"source": "iana",
-			"extensions": [
-				"cdmic"
-			]
-		},
-		"application/cdmi-domain": {
-			"source": "iana",
-			"extensions": [
-				"cdmid"
-			]
-		},
-		"application/cdmi-object": {
-			"source": "iana",
-			"extensions": [
-				"cdmio"
-			]
-		},
-		"application/cdmi-queue": {
-			"source": "iana",
-			"extensions": [
-				"cdmiq"
-			]
-		},
-		"application/cdni": {
-			"source": "iana"
-		},
-		"application/cea": {
-			"source": "iana"
-		},
-		"application/cea-2018+xml": {
-			"source": "iana"
-		},
-		"application/cellml+xml": {
-			"source": "iana"
-		},
-		"application/cfw": {
-			"source": "iana"
-		},
-		"application/clue_info+xml": {
-			"source": "iana"
-		},
-		"application/cms": {
-			"source": "iana"
-		},
-		"application/cnrp+xml": {
-			"source": "iana"
-		},
-		"application/coap-group+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/coap-payload": {
-			"source": "iana"
-		},
-		"application/commonground": {
-			"source": "iana"
-		},
-		"application/conference-info+xml": {
-			"source": "iana"
-		},
-		"application/cose": {
-			"source": "iana"
-		},
-		"application/cose-key": {
-			"source": "iana"
-		},
-		"application/cose-key-set": {
-			"source": "iana"
-		},
-		"application/cpl+xml": {
-			"source": "iana"
-		},
-		"application/csrattrs": {
-			"source": "iana"
-		},
-		"application/csta+xml": {
-			"source": "iana"
-		},
-		"application/cstadata+xml": {
-			"source": "iana"
-		},
-		"application/csvm+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/cu-seeme": {
-			"source": "apache",
-			"extensions": [
-				"cu"
-			]
-		},
-		"application/cybercash": {
-			"source": "iana"
-		},
-		"application/dart": {
-			"compressible": true
-		},
-		"application/dash+xml": {
-			"source": "iana",
-			"extensions": [
-				"mpd"
-			]
-		},
-		"application/dashdelta": {
-			"source": "iana"
-		},
-		"application/davmount+xml": {
-			"source": "iana",
-			"extensions": [
-				"davmount"
-			]
-		},
-		"application/dca-rft": {
-			"source": "iana"
-		},
-		"application/dcd": {
-			"source": "iana"
-		},
-		"application/dec-dx": {
-			"source": "iana"
-		},
-		"application/dialog-info+xml": {
-			"source": "iana"
-		},
-		"application/dicom": {
-			"source": "iana"
-		},
-		"application/dicom+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/dicom+xml": {
-			"source": "iana"
-		},
-		"application/dii": {
-			"source": "iana"
-		},
-		"application/dit": {
-			"source": "iana"
-		},
-		"application/dns": {
-			"source": "iana"
-		},
-		"application/docbook+xml": {
-			"source": "apache",
-			"extensions": [
-				"dbk"
-			]
-		},
-		"application/dskpp+xml": {
-			"source": "iana"
-		},
-		"application/dssc+der": {
-			"source": "iana",
-			"extensions": [
-				"dssc"
-			]
-		},
-		"application/dssc+xml": {
-			"source": "iana",
-			"extensions": [
-				"xdssc"
-			]
-		},
-		"application/dvcs": {
-			"source": "iana"
-		},
-		"application/ecmascript": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"ecma"
-			]
-		},
-		"application/edi-consent": {
-			"source": "iana"
-		},
-		"application/edi-x12": {
-			"source": "iana",
-			"compressible": false
-		},
-		"application/edifact": {
-			"source": "iana",
-			"compressible": false
-		},
-		"application/efi": {
-			"source": "iana"
-		},
-		"application/emergencycalldata.comment+xml": {
-			"source": "iana"
-		},
-		"application/emergencycalldata.deviceinfo+xml": {
-			"source": "iana"
-		},
-		"application/emergencycalldata.providerinfo+xml": {
-			"source": "iana"
-		},
-		"application/emergencycalldata.serviceinfo+xml": {
-			"source": "iana"
-		},
-		"application/emergencycalldata.subscriberinfo+xml": {
-			"source": "iana"
-		},
-		"application/emma+xml": {
-			"source": "iana",
-			"extensions": [
-				"emma"
-			]
-		},
-		"application/emotionml+xml": {
-			"source": "iana"
-		},
-		"application/encaprtp": {
-			"source": "iana"
-		},
-		"application/epp+xml": {
-			"source": "iana"
-		},
-		"application/epub+zip": {
-			"source": "iana",
-			"extensions": [
-				"epub"
-			]
-		},
-		"application/eshop": {
-			"source": "iana"
-		},
-		"application/exi": {
-			"source": "iana",
-			"extensions": [
-				"exi"
-			]
-		},
-		"application/fastinfoset": {
-			"source": "iana"
-		},
-		"application/fastsoap": {
-			"source": "iana"
-		},
-		"application/fdt+xml": {
-			"source": "iana"
-		},
-		"application/fits": {
-			"source": "iana"
-		},
-		"application/font-sfnt": {
-			"source": "iana"
-		},
-		"application/font-tdpfr": {
-			"source": "iana",
-			"extensions": [
-				"pfr"
-			]
-		},
-		"application/font-woff": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"woff"
-			]
-		},
-		"application/font-woff2": {
-			"compressible": false,
-			"extensions": [
-				"woff2"
-			]
-		},
-		"application/framework-attributes+xml": {
-			"source": "iana"
-		},
-		"application/geo+json": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"geojson"
-			]
-		},
-		"application/gml+xml": {
-			"source": "iana",
-			"extensions": [
-				"gml"
-			]
-		},
-		"application/gpx+xml": {
-			"source": "apache",
-			"extensions": [
-				"gpx"
-			]
-		},
-		"application/gxf": {
-			"source": "apache",
-			"extensions": [
-				"gxf"
-			]
-		},
-		"application/gzip": {
-			"source": "iana",
-			"compressible": false
-		},
-		"application/h224": {
-			"source": "iana"
-		},
-		"application/held+xml": {
-			"source": "iana"
-		},
-		"application/http": {
-			"source": "iana"
-		},
-		"application/hyperstudio": {
-			"source": "iana",
-			"extensions": [
-				"stk"
-			]
-		},
-		"application/ibe-key-request+xml": {
-			"source": "iana"
-		},
-		"application/ibe-pkg-reply+xml": {
-			"source": "iana"
-		},
-		"application/ibe-pp-data": {
-			"source": "iana"
-		},
-		"application/iges": {
-			"source": "iana"
-		},
-		"application/im-iscomposing+xml": {
-			"source": "iana"
-		},
-		"application/index": {
-			"source": "iana"
-		},
-		"application/index.cmd": {
-			"source": "iana"
-		},
-		"application/index.obj": {
-			"source": "iana"
-		},
-		"application/index.response": {
-			"source": "iana"
-		},
-		"application/index.vnd": {
-			"source": "iana"
-		},
-		"application/inkml+xml": {
-			"source": "iana",
-			"extensions": [
-				"ink",
-				"inkml"
-			]
-		},
-		"application/iotp": {
-			"source": "iana"
-		},
-		"application/ipfix": {
-			"source": "iana",
-			"extensions": [
-				"ipfix"
-			]
-		},
-		"application/ipp": {
-			"source": "iana"
-		},
-		"application/isup": {
-			"source": "iana"
-		},
-		"application/its+xml": {
-			"source": "iana"
-		},
-		"application/java-archive": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"jar",
-				"war",
-				"ear"
-			]
-		},
-		"application/java-serialized-object": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"ser"
-			]
-		},
-		"application/java-vm": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"class"
-			]
-		},
-		"application/javascript": {
-			"source": "iana",
-			"charset": "UTF-8",
-			"compressible": true,
-			"extensions": [
-				"js"
-			]
-		},
-		"application/jose": {
-			"source": "iana"
-		},
-		"application/jose+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/jrd+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/json": {
-			"source": "iana",
-			"charset": "UTF-8",
-			"compressible": true,
-			"extensions": [
-				"json",
-				"map"
-			]
-		},
-		"application/json-patch+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/json-seq": {
-			"source": "iana"
-		},
-		"application/json5": {
-			"extensions": [
-				"json5"
-			]
-		},
-		"application/jsonml+json": {
-			"source": "apache",
-			"compressible": true,
-			"extensions": [
-				"jsonml"
-			]
-		},
-		"application/jwk+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/jwk-set+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/jwt": {
-			"source": "iana"
-		},
-		"application/kpml-request+xml": {
-			"source": "iana"
-		},
-		"application/kpml-response+xml": {
-			"source": "iana"
-		},
-		"application/ld+json": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"jsonld"
-			]
-		},
-		"application/lgr+xml": {
-			"source": "iana"
-		},
-		"application/link-format": {
-			"source": "iana"
-		},
-		"application/load-control+xml": {
-			"source": "iana"
-		},
-		"application/lost+xml": {
-			"source": "iana",
-			"extensions": [
-				"lostxml"
-			]
-		},
-		"application/lostsync+xml": {
-			"source": "iana"
-		},
-		"application/lxf": {
-			"source": "iana"
-		},
-		"application/mac-binhex40": {
-			"source": "iana",
-			"extensions": [
-				"hqx"
-			]
-		},
-		"application/mac-compactpro": {
-			"source": "apache",
-			"extensions": [
-				"cpt"
-			]
-		},
-		"application/macwriteii": {
-			"source": "iana"
-		},
-		"application/mads+xml": {
-			"source": "iana",
-			"extensions": [
-				"mads"
-			]
-		},
-		"application/manifest+json": {
-			"charset": "UTF-8",
-			"compressible": true,
-			"extensions": [
-				"webmanifest"
-			]
-		},
-		"application/marc": {
-			"source": "iana",
-			"extensions": [
-				"mrc"
-			]
-		},
-		"application/marcxml+xml": {
-			"source": "iana",
-			"extensions": [
-				"mrcx"
-			]
-		},
-		"application/mathematica": {
-			"source": "iana",
-			"extensions": [
-				"ma",
-				"nb",
-				"mb"
-			]
-		},
-		"application/mathml+xml": {
-			"source": "iana",
-			"extensions": [
-				"mathml"
-			]
-		},
-		"application/mathml-content+xml": {
-			"source": "iana"
-		},
-		"application/mathml-presentation+xml": {
-			"source": "iana"
-		},
-		"application/mbms-associated-procedure-description+xml": {
-			"source": "iana"
-		},
-		"application/mbms-deregister+xml": {
-			"source": "iana"
-		},
-		"application/mbms-envelope+xml": {
-			"source": "iana"
-		},
-		"application/mbms-msk+xml": {
-			"source": "iana"
-		},
-		"application/mbms-msk-response+xml": {
-			"source": "iana"
-		},
-		"application/mbms-protection-description+xml": {
-			"source": "iana"
-		},
-		"application/mbms-reception-report+xml": {
-			"source": "iana"
-		},
-		"application/mbms-register+xml": {
-			"source": "iana"
-		},
-		"application/mbms-register-response+xml": {
-			"source": "iana"
-		},
-		"application/mbms-schedule+xml": {
-			"source": "iana"
-		},
-		"application/mbms-user-service-description+xml": {
-			"source": "iana"
-		},
-		"application/mbox": {
-			"source": "iana",
-			"extensions": [
-				"mbox"
-			]
-		},
-		"application/media-policy-dataset+xml": {
-			"source": "iana"
-		},
-		"application/media_control+xml": {
-			"source": "iana"
-		},
-		"application/mediaservercontrol+xml": {
-			"source": "iana",
-			"extensions": [
-				"mscml"
-			]
-		},
-		"application/merge-patch+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/metalink+xml": {
-			"source": "apache",
-			"extensions": [
-				"metalink"
-			]
-		},
-		"application/metalink4+xml": {
-			"source": "iana",
-			"extensions": [
-				"meta4"
-			]
-		},
-		"application/mets+xml": {
-			"source": "iana",
-			"extensions": [
-				"mets"
-			]
-		},
-		"application/mf4": {
-			"source": "iana"
-		},
-		"application/mikey": {
-			"source": "iana"
-		},
-		"application/mods+xml": {
-			"source": "iana",
-			"extensions": [
-				"mods"
-			]
-		},
-		"application/moss-keys": {
-			"source": "iana"
-		},
-		"application/moss-signature": {
-			"source": "iana"
-		},
-		"application/mosskey-data": {
-			"source": "iana"
-		},
-		"application/mosskey-request": {
-			"source": "iana"
-		},
-		"application/mp21": {
-			"source": "iana",
-			"extensions": [
-				"m21",
-				"mp21"
-			]
-		},
-		"application/mp4": {
-			"source": "iana",
-			"extensions": [
-				"mp4s",
-				"m4p"
-			]
-		},
-		"application/mpeg4-generic": {
-			"source": "iana"
-		},
-		"application/mpeg4-iod": {
-			"source": "iana"
-		},
-		"application/mpeg4-iod-xmt": {
-			"source": "iana"
-		},
-		"application/mrb-consumer+xml": {
-			"source": "iana"
-		},
-		"application/mrb-publish+xml": {
-			"source": "iana"
-		},
-		"application/msc-ivr+xml": {
-			"source": "iana"
-		},
-		"application/msc-mixer+xml": {
-			"source": "iana"
-		},
-		"application/msword": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"doc",
-				"dot"
-			]
-		},
-		"application/mud+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/mxf": {
-			"source": "iana",
-			"extensions": [
-				"mxf"
-			]
-		},
-		"application/nasdata": {
-			"source": "iana"
-		},
-		"application/news-checkgroups": {
-			"source": "iana"
-		},
-		"application/news-groupinfo": {
-			"source": "iana"
-		},
-		"application/news-transmission": {
-			"source": "iana"
-		},
-		"application/nlsml+xml": {
-			"source": "iana"
-		},
-		"application/nss": {
-			"source": "iana"
-		},
-		"application/ocsp-request": {
-			"source": "iana"
-		},
-		"application/ocsp-response": {
-			"source": "iana"
-		},
-		"application/octet-stream": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"bin",
-				"dms",
-				"lrf",
-				"mar",
-				"so",
-				"dist",
-				"distz",
-				"pkg",
-				"bpk",
-				"dump",
-				"elc",
-				"deploy",
-				"exe",
-				"dll",
-				"deb",
-				"dmg",
-				"iso",
-				"img",
-				"msi",
-				"msp",
-				"msm",
-				"buffer"
-			]
-		},
-		"application/oda": {
-			"source": "iana",
-			"extensions": [
-				"oda"
-			]
-		},
-		"application/odx": {
-			"source": "iana"
-		},
-		"application/oebps-package+xml": {
-			"source": "iana",
-			"extensions": [
-				"opf"
-			]
-		},
-		"application/ogg": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"ogx"
-			]
-		},
-		"application/omdoc+xml": {
-			"source": "apache",
-			"extensions": [
-				"omdoc"
-			]
-		},
-		"application/onenote": {
-			"source": "apache",
-			"extensions": [
-				"onetoc",
-				"onetoc2",
-				"onetmp",
-				"onepkg"
-			]
-		},
-		"application/oxps": {
-			"source": "iana",
-			"extensions": [
-				"oxps"
-			]
-		},
-		"application/p2p-overlay+xml": {
-			"source": "iana"
-		},
-		"application/parityfec": {
-			"source": "iana"
-		},
-		"application/patch-ops-error+xml": {
-			"source": "iana",
-			"extensions": [
-				"xer"
-			]
-		},
-		"application/pdf": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"pdf"
-			]
-		},
-		"application/pdx": {
-			"source": "iana"
-		},
-		"application/pgp-encrypted": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"pgp"
-			]
-		},
-		"application/pgp-keys": {
-			"source": "iana"
-		},
-		"application/pgp-signature": {
-			"source": "iana",
-			"extensions": [
-				"asc",
-				"sig"
-			]
-		},
-		"application/pics-rules": {
-			"source": "apache",
-			"extensions": [
-				"prf"
-			]
-		},
-		"application/pidf+xml": {
-			"source": "iana"
-		},
-		"application/pidf-diff+xml": {
-			"source": "iana"
-		},
-		"application/pkcs10": {
-			"source": "iana",
-			"extensions": [
-				"p10"
-			]
-		},
-		"application/pkcs12": {
-			"source": "iana"
-		},
-		"application/pkcs7-mime": {
-			"source": "iana",
-			"extensions": [
-				"p7m",
-				"p7c"
-			]
-		},
-		"application/pkcs7-signature": {
-			"source": "iana",
-			"extensions": [
-				"p7s"
-			]
-		},
-		"application/pkcs8": {
-			"source": "iana",
-			"extensions": [
-				"p8"
-			]
-		},
-		"application/pkix-attr-cert": {
-			"source": "iana",
-			"extensions": [
-				"ac"
-			]
-		},
-		"application/pkix-cert": {
-			"source": "iana",
-			"extensions": [
-				"cer"
-			]
-		},
-		"application/pkix-crl": {
-			"source": "iana",
-			"extensions": [
-				"crl"
-			]
-		},
-		"application/pkix-pkipath": {
-			"source": "iana",
-			"extensions": [
-				"pkipath"
-			]
-		},
-		"application/pkixcmp": {
-			"source": "iana",
-			"extensions": [
-				"pki"
-			]
-		},
-		"application/pls+xml": {
-			"source": "iana",
-			"extensions": [
-				"pls"
-			]
-		},
-		"application/poc-settings+xml": {
-			"source": "iana"
-		},
-		"application/postscript": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"ai",
-				"eps",
-				"ps"
-			]
-		},
-		"application/ppsp-tracker+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/problem+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/problem+xml": {
-			"source": "iana"
-		},
-		"application/provenance+xml": {
-			"source": "iana"
-		},
-		"application/prs.alvestrand.titrax-sheet": {
-			"source": "iana"
-		},
-		"application/prs.cww": {
-			"source": "iana",
-			"extensions": [
-				"cww"
-			]
-		},
-		"application/prs.hpub+zip": {
-			"source": "iana"
-		},
-		"application/prs.nprend": {
-			"source": "iana"
-		},
-		"application/prs.plucker": {
-			"source": "iana"
-		},
-		"application/prs.rdf-xml-crypt": {
-			"source": "iana"
-		},
-		"application/prs.xsf+xml": {
-			"source": "iana"
-		},
-		"application/pskc+xml": {
-			"source": "iana",
-			"extensions": [
-				"pskcxml"
-			]
-		},
-		"application/qsig": {
-			"source": "iana"
-		},
-		"application/raptorfec": {
-			"source": "iana"
-		},
-		"application/rdap+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/rdf+xml": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"rdf"
-			]
-		},
-		"application/reginfo+xml": {
-			"source": "iana",
-			"extensions": [
-				"rif"
-			]
-		},
-		"application/relax-ng-compact-syntax": {
-			"source": "iana",
-			"extensions": [
-				"rnc"
-			]
-		},
-		"application/remote-printing": {
-			"source": "iana"
-		},
-		"application/reputon+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/resource-lists+xml": {
-			"source": "iana",
-			"extensions": [
-				"rl"
-			]
-		},
-		"application/resource-lists-diff+xml": {
-			"source": "iana",
-			"extensions": [
-				"rld"
-			]
-		},
-		"application/rfc+xml": {
-			"source": "iana"
-		},
-		"application/riscos": {
-			"source": "iana"
-		},
-		"application/rlmi+xml": {
-			"source": "iana"
-		},
-		"application/rls-services+xml": {
-			"source": "iana",
-			"extensions": [
-				"rs"
-			]
-		},
-		"application/rpki-ghostbusters": {
-			"source": "iana",
-			"extensions": [
-				"gbr"
-			]
-		},
-		"application/rpki-manifest": {
-			"source": "iana",
-			"extensions": [
-				"mft"
-			]
-		},
-		"application/rpki-roa": {
-			"source": "iana",
-			"extensions": [
-				"roa"
-			]
-		},
-		"application/rpki-updown": {
-			"source": "iana"
-		},
-		"application/rsd+xml": {
-			"source": "apache",
-			"extensions": [
-				"rsd"
-			]
-		},
-		"application/rss+xml": {
-			"source": "apache",
-			"compressible": true,
-			"extensions": [
-				"rss"
-			]
-		},
-		"application/rtf": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"rtf"
-			]
-		},
-		"application/rtploopback": {
-			"source": "iana"
-		},
-		"application/rtx": {
-			"source": "iana"
-		},
-		"application/samlassertion+xml": {
-			"source": "iana"
-		},
-		"application/samlmetadata+xml": {
-			"source": "iana"
-		},
-		"application/sbml+xml": {
-			"source": "iana",
-			"extensions": [
-				"sbml"
-			]
-		},
-		"application/scaip+xml": {
-			"source": "iana"
-		},
-		"application/scim+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/scvp-cv-request": {
-			"source": "iana",
-			"extensions": [
-				"scq"
-			]
-		},
-		"application/scvp-cv-response": {
-			"source": "iana",
-			"extensions": [
-				"scs"
-			]
-		},
-		"application/scvp-vp-request": {
-			"source": "iana",
-			"extensions": [
-				"spq"
-			]
-		},
-		"application/scvp-vp-response": {
-			"source": "iana",
-			"extensions": [
-				"spp"
-			]
-		},
-		"application/sdp": {
-			"source": "iana",
-			"extensions": [
-				"sdp"
-			]
-		},
-		"application/sep+xml": {
-			"source": "iana"
-		},
-		"application/sep-exi": {
-			"source": "iana"
-		},
-		"application/session-info": {
-			"source": "iana"
-		},
-		"application/set-payment": {
-			"source": "iana"
-		},
-		"application/set-payment-initiation": {
-			"source": "iana",
-			"extensions": [
-				"setpay"
-			]
-		},
-		"application/set-registration": {
-			"source": "iana"
-		},
-		"application/set-registration-initiation": {
-			"source": "iana",
-			"extensions": [
-				"setreg"
-			]
-		},
-		"application/sgml": {
-			"source": "iana"
-		},
-		"application/sgml-open-catalog": {
-			"source": "iana"
-		},
-		"application/shf+xml": {
-			"source": "iana",
-			"extensions": [
-				"shf"
-			]
-		},
-		"application/sieve": {
-			"source": "iana"
-		},
-		"application/simple-filter+xml": {
-			"source": "iana"
-		},
-		"application/simple-message-summary": {
-			"source": "iana"
-		},
-		"application/simplesymbolcontainer": {
-			"source": "iana"
-		},
-		"application/slate": {
-			"source": "iana"
-		},
-		"application/smil": {
-			"source": "iana"
-		},
-		"application/smil+xml": {
-			"source": "iana",
-			"extensions": [
-				"smi",
-				"smil"
-			]
-		},
-		"application/smpte336m": {
-			"source": "iana"
-		},
-		"application/soap+fastinfoset": {
-			"source": "iana"
-		},
-		"application/soap+xml": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/sparql-query": {
-			"source": "iana",
-			"extensions": [
-				"rq"
-			]
-		},
-		"application/sparql-results+xml": {
-			"source": "iana",
-			"extensions": [
-				"srx"
-			]
-		},
-		"application/spirits-event+xml": {
-			"source": "iana"
-		},
-		"application/sql": {
-			"source": "iana"
-		},
-		"application/srgs": {
-			"source": "iana",
-			"extensions": [
-				"gram"
-			]
-		},
-		"application/srgs+xml": {
-			"source": "iana",
-			"extensions": [
-				"grxml"
-			]
-		},
-		"application/sru+xml": {
-			"source": "iana",
-			"extensions": [
-				"sru"
-			]
-		},
-		"application/ssdl+xml": {
-			"source": "apache",
-			"extensions": [
-				"ssdl"
-			]
-		},
-		"application/ssml+xml": {
-			"source": "iana",
-			"extensions": [
-				"ssml"
-			]
-		},
-		"application/tamp-apex-update": {
-			"source": "iana"
-		},
-		"application/tamp-apex-update-confirm": {
-			"source": "iana"
-		},
-		"application/tamp-community-update": {
-			"source": "iana"
-		},
-		"application/tamp-community-update-confirm": {
-			"source": "iana"
-		},
-		"application/tamp-error": {
-			"source": "iana"
-		},
-		"application/tamp-sequence-adjust": {
-			"source": "iana"
-		},
-		"application/tamp-sequence-adjust-confirm": {
-			"source": "iana"
-		},
-		"application/tamp-status-query": {
-			"source": "iana"
-		},
-		"application/tamp-status-response": {
-			"source": "iana"
-		},
-		"application/tamp-update": {
-			"source": "iana"
-		},
-		"application/tamp-update-confirm": {
-			"source": "iana"
-		},
-		"application/tar": {
-			"compressible": true
-		},
-		"application/tei+xml": {
-			"source": "iana",
-			"extensions": [
-				"tei",
-				"teicorpus"
-			]
-		},
-		"application/thraud+xml": {
-			"source": "iana",
-			"extensions": [
-				"tfi"
-			]
-		},
-		"application/timestamp-query": {
-			"source": "iana"
-		},
-		"application/timestamp-reply": {
-			"source": "iana"
-		},
-		"application/timestamped-data": {
-			"source": "iana",
-			"extensions": [
-				"tsd"
-			]
-		},
-		"application/trig": {
-			"source": "iana"
-		},
-		"application/ttml+xml": {
-			"source": "iana"
-		},
-		"application/tve-trigger": {
-			"source": "iana"
-		},
-		"application/ulpfec": {
-			"source": "iana"
-		},
-		"application/urc-grpsheet+xml": {
-			"source": "iana"
-		},
-		"application/urc-ressheet+xml": {
-			"source": "iana"
-		},
-		"application/urc-targetdesc+xml": {
-			"source": "iana"
-		},
-		"application/urc-uisocketdesc+xml": {
-			"source": "iana"
-		},
-		"application/vcard+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vcard+xml": {
-			"source": "iana"
-		},
-		"application/vemmi": {
-			"source": "iana"
-		},
-		"application/vividence.scriptfile": {
-			"source": "apache"
-		},
-		"application/vnd.3gpp-prose+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp-prose-pc3ch+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp.access-transfer-events+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp.bsf+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp.mid-call+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp.pic-bw-large": {
-			"source": "iana",
-			"extensions": [
-				"plb"
-			]
-		},
-		"application/vnd.3gpp.pic-bw-small": {
-			"source": "iana",
-			"extensions": [
-				"psb"
-			]
-		},
-		"application/vnd.3gpp.pic-bw-var": {
-			"source": "iana",
-			"extensions": [
-				"pvb"
-			]
-		},
-		"application/vnd.3gpp.sms": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp.sms+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp.srvcc-ext+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp.srvcc-info+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp.state-and-event-info+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp.ussd+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp2.bcmcsinfo+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp2.sms": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp2.tcap": {
-			"source": "iana",
-			"extensions": [
-				"tcap"
-			]
-		},
-		"application/vnd.3lightssoftware.imagescal": {
-			"source": "iana"
-		},
-		"application/vnd.3m.post-it-notes": {
-			"source": "iana",
-			"extensions": [
-				"pwn"
-			]
-		},
-		"application/vnd.accpac.simply.aso": {
-			"source": "iana",
-			"extensions": [
-				"aso"
-			]
-		},
-		"application/vnd.accpac.simply.imp": {
-			"source": "iana",
-			"extensions": [
-				"imp"
-			]
-		},
-		"application/vnd.acucobol": {
-			"source": "iana",
-			"extensions": [
-				"acu"
-			]
-		},
-		"application/vnd.acucorp": {
-			"source": "iana",
-			"extensions": [
-				"atc",
-				"acutc"
-			]
-		},
-		"application/vnd.adobe.air-application-installer-package+zip": {
-			"source": "apache",
-			"extensions": [
-				"air"
-			]
-		},
-		"application/vnd.adobe.flash.movie": {
-			"source": "iana"
-		},
-		"application/vnd.adobe.formscentral.fcdt": {
-			"source": "iana",
-			"extensions": [
-				"fcdt"
-			]
-		},
-		"application/vnd.adobe.fxp": {
-			"source": "iana",
-			"extensions": [
-				"fxp",
-				"fxpl"
-			]
-		},
-		"application/vnd.adobe.partial-upload": {
-			"source": "iana"
-		},
-		"application/vnd.adobe.xdp+xml": {
-			"source": "iana",
-			"extensions": [
-				"xdp"
-			]
-		},
-		"application/vnd.adobe.xfdf": {
-			"source": "iana",
-			"extensions": [
-				"xfdf"
-			]
-		},
-		"application/vnd.aether.imp": {
-			"source": "iana"
-		},
-		"application/vnd.ah-barcode": {
-			"source": "iana"
-		},
-		"application/vnd.ahead.space": {
-			"source": "iana",
-			"extensions": [
-				"ahead"
-			]
-		},
-		"application/vnd.airzip.filesecure.azf": {
-			"source": "iana",
-			"extensions": [
-				"azf"
-			]
-		},
-		"application/vnd.airzip.filesecure.azs": {
-			"source": "iana",
-			"extensions": [
-				"azs"
-			]
-		},
-		"application/vnd.amazon.ebook": {
-			"source": "apache",
-			"extensions": [
-				"azw"
-			]
-		},
-		"application/vnd.amazon.mobi8-ebook": {
-			"source": "iana"
-		},
-		"application/vnd.americandynamics.acc": {
-			"source": "iana",
-			"extensions": [
-				"acc"
-			]
-		},
-		"application/vnd.amiga.ami": {
-			"source": "iana",
-			"extensions": [
-				"ami"
-			]
-		},
-		"application/vnd.amundsen.maze+xml": {
-			"source": "iana"
-		},
-		"application/vnd.android.package-archive": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"apk"
-			]
-		},
-		"application/vnd.anki": {
-			"source": "iana"
-		},
-		"application/vnd.anser-web-certificate-issue-initiation": {
-			"source": "iana",
-			"extensions": [
-				"cii"
-			]
-		},
-		"application/vnd.anser-web-funds-transfer-initiation": {
-			"source": "apache",
-			"extensions": [
-				"fti"
-			]
-		},
-		"application/vnd.antix.game-component": {
-			"source": "iana",
-			"extensions": [
-				"atx"
-			]
-		},
-		"application/vnd.apache.thrift.binary": {
-			"source": "iana"
-		},
-		"application/vnd.apache.thrift.compact": {
-			"source": "iana"
-		},
-		"application/vnd.apache.thrift.json": {
-			"source": "iana"
-		},
-		"application/vnd.api+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.apple.installer+xml": {
-			"source": "iana",
-			"extensions": [
-				"mpkg"
-			]
-		},
-		"application/vnd.apple.mpegurl": {
-			"source": "iana",
-			"extensions": [
-				"m3u8"
-			]
-		},
-		"application/vnd.apple.pkpass": {
-			"compressible": false,
-			"extensions": [
-				"pkpass"
-			]
-		},
-		"application/vnd.arastra.swi": {
-			"source": "iana"
-		},
-		"application/vnd.aristanetworks.swi": {
-			"source": "iana",
-			"extensions": [
-				"swi"
-			]
-		},
-		"application/vnd.artsquare": {
-			"source": "iana"
-		},
-		"application/vnd.astraea-software.iota": {
-			"source": "iana",
-			"extensions": [
-				"iota"
-			]
-		},
-		"application/vnd.audiograph": {
-			"source": "iana",
-			"extensions": [
-				"aep"
-			]
-		},
-		"application/vnd.autopackage": {
-			"source": "iana"
-		},
-		"application/vnd.avistar+xml": {
-			"source": "iana"
-		},
-		"application/vnd.balsamiq.bmml+xml": {
-			"source": "iana"
-		},
-		"application/vnd.balsamiq.bmpr": {
-			"source": "iana"
-		},
-		"application/vnd.bekitzur-stech+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.biopax.rdf+xml": {
-			"source": "iana"
-		},
-		"application/vnd.blueice.multipass": {
-			"source": "iana",
-			"extensions": [
-				"mpm"
-			]
-		},
-		"application/vnd.bluetooth.ep.oob": {
-			"source": "iana"
-		},
-		"application/vnd.bluetooth.le.oob": {
-			"source": "iana"
-		},
-		"application/vnd.bmi": {
-			"source": "iana",
-			"extensions": [
-				"bmi"
-			]
-		},
-		"application/vnd.businessobjects": {
-			"source": "iana",
-			"extensions": [
-				"rep"
-			]
-		},
-		"application/vnd.cab-jscript": {
-			"source": "iana"
-		},
-		"application/vnd.canon-cpdl": {
-			"source": "iana"
-		},
-		"application/vnd.canon-lips": {
-			"source": "iana"
-		},
-		"application/vnd.cendio.thinlinc.clientconf": {
-			"source": "iana"
-		},
-		"application/vnd.century-systems.tcp_stream": {
-			"source": "iana"
-		},
-		"application/vnd.chemdraw+xml": {
-			"source": "iana",
-			"extensions": [
-				"cdxml"
-			]
-		},
-		"application/vnd.chess-pgn": {
-			"source": "iana"
-		},
-		"application/vnd.chipnuts.karaoke-mmd": {
-			"source": "iana",
-			"extensions": [
-				"mmd"
-			]
-		},
-		"application/vnd.cinderella": {
-			"source": "iana",
-			"extensions": [
-				"cdy"
-			]
-		},
-		"application/vnd.cirpack.isdn-ext": {
-			"source": "iana"
-		},
-		"application/vnd.citationstyles.style+xml": {
-			"source": "iana"
-		},
-		"application/vnd.claymore": {
-			"source": "iana",
-			"extensions": [
-				"cla"
-			]
-		},
-		"application/vnd.cloanto.rp9": {
-			"source": "iana",
-			"extensions": [
-				"rp9"
-			]
-		},
-		"application/vnd.clonk.c4group": {
-			"source": "iana",
-			"extensions": [
-				"c4g",
-				"c4d",
-				"c4f",
-				"c4p",
-				"c4u"
-			]
-		},
-		"application/vnd.cluetrust.cartomobile-config": {
-			"source": "iana",
-			"extensions": [
-				"c11amc"
-			]
-		},
-		"application/vnd.cluetrust.cartomobile-config-pkg": {
-			"source": "iana",
-			"extensions": [
-				"c11amz"
-			]
-		},
-		"application/vnd.coffeescript": {
-			"source": "iana"
-		},
-		"application/vnd.collection+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.collection.doc+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.collection.next+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.comicbook+zip": {
-			"source": "iana"
-		},
-		"application/vnd.commerce-battelle": {
-			"source": "iana"
-		},
-		"application/vnd.commonspace": {
-			"source": "iana",
-			"extensions": [
-				"csp"
-			]
-		},
-		"application/vnd.contact.cmsg": {
-			"source": "iana",
-			"extensions": [
-				"cdbcmsg"
-			]
-		},
-		"application/vnd.coreos.ignition+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.cosmocaller": {
-			"source": "iana",
-			"extensions": [
-				"cmc"
-			]
-		},
-		"application/vnd.crick.clicker": {
-			"source": "iana",
-			"extensions": [
-				"clkx"
-			]
-		},
-		"application/vnd.crick.clicker.keyboard": {
-			"source": "iana",
-			"extensions": [
-				"clkk"
-			]
-		},
-		"application/vnd.crick.clicker.palette": {
-			"source": "iana",
-			"extensions": [
-				"clkp"
-			]
-		},
-		"application/vnd.crick.clicker.template": {
-			"source": "iana",
-			"extensions": [
-				"clkt"
-			]
-		},
-		"application/vnd.crick.clicker.wordbank": {
-			"source": "iana",
-			"extensions": [
-				"clkw"
-			]
-		},
-		"application/vnd.criticaltools.wbs+xml": {
-			"source": "iana",
-			"extensions": [
-				"wbs"
-			]
-		},
-		"application/vnd.ctc-posml": {
-			"source": "iana",
-			"extensions": [
-				"pml"
-			]
-		},
-		"application/vnd.ctct.ws+xml": {
-			"source": "iana"
-		},
-		"application/vnd.cups-pdf": {
-			"source": "iana"
-		},
-		"application/vnd.cups-postscript": {
-			"source": "iana"
-		},
-		"application/vnd.cups-ppd": {
-			"source": "iana",
-			"extensions": [
-				"ppd"
-			]
-		},
-		"application/vnd.cups-raster": {
-			"source": "iana"
-		},
-		"application/vnd.cups-raw": {
-			"source": "iana"
-		},
-		"application/vnd.curl": {
-			"source": "iana"
-		},
-		"application/vnd.curl.car": {
-			"source": "apache",
-			"extensions": [
-				"car"
-			]
-		},
-		"application/vnd.curl.pcurl": {
-			"source": "apache",
-			"extensions": [
-				"pcurl"
-			]
-		},
-		"application/vnd.cyan.dean.root+xml": {
-			"source": "iana"
-		},
-		"application/vnd.cybank": {
-			"source": "iana"
-		},
-		"application/vnd.d2l.coursepackage1p0+zip": {
-			"source": "iana"
-		},
-		"application/vnd.dart": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"dart"
-			]
-		},
-		"application/vnd.data-vision.rdz": {
-			"source": "iana",
-			"extensions": [
-				"rdz"
-			]
-		},
-		"application/vnd.dataresource+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.debian.binary-package": {
-			"source": "iana"
-		},
-		"application/vnd.dece.data": {
-			"source": "iana",
-			"extensions": [
-				"uvf",
-				"uvvf",
-				"uvd",
-				"uvvd"
-			]
-		},
-		"application/vnd.dece.ttml+xml": {
-			"source": "iana",
-			"extensions": [
-				"uvt",
-				"uvvt"
-			]
-		},
-		"application/vnd.dece.unspecified": {
-			"source": "iana",
-			"extensions": [
-				"uvx",
-				"uvvx"
-			]
-		},
-		"application/vnd.dece.zip": {
-			"source": "iana",
-			"extensions": [
-				"uvz",
-				"uvvz"
-			]
-		},
-		"application/vnd.denovo.fcselayout-link": {
-			"source": "iana",
-			"extensions": [
-				"fe_launch"
-			]
-		},
-		"application/vnd.desmume-movie": {
-			"source": "iana"
-		},
-		"application/vnd.desmume.movie": {
-			"source": "apache"
-		},
-		"application/vnd.dir-bi.plate-dl-nosuffix": {
-			"source": "iana"
-		},
-		"application/vnd.dm.delegation+xml": {
-			"source": "iana"
-		},
-		"application/vnd.dna": {
-			"source": "iana",
-			"extensions": [
-				"dna"
-			]
-		},
-		"application/vnd.document+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.dolby.mlp": {
-			"source": "apache",
-			"extensions": [
-				"mlp"
-			]
-		},
-		"application/vnd.dolby.mobile.1": {
-			"source": "iana"
-		},
-		"application/vnd.dolby.mobile.2": {
-			"source": "iana"
-		},
-		"application/vnd.doremir.scorecloud-binary-document": {
-			"source": "iana"
-		},
-		"application/vnd.dpgraph": {
-			"source": "iana",
-			"extensions": [
-				"dpg"
-			]
-		},
-		"application/vnd.dreamfactory": {
-			"source": "iana",
-			"extensions": [
-				"dfac"
-			]
-		},
-		"application/vnd.drive+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.ds-keypoint": {
-			"source": "apache",
-			"extensions": [
-				"kpxx"
-			]
-		},
-		"application/vnd.dtg.local": {
-			"source": "iana"
-		},
-		"application/vnd.dtg.local.flash": {
-			"source": "iana"
-		},
-		"application/vnd.dtg.local.html": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.ait": {
-			"source": "iana",
-			"extensions": [
-				"ait"
-			]
-		},
-		"application/vnd.dvb.dvbj": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.esgcontainer": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.ipdcdftnotifaccess": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.ipdcesgaccess": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.ipdcesgaccess2": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.ipdcesgpdd": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.ipdcroaming": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.iptv.alfec-base": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.iptv.alfec-enhancement": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.notif-aggregate-root+xml": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.notif-container+xml": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.notif-generic+xml": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.notif-ia-msglist+xml": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.notif-ia-registration-request+xml": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.notif-ia-registration-response+xml": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.notif-init+xml": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.pfr": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.service": {
-			"source": "iana",
-			"extensions": [
-				"svc"
-			]
-		},
-		"application/vnd.dxr": {
-			"source": "iana"
-		},
-		"application/vnd.dynageo": {
-			"source": "iana",
-			"extensions": [
-				"geo"
-			]
-		},
-		"application/vnd.dzr": {
-			"source": "iana"
-		},
-		"application/vnd.easykaraoke.cdgdownload": {
-			"source": "iana"
-		},
-		"application/vnd.ecdis-update": {
-			"source": "iana"
-		},
-		"application/vnd.ecowin.chart": {
-			"source": "iana",
-			"extensions": [
-				"mag"
-			]
-		},
-		"application/vnd.ecowin.filerequest": {
-			"source": "iana"
-		},
-		"application/vnd.ecowin.fileupdate": {
-			"source": "iana"
-		},
-		"application/vnd.ecowin.series": {
-			"source": "iana"
-		},
-		"application/vnd.ecowin.seriesrequest": {
-			"source": "iana"
-		},
-		"application/vnd.ecowin.seriesupdate": {
-			"source": "iana"
-		},
-		"application/vnd.emclient.accessrequest+xml": {
-			"source": "iana"
-		},
-		"application/vnd.enliven": {
-			"source": "iana",
-			"extensions": [
-				"nml"
-			]
-		},
-		"application/vnd.enphase.envoy": {
-			"source": "iana"
-		},
-		"application/vnd.eprints.data+xml": {
-			"source": "iana"
-		},
-		"application/vnd.epson.esf": {
-			"source": "iana",
-			"extensions": [
-				"esf"
-			]
-		},
-		"application/vnd.epson.msf": {
-			"source": "iana",
-			"extensions": [
-				"msf"
-			]
-		},
-		"application/vnd.epson.quickanime": {
-			"source": "iana",
-			"extensions": [
-				"qam"
-			]
-		},
-		"application/vnd.epson.salt": {
-			"source": "iana",
-			"extensions": [
-				"slt"
-			]
-		},
-		"application/vnd.epson.ssf": {
-			"source": "iana",
-			"extensions": [
-				"ssf"
-			]
-		},
-		"application/vnd.ericsson.quickcall": {
-			"source": "iana"
-		},
-		"application/vnd.espass-espass+zip": {
-			"source": "iana"
-		},
-		"application/vnd.eszigno3+xml": {
-			"source": "iana",
-			"extensions": [
-				"es3",
-				"et3"
-			]
-		},
-		"application/vnd.etsi.aoc+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.asic-e+zip": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.asic-s+zip": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.cug+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.iptvcommand+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.iptvdiscovery+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.iptvprofile+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.iptvsad-bc+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.iptvsad-cod+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.iptvsad-npvr+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.iptvservice+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.iptvsync+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.iptvueprofile+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.mcid+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.mheg5": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.overload-control-policy-dataset+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.pstn+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.sci+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.simservs+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.timestamp-token": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.tsl+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.tsl.der": {
-			"source": "iana"
-		},
-		"application/vnd.eudora.data": {
-			"source": "iana"
-		},
-		"application/vnd.ezpix-album": {
-			"source": "iana",
-			"extensions": [
-				"ez2"
-			]
-		},
-		"application/vnd.ezpix-package": {
-			"source": "iana",
-			"extensions": [
-				"ez3"
-			]
-		},
-		"application/vnd.f-secure.mobile": {
-			"source": "iana"
-		},
-		"application/vnd.fastcopy-disk-image": {
-			"source": "iana"
-		},
-		"application/vnd.fdf": {
-			"source": "iana",
-			"extensions": [
-				"fdf"
-			]
-		},
-		"application/vnd.fdsn.mseed": {
-			"source": "iana",
-			"extensions": [
-				"mseed"
-			]
-		},
-		"application/vnd.fdsn.seed": {
-			"source": "iana",
-			"extensions": [
-				"seed",
-				"dataless"
-			]
-		},
-		"application/vnd.ffsns": {
-			"source": "iana"
-		},
-		"application/vnd.filmit.zfc": {
-			"source": "iana"
-		},
-		"application/vnd.fints": {
-			"source": "iana"
-		},
-		"application/vnd.firemonkeys.cloudcell": {
-			"source": "iana"
-		},
-		"application/vnd.flographit": {
-			"source": "iana",
-			"extensions": [
-				"gph"
-			]
-		},
-		"application/vnd.fluxtime.clip": {
-			"source": "iana",
-			"extensions": [
-				"ftc"
-			]
-		},
-		"application/vnd.font-fontforge-sfd": {
-			"source": "iana"
-		},
-		"application/vnd.framemaker": {
-			"source": "iana",
-			"extensions": [
-				"fm",
-				"frame",
-				"maker",
-				"book"
-			]
-		},
-		"application/vnd.frogans.fnc": {
-			"source": "iana",
-			"extensions": [
-				"fnc"
-			]
-		},
-		"application/vnd.frogans.ltf": {
-			"source": "iana",
-			"extensions": [
-				"ltf"
-			]
-		},
-		"application/vnd.fsc.weblaunch": {
-			"source": "iana",
-			"extensions": [
-				"fsc"
-			]
-		},
-		"application/vnd.fujitsu.oasys": {
-			"source": "iana",
-			"extensions": [
-				"oas"
-			]
-		},
-		"application/vnd.fujitsu.oasys2": {
-			"source": "iana",
-			"extensions": [
-				"oa2"
-			]
-		},
-		"application/vnd.fujitsu.oasys3": {
-			"source": "iana",
-			"extensions": [
-				"oa3"
-			]
-		},
-		"application/vnd.fujitsu.oasysgp": {
-			"source": "iana",
-			"extensions": [
-				"fg5"
-			]
-		},
-		"application/vnd.fujitsu.oasysprs": {
-			"source": "iana",
-			"extensions": [
-				"bh2"
-			]
-		},
-		"application/vnd.fujixerox.art-ex": {
-			"source": "iana"
-		},
-		"application/vnd.fujixerox.art4": {
-			"source": "iana"
-		},
-		"application/vnd.fujixerox.ddd": {
-			"source": "iana",
-			"extensions": [
-				"ddd"
-			]
-		},
-		"application/vnd.fujixerox.docuworks": {
-			"source": "iana",
-			"extensions": [
-				"xdw"
-			]
-		},
-		"application/vnd.fujixerox.docuworks.binder": {
-			"source": "iana",
-			"extensions": [
-				"xbd"
-			]
-		},
-		"application/vnd.fujixerox.docuworks.container": {
-			"source": "iana"
-		},
-		"application/vnd.fujixerox.hbpl": {
-			"source": "iana"
-		},
-		"application/vnd.fut-misnet": {
-			"source": "iana"
-		},
-		"application/vnd.fuzzysheet": {
-			"source": "iana",
-			"extensions": [
-				"fzs"
-			]
-		},
-		"application/vnd.genomatix.tuxedo": {
-			"source": "iana",
-			"extensions": [
-				"txd"
-			]
-		},
-		"application/vnd.geo+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.geocube+xml": {
-			"source": "iana"
-		},
-		"application/vnd.geogebra.file": {
-			"source": "iana",
-			"extensions": [
-				"ggb"
-			]
-		},
-		"application/vnd.geogebra.tool": {
-			"source": "iana",
-			"extensions": [
-				"ggt"
-			]
-		},
-		"application/vnd.geometry-explorer": {
-			"source": "iana",
-			"extensions": [
-				"gex",
-				"gre"
-			]
-		},
-		"application/vnd.geonext": {
-			"source": "iana",
-			"extensions": [
-				"gxt"
-			]
-		},
-		"application/vnd.geoplan": {
-			"source": "iana",
-			"extensions": [
-				"g2w"
-			]
-		},
-		"application/vnd.geospace": {
-			"source": "iana",
-			"extensions": [
-				"g3w"
-			]
-		},
-		"application/vnd.gerber": {
-			"source": "iana"
-		},
-		"application/vnd.globalplatform.card-content-mgt": {
-			"source": "iana"
-		},
-		"application/vnd.globalplatform.card-content-mgt-response": {
-			"source": "iana"
-		},
-		"application/vnd.gmx": {
-			"source": "iana",
-			"extensions": [
-				"gmx"
-			]
-		},
-		"application/vnd.google-apps.document": {
-			"compressible": false,
-			"extensions": [
-				"gdoc"
-			]
-		},
-		"application/vnd.google-apps.presentation": {
-			"compressible": false,
-			"extensions": [
-				"gslides"
-			]
-		},
-		"application/vnd.google-apps.spreadsheet": {
-			"compressible": false,
-			"extensions": [
-				"gsheet"
-			]
-		},
-		"application/vnd.google-earth.kml+xml": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"kml"
-			]
-		},
-		"application/vnd.google-earth.kmz": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"kmz"
-			]
-		},
-		"application/vnd.gov.sk.e-form+xml": {
-			"source": "iana"
-		},
-		"application/vnd.gov.sk.e-form+zip": {
-			"source": "iana"
-		},
-		"application/vnd.gov.sk.xmldatacontainer+xml": {
-			"source": "iana"
-		},
-		"application/vnd.grafeq": {
-			"source": "iana",
-			"extensions": [
-				"gqf",
-				"gqs"
-			]
-		},
-		"application/vnd.gridmp": {
-			"source": "iana"
-		},
-		"application/vnd.groove-account": {
-			"source": "iana",
-			"extensions": [
-				"gac"
-			]
-		},
-		"application/vnd.groove-help": {
-			"source": "iana",
-			"extensions": [
-				"ghf"
-			]
-		},
-		"application/vnd.groove-identity-message": {
-			"source": "iana",
-			"extensions": [
-				"gim"
-			]
-		},
-		"application/vnd.groove-injector": {
-			"source": "iana",
-			"extensions": [
-				"grv"
-			]
-		},
-		"application/vnd.groove-tool-message": {
-			"source": "iana",
-			"extensions": [
-				"gtm"
-			]
-		},
-		"application/vnd.groove-tool-template": {
-			"source": "iana",
-			"extensions": [
-				"tpl"
-			]
-		},
-		"application/vnd.groove-vcard": {
-			"source": "iana",
-			"extensions": [
-				"vcg"
-			]
-		},
-		"application/vnd.hal+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.hal+xml": {
-			"source": "iana",
-			"extensions": [
-				"hal"
-			]
-		},
-		"application/vnd.handheld-entertainment+xml": {
-			"source": "iana",
-			"extensions": [
-				"zmm"
-			]
-		},
-		"application/vnd.hbci": {
-			"source": "iana",
-			"extensions": [
-				"hbci"
-			]
-		},
-		"application/vnd.hc+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.hcl-bireports": {
-			"source": "iana"
-		},
-		"application/vnd.hdt": {
-			"source": "iana"
-		},
-		"application/vnd.heroku+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.hhe.lesson-player": {
-			"source": "iana",
-			"extensions": [
-				"les"
-			]
-		},
-		"application/vnd.hp-hpgl": {
-			"source": "iana",
-			"extensions": [
-				"hpgl"
-			]
-		},
-		"application/vnd.hp-hpid": {
-			"source": "iana",
-			"extensions": [
-				"hpid"
-			]
-		},
-		"application/vnd.hp-hps": {
-			"source": "iana",
-			"extensions": [
-				"hps"
-			]
-		},
-		"application/vnd.hp-jlyt": {
-			"source": "iana",
-			"extensions": [
-				"jlt"
-			]
-		},
-		"application/vnd.hp-pcl": {
-			"source": "iana",
-			"extensions": [
-				"pcl"
-			]
-		},
-		"application/vnd.hp-pclxl": {
-			"source": "iana",
-			"extensions": [
-				"pclxl"
-			]
-		},
-		"application/vnd.httphone": {
-			"source": "iana"
-		},
-		"application/vnd.hydrostatix.sof-data": {
-			"source": "iana",
-			"extensions": [
-				"sfd-hdstx"
-			]
-		},
-		"application/vnd.hyperdrive+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.hzn-3d-crossword": {
-			"source": "iana"
-		},
-		"application/vnd.ibm.afplinedata": {
-			"source": "iana"
-		},
-		"application/vnd.ibm.electronic-media": {
-			"source": "iana"
-		},
-		"application/vnd.ibm.minipay": {
-			"source": "iana",
-			"extensions": [
-				"mpy"
-			]
-		},
-		"application/vnd.ibm.modcap": {
-			"source": "iana",
-			"extensions": [
-				"afp",
-				"listafp",
-				"list3820"
-			]
-		},
-		"application/vnd.ibm.rights-management": {
-			"source": "iana",
-			"extensions": [
-				"irm"
-			]
-		},
-		"application/vnd.ibm.secure-container": {
-			"source": "iana",
-			"extensions": [
-				"sc"
-			]
-		},
-		"application/vnd.iccprofile": {
-			"source": "iana",
-			"extensions": [
-				"icc",
-				"icm"
-			]
-		},
-		"application/vnd.ieee.1905": {
-			"source": "iana"
-		},
-		"application/vnd.igloader": {
-			"source": "iana",
-			"extensions": [
-				"igl"
-			]
-		},
-		"application/vnd.immervision-ivp": {
-			"source": "iana",
-			"extensions": [
-				"ivp"
-			]
-		},
-		"application/vnd.immervision-ivu": {
-			"source": "iana",
-			"extensions": [
-				"ivu"
-			]
-		},
-		"application/vnd.ims.imsccv1p1": {
-			"source": "iana"
-		},
-		"application/vnd.ims.imsccv1p2": {
-			"source": "iana"
-		},
-		"application/vnd.ims.imsccv1p3": {
-			"source": "iana"
-		},
-		"application/vnd.ims.lis.v2.result+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.ims.lti.v2.toolconsumerprofile+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.ims.lti.v2.toolproxy+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.ims.lti.v2.toolproxy.id+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.ims.lti.v2.toolsettings+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.ims.lti.v2.toolsettings.simple+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.informedcontrol.rms+xml": {
-			"source": "iana"
-		},
-		"application/vnd.informix-visionary": {
-			"source": "iana"
-		},
-		"application/vnd.infotech.project": {
-			"source": "iana"
-		},
-		"application/vnd.infotech.project+xml": {
-			"source": "iana"
-		},
-		"application/vnd.innopath.wamp.notification": {
-			"source": "iana"
-		},
-		"application/vnd.insors.igm": {
-			"source": "iana",
-			"extensions": [
-				"igm"
-			]
-		},
-		"application/vnd.intercon.formnet": {
-			"source": "iana",
-			"extensions": [
-				"xpw",
-				"xpx"
-			]
-		},
-		"application/vnd.intergeo": {
-			"source": "iana",
-			"extensions": [
-				"i2g"
-			]
-		},
-		"application/vnd.intertrust.digibox": {
-			"source": "iana"
-		},
-		"application/vnd.intertrust.nncp": {
-			"source": "iana"
-		},
-		"application/vnd.intu.qbo": {
-			"source": "iana",
-			"extensions": [
-				"qbo"
-			]
-		},
-		"application/vnd.intu.qfx": {
-			"source": "iana",
-			"extensions": [
-				"qfx"
-			]
-		},
-		"application/vnd.iptc.g2.catalogitem+xml": {
-			"source": "iana"
-		},
-		"application/vnd.iptc.g2.conceptitem+xml": {
-			"source": "iana"
-		},
-		"application/vnd.iptc.g2.knowledgeitem+xml": {
-			"source": "iana"
-		},
-		"application/vnd.iptc.g2.newsitem+xml": {
-			"source": "iana"
-		},
-		"application/vnd.iptc.g2.newsmessage+xml": {
-			"source": "iana"
-		},
-		"application/vnd.iptc.g2.packageitem+xml": {
-			"source": "iana"
-		},
-		"application/vnd.iptc.g2.planningitem+xml": {
-			"source": "iana"
-		},
-		"application/vnd.ipunplugged.rcprofile": {
-			"source": "iana",
-			"extensions": [
-				"rcprofile"
-			]
-		},
-		"application/vnd.irepository.package+xml": {
-			"source": "iana",
-			"extensions": [
-				"irp"
-			]
-		},
-		"application/vnd.is-xpr": {
-			"source": "iana",
-			"extensions": [
-				"xpr"
-			]
-		},
-		"application/vnd.isac.fcs": {
-			"source": "iana",
-			"extensions": [
-				"fcs"
-			]
-		},
-		"application/vnd.jam": {
-			"source": "iana",
-			"extensions": [
-				"jam"
-			]
-		},
-		"application/vnd.japannet-directory-service": {
-			"source": "iana"
-		},
-		"application/vnd.japannet-jpnstore-wakeup": {
-			"source": "iana"
-		},
-		"application/vnd.japannet-payment-wakeup": {
-			"source": "iana"
-		},
-		"application/vnd.japannet-registration": {
-			"source": "iana"
-		},
-		"application/vnd.japannet-registration-wakeup": {
-			"source": "iana"
-		},
-		"application/vnd.japannet-setstore-wakeup": {
-			"source": "iana"
-		},
-		"application/vnd.japannet-verification": {
-			"source": "iana"
-		},
-		"application/vnd.japannet-verification-wakeup": {
-			"source": "iana"
-		},
-		"application/vnd.jcp.javame.midlet-rms": {
-			"source": "iana",
-			"extensions": [
-				"rms"
-			]
-		},
-		"application/vnd.jisp": {
-			"source": "iana",
-			"extensions": [
-				"jisp"
-			]
-		},
-		"application/vnd.joost.joda-archive": {
-			"source": "iana",
-			"extensions": [
-				"joda"
-			]
-		},
-		"application/vnd.jsk.isdn-ngn": {
-			"source": "iana"
-		},
-		"application/vnd.kahootz": {
-			"source": "iana",
-			"extensions": [
-				"ktz",
-				"ktr"
-			]
-		},
-		"application/vnd.kde.karbon": {
-			"source": "iana",
-			"extensions": [
-				"karbon"
-			]
-		},
-		"application/vnd.kde.kchart": {
-			"source": "iana",
-			"extensions": [
-				"chrt"
-			]
-		},
-		"application/vnd.kde.kformula": {
-			"source": "iana",
-			"extensions": [
-				"kfo"
-			]
-		},
-		"application/vnd.kde.kivio": {
-			"source": "iana",
-			"extensions": [
-				"flw"
-			]
-		},
-		"application/vnd.kde.kontour": {
-			"source": "iana",
-			"extensions": [
-				"kon"
-			]
-		},
-		"application/vnd.kde.kpresenter": {
-			"source": "iana",
-			"extensions": [
-				"kpr",
-				"kpt"
-			]
-		},
-		"application/vnd.kde.kspread": {
-			"source": "iana",
-			"extensions": [
-				"ksp"
-			]
-		},
-		"application/vnd.kde.kword": {
-			"source": "iana",
-			"extensions": [
-				"kwd",
-				"kwt"
-			]
-		},
-		"application/vnd.kenameaapp": {
-			"source": "iana",
-			"extensions": [
-				"htke"
-			]
-		},
-		"application/vnd.kidspiration": {
-			"source": "iana",
-			"extensions": [
-				"kia"
-			]
-		},
-		"application/vnd.kinar": {
-			"source": "iana",
-			"extensions": [
-				"kne",
-				"knp"
-			]
-		},
-		"application/vnd.koan": {
-			"source": "iana",
-			"extensions": [
-				"skp",
-				"skd",
-				"skt",
-				"skm"
-			]
-		},
-		"application/vnd.kodak-descriptor": {
-			"source": "iana",
-			"extensions": [
-				"sse"
-			]
-		},
-		"application/vnd.las.las+xml": {
-			"source": "iana",
-			"extensions": [
-				"lasxml"
-			]
-		},
-		"application/vnd.liberty-request+xml": {
-			"source": "iana"
-		},
-		"application/vnd.llamagraphics.life-balance.desktop": {
-			"source": "iana",
-			"extensions": [
-				"lbd"
-			]
-		},
-		"application/vnd.llamagraphics.life-balance.exchange+xml": {
-			"source": "iana",
-			"extensions": [
-				"lbe"
-			]
-		},
-		"application/vnd.lotus-1-2-3": {
-			"source": "iana",
-			"extensions": [
-				"123"
-			]
-		},
-		"application/vnd.lotus-approach": {
-			"source": "iana",
-			"extensions": [
-				"apr"
-			]
-		},
-		"application/vnd.lotus-freelance": {
-			"source": "iana",
-			"extensions": [
-				"pre"
-			]
-		},
-		"application/vnd.lotus-notes": {
-			"source": "iana",
-			"extensions": [
-				"nsf"
-			]
-		},
-		"application/vnd.lotus-organizer": {
-			"source": "iana",
-			"extensions": [
-				"org"
-			]
-		},
-		"application/vnd.lotus-screencam": {
-			"source": "iana",
-			"extensions": [
-				"scm"
-			]
-		},
-		"application/vnd.lotus-wordpro": {
-			"source": "iana",
-			"extensions": [
-				"lwp"
-			]
-		},
-		"application/vnd.macports.portpkg": {
-			"source": "iana",
-			"extensions": [
-				"portpkg"
-			]
-		},
-		"application/vnd.mapbox-vector-tile": {
-			"source": "iana"
-		},
-		"application/vnd.marlin.drm.actiontoken+xml": {
-			"source": "iana"
-		},
-		"application/vnd.marlin.drm.conftoken+xml": {
-			"source": "iana"
-		},
-		"application/vnd.marlin.drm.license+xml": {
-			"source": "iana"
-		},
-		"application/vnd.marlin.drm.mdcf": {
-			"source": "iana"
-		},
-		"application/vnd.mason+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.maxmind.maxmind-db": {
-			"source": "iana"
-		},
-		"application/vnd.mcd": {
-			"source": "iana",
-			"extensions": [
-				"mcd"
-			]
-		},
-		"application/vnd.medcalcdata": {
-			"source": "iana",
-			"extensions": [
-				"mc1"
-			]
-		},
-		"application/vnd.mediastation.cdkey": {
-			"source": "iana",
-			"extensions": [
-				"cdkey"
-			]
-		},
-		"application/vnd.meridian-slingshot": {
-			"source": "iana"
-		},
-		"application/vnd.mfer": {
-			"source": "iana",
-			"extensions": [
-				"mwf"
-			]
-		},
-		"application/vnd.mfmp": {
-			"source": "iana",
-			"extensions": [
-				"mfm"
-			]
-		},
-		"application/vnd.micro+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.micrografx.flo": {
-			"source": "iana",
-			"extensions": [
-				"flo"
-			]
-		},
-		"application/vnd.micrografx.igx": {
-			"source": "iana",
-			"extensions": [
-				"igx"
-			]
-		},
-		"application/vnd.microsoft.portable-executable": {
-			"source": "iana"
-		},
-		"application/vnd.miele+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.mif": {
-			"source": "iana",
-			"extensions": [
-				"mif"
-			]
-		},
-		"application/vnd.minisoft-hp3000-save": {
-			"source": "iana"
-		},
-		"application/vnd.mitsubishi.misty-guard.trustweb": {
-			"source": "iana"
-		},
-		"application/vnd.mobius.daf": {
-			"source": "iana",
-			"extensions": [
-				"daf"
-			]
-		},
-		"application/vnd.mobius.dis": {
-			"source": "iana",
-			"extensions": [
-				"dis"
-			]
-		},
-		"application/vnd.mobius.mbk": {
-			"source": "iana",
-			"extensions": [
-				"mbk"
-			]
-		},
-		"application/vnd.mobius.mqy": {
-			"source": "iana",
-			"extensions": [
-				"mqy"
-			]
-		},
-		"application/vnd.mobius.msl": {
-			"source": "iana",
-			"extensions": [
-				"msl"
-			]
-		},
-		"application/vnd.mobius.plc": {
-			"source": "iana",
-			"extensions": [
-				"plc"
-			]
-		},
-		"application/vnd.mobius.txf": {
-			"source": "iana",
-			"extensions": [
-				"txf"
-			]
-		},
-		"application/vnd.mophun.application": {
-			"source": "iana",
-			"extensions": [
-				"mpn"
-			]
-		},
-		"application/vnd.mophun.certificate": {
-			"source": "iana",
-			"extensions": [
-				"mpc"
-			]
-		},
-		"application/vnd.motorola.flexsuite": {
-			"source": "iana"
-		},
-		"application/vnd.motorola.flexsuite.adsi": {
-			"source": "iana"
-		},
-		"application/vnd.motorola.flexsuite.fis": {
-			"source": "iana"
-		},
-		"application/vnd.motorola.flexsuite.gotap": {
-			"source": "iana"
-		},
-		"application/vnd.motorola.flexsuite.kmr": {
-			"source": "iana"
-		},
-		"application/vnd.motorola.flexsuite.ttc": {
-			"source": "iana"
-		},
-		"application/vnd.motorola.flexsuite.wem": {
-			"source": "iana"
-		},
-		"application/vnd.motorola.iprm": {
-			"source": "iana"
-		},
-		"application/vnd.mozilla.xul+xml": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"xul"
-			]
-		},
-		"application/vnd.ms-3mfdocument": {
-			"source": "iana"
-		},
-		"application/vnd.ms-artgalry": {
-			"source": "iana",
-			"extensions": [
-				"cil"
-			]
-		},
-		"application/vnd.ms-asf": {
-			"source": "iana"
-		},
-		"application/vnd.ms-cab-compressed": {
-			"source": "iana",
-			"extensions": [
-				"cab"
-			]
-		},
-		"application/vnd.ms-color.iccprofile": {
-			"source": "apache"
-		},
-		"application/vnd.ms-excel": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"xls",
-				"xlm",
-				"xla",
-				"xlc",
-				"xlt",
-				"xlw"
-			]
-		},
-		"application/vnd.ms-excel.addin.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"xlam"
-			]
-		},
-		"application/vnd.ms-excel.sheet.binary.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"xlsb"
-			]
-		},
-		"application/vnd.ms-excel.sheet.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"xlsm"
-			]
-		},
-		"application/vnd.ms-excel.template.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"xltm"
-			]
-		},
-		"application/vnd.ms-fontobject": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"eot"
-			]
-		},
-		"application/vnd.ms-htmlhelp": {
-			"source": "iana",
-			"extensions": [
-				"chm"
-			]
-		},
-		"application/vnd.ms-ims": {
-			"source": "iana",
-			"extensions": [
-				"ims"
-			]
-		},
-		"application/vnd.ms-lrm": {
-			"source": "iana",
-			"extensions": [
-				"lrm"
-			]
-		},
-		"application/vnd.ms-office.activex+xml": {
-			"source": "iana"
-		},
-		"application/vnd.ms-officetheme": {
-			"source": "iana",
-			"extensions": [
-				"thmx"
-			]
-		},
-		"application/vnd.ms-opentype": {
-			"source": "apache",
-			"compressible": true
-		},
-		"application/vnd.ms-package.obfuscated-opentype": {
-			"source": "apache"
-		},
-		"application/vnd.ms-pki.seccat": {
-			"source": "apache",
-			"extensions": [
-				"cat"
-			]
-		},
-		"application/vnd.ms-pki.stl": {
-			"source": "apache",
-			"extensions": [
-				"stl"
-			]
-		},
-		"application/vnd.ms-playready.initiator+xml": {
-			"source": "iana"
-		},
-		"application/vnd.ms-powerpoint": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"ppt",
-				"pps",
-				"pot"
-			]
-		},
-		"application/vnd.ms-powerpoint.addin.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"ppam"
-			]
-		},
-		"application/vnd.ms-powerpoint.presentation.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"pptm"
-			]
-		},
-		"application/vnd.ms-powerpoint.slide.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"sldm"
-			]
-		},
-		"application/vnd.ms-powerpoint.slideshow.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"ppsm"
-			]
-		},
-		"application/vnd.ms-powerpoint.template.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"potm"
-			]
-		},
-		"application/vnd.ms-printdevicecapabilities+xml": {
-			"source": "iana"
-		},
-		"application/vnd.ms-printing.printticket+xml": {
-			"source": "apache"
-		},
-		"application/vnd.ms-printschematicket+xml": {
-			"source": "iana"
-		},
-		"application/vnd.ms-project": {
-			"source": "iana",
-			"extensions": [
-				"mpp",
-				"mpt"
-			]
-		},
-		"application/vnd.ms-tnef": {
-			"source": "iana"
-		},
-		"application/vnd.ms-windows.devicepairing": {
-			"source": "iana"
-		},
-		"application/vnd.ms-windows.nwprinting.oob": {
-			"source": "iana"
-		},
-		"application/vnd.ms-windows.printerpairing": {
-			"source": "iana"
-		},
-		"application/vnd.ms-windows.wsd.oob": {
-			"source": "iana"
-		},
-		"application/vnd.ms-wmdrm.lic-chlg-req": {
-			"source": "iana"
-		},
-		"application/vnd.ms-wmdrm.lic-resp": {
-			"source": "iana"
-		},
-		"application/vnd.ms-wmdrm.meter-chlg-req": {
-			"source": "iana"
-		},
-		"application/vnd.ms-wmdrm.meter-resp": {
-			"source": "iana"
-		},
-		"application/vnd.ms-word.document.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"docm"
-			]
-		},
-		"application/vnd.ms-word.template.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"dotm"
-			]
-		},
-		"application/vnd.ms-works": {
-			"source": "iana",
-			"extensions": [
-				"wps",
-				"wks",
-				"wcm",
-				"wdb"
-			]
-		},
-		"application/vnd.ms-wpl": {
-			"source": "iana",
-			"extensions": [
-				"wpl"
-			]
-		},
-		"application/vnd.ms-xpsdocument": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"xps"
-			]
-		},
-		"application/vnd.msa-disk-image": {
-			"source": "iana"
-		},
-		"application/vnd.mseq": {
-			"source": "iana",
-			"extensions": [
-				"mseq"
-			]
-		},
-		"application/vnd.msign": {
-			"source": "iana"
-		},
-		"application/vnd.multiad.creator": {
-			"source": "iana"
-		},
-		"application/vnd.multiad.creator.cif": {
-			"source": "iana"
-		},
-		"application/vnd.music-niff": {
-			"source": "iana"
-		},
-		"application/vnd.musician": {
-			"source": "iana",
-			"extensions": [
-				"mus"
-			]
-		},
-		"application/vnd.muvee.style": {
-			"source": "iana",
-			"extensions": [
-				"msty"
-			]
-		},
-		"application/vnd.mynfc": {
-			"source": "iana",
-			"extensions": [
-				"taglet"
-			]
-		},
-		"application/vnd.ncd.control": {
-			"source": "iana"
-		},
-		"application/vnd.ncd.reference": {
-			"source": "iana"
-		},
-		"application/vnd.nearst.inv+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.nervana": {
-			"source": "iana"
-		},
-		"application/vnd.netfpx": {
-			"source": "iana"
-		},
-		"application/vnd.neurolanguage.nlu": {
-			"source": "iana",
-			"extensions": [
-				"nlu"
-			]
-		},
-		"application/vnd.nintendo.nitro.rom": {
-			"source": "iana"
-		},
-		"application/vnd.nintendo.snes.rom": {
-			"source": "iana"
-		},
-		"application/vnd.nitf": {
-			"source": "iana",
-			"extensions": [
-				"ntf",
-				"nitf"
-			]
-		},
-		"application/vnd.noblenet-directory": {
-			"source": "iana",
-			"extensions": [
-				"nnd"
-			]
-		},
-		"application/vnd.noblenet-sealer": {
-			"source": "iana",
-			"extensions": [
-				"nns"
-			]
-		},
-		"application/vnd.noblenet-web": {
-			"source": "iana",
-			"extensions": [
-				"nnw"
-			]
-		},
-		"application/vnd.nokia.catalogs": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.conml+wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.conml+xml": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.iptv.config+xml": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.isds-radio-presets": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.landmark+wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.landmark+xml": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.landmarkcollection+xml": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.n-gage.ac+xml": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.n-gage.data": {
-			"source": "iana",
-			"extensions": [
-				"ngdat"
-			]
-		},
-		"application/vnd.nokia.n-gage.symbian.install": {
-			"source": "iana",
-			"extensions": [
-				"n-gage"
-			]
-		},
-		"application/vnd.nokia.ncd": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.pcd+wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.pcd+xml": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.radio-preset": {
-			"source": "iana",
-			"extensions": [
-				"rpst"
-			]
-		},
-		"application/vnd.nokia.radio-presets": {
-			"source": "iana",
-			"extensions": [
-				"rpss"
-			]
-		},
-		"application/vnd.novadigm.edm": {
-			"source": "iana",
-			"extensions": [
-				"edm"
-			]
-		},
-		"application/vnd.novadigm.edx": {
-			"source": "iana",
-			"extensions": [
-				"edx"
-			]
-		},
-		"application/vnd.novadigm.ext": {
-			"source": "iana",
-			"extensions": [
-				"ext"
-			]
-		},
-		"application/vnd.ntt-local.content-share": {
-			"source": "iana"
-		},
-		"application/vnd.ntt-local.file-transfer": {
-			"source": "iana"
-		},
-		"application/vnd.ntt-local.ogw_remote-access": {
-			"source": "iana"
-		},
-		"application/vnd.ntt-local.sip-ta_remote": {
-			"source": "iana"
-		},
-		"application/vnd.ntt-local.sip-ta_tcp_stream": {
-			"source": "iana"
-		},
-		"application/vnd.oasis.opendocument.chart": {
-			"source": "iana",
-			"extensions": [
-				"odc"
-			]
-		},
-		"application/vnd.oasis.opendocument.chart-template": {
-			"source": "iana",
-			"extensions": [
-				"otc"
-			]
-		},
-		"application/vnd.oasis.opendocument.database": {
-			"source": "iana",
-			"extensions": [
-				"odb"
-			]
-		},
-		"application/vnd.oasis.opendocument.formula": {
-			"source": "iana",
-			"extensions": [
-				"odf"
-			]
-		},
-		"application/vnd.oasis.opendocument.formula-template": {
-			"source": "iana",
-			"extensions": [
-				"odft"
-			]
-		},
-		"application/vnd.oasis.opendocument.graphics": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"odg"
-			]
-		},
-		"application/vnd.oasis.opendocument.graphics-template": {
-			"source": "iana",
-			"extensions": [
-				"otg"
-			]
-		},
-		"application/vnd.oasis.opendocument.image": {
-			"source": "iana",
-			"extensions": [
-				"odi"
-			]
-		},
-		"application/vnd.oasis.opendocument.image-template": {
-			"source": "iana",
-			"extensions": [
-				"oti"
-			]
-		},
-		"application/vnd.oasis.opendocument.presentation": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"odp"
-			]
-		},
-		"application/vnd.oasis.opendocument.presentation-template": {
-			"source": "iana",
-			"extensions": [
-				"otp"
-			]
-		},
-		"application/vnd.oasis.opendocument.spreadsheet": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"ods"
-			]
-		},
-		"application/vnd.oasis.opendocument.spreadsheet-template": {
-			"source": "iana",
-			"extensions": [
-				"ots"
-			]
-		},
-		"application/vnd.oasis.opendocument.text": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"odt"
-			]
-		},
-		"application/vnd.oasis.opendocument.text-master": {
-			"source": "iana",
-			"extensions": [
-				"odm"
-			]
-		},
-		"application/vnd.oasis.opendocument.text-template": {
-			"source": "iana",
-			"extensions": [
-				"ott"
-			]
-		},
-		"application/vnd.oasis.opendocument.text-web": {
-			"source": "iana",
-			"extensions": [
-				"oth"
-			]
-		},
-		"application/vnd.obn": {
-			"source": "iana"
-		},
-		"application/vnd.oftn.l10n+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.oipf.contentaccessdownload+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oipf.contentaccessstreaming+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oipf.cspg-hexbinary": {
-			"source": "iana"
-		},
-		"application/vnd.oipf.dae.svg+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oipf.dae.xhtml+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oipf.mippvcontrolmessage+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oipf.pae.gem": {
-			"source": "iana"
-		},
-		"application/vnd.oipf.spdiscovery+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oipf.spdlist+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oipf.ueprofile+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oipf.userprofile+xml": {
-			"source": "iana"
-		},
-		"application/vnd.olpc-sugar": {
-			"source": "iana",
-			"extensions": [
-				"xo"
-			]
-		},
-		"application/vnd.oma-scws-config": {
-			"source": "iana"
-		},
-		"application/vnd.oma-scws-http-request": {
-			"source": "iana"
-		},
-		"application/vnd.oma-scws-http-response": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.associated-procedure-parameter+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.drm-trigger+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.imd+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.ltkm": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.notification+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.provisioningtrigger": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.sgboot": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.sgdd+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.sgdu": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.simple-symbol-container": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.smartcard-trigger+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.sprov+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.stkm": {
-			"source": "iana"
-		},
-		"application/vnd.oma.cab-address-book+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.cab-feature-handler+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.cab-pcc+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.cab-subs-invite+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.cab-user-prefs+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.dcd": {
-			"source": "iana"
-		},
-		"application/vnd.oma.dcdc": {
-			"source": "iana"
-		},
-		"application/vnd.oma.dd2+xml": {
-			"source": "iana",
-			"extensions": [
-				"dd2"
-			]
-		},
-		"application/vnd.oma.drm.risd+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.group-usage-list+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.lwm2m+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.oma.lwm2m+tlv": {
-			"source": "iana"
-		},
-		"application/vnd.oma.pal+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.poc.detailed-progress-report+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.poc.final-report+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.poc.groups+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.poc.invocation-descriptor+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.poc.optimized-progress-report+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.push": {
-			"source": "iana"
-		},
-		"application/vnd.oma.scidm.messages+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.xcap-directory+xml": {
-			"source": "iana"
-		},
-		"application/vnd.omads-email+xml": {
-			"source": "iana"
-		},
-		"application/vnd.omads-file+xml": {
-			"source": "iana"
-		},
-		"application/vnd.omads-folder+xml": {
-			"source": "iana"
-		},
-		"application/vnd.omaloc-supl-init": {
-			"source": "iana"
-		},
-		"application/vnd.onepager": {
-			"source": "iana"
-		},
-		"application/vnd.openblox.game+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openblox.game-binary": {
-			"source": "iana"
-		},
-		"application/vnd.openeye.oeb": {
-			"source": "iana"
-		},
-		"application/vnd.openofficeorg.extension": {
-			"source": "apache",
-			"extensions": [
-				"oxt"
-			]
-		},
-		"application/vnd.openstreetmap.data+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.custom-properties+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.customxmlproperties+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.drawing+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.drawingml.chart+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.drawingml.chartshapes+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.drawingml.diagramcolors+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.drawingml.diagramdata+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.drawingml.diagramlayout+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.drawingml.diagramstyle+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.extended-properties+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml-template": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.commentauthors+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.comments+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.handoutmaster+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.notesmaster+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.notesslide+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.presentation": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"pptx"
-			]
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.presprops+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.slide": {
-			"source": "iana",
-			"extensions": [
-				"sldx"
-			]
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.slide+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.slidelayout+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.slidemaster+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.slideshow": {
-			"source": "iana",
-			"extensions": [
-				"ppsx"
-			]
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.slideshow.main+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.slideupdateinfo+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.tablestyles+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.tags+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.template": {
-			"source": "apache",
-			"extensions": [
-				"potx"
-			]
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.template.main+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.viewprops+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml-template": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.calcchain+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.chartsheet+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.comments+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.connections+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.dialogsheet+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.externallink+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.pivotcachedefinition+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.pivotcacherecords+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.pivottable+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.querytable+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.revisionheaders+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.revisionlog+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.sharedstrings+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"xlsx"
-			]
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.sheetmetadata+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.table+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.tablesinglecells+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.template": {
-			"source": "apache",
-			"extensions": [
-				"xltx"
-			]
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.template.main+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.usernames+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.volatiledependencies+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.theme+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.themeoverride+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.vmldrawing": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml-template": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.comments+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.document": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"docx"
-			]
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.document.glossary+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.endnotes+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.fonttable+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.footnotes+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.numbering+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.settings+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.template": {
-			"source": "apache",
-			"extensions": [
-				"dotx"
-			]
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.template.main+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.websettings+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-package.core-properties+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-package.digital-signature-xmlsignature+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-package.relationships+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oracle.resource+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.orange.indata": {
-			"source": "iana"
-		},
-		"application/vnd.osa.netdeploy": {
-			"source": "iana"
-		},
-		"application/vnd.osgeo.mapguide.package": {
-			"source": "iana",
-			"extensions": [
-				"mgp"
-			]
-		},
-		"application/vnd.osgi.bundle": {
-			"source": "iana"
-		},
-		"application/vnd.osgi.dp": {
-			"source": "iana",
-			"extensions": [
-				"dp"
-			]
-		},
-		"application/vnd.osgi.subsystem": {
-			"source": "iana",
-			"extensions": [
-				"esa"
-			]
-		},
-		"application/vnd.otps.ct-kip+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oxli.countgraph": {
-			"source": "iana"
-		},
-		"application/vnd.pagerduty+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.palm": {
-			"source": "iana",
-			"extensions": [
-				"pdb",
-				"pqa",
-				"oprc"
-			]
-		},
-		"application/vnd.panoply": {
-			"source": "iana"
-		},
-		"application/vnd.paos+xml": {
-			"source": "iana"
-		},
-		"application/vnd.paos.xml": {
-			"source": "apache"
-		},
-		"application/vnd.pawaafile": {
-			"source": "iana",
-			"extensions": [
-				"paw"
-			]
-		},
-		"application/vnd.pcos": {
-			"source": "iana"
-		},
-		"application/vnd.pg.format": {
-			"source": "iana",
-			"extensions": [
-				"str"
-			]
-		},
-		"application/vnd.pg.osasli": {
-			"source": "iana",
-			"extensions": [
-				"ei6"
-			]
-		},
-		"application/vnd.piaccess.application-licence": {
-			"source": "iana"
-		},
-		"application/vnd.picsel": {
-			"source": "iana",
-			"extensions": [
-				"efif"
-			]
-		},
-		"application/vnd.pmi.widget": {
-			"source": "iana",
-			"extensions": [
-				"wg"
-			]
-		},
-		"application/vnd.poc.group-advertisement+xml": {
-			"source": "iana"
-		},
-		"application/vnd.pocketlearn": {
-			"source": "iana",
-			"extensions": [
-				"plf"
-			]
-		},
-		"application/vnd.powerbuilder6": {
-			"source": "iana",
-			"extensions": [
-				"pbd"
-			]
-		},
-		"application/vnd.powerbuilder6-s": {
-			"source": "iana"
-		},
-		"application/vnd.powerbuilder7": {
-			"source": "iana"
-		},
-		"application/vnd.powerbuilder7-s": {
-			"source": "iana"
-		},
-		"application/vnd.powerbuilder75": {
-			"source": "iana"
-		},
-		"application/vnd.powerbuilder75-s": {
-			"source": "iana"
-		},
-		"application/vnd.preminet": {
-			"source": "iana"
-		},
-		"application/vnd.previewsystems.box": {
-			"source": "iana",
-			"extensions": [
-				"box"
-			]
-		},
-		"application/vnd.proteus.magazine": {
-			"source": "iana",
-			"extensions": [
-				"mgz"
-			]
-		},
-		"application/vnd.publishare-delta-tree": {
-			"source": "iana",
-			"extensions": [
-				"qps"
-			]
-		},
-		"application/vnd.pvi.ptid1": {
-			"source": "iana",
-			"extensions": [
-				"ptid"
-			]
-		},
-		"application/vnd.pwg-multiplexed": {
-			"source": "iana"
-		},
-		"application/vnd.pwg-xhtml-print+xml": {
-			"source": "iana"
-		},
-		"application/vnd.qualcomm.brew-app-res": {
-			"source": "iana"
-		},
-		"application/vnd.quarantainenet": {
-			"source": "iana"
-		},
-		"application/vnd.quark.quarkxpress": {
-			"source": "iana",
-			"extensions": [
-				"qxd",
-				"qxt",
-				"qwd",
-				"qwt",
-				"qxl",
-				"qxb"
-			]
-		},
-		"application/vnd.quobject-quoxdocument": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.moml+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-audit+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-audit-conf+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-audit-conn+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-audit-dialog+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-audit-stream+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-conf+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-dialog+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-dialog-base+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-dialog-fax-detect+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-dialog-fax-sendrecv+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-dialog-group+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-dialog-speech+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-dialog-transform+xml": {
-			"source": "iana"
-		},
-		"application/vnd.rainstor.data": {
-			"source": "iana"
-		},
-		"application/vnd.rapid": {
-			"source": "iana"
-		},
-		"application/vnd.rar": {
-			"source": "iana"
-		},
-		"application/vnd.realvnc.bed": {
-			"source": "iana",
-			"extensions": [
-				"bed"
-			]
-		},
-		"application/vnd.recordare.musicxml": {
-			"source": "iana",
-			"extensions": [
-				"mxl"
-			]
-		},
-		"application/vnd.recordare.musicxml+xml": {
-			"source": "iana",
-			"extensions": [
-				"musicxml"
-			]
-		},
-		"application/vnd.renlearn.rlprint": {
-			"source": "iana"
-		},
-		"application/vnd.rig.cryptonote": {
-			"source": "iana",
-			"extensions": [
-				"cryptonote"
-			]
-		},
-		"application/vnd.rim.cod": {
-			"source": "apache",
-			"extensions": [
-				"cod"
-			]
-		},
-		"application/vnd.rn-realmedia": {
-			"source": "apache",
-			"extensions": [
-				"rm"
-			]
-		},
-		"application/vnd.rn-realmedia-vbr": {
-			"source": "apache",
-			"extensions": [
-				"rmvb"
-			]
-		},
-		"application/vnd.route66.link66+xml": {
-			"source": "iana",
-			"extensions": [
-				"link66"
-			]
-		},
-		"application/vnd.rs-274x": {
-			"source": "iana"
-		},
-		"application/vnd.ruckus.download": {
-			"source": "iana"
-		},
-		"application/vnd.s3sms": {
-			"source": "iana"
-		},
-		"application/vnd.sailingtracker.track": {
-			"source": "iana",
-			"extensions": [
-				"st"
-			]
-		},
-		"application/vnd.sbm.cid": {
-			"source": "iana"
-		},
-		"application/vnd.sbm.mid2": {
-			"source": "iana"
-		},
-		"application/vnd.scribus": {
-			"source": "iana"
-		},
-		"application/vnd.sealed.3df": {
-			"source": "iana"
-		},
-		"application/vnd.sealed.csf": {
-			"source": "iana"
-		},
-		"application/vnd.sealed.doc": {
-			"source": "iana"
-		},
-		"application/vnd.sealed.eml": {
-			"source": "iana"
-		},
-		"application/vnd.sealed.mht": {
-			"source": "iana"
-		},
-		"application/vnd.sealed.net": {
-			"source": "iana"
-		},
-		"application/vnd.sealed.ppt": {
-			"source": "iana"
-		},
-		"application/vnd.sealed.tiff": {
-			"source": "iana"
-		},
-		"application/vnd.sealed.xls": {
-			"source": "iana"
-		},
-		"application/vnd.sealedmedia.softseal.html": {
-			"source": "iana"
-		},
-		"application/vnd.sealedmedia.softseal.pdf": {
-			"source": "iana"
-		},
-		"application/vnd.seemail": {
-			"source": "iana",
-			"extensions": [
-				"see"
-			]
-		},
-		"application/vnd.sema": {
-			"source": "iana",
-			"extensions": [
-				"sema"
-			]
-		},
-		"application/vnd.semd": {
-			"source": "iana",
-			"extensions": [
-				"semd"
-			]
-		},
-		"application/vnd.semf": {
-			"source": "iana",
-			"extensions": [
-				"semf"
-			]
-		},
-		"application/vnd.shana.informed.formdata": {
-			"source": "iana",
-			"extensions": [
-				"ifm"
-			]
-		},
-		"application/vnd.shana.informed.formtemplate": {
-			"source": "iana",
-			"extensions": [
-				"itp"
-			]
-		},
-		"application/vnd.shana.informed.interchange": {
-			"source": "iana",
-			"extensions": [
-				"iif"
-			]
-		},
-		"application/vnd.shana.informed.package": {
-			"source": "iana",
-			"extensions": [
-				"ipk"
-			]
-		},
-		"application/vnd.simtech-mindmapper": {
-			"source": "iana",
-			"extensions": [
-				"twd",
-				"twds"
-			]
-		},
-		"application/vnd.siren+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.smaf": {
-			"source": "iana",
-			"extensions": [
-				"mmf"
-			]
-		},
-		"application/vnd.smart.notebook": {
-			"source": "iana"
-		},
-		"application/vnd.smart.teacher": {
-			"source": "iana",
-			"extensions": [
-				"teacher"
-			]
-		},
-		"application/vnd.software602.filler.form+xml": {
-			"source": "iana"
-		},
-		"application/vnd.software602.filler.form-xml-zip": {
-			"source": "iana"
-		},
-		"application/vnd.solent.sdkm+xml": {
-			"source": "iana",
-			"extensions": [
-				"sdkm",
-				"sdkd"
-			]
-		},
-		"application/vnd.spotfire.dxp": {
-			"source": "iana",
-			"extensions": [
-				"dxp"
-			]
-		},
-		"application/vnd.spotfire.sfs": {
-			"source": "iana",
-			"extensions": [
-				"sfs"
-			]
-		},
-		"application/vnd.sss-cod": {
-			"source": "iana"
-		},
-		"application/vnd.sss-dtf": {
-			"source": "iana"
-		},
-		"application/vnd.sss-ntf": {
-			"source": "iana"
-		},
-		"application/vnd.stardivision.calc": {
-			"source": "apache",
-			"extensions": [
-				"sdc"
-			]
-		},
-		"application/vnd.stardivision.draw": {
-			"source": "apache",
-			"extensions": [
-				"sda"
-			]
-		},
-		"application/vnd.stardivision.impress": {
-			"source": "apache",
-			"extensions": [
-				"sdd"
-			]
-		},
-		"application/vnd.stardivision.math": {
-			"source": "apache",
-			"extensions": [
-				"smf"
-			]
-		},
-		"application/vnd.stardivision.writer": {
-			"source": "apache",
-			"extensions": [
-				"sdw",
-				"vor"
-			]
-		},
-		"application/vnd.stardivision.writer-global": {
-			"source": "apache",
-			"extensions": [
-				"sgl"
-			]
-		},
-		"application/vnd.stepmania.package": {
-			"source": "iana",
-			"extensions": [
-				"smzip"
-			]
-		},
-		"application/vnd.stepmania.stepchart": {
-			"source": "iana",
-			"extensions": [
-				"sm"
-			]
-		},
-		"application/vnd.street-stream": {
-			"source": "iana"
-		},
-		"application/vnd.sun.wadl+xml": {
-			"source": "iana"
-		},
-		"application/vnd.sun.xml.calc": {
-			"source": "apache",
-			"extensions": [
-				"sxc"
-			]
-		},
-		"application/vnd.sun.xml.calc.template": {
-			"source": "apache",
-			"extensions": [
-				"stc"
-			]
-		},
-		"application/vnd.sun.xml.draw": {
-			"source": "apache",
-			"extensions": [
-				"sxd"
-			]
-		},
-		"application/vnd.sun.xml.draw.template": {
-			"source": "apache",
-			"extensions": [
-				"std"
-			]
-		},
-		"application/vnd.sun.xml.impress": {
-			"source": "apache",
-			"extensions": [
-				"sxi"
-			]
-		},
-		"application/vnd.sun.xml.impress.template": {
-			"source": "apache",
-			"extensions": [
-				"sti"
-			]
-		},
-		"application/vnd.sun.xml.math": {
-			"source": "apache",
-			"extensions": [
-				"sxm"
-			]
-		},
-		"application/vnd.sun.xml.writer": {
-			"source": "apache",
-			"extensions": [
-				"sxw"
-			]
-		},
-		"application/vnd.sun.xml.writer.global": {
-			"source": "apache",
-			"extensions": [
-				"sxg"
-			]
-		},
-		"application/vnd.sun.xml.writer.template": {
-			"source": "apache",
-			"extensions": [
-				"stw"
-			]
-		},
-		"application/vnd.sus-calendar": {
-			"source": "iana",
-			"extensions": [
-				"sus",
-				"susp"
-			]
-		},
-		"application/vnd.svd": {
-			"source": "iana",
-			"extensions": [
-				"svd"
-			]
-		},
-		"application/vnd.swiftview-ics": {
-			"source": "iana"
-		},
-		"application/vnd.symbian.install": {
-			"source": "apache",
-			"extensions": [
-				"sis",
-				"sisx"
-			]
-		},
-		"application/vnd.syncml+xml": {
-			"source": "iana",
-			"extensions": [
-				"xsm"
-			]
-		},
-		"application/vnd.syncml.dm+wbxml": {
-			"source": "iana",
-			"extensions": [
-				"bdm"
-			]
-		},
-		"application/vnd.syncml.dm+xml": {
-			"source": "iana",
-			"extensions": [
-				"xdm"
-			]
-		},
-		"application/vnd.syncml.dm.notification": {
-			"source": "iana"
-		},
-		"application/vnd.syncml.dmddf+wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.syncml.dmddf+xml": {
-			"source": "iana"
-		},
-		"application/vnd.syncml.dmtnds+wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.syncml.dmtnds+xml": {
-			"source": "iana"
-		},
-		"application/vnd.syncml.ds.notification": {
-			"source": "iana"
-		},
-		"application/vnd.tableschema+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.tao.intent-module-archive": {
-			"source": "iana",
-			"extensions": [
-				"tao"
-			]
-		},
-		"application/vnd.tcpdump.pcap": {
-			"source": "iana",
-			"extensions": [
-				"pcap",
-				"cap",
-				"dmp"
-			]
-		},
-		"application/vnd.tmd.mediaflex.api+xml": {
-			"source": "iana"
-		},
-		"application/vnd.tml": {
-			"source": "iana"
-		},
-		"application/vnd.tmobile-livetv": {
-			"source": "iana",
-			"extensions": [
-				"tmo"
-			]
-		},
-		"application/vnd.tri.onesource": {
-			"source": "iana"
-		},
-		"application/vnd.trid.tpt": {
-			"source": "iana",
-			"extensions": [
-				"tpt"
-			]
-		},
-		"application/vnd.triscape.mxs": {
-			"source": "iana",
-			"extensions": [
-				"mxs"
-			]
-		},
-		"application/vnd.trueapp": {
-			"source": "iana",
-			"extensions": [
-				"tra"
-			]
-		},
-		"application/vnd.truedoc": {
-			"source": "iana"
-		},
-		"application/vnd.ubisoft.webplayer": {
-			"source": "iana"
-		},
-		"application/vnd.ufdl": {
-			"source": "iana",
-			"extensions": [
-				"ufd",
-				"ufdl"
-			]
-		},
-		"application/vnd.uiq.theme": {
-			"source": "iana",
-			"extensions": [
-				"utz"
-			]
-		},
-		"application/vnd.umajin": {
-			"source": "iana",
-			"extensions": [
-				"umj"
-			]
-		},
-		"application/vnd.unity": {
-			"source": "iana",
-			"extensions": [
-				"unityweb"
-			]
-		},
-		"application/vnd.uoml+xml": {
-			"source": "iana",
-			"extensions": [
-				"uoml"
-			]
-		},
-		"application/vnd.uplanet.alert": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.alert-wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.bearer-choice": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.bearer-choice-wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.cacheop": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.cacheop-wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.channel": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.channel-wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.list": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.list-wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.listcmd": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.listcmd-wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.signal": {
-			"source": "iana"
-		},
-		"application/vnd.uri-map": {
-			"source": "iana"
-		},
-		"application/vnd.valve.source.material": {
-			"source": "iana"
-		},
-		"application/vnd.vcx": {
-			"source": "iana",
-			"extensions": [
-				"vcx"
-			]
-		},
-		"application/vnd.vd-study": {
-			"source": "iana"
-		},
-		"application/vnd.vectorworks": {
-			"source": "iana"
-		},
-		"application/vnd.vel+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.verimatrix.vcas": {
-			"source": "iana"
-		},
-		"application/vnd.vidsoft.vidconference": {
-			"source": "iana"
-		},
-		"application/vnd.visio": {
-			"source": "iana",
-			"extensions": [
-				"vsd",
-				"vst",
-				"vss",
-				"vsw"
-			]
-		},
-		"application/vnd.visionary": {
-			"source": "iana",
-			"extensions": [
-				"vis"
-			]
-		},
-		"application/vnd.vividence.scriptfile": {
-			"source": "iana"
-		},
-		"application/vnd.vsf": {
-			"source": "iana",
-			"extensions": [
-				"vsf"
-			]
-		},
-		"application/vnd.wap.sic": {
-			"source": "iana"
-		},
-		"application/vnd.wap.slc": {
-			"source": "iana"
-		},
-		"application/vnd.wap.wbxml": {
-			"source": "iana",
-			"extensions": [
-				"wbxml"
-			]
-		},
-		"application/vnd.wap.wmlc": {
-			"source": "iana",
-			"extensions": [
-				"wmlc"
-			]
-		},
-		"application/vnd.wap.wmlscriptc": {
-			"source": "iana",
-			"extensions": [
-				"wmlsc"
-			]
-		},
-		"application/vnd.webturbo": {
-			"source": "iana",
-			"extensions": [
-				"wtb"
-			]
-		},
-		"application/vnd.wfa.p2p": {
-			"source": "iana"
-		},
-		"application/vnd.wfa.wsc": {
-			"source": "iana"
-		},
-		"application/vnd.windows.devicepairing": {
-			"source": "iana"
-		},
-		"application/vnd.wmc": {
-			"source": "iana"
-		},
-		"application/vnd.wmf.bootstrap": {
-			"source": "iana"
-		},
-		"application/vnd.wolfram.mathematica": {
-			"source": "iana"
-		},
-		"application/vnd.wolfram.mathematica.package": {
-			"source": "iana"
-		},
-		"application/vnd.wolfram.player": {
-			"source": "iana",
-			"extensions": [
-				"nbp"
-			]
-		},
-		"application/vnd.wordperfect": {
-			"source": "iana",
-			"extensions": [
-				"wpd"
-			]
-		},
-		"application/vnd.wqd": {
-			"source": "iana",
-			"extensions": [
-				"wqd"
-			]
-		},
-		"application/vnd.wrq-hp3000-labelled": {
-			"source": "iana"
-		},
-		"application/vnd.wt.stf": {
-			"source": "iana",
-			"extensions": [
-				"stf"
-			]
-		},
-		"application/vnd.wv.csp+wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.wv.csp+xml": {
-			"source": "iana"
-		},
-		"application/vnd.wv.ssp+xml": {
-			"source": "iana"
-		},
-		"application/vnd.xacml+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.xara": {
-			"source": "iana",
-			"extensions": [
-				"xar"
-			]
-		},
-		"application/vnd.xfdl": {
-			"source": "iana",
-			"extensions": [
-				"xfdl"
-			]
-		},
-		"application/vnd.xfdl.webform": {
-			"source": "iana"
-		},
-		"application/vnd.xmi+xml": {
-			"source": "iana"
-		},
-		"application/vnd.xmpie.cpkg": {
-			"source": "iana"
-		},
-		"application/vnd.xmpie.dpkg": {
-			"source": "iana"
-		},
-		"application/vnd.xmpie.plan": {
-			"source": "iana"
-		},
-		"application/vnd.xmpie.ppkg": {
-			"source": "iana"
-		},
-		"application/vnd.xmpie.xlim": {
-			"source": "iana"
-		},
-		"application/vnd.yamaha.hv-dic": {
-			"source": "iana",
-			"extensions": [
-				"hvd"
-			]
-		},
-		"application/vnd.yamaha.hv-script": {
-			"source": "iana",
-			"extensions": [
-				"hvs"
-			]
-		},
-		"application/vnd.yamaha.hv-voice": {
-			"source": "iana",
-			"extensions": [
-				"hvp"
-			]
-		},
-		"application/vnd.yamaha.openscoreformat": {
-			"source": "iana",
-			"extensions": [
-				"osf"
-			]
-		},
-		"application/vnd.yamaha.openscoreformat.osfpvg+xml": {
-			"source": "iana",
-			"extensions": [
-				"osfpvg"
-			]
-		},
-		"application/vnd.yamaha.remote-setup": {
-			"source": "iana"
-		},
-		"application/vnd.yamaha.smaf-audio": {
-			"source": "iana",
-			"extensions": [
-				"saf"
-			]
-		},
-		"application/vnd.yamaha.smaf-phrase": {
-			"source": "iana",
-			"extensions": [
-				"spf"
-			]
-		},
-		"application/vnd.yamaha.through-ngn": {
-			"source": "iana"
-		},
-		"application/vnd.yamaha.tunnel-udpencap": {
-			"source": "iana"
-		},
-		"application/vnd.yaoweme": {
-			"source": "iana"
-		},
-		"application/vnd.yellowriver-custom-menu": {
-			"source": "iana",
-			"extensions": [
-				"cmp"
-			]
-		},
-		"application/vnd.zul": {
-			"source": "iana",
-			"extensions": [
-				"zir",
-				"zirz"
-			]
-		},
-		"application/vnd.zzazz.deck+xml": {
-			"source": "iana",
-			"extensions": [
-				"zaz"
-			]
-		},
-		"application/voicexml+xml": {
-			"source": "iana",
-			"extensions": [
-				"vxml"
-			]
-		},
-		"application/vq-rtcpxr": {
-			"source": "iana"
-		},
-		"application/watcherinfo+xml": {
-			"source": "iana"
-		},
-		"application/whoispp-query": {
-			"source": "iana"
-		},
-		"application/whoispp-response": {
-			"source": "iana"
-		},
-		"application/widget": {
-			"source": "iana",
-			"extensions": [
-				"wgt"
-			]
-		},
-		"application/winhlp": {
-			"source": "apache",
-			"extensions": [
-				"hlp"
-			]
-		},
-		"application/wita": {
-			"source": "iana"
-		},
-		"application/wordperfect5.1": {
-			"source": "iana"
-		},
-		"application/wsdl+xml": {
-			"source": "iana",
-			"extensions": [
-				"wsdl"
-			]
-		},
-		"application/wspolicy+xml": {
-			"source": "iana",
-			"extensions": [
-				"wspolicy"
-			]
-		},
-		"application/x-7z-compressed": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"7z"
-			]
-		},
-		"application/x-abiword": {
-			"source": "apache",
-			"extensions": [
-				"abw"
-			]
-		},
-		"application/x-ace-compressed": {
-			"source": "apache",
-			"extensions": [
-				"ace"
-			]
-		},
-		"application/x-amf": {
-			"source": "apache"
-		},
-		"application/x-apple-diskimage": {
-			"source": "apache",
-			"extensions": [
-				"dmg"
-			]
-		},
-		"application/x-authorware-bin": {
-			"source": "apache",
-			"extensions": [
-				"aab",
-				"x32",
-				"u32",
-				"vox"
-			]
-		},
-		"application/x-authorware-map": {
-			"source": "apache",
-			"extensions": [
-				"aam"
-			]
-		},
-		"application/x-authorware-seg": {
-			"source": "apache",
-			"extensions": [
-				"aas"
-			]
-		},
-		"application/x-bcpio": {
-			"source": "apache",
-			"extensions": [
-				"bcpio"
-			]
-		},
-		"application/x-bdoc": {
-			"compressible": false,
-			"extensions": [
-				"bdoc"
-			]
-		},
-		"application/x-bittorrent": {
-			"source": "apache",
-			"extensions": [
-				"torrent"
-			]
-		},
-		"application/x-blorb": {
-			"source": "apache",
-			"extensions": [
-				"blb",
-				"blorb"
-			]
-		},
-		"application/x-bzip": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"bz"
-			]
-		},
-		"application/x-bzip2": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"bz2",
-				"boz"
-			]
-		},
-		"application/x-cbr": {
-			"source": "apache",
-			"extensions": [
-				"cbr",
-				"cba",
-				"cbt",
-				"cbz",
-				"cb7"
-			]
-		},
-		"application/x-cdlink": {
-			"source": "apache",
-			"extensions": [
-				"vcd"
-			]
-		},
-		"application/x-cfs-compressed": {
-			"source": "apache",
-			"extensions": [
-				"cfs"
-			]
-		},
-		"application/x-chat": {
-			"source": "apache",
-			"extensions": [
-				"chat"
-			]
-		},
-		"application/x-chess-pgn": {
-			"source": "apache",
-			"extensions": [
-				"pgn"
-			]
-		},
-		"application/x-chrome-extension": {
-			"extensions": [
-				"crx"
-			]
-		},
-		"application/x-cocoa": {
-			"source": "nginx",
-			"extensions": [
-				"cco"
-			]
-		},
-		"application/x-compress": {
-			"source": "apache"
-		},
-		"application/x-conference": {
-			"source": "apache",
-			"extensions": [
-				"nsc"
-			]
-		},
-		"application/x-cpio": {
-			"source": "apache",
-			"extensions": [
-				"cpio"
-			]
-		},
-		"application/x-csh": {
-			"source": "apache",
-			"extensions": [
-				"csh"
-			]
-		},
-		"application/x-deb": {
-			"compressible": false
-		},
-		"application/x-debian-package": {
-			"source": "apache",
-			"extensions": [
-				"deb",
-				"udeb"
-			]
-		},
-		"application/x-dgc-compressed": {
-			"source": "apache",
-			"extensions": [
-				"dgc"
-			]
-		},
-		"application/x-director": {
-			"source": "apache",
-			"extensions": [
-				"dir",
-				"dcr",
-				"dxr",
-				"cst",
-				"cct",
-				"cxt",
-				"w3d",
-				"fgd",
-				"swa"
-			]
-		},
-		"application/x-doom": {
-			"source": "apache",
-			"extensions": [
-				"wad"
-			]
-		},
-		"application/x-dtbncx+xml": {
-			"source": "apache",
-			"extensions": [
-				"ncx"
-			]
-		},
-		"application/x-dtbook+xml": {
-			"source": "apache",
-			"extensions": [
-				"dtb"
-			]
-		},
-		"application/x-dtbresource+xml": {
-			"source": "apache",
-			"extensions": [
-				"res"
-			]
-		},
-		"application/x-dvi": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"dvi"
-			]
-		},
-		"application/x-envoy": {
-			"source": "apache",
-			"extensions": [
-				"evy"
-			]
-		},
-		"application/x-eva": {
-			"source": "apache",
-			"extensions": [
-				"eva"
-			]
-		},
-		"application/x-font-bdf": {
-			"source": "apache",
-			"extensions": [
-				"bdf"
-			]
-		},
-		"application/x-font-dos": {
-			"source": "apache"
-		},
-		"application/x-font-framemaker": {
-			"source": "apache"
-		},
-		"application/x-font-ghostscript": {
-			"source": "apache",
-			"extensions": [
-				"gsf"
-			]
-		},
-		"application/x-font-libgrx": {
-			"source": "apache"
-		},
-		"application/x-font-linux-psf": {
-			"source": "apache",
-			"extensions": [
-				"psf"
-			]
-		},
-		"application/x-font-otf": {
-			"source": "apache",
-			"compressible": true,
-			"extensions": [
-				"otf"
-			]
-		},
-		"application/x-font-pcf": {
-			"source": "apache",
-			"extensions": [
-				"pcf"
-			]
-		},
-		"application/x-font-snf": {
-			"source": "apache",
-			"extensions": [
-				"snf"
-			]
-		},
-		"application/x-font-speedo": {
-			"source": "apache"
-		},
-		"application/x-font-sunos-news": {
-			"source": "apache"
-		},
-		"application/x-font-ttf": {
-			"source": "apache",
-			"compressible": true,
-			"extensions": [
-				"ttf",
-				"ttc"
-			]
-		},
-		"application/x-font-type1": {
-			"source": "apache",
-			"extensions": [
-				"pfa",
-				"pfb",
-				"pfm",
-				"afm"
-			]
-		},
-		"application/x-font-vfont": {
-			"source": "apache"
-		},
-		"application/x-freearc": {
-			"source": "apache",
-			"extensions": [
-				"arc"
-			]
-		},
-		"application/x-futuresplash": {
-			"source": "apache",
-			"extensions": [
-				"spl"
-			]
-		},
-		"application/x-gca-compressed": {
-			"source": "apache",
-			"extensions": [
-				"gca"
-			]
-		},
-		"application/x-glulx": {
-			"source": "apache",
-			"extensions": [
-				"ulx"
-			]
-		},
-		"application/x-gnumeric": {
-			"source": "apache",
-			"extensions": [
-				"gnumeric"
-			]
-		},
-		"application/x-gramps-xml": {
-			"source": "apache",
-			"extensions": [
-				"gramps"
-			]
-		},
-		"application/x-gtar": {
-			"source": "apache",
-			"extensions": [
-				"gtar"
-			]
-		},
-		"application/x-gzip": {
-			"source": "apache"
-		},
-		"application/x-hdf": {
-			"source": "apache",
-			"extensions": [
-				"hdf"
-			]
-		},
-		"application/x-httpd-php": {
-			"compressible": true,
-			"extensions": [
-				"php"
-			]
-		},
-		"application/x-install-instructions": {
-			"source": "apache",
-			"extensions": [
-				"install"
-			]
-		},
-		"application/x-iso9660-image": {
-			"source": "apache",
-			"extensions": [
-				"iso"
-			]
-		},
-		"application/x-java-archive-diff": {
-			"source": "nginx",
-			"extensions": [
-				"jardiff"
-			]
-		},
-		"application/x-java-jnlp-file": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"jnlp"
-			]
-		},
-		"application/x-javascript": {
-			"compressible": true
-		},
-		"application/x-latex": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"latex"
-			]
-		},
-		"application/x-lua-bytecode": {
-			"extensions": [
-				"luac"
-			]
-		},
-		"application/x-lzh-compressed": {
-			"source": "apache",
-			"extensions": [
-				"lzh",
-				"lha"
-			]
-		},
-		"application/x-makeself": {
-			"source": "nginx",
-			"extensions": [
-				"run"
-			]
-		},
-		"application/x-mie": {
-			"source": "apache",
-			"extensions": [
-				"mie"
-			]
-		},
-		"application/x-mobipocket-ebook": {
-			"source": "apache",
-			"extensions": [
-				"prc",
-				"mobi"
-			]
-		},
-		"application/x-mpegurl": {
-			"compressible": false
-		},
-		"application/x-ms-application": {
-			"source": "apache",
-			"extensions": [
-				"application"
-			]
-		},
-		"application/x-ms-shortcut": {
-			"source": "apache",
-			"extensions": [
-				"lnk"
-			]
-		},
-		"application/x-ms-wmd": {
-			"source": "apache",
-			"extensions": [
-				"wmd"
-			]
-		},
-		"application/x-ms-wmz": {
-			"source": "apache",
-			"extensions": [
-				"wmz"
-			]
-		},
-		"application/x-ms-xbap": {
-			"source": "apache",
-			"extensions": [
-				"xbap"
-			]
-		},
-		"application/x-msaccess": {
-			"source": "apache",
-			"extensions": [
-				"mdb"
-			]
-		},
-		"application/x-msbinder": {
-			"source": "apache",
-			"extensions": [
-				"obd"
-			]
-		},
-		"application/x-mscardfile": {
-			"source": "apache",
-			"extensions": [
-				"crd"
-			]
-		},
-		"application/x-msclip": {
-			"source": "apache",
-			"extensions": [
-				"clp"
-			]
-		},
-		"application/x-msdos-program": {
-			"extensions": [
-				"exe"
-			]
-		},
-		"application/x-msdownload": {
-			"source": "apache",
-			"extensions": [
-				"exe",
-				"dll",
-				"com",
-				"bat",
-				"msi"
-			]
-		},
-		"application/x-msmediaview": {
-			"source": "apache",
-			"extensions": [
-				"mvb",
-				"m13",
-				"m14"
-			]
-		},
-		"application/x-msmetafile": {
-			"source": "apache",
-			"extensions": [
-				"wmf",
-				"wmz",
-				"emf",
-				"emz"
-			]
-		},
-		"application/x-msmoney": {
-			"source": "apache",
-			"extensions": [
-				"mny"
-			]
-		},
-		"application/x-mspublisher": {
-			"source": "apache",
-			"extensions": [
-				"pub"
-			]
-		},
-		"application/x-msschedule": {
-			"source": "apache",
-			"extensions": [
-				"scd"
-			]
-		},
-		"application/x-msterminal": {
-			"source": "apache",
-			"extensions": [
-				"trm"
-			]
-		},
-		"application/x-mswrite": {
-			"source": "apache",
-			"extensions": [
-				"wri"
-			]
-		},
-		"application/x-netcdf": {
-			"source": "apache",
-			"extensions": [
-				"nc",
-				"cdf"
-			]
-		},
-		"application/x-ns-proxy-autoconfig": {
-			"compressible": true,
-			"extensions": [
-				"pac"
-			]
-		},
-		"application/x-nzb": {
-			"source": "apache",
-			"extensions": [
-				"nzb"
-			]
-		},
-		"application/x-perl": {
-			"source": "nginx",
-			"extensions": [
-				"pl",
-				"pm"
-			]
-		},
-		"application/x-pilot": {
-			"source": "nginx",
-			"extensions": [
-				"prc",
-				"pdb"
-			]
-		},
-		"application/x-pkcs12": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"p12",
-				"pfx"
-			]
-		},
-		"application/x-pkcs7-certificates": {
-			"source": "apache",
-			"extensions": [
-				"p7b",
-				"spc"
-			]
-		},
-		"application/x-pkcs7-certreqresp": {
-			"source": "apache",
-			"extensions": [
-				"p7r"
-			]
-		},
-		"application/x-rar-compressed": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"rar"
-			]
-		},
-		"application/x-redhat-package-manager": {
-			"source": "nginx",
-			"extensions": [
-				"rpm"
-			]
-		},
-		"application/x-research-info-systems": {
-			"source": "apache",
-			"extensions": [
-				"ris"
-			]
-		},
-		"application/x-sea": {
-			"source": "nginx",
-			"extensions": [
-				"sea"
-			]
-		},
-		"application/x-sh": {
-			"source": "apache",
-			"compressible": true,
-			"extensions": [
-				"sh"
-			]
-		},
-		"application/x-shar": {
-			"source": "apache",
-			"extensions": [
-				"shar"
-			]
-		},
-		"application/x-shockwave-flash": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"swf"
-			]
-		},
-		"application/x-silverlight-app": {
-			"source": "apache",
-			"extensions": [
-				"xap"
-			]
-		},
-		"application/x-sql": {
-			"source": "apache",
-			"extensions": [
-				"sql"
-			]
-		},
-		"application/x-stuffit": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"sit"
-			]
-		},
-		"application/x-stuffitx": {
-			"source": "apache",
-			"extensions": [
-				"sitx"
-			]
-		},
-		"application/x-subrip": {
-			"source": "apache",
-			"extensions": [
-				"srt"
-			]
-		},
-		"application/x-sv4cpio": {
-			"source": "apache",
-			"extensions": [
-				"sv4cpio"
-			]
-		},
-		"application/x-sv4crc": {
-			"source": "apache",
-			"extensions": [
-				"sv4crc"
-			]
-		},
-		"application/x-t3vm-image": {
-			"source": "apache",
-			"extensions": [
-				"t3"
-			]
-		},
-		"application/x-tads": {
-			"source": "apache",
-			"extensions": [
-				"gam"
-			]
-		},
-		"application/x-tar": {
-			"source": "apache",
-			"compressible": true,
-			"extensions": [
-				"tar"
-			]
-		},
-		"application/x-tcl": {
-			"source": "apache",
-			"extensions": [
-				"tcl",
-				"tk"
-			]
-		},
-		"application/x-tex": {
-			"source": "apache",
-			"extensions": [
-				"tex"
-			]
-		},
-		"application/x-tex-tfm": {
-			"source": "apache",
-			"extensions": [
-				"tfm"
-			]
-		},
-		"application/x-texinfo": {
-			"source": "apache",
-			"extensions": [
-				"texinfo",
-				"texi"
-			]
-		},
-		"application/x-tgif": {
-			"source": "apache",
-			"extensions": [
-				"obj"
-			]
-		},
-		"application/x-ustar": {
-			"source": "apache",
-			"extensions": [
-				"ustar"
-			]
-		},
-		"application/x-wais-source": {
-			"source": "apache",
-			"extensions": [
-				"src"
-			]
-		},
-		"application/x-web-app-manifest+json": {
-			"compressible": true,
-			"extensions": [
-				"webapp"
-			]
-		},
-		"application/x-www-form-urlencoded": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/x-x509-ca-cert": {
-			"source": "apache",
-			"extensions": [
-				"der",
-				"crt",
-				"pem"
-			]
-		},
-		"application/x-xfig": {
-			"source": "apache",
-			"extensions": [
-				"fig"
-			]
-		},
-		"application/x-xliff+xml": {
-			"source": "apache",
-			"extensions": [
-				"xlf"
-			]
-		},
-		"application/x-xpinstall": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"xpi"
-			]
-		},
-		"application/x-xz": {
-			"source": "apache",
-			"extensions": [
-				"xz"
-			]
-		},
-		"application/x-zmachine": {
-			"source": "apache",
-			"extensions": [
-				"z1",
-				"z2",
-				"z3",
-				"z4",
-				"z5",
-				"z6",
-				"z7",
-				"z8"
-			]
-		},
-		"application/x400-bp": {
-			"source": "iana"
-		},
-		"application/xacml+xml": {
-			"source": "iana"
-		},
-		"application/xaml+xml": {
-			"source": "apache",
-			"extensions": [
-				"xaml"
-			]
-		},
-		"application/xcap-att+xml": {
-			"source": "iana"
-		},
-		"application/xcap-caps+xml": {
-			"source": "iana"
-		},
-		"application/xcap-diff+xml": {
-			"source": "iana",
-			"extensions": [
-				"xdf"
-			]
-		},
-		"application/xcap-el+xml": {
-			"source": "iana"
-		},
-		"application/xcap-error+xml": {
-			"source": "iana"
-		},
-		"application/xcap-ns+xml": {
-			"source": "iana"
-		},
-		"application/xcon-conference-info+xml": {
-			"source": "iana"
-		},
-		"application/xcon-conference-info-diff+xml": {
-			"source": "iana"
-		},
-		"application/xenc+xml": {
-			"source": "iana",
-			"extensions": [
-				"xenc"
-			]
-		},
-		"application/xhtml+xml": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"xhtml",
-				"xht"
-			]
-		},
-		"application/xhtml-voice+xml": {
-			"source": "apache"
-		},
-		"application/xml": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"xml",
-				"xsl",
-				"xsd",
-				"rng"
-			]
-		},
-		"application/xml-dtd": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"dtd"
-			]
-		},
-		"application/xml-external-parsed-entity": {
-			"source": "iana"
-		},
-		"application/xml-patch+xml": {
-			"source": "iana"
-		},
-		"application/xmpp+xml": {
-			"source": "iana"
-		},
-		"application/xop+xml": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"xop"
-			]
-		},
-		"application/xproc+xml": {
-			"source": "apache",
-			"extensions": [
-				"xpl"
-			]
-		},
-		"application/xslt+xml": {
-			"source": "iana",
-			"extensions": [
-				"xslt"
-			]
-		},
-		"application/xspf+xml": {
-			"source": "apache",
-			"extensions": [
-				"xspf"
-			]
-		},
-		"application/xv+xml": {
-			"source": "iana",
-			"extensions": [
-				"mxml",
-				"xhvml",
-				"xvml",
-				"xvm"
-			]
-		},
-		"application/yang": {
-			"source": "iana",
-			"extensions": [
-				"yang"
-			]
-		},
-		"application/yang-data+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/yang-data+xml": {
-			"source": "iana"
-		},
-		"application/yang-patch+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/yang-patch+xml": {
-			"source": "iana"
-		},
-		"application/yin+xml": {
-			"source": "iana",
-			"extensions": [
-				"yin"
-			]
-		},
-		"application/zip": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"zip"
-			]
-		},
-		"application/zlib": {
-			"source": "iana"
-		},
-		"audio/1d-interleaved-parityfec": {
-			"source": "iana"
-		},
-		"audio/32kadpcm": {
-			"source": "iana"
-		},
-		"audio/3gpp": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"3gpp"
-			]
-		},
-		"audio/3gpp2": {
-			"source": "iana"
-		},
-		"audio/ac3": {
-			"source": "iana"
-		},
-		"audio/adpcm": {
-			"source": "apache",
-			"extensions": [
-				"adp"
-			]
-		},
-		"audio/amr": {
-			"source": "iana"
-		},
-		"audio/amr-wb": {
-			"source": "iana"
-		},
-		"audio/amr-wb+": {
-			"source": "iana"
-		},
-		"audio/aptx": {
-			"source": "iana"
-		},
-		"audio/asc": {
-			"source": "iana"
-		},
-		"audio/atrac-advanced-lossless": {
-			"source": "iana"
-		},
-		"audio/atrac-x": {
-			"source": "iana"
-		},
-		"audio/atrac3": {
-			"source": "iana"
-		},
-		"audio/basic": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"au",
-				"snd"
-			]
-		},
-		"audio/bv16": {
-			"source": "iana"
-		},
-		"audio/bv32": {
-			"source": "iana"
-		},
-		"audio/clearmode": {
-			"source": "iana"
-		},
-		"audio/cn": {
-			"source": "iana"
-		},
-		"audio/dat12": {
-			"source": "iana"
-		},
-		"audio/dls": {
-			"source": "iana"
-		},
-		"audio/dsr-es201108": {
-			"source": "iana"
-		},
-		"audio/dsr-es202050": {
-			"source": "iana"
-		},
-		"audio/dsr-es202211": {
-			"source": "iana"
-		},
-		"audio/dsr-es202212": {
-			"source": "iana"
-		},
-		"audio/dv": {
-			"source": "iana"
-		},
-		"audio/dvi4": {
-			"source": "iana"
-		},
-		"audio/eac3": {
-			"source": "iana"
-		},
-		"audio/encaprtp": {
-			"source": "iana"
-		},
-		"audio/evrc": {
-			"source": "iana"
-		},
-		"audio/evrc-qcp": {
-			"source": "iana"
-		},
-		"audio/evrc0": {
-			"source": "iana"
-		},
-		"audio/evrc1": {
-			"source": "iana"
-		},
-		"audio/evrcb": {
-			"source": "iana"
-		},
-		"audio/evrcb0": {
-			"source": "iana"
-		},
-		"audio/evrcb1": {
-			"source": "iana"
-		},
-		"audio/evrcnw": {
-			"source": "iana"
-		},
-		"audio/evrcnw0": {
-			"source": "iana"
-		},
-		"audio/evrcnw1": {
-			"source": "iana"
-		},
-		"audio/evrcwb": {
-			"source": "iana"
-		},
-		"audio/evrcwb0": {
-			"source": "iana"
-		},
-		"audio/evrcwb1": {
-			"source": "iana"
-		},
-		"audio/evs": {
-			"source": "iana"
-		},
-		"audio/fwdred": {
-			"source": "iana"
-		},
-		"audio/g711-0": {
-			"source": "iana"
-		},
-		"audio/g719": {
-			"source": "iana"
-		},
-		"audio/g722": {
-			"source": "iana"
-		},
-		"audio/g7221": {
-			"source": "iana"
-		},
-		"audio/g723": {
-			"source": "iana"
-		},
-		"audio/g726-16": {
-			"source": "iana"
-		},
-		"audio/g726-24": {
-			"source": "iana"
-		},
-		"audio/g726-32": {
-			"source": "iana"
-		},
-		"audio/g726-40": {
-			"source": "iana"
-		},
-		"audio/g728": {
-			"source": "iana"
-		},
-		"audio/g729": {
-			"source": "iana"
-		},
-		"audio/g7291": {
-			"source": "iana"
-		},
-		"audio/g729d": {
-			"source": "iana"
-		},
-		"audio/g729e": {
-			"source": "iana"
-		},
-		"audio/gsm": {
-			"source": "iana"
-		},
-		"audio/gsm-efr": {
-			"source": "iana"
-		},
-		"audio/gsm-hr-08": {
-			"source": "iana"
-		},
-		"audio/ilbc": {
-			"source": "iana"
-		},
-		"audio/ip-mr_v2.5": {
-			"source": "iana"
-		},
-		"audio/isac": {
-			"source": "apache"
-		},
-		"audio/l16": {
-			"source": "iana"
-		},
-		"audio/l20": {
-			"source": "iana"
-		},
-		"audio/l24": {
-			"source": "iana",
-			"compressible": false
-		},
-		"audio/l8": {
-			"source": "iana"
-		},
-		"audio/lpc": {
-			"source": "iana"
-		},
-		"audio/midi": {
-			"source": "apache",
-			"extensions": [
-				"mid",
-				"midi",
-				"kar",
-				"rmi"
-			]
-		},
-		"audio/mobile-xmf": {
-			"source": "iana"
-		},
-		"audio/mp3": {
-			"compressible": false,
-			"extensions": [
-				"mp3"
-			]
-		},
-		"audio/mp4": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"m4a",
-				"mp4a"
-			]
-		},
-		"audio/mp4a-latm": {
-			"source": "iana"
-		},
-		"audio/mpa": {
-			"source": "iana"
-		},
-		"audio/mpa-robust": {
-			"source": "iana"
-		},
-		"audio/mpeg": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"mpga",
-				"mp2",
-				"mp2a",
-				"mp3",
-				"m2a",
-				"m3a"
-			]
-		},
-		"audio/mpeg4-generic": {
-			"source": "iana"
-		},
-		"audio/musepack": {
-			"source": "apache"
-		},
-		"audio/ogg": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"oga",
-				"ogg",
-				"spx"
-			]
-		},
-		"audio/opus": {
-			"source": "iana"
-		},
-		"audio/parityfec": {
-			"source": "iana"
-		},
-		"audio/pcma": {
-			"source": "iana"
-		},
-		"audio/pcma-wb": {
-			"source": "iana"
-		},
-		"audio/pcmu": {
-			"source": "iana"
-		},
-		"audio/pcmu-wb": {
-			"source": "iana"
-		},
-		"audio/prs.sid": {
-			"source": "iana"
-		},
-		"audio/qcelp": {
-			"source": "iana"
-		},
-		"audio/raptorfec": {
-			"source": "iana"
-		},
-		"audio/red": {
-			"source": "iana"
-		},
-		"audio/rtp-enc-aescm128": {
-			"source": "iana"
-		},
-		"audio/rtp-midi": {
-			"source": "iana"
-		},
-		"audio/rtploopback": {
-			"source": "iana"
-		},
-		"audio/rtx": {
-			"source": "iana"
-		},
-		"audio/s3m": {
-			"source": "apache",
-			"extensions": [
-				"s3m"
-			]
-		},
-		"audio/silk": {
-			"source": "apache",
-			"extensions": [
-				"sil"
-			]
-		},
-		"audio/smv": {
-			"source": "iana"
-		},
-		"audio/smv-qcp": {
-			"source": "iana"
-		},
-		"audio/smv0": {
-			"source": "iana"
-		},
-		"audio/sp-midi": {
-			"source": "iana"
-		},
-		"audio/speex": {
-			"source": "iana"
-		},
-		"audio/t140c": {
-			"source": "iana"
-		},
-		"audio/t38": {
-			"source": "iana"
-		},
-		"audio/telephone-event": {
-			"source": "iana"
-		},
-		"audio/tone": {
-			"source": "iana"
-		},
-		"audio/uemclip": {
-			"source": "iana"
-		},
-		"audio/ulpfec": {
-			"source": "iana"
-		},
-		"audio/vdvi": {
-			"source": "iana"
-		},
-		"audio/vmr-wb": {
-			"source": "iana"
-		},
-		"audio/vnd.3gpp.iufp": {
-			"source": "iana"
-		},
-		"audio/vnd.4sb": {
-			"source": "iana"
-		},
-		"audio/vnd.audiokoz": {
-			"source": "iana"
-		},
-		"audio/vnd.celp": {
-			"source": "iana"
-		},
-		"audio/vnd.cisco.nse": {
-			"source": "iana"
-		},
-		"audio/vnd.cmles.radio-events": {
-			"source": "iana"
-		},
-		"audio/vnd.cns.anp1": {
-			"source": "iana"
-		},
-		"audio/vnd.cns.inf1": {
-			"source": "iana"
-		},
-		"audio/vnd.dece.audio": {
-			"source": "iana",
-			"extensions": [
-				"uva",
-				"uvva"
-			]
-		},
-		"audio/vnd.digital-winds": {
-			"source": "iana",
-			"extensions": [
-				"eol"
-			]
-		},
-		"audio/vnd.dlna.adts": {
-			"source": "iana"
-		},
-		"audio/vnd.dolby.heaac.1": {
-			"source": "iana"
-		},
-		"audio/vnd.dolby.heaac.2": {
-			"source": "iana"
-		},
-		"audio/vnd.dolby.mlp": {
-			"source": "iana"
-		},
-		"audio/vnd.dolby.mps": {
-			"source": "iana"
-		},
-		"audio/vnd.dolby.pl2": {
-			"source": "iana"
-		},
-		"audio/vnd.dolby.pl2x": {
-			"source": "iana"
-		},
-		"audio/vnd.dolby.pl2z": {
-			"source": "iana"
-		},
-		"audio/vnd.dolby.pulse.1": {
-			"source": "iana"
-		},
-		"audio/vnd.dra": {
-			"source": "iana",
-			"extensions": [
-				"dra"
-			]
-		},
-		"audio/vnd.dts": {
-			"source": "iana",
-			"extensions": [
-				"dts"
-			]
-		},
-		"audio/vnd.dts.hd": {
-			"source": "iana",
-			"extensions": [
-				"dtshd"
-			]
-		},
-		"audio/vnd.dvb.file": {
-			"source": "iana"
-		},
-		"audio/vnd.everad.plj": {
-			"source": "iana"
-		},
-		"audio/vnd.hns.audio": {
-			"source": "iana"
-		},
-		"audio/vnd.lucent.voice": {
-			"source": "iana",
-			"extensions": [
-				"lvp"
-			]
-		},
-		"audio/vnd.ms-playready.media.pya": {
-			"source": "iana",
-			"extensions": [
-				"pya"
-			]
-		},
-		"audio/vnd.nokia.mobile-xmf": {
-			"source": "iana"
-		},
-		"audio/vnd.nortel.vbk": {
-			"source": "iana"
-		},
-		"audio/vnd.nuera.ecelp4800": {
-			"source": "iana",
-			"extensions": [
-				"ecelp4800"
-			]
-		},
-		"audio/vnd.nuera.ecelp7470": {
-			"source": "iana",
-			"extensions": [
-				"ecelp7470"
-			]
-		},
-		"audio/vnd.nuera.ecelp9600": {
-			"source": "iana",
-			"extensions": [
-				"ecelp9600"
-			]
-		},
-		"audio/vnd.octel.sbc": {
-			"source": "iana"
-		},
-		"audio/vnd.qcelp": {
-			"source": "iana"
-		},
-		"audio/vnd.rhetorex.32kadpcm": {
-			"source": "iana"
-		},
-		"audio/vnd.rip": {
-			"source": "iana",
-			"extensions": [
-				"rip"
-			]
-		},
-		"audio/vnd.rn-realaudio": {
-			"compressible": false
-		},
-		"audio/vnd.sealedmedia.softseal.mpeg": {
-			"source": "iana"
-		},
-		"audio/vnd.vmx.cvsd": {
-			"source": "iana"
-		},
-		"audio/vnd.wave": {
-			"compressible": false
-		},
-		"audio/vorbis": {
-			"source": "iana",
-			"compressible": false
-		},
-		"audio/vorbis-config": {
-			"source": "iana"
-		},
-		"audio/wav": {
-			"compressible": false,
-			"extensions": [
-				"wav"
-			]
-		},
-		"audio/wave": {
-			"compressible": false,
-			"extensions": [
-				"wav"
-			]
-		},
-		"audio/webm": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"weba"
-			]
-		},
-		"audio/x-aac": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"aac"
-			]
-		},
-		"audio/x-aiff": {
-			"source": "apache",
-			"extensions": [
-				"aif",
-				"aiff",
-				"aifc"
-			]
-		},
-		"audio/x-caf": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"caf"
-			]
-		},
-		"audio/x-flac": {
-			"source": "apache",
-			"extensions": [
-				"flac"
-			]
-		},
-		"audio/x-m4a": {
-			"source": "nginx",
-			"extensions": [
-				"m4a"
-			]
-		},
-		"audio/x-matroska": {
-			"source": "apache",
-			"extensions": [
-				"mka"
-			]
-		},
-		"audio/x-mpegurl": {
-			"source": "apache",
-			"extensions": [
-				"m3u"
-			]
-		},
-		"audio/x-ms-wax": {
-			"source": "apache",
-			"extensions": [
-				"wax"
-			]
-		},
-		"audio/x-ms-wma": {
-			"source": "apache",
-			"extensions": [
-				"wma"
-			]
-		},
-		"audio/x-pn-realaudio": {
-			"source": "apache",
-			"extensions": [
-				"ram",
-				"ra"
-			]
-		},
-		"audio/x-pn-realaudio-plugin": {
-			"source": "apache",
-			"extensions": [
-				"rmp"
-			]
-		},
-		"audio/x-realaudio": {
-			"source": "nginx",
-			"extensions": [
-				"ra"
-			]
-		},
-		"audio/x-tta": {
-			"source": "apache"
-		},
-		"audio/x-wav": {
-			"source": "apache",
-			"extensions": [
-				"wav"
-			]
-		},
-		"audio/xm": {
-			"source": "apache",
-			"extensions": [
-				"xm"
-			]
-		},
-		"chemical/x-cdx": {
-			"source": "apache",
-			"extensions": [
-				"cdx"
-			]
-		},
-		"chemical/x-cif": {
-			"source": "apache",
-			"extensions": [
-				"cif"
-			]
-		},
-		"chemical/x-cmdf": {
-			"source": "apache",
-			"extensions": [
-				"cmdf"
-			]
-		},
-		"chemical/x-cml": {
-			"source": "apache",
-			"extensions": [
-				"cml"
-			]
-		},
-		"chemical/x-csml": {
-			"source": "apache",
-			"extensions": [
-				"csml"
-			]
-		},
-		"chemical/x-pdb": {
-			"source": "apache"
-		},
-		"chemical/x-xyz": {
-			"source": "apache",
-			"extensions": [
-				"xyz"
-			]
-		},
-		"font/opentype": {
-			"compressible": true,
-			"extensions": [
-				"otf"
-			]
-		},
-		"image/bmp": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"bmp"
-			]
-		},
-		"image/cgm": {
-			"source": "iana",
-			"extensions": [
-				"cgm"
-			]
-		},
-		"image/dicom-rle": {
-			"source": "iana"
-		},
-		"image/emf": {
-			"source": "iana"
-		},
-		"image/fits": {
-			"source": "iana"
-		},
-		"image/g3fax": {
-			"source": "iana",
-			"extensions": [
-				"g3"
-			]
-		},
-		"image/gif": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"gif"
-			]
-		},
-		"image/ief": {
-			"source": "iana",
-			"extensions": [
-				"ief"
-			]
-		},
-		"image/jls": {
-			"source": "iana"
-		},
-		"image/jp2": {
-			"source": "iana"
-		},
-		"image/jpeg": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"jpeg",
-				"jpg",
-				"jpe"
-			]
-		},
-		"image/jpm": {
-			"source": "iana"
-		},
-		"image/jpx": {
-			"source": "iana"
-		},
-		"image/ktx": {
-			"source": "iana",
-			"extensions": [
-				"ktx"
-			]
-		},
-		"image/naplps": {
-			"source": "iana"
-		},
-		"image/pjpeg": {
-			"compressible": false
-		},
-		"image/png": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"png"
-			]
-		},
-		"image/prs.btif": {
-			"source": "iana",
-			"extensions": [
-				"btif"
-			]
-		},
-		"image/prs.pti": {
-			"source": "iana"
-		},
-		"image/pwg-raster": {
-			"source": "iana"
-		},
-		"image/sgi": {
-			"source": "apache",
-			"extensions": [
-				"sgi"
-			]
-		},
-		"image/svg+xml": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"svg",
-				"svgz"
-			]
-		},
-		"image/t38": {
-			"source": "iana"
-		},
-		"image/tiff": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"tiff",
-				"tif"
-			]
-		},
-		"image/tiff-fx": {
-			"source": "iana"
-		},
-		"image/vnd.adobe.photoshop": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"psd"
-			]
-		},
-		"image/vnd.airzip.accelerator.azv": {
-			"source": "iana"
-		},
-		"image/vnd.cns.inf2": {
-			"source": "iana"
-		},
-		"image/vnd.dece.graphic": {
-			"source": "iana",
-			"extensions": [
-				"uvi",
-				"uvvi",
-				"uvg",
-				"uvvg"
-			]
-		},
-		"image/vnd.djvu": {
-			"source": "iana",
-			"extensions": [
-				"djvu",
-				"djv"
-			]
-		},
-		"image/vnd.dvb.subtitle": {
-			"source": "iana",
-			"extensions": [
-				"sub"
-			]
-		},
-		"image/vnd.dwg": {
-			"source": "iana",
-			"extensions": [
-				"dwg"
-			]
-		},
-		"image/vnd.dxf": {
-			"source": "iana",
-			"extensions": [
-				"dxf"
-			]
-		},
-		"image/vnd.fastbidsheet": {
-			"source": "iana",
-			"extensions": [
-				"fbs"
-			]
-		},
-		"image/vnd.fpx": {
-			"source": "iana",
-			"extensions": [
-				"fpx"
-			]
-		},
-		"image/vnd.fst": {
-			"source": "iana",
-			"extensions": [
-				"fst"
-			]
-		},
-		"image/vnd.fujixerox.edmics-mmr": {
-			"source": "iana",
-			"extensions": [
-				"mmr"
-			]
-		},
-		"image/vnd.fujixerox.edmics-rlc": {
-			"source": "iana",
-			"extensions": [
-				"rlc"
-			]
-		},
-		"image/vnd.globalgraphics.pgb": {
-			"source": "iana"
-		},
-		"image/vnd.microsoft.icon": {
-			"source": "iana"
-		},
-		"image/vnd.mix": {
-			"source": "iana"
-		},
-		"image/vnd.mozilla.apng": {
-			"source": "iana"
-		},
-		"image/vnd.ms-modi": {
-			"source": "iana",
-			"extensions": [
-				"mdi"
-			]
-		},
-		"image/vnd.ms-photo": {
-			"source": "apache",
-			"extensions": [
-				"wdp"
-			]
-		},
-		"image/vnd.net-fpx": {
-			"source": "iana",
-			"extensions": [
-				"npx"
-			]
-		},
-		"image/vnd.radiance": {
-			"source": "iana"
-		},
-		"image/vnd.sealed.png": {
-			"source": "iana"
-		},
-		"image/vnd.sealedmedia.softseal.gif": {
-			"source": "iana"
-		},
-		"image/vnd.sealedmedia.softseal.jpg": {
-			"source": "iana"
-		},
-		"image/vnd.svf": {
-			"source": "iana"
-		},
-		"image/vnd.tencent.tap": {
-			"source": "iana"
-		},
-		"image/vnd.valve.source.texture": {
-			"source": "iana"
-		},
-		"image/vnd.wap.wbmp": {
-			"source": "iana",
-			"extensions": [
-				"wbmp"
-			]
-		},
-		"image/vnd.xiff": {
-			"source": "iana",
-			"extensions": [
-				"xif"
-			]
-		},
-		"image/vnd.zbrush.pcx": {
-			"source": "iana"
-		},
-		"image/webp": {
-			"source": "apache",
-			"extensions": [
-				"webp"
-			]
-		},
-		"image/wmf": {
-			"source": "iana"
-		},
-		"image/x-3ds": {
-			"source": "apache",
-			"extensions": [
-				"3ds"
-			]
-		},
-		"image/x-cmu-raster": {
-			"source": "apache",
-			"extensions": [
-				"ras"
-			]
-		},
-		"image/x-cmx": {
-			"source": "apache",
-			"extensions": [
-				"cmx"
-			]
-		},
-		"image/x-freehand": {
-			"source": "apache",
-			"extensions": [
-				"fh",
-				"fhc",
-				"fh4",
-				"fh5",
-				"fh7"
-			]
-		},
-		"image/x-icon": {
-			"source": "apache",
-			"compressible": true,
-			"extensions": [
-				"ico"
-			]
-		},
-		"image/x-jng": {
-			"source": "nginx",
-			"extensions": [
-				"jng"
-			]
-		},
-		"image/x-mrsid-image": {
-			"source": "apache",
-			"extensions": [
-				"sid"
-			]
-		},
-		"image/x-ms-bmp": {
-			"source": "nginx",
-			"compressible": true,
-			"extensions": [
-				"bmp"
-			]
-		},
-		"image/x-pcx": {
-			"source": "apache",
-			"extensions": [
-				"pcx"
-			]
-		},
-		"image/x-pict": {
-			"source": "apache",
-			"extensions": [
-				"pic",
-				"pct"
-			]
-		},
-		"image/x-portable-anymap": {
-			"source": "apache",
-			"extensions": [
-				"pnm"
-			]
-		},
-		"image/x-portable-bitmap": {
-			"source": "apache",
-			"extensions": [
-				"pbm"
-			]
-		},
-		"image/x-portable-graymap": {
-			"source": "apache",
-			"extensions": [
-				"pgm"
-			]
-		},
-		"image/x-portable-pixmap": {
-			"source": "apache",
-			"extensions": [
-				"ppm"
-			]
-		},
-		"image/x-rgb": {
-			"source": "apache",
-			"extensions": [
-				"rgb"
-			]
-		},
-		"image/x-tga": {
-			"source": "apache",
-			"extensions": [
-				"tga"
-			]
-		},
-		"image/x-xbitmap": {
-			"source": "apache",
-			"extensions": [
-				"xbm"
-			]
-		},
-		"image/x-xcf": {
-			"compressible": false
-		},
-		"image/x-xpixmap": {
-			"source": "apache",
-			"extensions": [
-				"xpm"
-			]
-		},
-		"image/x-xwindowdump": {
-			"source": "apache",
-			"extensions": [
-				"xwd"
-			]
-		},
-		"message/cpim": {
-			"source": "iana"
-		},
-		"message/delivery-status": {
-			"source": "iana"
-		},
-		"message/disposition-notification": {
-			"source": "iana"
-		},
-		"message/external-body": {
-			"source": "iana"
-		},
-		"message/feedback-report": {
-			"source": "iana"
-		},
-		"message/global": {
-			"source": "iana"
-		},
-		"message/global-delivery-status": {
-			"source": "iana"
-		},
-		"message/global-disposition-notification": {
-			"source": "iana"
-		},
-		"message/global-headers": {
-			"source": "iana"
-		},
-		"message/http": {
-			"source": "iana",
-			"compressible": false
-		},
-		"message/imdn+xml": {
-			"source": "iana",
-			"compressible": true
-		},
-		"message/news": {
-			"source": "iana"
-		},
-		"message/partial": {
-			"source": "iana",
-			"compressible": false
-		},
-		"message/rfc822": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"eml",
-				"mime"
-			]
-		},
-		"message/s-http": {
-			"source": "iana"
-		},
-		"message/sip": {
-			"source": "iana"
-		},
-		"message/sipfrag": {
-			"source": "iana"
-		},
-		"message/tracking-status": {
-			"source": "iana"
-		},
-		"message/vnd.si.simp": {
-			"source": "iana"
-		},
-		"message/vnd.wfa.wsc": {
-			"source": "iana"
-		},
-		"model/gltf+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"model/iges": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"igs",
-				"iges"
-			]
-		},
-		"model/mesh": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"msh",
-				"mesh",
-				"silo"
-			]
-		},
-		"model/vnd.collada+xml": {
-			"source": "iana",
-			"extensions": [
-				"dae"
-			]
-		},
-		"model/vnd.dwf": {
-			"source": "iana",
-			"extensions": [
-				"dwf"
-			]
-		},
-		"model/vnd.flatland.3dml": {
-			"source": "iana"
-		},
-		"model/vnd.gdl": {
-			"source": "iana",
-			"extensions": [
-				"gdl"
-			]
-		},
-		"model/vnd.gs-gdl": {
-			"source": "apache"
-		},
-		"model/vnd.gs.gdl": {
-			"source": "iana"
-		},
-		"model/vnd.gtw": {
-			"source": "iana",
-			"extensions": [
-				"gtw"
-			]
-		},
-		"model/vnd.moml+xml": {
-			"source": "iana"
-		},
-		"model/vnd.mts": {
-			"source": "iana",
-			"extensions": [
-				"mts"
-			]
-		},
-		"model/vnd.opengex": {
-			"source": "iana"
-		},
-		"model/vnd.parasolid.transmit.binary": {
-			"source": "iana"
-		},
-		"model/vnd.parasolid.transmit.text": {
-			"source": "iana"
-		},
-		"model/vnd.rosette.annotated-data-model": {
-			"source": "iana"
-		},
-		"model/vnd.valve.source.compiled-map": {
-			"source": "iana"
-		},
-		"model/vnd.vtu": {
-			"source": "iana",
-			"extensions": [
-				"vtu"
-			]
-		},
-		"model/vrml": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"wrl",
-				"vrml"
-			]
-		},
-		"model/x3d+binary": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"x3db",
-				"x3dbz"
-			]
-		},
-		"model/x3d+fastinfoset": {
-			"source": "iana"
-		},
-		"model/x3d+vrml": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"x3dv",
-				"x3dvz"
-			]
-		},
-		"model/x3d+xml": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"x3d",
-				"x3dz"
-			]
-		},
-		"model/x3d-vrml": {
-			"source": "iana"
-		},
-		"multipart/alternative": {
-			"source": "iana",
-			"compressible": false
-		},
-		"multipart/appledouble": {
-			"source": "iana"
-		},
-		"multipart/byteranges": {
-			"source": "iana"
-		},
-		"multipart/digest": {
-			"source": "iana"
-		},
-		"multipart/encrypted": {
-			"source": "iana",
-			"compressible": false
-		},
-		"multipart/form-data": {
-			"source": "iana",
-			"compressible": false
-		},
-		"multipart/header-set": {
-			"source": "iana"
-		},
-		"multipart/mixed": {
-			"source": "iana",
-			"compressible": false
-		},
-		"multipart/parallel": {
-			"source": "iana"
-		},
-		"multipart/related": {
-			"source": "iana",
-			"compressible": false
-		},
-		"multipart/report": {
-			"source": "iana"
-		},
-		"multipart/signed": {
-			"source": "iana",
-			"compressible": false
-		},
-		"multipart/voice-message": {
-			"source": "iana"
-		},
-		"multipart/x-mixed-replace": {
-			"source": "iana"
-		},
-		"text/1d-interleaved-parityfec": {
-			"source": "iana"
-		},
-		"text/cache-manifest": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"appcache",
-				"manifest"
-			]
-		},
-		"text/calendar": {
-			"source": "iana",
-			"extensions": [
-				"ics",
-				"ifb"
-			]
-		},
-		"text/calender": {
-			"compressible": true
-		},
-		"text/cmd": {
-			"compressible": true
-		},
-		"text/coffeescript": {
-			"extensions": [
-				"coffee",
-				"litcoffee"
-			]
-		},
-		"text/css": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"css"
-			]
-		},
-		"text/csv": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"csv"
-			]
-		},
-		"text/csv-schema": {
-			"source": "iana"
-		},
-		"text/directory": {
-			"source": "iana"
-		},
-		"text/dns": {
-			"source": "iana"
-		},
-		"text/ecmascript": {
-			"source": "iana"
-		},
-		"text/encaprtp": {
-			"source": "iana"
-		},
-		"text/enriched": {
-			"source": "iana"
-		},
-		"text/fwdred": {
-			"source": "iana"
-		},
-		"text/grammar-ref-list": {
-			"source": "iana"
-		},
-		"text/hjson": {
-			"extensions": [
-				"hjson"
-			]
-		},
-		"text/html": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"html",
-				"htm",
-				"shtml"
-			]
-		},
-		"text/jade": {
-			"extensions": [
-				"jade"
-			]
-		},
-		"text/javascript": {
-			"source": "iana",
-			"compressible": true
-		},
-		"text/jcr-cnd": {
-			"source": "iana"
-		},
-		"text/jsx": {
-			"compressible": true,
-			"extensions": [
-				"jsx"
-			]
-		},
-		"text/less": {
-			"extensions": [
-				"less"
-			]
-		},
-		"text/markdown": {
-			"source": "iana"
-		},
-		"text/mathml": {
-			"source": "nginx",
-			"extensions": [
-				"mml"
-			]
-		},
-		"text/mizar": {
-			"source": "iana"
-		},
-		"text/n3": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"n3"
-			]
-		},
-		"text/parameters": {
-			"source": "iana"
-		},
-		"text/parityfec": {
-			"source": "iana"
-		},
-		"text/plain": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"txt",
-				"text",
-				"conf",
-				"def",
-				"list",
-				"log",
-				"in",
-				"ini"
-			]
-		},
-		"text/provenance-notation": {
-			"source": "iana"
-		},
-		"text/prs.fallenstein.rst": {
-			"source": "iana"
-		},
-		"text/prs.lines.tag": {
-			"source": "iana",
-			"extensions": [
-				"dsc"
-			]
-		},
-		"text/prs.prop.logic": {
-			"source": "iana"
-		},
-		"text/raptorfec": {
-			"source": "iana"
-		},
-		"text/red": {
-			"source": "iana"
-		},
-		"text/rfc822-headers": {
-			"source": "iana"
-		},
-		"text/richtext": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"rtx"
-			]
-		},
-		"text/rtf": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"rtf"
-			]
-		},
-		"text/rtp-enc-aescm128": {
-			"source": "iana"
-		},
-		"text/rtploopback": {
-			"source": "iana"
-		},
-		"text/rtx": {
-			"source": "iana"
-		},
-		"text/sgml": {
-			"source": "iana",
-			"extensions": [
-				"sgml",
-				"sgm"
-			]
-		},
-		"text/slim": {
-			"extensions": [
-				"slim",
-				"slm"
-			]
-		},
-		"text/stylus": {
-			"extensions": [
-				"stylus",
-				"styl"
-			]
-		},
-		"text/t140": {
-			"source": "iana"
-		},
-		"text/tab-separated-values": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"tsv"
-			]
-		},
-		"text/troff": {
-			"source": "iana",
-			"extensions": [
-				"t",
-				"tr",
-				"roff",
-				"man",
-				"me",
-				"ms"
-			]
-		},
-		"text/turtle": {
-			"source": "iana",
-			"extensions": [
-				"ttl"
-			]
-		},
-		"text/ulpfec": {
-			"source": "iana"
-		},
-		"text/uri-list": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"uri",
-				"uris",
-				"urls"
-			]
-		},
-		"text/vcard": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"vcard"
-			]
-		},
-		"text/vnd.a": {
-			"source": "iana"
-		},
-		"text/vnd.abc": {
-			"source": "iana"
-		},
-		"text/vnd.ascii-art": {
-			"source": "iana"
-		},
-		"text/vnd.curl": {
-			"source": "iana",
-			"extensions": [
-				"curl"
-			]
-		},
-		"text/vnd.curl.dcurl": {
-			"source": "apache",
-			"extensions": [
-				"dcurl"
-			]
-		},
-		"text/vnd.curl.mcurl": {
-			"source": "apache",
-			"extensions": [
-				"mcurl"
-			]
-		},
-		"text/vnd.curl.scurl": {
-			"source": "apache",
-			"extensions": [
-				"scurl"
-			]
-		},
-		"text/vnd.debian.copyright": {
-			"source": "iana"
-		},
-		"text/vnd.dmclientscript": {
-			"source": "iana"
-		},
-		"text/vnd.dvb.subtitle": {
-			"source": "iana",
-			"extensions": [
-				"sub"
-			]
-		},
-		"text/vnd.esmertec.theme-descriptor": {
-			"source": "iana"
-		},
-		"text/vnd.fly": {
-			"source": "iana",
-			"extensions": [
-				"fly"
-			]
-		},
-		"text/vnd.fmi.flexstor": {
-			"source": "iana",
-			"extensions": [
-				"flx"
-			]
-		},
-		"text/vnd.graphviz": {
-			"source": "iana",
-			"extensions": [
-				"gv"
-			]
-		},
-		"text/vnd.in3d.3dml": {
-			"source": "iana",
-			"extensions": [
-				"3dml"
-			]
-		},
-		"text/vnd.in3d.spot": {
-			"source": "iana",
-			"extensions": [
-				"spot"
-			]
-		},
-		"text/vnd.iptc.newsml": {
-			"source": "iana"
-		},
-		"text/vnd.iptc.nitf": {
-			"source": "iana"
-		},
-		"text/vnd.latex-z": {
-			"source": "iana"
-		},
-		"text/vnd.motorola.reflex": {
-			"source": "iana"
-		},
-		"text/vnd.ms-mediapackage": {
-			"source": "iana"
-		},
-		"text/vnd.net2phone.commcenter.command": {
-			"source": "iana"
-		},
-		"text/vnd.radisys.msml-basic-layout": {
-			"source": "iana"
-		},
-		"text/vnd.si.uricatalogue": {
-			"source": "iana"
-		},
-		"text/vnd.sun.j2me.app-descriptor": {
-			"source": "iana",
-			"extensions": [
-				"jad"
-			]
-		},
-		"text/vnd.trolltech.linguist": {
-			"source": "iana"
-		},
-		"text/vnd.wap.si": {
-			"source": "iana"
-		},
-		"text/vnd.wap.sl": {
-			"source": "iana"
-		},
-		"text/vnd.wap.wml": {
-			"source": "iana",
-			"extensions": [
-				"wml"
-			]
-		},
-		"text/vnd.wap.wmlscript": {
-			"source": "iana",
-			"extensions": [
-				"wmls"
-			]
-		},
-		"text/vtt": {
-			"charset": "UTF-8",
-			"compressible": true,
-			"extensions": [
-				"vtt"
-			]
-		},
-		"text/x-asm": {
-			"source": "apache",
-			"extensions": [
-				"s",
-				"asm"
-			]
-		},
-		"text/x-c": {
-			"source": "apache",
-			"extensions": [
-				"c",
-				"cc",
-				"cxx",
-				"cpp",
-				"h",
-				"hh",
-				"dic"
-			]
-		},
-		"text/x-component": {
-			"source": "nginx",
-			"extensions": [
-				"htc"
-			]
-		},
-		"text/x-fortran": {
-			"source": "apache",
-			"extensions": [
-				"f",
-				"for",
-				"f77",
-				"f90"
-			]
-		},
-		"text/x-gwt-rpc": {
-			"compressible": true
-		},
-		"text/x-handlebars-template": {
-			"extensions": [
-				"hbs"
-			]
-		},
-		"text/x-java-source": {
-			"source": "apache",
-			"extensions": [
-				"java"
-			]
-		},
-		"text/x-jquery-tmpl": {
-			"compressible": true
-		},
-		"text/x-lua": {
-			"extensions": [
-				"lua"
-			]
-		},
-		"text/x-markdown": {
-			"compressible": true,
-			"extensions": [
-				"markdown",
-				"md",
-				"mkd"
-			]
-		},
-		"text/x-nfo": {
-			"source": "apache",
-			"extensions": [
-				"nfo"
-			]
-		},
-		"text/x-opml": {
-			"source": "apache",
-			"extensions": [
-				"opml"
-			]
-		},
-		"text/x-pascal": {
-			"source": "apache",
-			"extensions": [
-				"p",
-				"pas"
-			]
-		},
-		"text/x-processing": {
-			"compressible": true,
-			"extensions": [
-				"pde"
-			]
-		},
-		"text/x-sass": {
-			"extensions": [
-				"sass"
-			]
-		},
-		"text/x-scss": {
-			"extensions": [
-				"scss"
-			]
-		},
-		"text/x-setext": {
-			"source": "apache",
-			"extensions": [
-				"etx"
-			]
-		},
-		"text/x-sfv": {
-			"source": "apache",
-			"extensions": [
-				"sfv"
-			]
-		},
-		"text/x-suse-ymp": {
-			"compressible": true,
-			"extensions": [
-				"ymp"
-			]
-		},
-		"text/x-uuencode": {
-			"source": "apache",
-			"extensions": [
-				"uu"
-			]
-		},
-		"text/x-vcalendar": {
-			"source": "apache",
-			"extensions": [
-				"vcs"
-			]
-		},
-		"text/x-vcard": {
-			"source": "apache",
-			"extensions": [
-				"vcf"
-			]
-		},
-		"text/xml": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"xml"
-			]
-		},
-		"text/xml-external-parsed-entity": {
-			"source": "iana"
-		},
-		"text/yaml": {
-			"extensions": [
-				"yaml",
-				"yml"
-			]
-		},
-		"video/1d-interleaved-parityfec": {
-			"source": "apache"
-		},
-		"video/3gpp": {
-			"source": "apache",
-			"extensions": [
-				"3gp",
-				"3gpp"
-			]
-		},
-		"video/3gpp-tt": {
-			"source": "apache"
-		},
-		"video/3gpp2": {
-			"source": "apache",
-			"extensions": [
-				"3g2"
-			]
-		},
-		"video/bmpeg": {
-			"source": "apache"
-		},
-		"video/bt656": {
-			"source": "apache"
-		},
-		"video/celb": {
-			"source": "apache"
-		},
-		"video/dv": {
-			"source": "apache"
-		},
-		"video/encaprtp": {
-			"source": "apache"
-		},
-		"video/h261": {
-			"source": "apache",
-			"extensions": [
-				"h261"
-			]
-		},
-		"video/h263": {
-			"source": "apache",
-			"extensions": [
-				"h263"
-			]
-		},
-		"video/h263-1998": {
-			"source": "apache"
-		},
-		"video/h263-2000": {
-			"source": "apache"
-		},
-		"video/h264": {
-			"source": "apache",
-			"extensions": [
-				"h264"
-			]
-		},
-		"video/h264-rcdo": {
-			"source": "apache"
-		},
-		"video/h264-svc": {
-			"source": "apache"
-		},
-		"video/h265": {
-			"source": "apache"
-		},
-		"video/iso.segment": {
-			"source": "apache"
-		},
-		"video/jpeg": {
-			"source": "apache",
-			"extensions": [
-				"jpgv"
-			]
-		},
-		"video/jpeg2000": {
-			"source": "apache"
-		},
-		"video/jpm": {
-			"source": "apache",
-			"extensions": [
-				"jpm",
-				"jpgm"
-			]
-		},
-		"video/mj2": {
-			"source": "apache",
-			"extensions": [
-				"mj2",
-				"mjp2"
-			]
-		},
-		"video/mp1s": {
-			"source": "apache"
-		},
-		"video/mp2p": {
-			"source": "apache"
-		},
-		"video/mp2t": {
-			"source": "apache",
-			"extensions": [
-				"ts"
-			]
-		},
-		"video/mp4": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"mp4",
-				"mp4v",
-				"mpg4"
-			]
-		},
-		"video/mp4v-es": {
-			"source": "apache"
-		},
-		"video/mpeg": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"mpeg",
-				"mpg",
-				"mpe",
-				"m1v",
-				"m2v"
-			]
-		},
-		"video/mpeg4-generic": {
-			"source": "apache"
-		},
-		"video/mpv": {
-			"source": "apache"
-		},
-		"video/nv": {
-			"source": "apache"
-		},
-		"video/ogg": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"ogv"
-			]
-		},
-		"video/parityfec": {
-			"source": "apache"
-		},
-		"video/pointer": {
-			"source": "apache"
-		},
-		"video/quicktime": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"qt",
-				"mov"
-			]
-		},
-		"video/raptorfec": {
-			"source": "apache"
-		},
-		"video/raw": {
-			"source": "apache"
-		},
-		"video/rtp-enc-aescm128": {
-			"source": "apache"
-		},
-		"video/rtploopback": {
-			"source": "apache"
-		},
-		"video/rtx": {
-			"source": "apache"
-		},
-		"video/smpte292m": {
-			"source": "apache"
-		},
-		"video/ulpfec": {
-			"source": "apache"
-		},
-		"video/vc1": {
-			"source": "apache"
-		},
-		"video/vnd.cctv": {
-			"source": "apache"
-		},
-		"video/vnd.dece.hd": {
-			"source": "apache",
-			"extensions": [
-				"uvh",
-				"uvvh"
-			]
-		},
-		"video/vnd.dece.mobile": {
-			"source": "apache",
-			"extensions": [
-				"uvm",
-				"uvvm"
-			]
-		},
-		"video/vnd.dece.mp4": {
-			"source": "apache"
-		},
-		"video/vnd.dece.pd": {
-			"source": "apache",
-			"extensions": [
-				"uvp",
-				"uvvp"
-			]
-		},
-		"video/vnd.dece.sd": {
-			"source": "apache",
-			"extensions": [
-				"uvs",
-				"uvvs"
-			]
-		},
-		"video/vnd.dece.video": {
-			"source": "apache",
-			"extensions": [
-				"uvv",
-				"uvvv"
-			]
-		},
-		"video/vnd.directv.mpeg": {
-			"source": "apache"
-		},
-		"video/vnd.directv.mpeg-tts": {
-			"source": "apache"
-		},
-		"video/vnd.dlna.mpeg-tts": {
-			"source": "apache"
-		},
-		"video/vnd.dvb.file": {
-			"source": "apache",
-			"extensions": [
-				"dvb"
-			]
-		},
-		"video/vnd.fvt": {
-			"source": "apache",
-			"extensions": [
-				"fvt"
-			]
-		},
-		"video/vnd.hns.video": {
-			"source": "apache"
-		},
-		"video/vnd.iptvforum.1dparityfec-1010": {
-			"source": "apache"
-		},
-		"video/vnd.iptvforum.1dparityfec-2005": {
-			"source": "apache"
-		},
-		"video/vnd.iptvforum.2dparityfec-1010": {
-			"source": "apache"
-		},
-		"video/vnd.iptvforum.2dparityfec-2005": {
-			"source": "apache"
-		},
-		"video/vnd.iptvforum.ttsavc": {
-			"source": "apache"
-		},
-		"video/vnd.iptvforum.ttsmpeg2": {
-			"source": "apache"
-		},
-		"video/vnd.motorola.video": {
-			"source": "apache"
-		},
-		"video/vnd.motorola.videop": {
-			"source": "apache"
-		},
-		"video/vnd.mpegurl": {
-			"source": "apache",
-			"extensions": [
-				"mxu",
-				"m4u"
-			]
-		},
-		"video/vnd.ms-playready.media.pyv": {
-			"source": "apache",
-			"extensions": [
-				"pyv"
-			]
-		},
-		"video/vnd.nokia.interleaved-multimedia": {
-			"source": "apache"
-		},
-		"video/vnd.nokia.videovoip": {
-			"source": "apache"
-		},
-		"video/vnd.objectvideo": {
-			"source": "apache"
-		},
-		"video/vnd.radgamettools.bink": {
-			"source": "apache"
-		},
-		"video/vnd.radgamettools.smacker": {
-			"source": "apache"
-		},
-		"video/vnd.sealed.mpeg1": {
-			"source": "apache"
-		},
-		"video/vnd.sealed.mpeg4": {
-			"source": "apache"
-		},
-		"video/vnd.sealed.swf": {
-			"source": "apache"
-		},
-		"video/vnd.sealedmedia.softseal.mov": {
-			"source": "apache"
-		},
-		"video/vnd.uvvu.mp4": {
-			"source": "apache",
-			"extensions": [
-				"uvu",
-				"uvvu"
-			]
-		},
-		"video/vnd.vivo": {
-			"source": "apache",
-			"extensions": [
-				"viv"
-			]
-		},
-		"video/vp8": {
-			"source": "apache"
-		},
-		"video/webm": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"webm"
-			]
-		},
-		"video/x-f4v": {
-			"source": "apache",
-			"extensions": [
-				"f4v"
-			]
-		},
-		"video/x-fli": {
-			"source": "apache",
-			"extensions": [
-				"fli"
-			]
-		},
-		"video/x-flv": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"flv"
-			]
-		},
-		"video/x-m4v": {
-			"source": "apache",
-			"extensions": [
-				"m4v"
-			]
-		},
-		"video/x-matroska": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"mkv",
-				"mk3d",
-				"mks"
-			]
-		},
-		"video/x-mng": {
-			"source": "apache",
-			"extensions": [
-				"mng"
-			]
-		},
-		"video/x-ms-asf": {
-			"source": "apache",
-			"extensions": [
-				"asf",
-				"asx"
-			]
-		},
-		"video/x-ms-vob": {
-			"source": "apache",
-			"extensions": [
-				"vob"
-			]
-		},
-		"video/x-ms-wm": {
-			"source": "apache",
-			"extensions": [
-				"wm"
-			]
-		},
-		"video/x-ms-wmv": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"wmv"
-			]
-		},
-		"video/x-ms-wmx": {
-			"source": "apache",
-			"extensions": [
-				"wmx"
-			]
-		},
-		"video/x-ms-wvx": {
-			"source": "apache",
-			"extensions": [
-				"wvx"
-			]
-		},
-		"video/x-msvideo": {
-			"source": "apache",
-			"extensions": [
-				"avi"
-			]
-		},
-		"video/x-sgi-movie": {
-			"source": "apache",
-			"extensions": [
-				"movie"
-			]
-		},
-		"video/x-smv": {
-			"source": "apache",
-			"extensions": [
-				"smv"
-			]
-		},
-		"x-conference/x-cooltalk": {
-			"source": "apache",
-			"extensions": [
-				"ice"
-			]
-		},
-		"x-shader/x-fragment": {
-			"compressible": true
-		},
-		"x-shader/x-vertex": {
-			"compressible": true
-		}
-	};
-
-/***/ },
-/* 86 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -32236,24 +23136,24 @@
 
 	var contentDisposition = __webpack_require__(46);
 	var deprecate = __webpack_require__(29)('express');
-	var encodeUrl = __webpack_require__(57);
+	var encodeUrl = __webpack_require__(55);
 	var escapeHtml = __webpack_require__(15);
 	var http = __webpack_require__(27);
 	var isAbsolute = __webpack_require__(45).isAbsolute;
 	var onFinished = __webpack_require__(16);
 	var path = __webpack_require__(35);
 	var merge = __webpack_require__(28);
-	var sign = __webpack_require__(87).sign;
+	var sign = __webpack_require__(81).sign;
 	var normalizeType = __webpack_require__(45).normalizeType;
 	var normalizeTypes = __webpack_require__(45).normalizeTypes;
 	var setCharset = __webpack_require__(45).setCharset;
 	var statusCodes = http.STATUS_CODES;
-	var cookie = __webpack_require__(88);
+	var cookie = __webpack_require__(82);
 	var send = __webpack_require__(48);
 	var extname = path.extname;
 	var mime = send.mime;
 	var resolve = path.resolve;
-	var vary = __webpack_require__(89);
+	var vary = __webpack_require__(83);
 
 	/**
 	 * Response prototype.
@@ -33288,14 +24188,14 @@
 
 
 /***/ },
-/* 87 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 
-	var crypto = __webpack_require__(59);
+	var crypto = __webpack_require__(57);
 
 	/**
 	 * Sign the given `val` with `secret`.
@@ -33345,7 +24245,7 @@
 
 
 /***/ },
-/* 88 */
+/* 82 */
 /***/ function(module, exports) {
 
 	/*!
@@ -33546,7 +24446,7 @@
 
 
 /***/ },
-/* 89 */
+/* 83 */
 /***/ function(module, exports) {
 
 	/*!
@@ -33676,7 +24576,7 @@
 
 
 /***/ },
-/* 90 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -33694,7 +24594,7 @@
 	 * @private
 	 */
 
-	var encodeUrl = __webpack_require__(57)
+	var encodeUrl = __webpack_require__(55)
 	var escapeHtml = __webpack_require__(15)
 	var parseUrl = __webpack_require__(36)
 	var resolve = __webpack_require__(35).resolve
@@ -33870,7 +24770,7 @@
 
 
 /***/ },
-/* 91 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -33899,11 +24799,11 @@
 	 * @private
 	 */
 
-	var auth = __webpack_require__(92)
+	var auth = __webpack_require__(86)
 	var debug = __webpack_require__(8)('morgan')
-	var deprecate = __webpack_require__(93)('morgan')
-	var onFinished = __webpack_require__(98)
-	var onHeaders = __webpack_require__(100)
+	var deprecate = __webpack_require__(29)('morgan')
+	var onFinished = __webpack_require__(16)
+	var onHeaders = __webpack_require__(87)
 
 	/**
 	 * Array of CLF month names.
@@ -34377,7 +25277,7 @@
 
 
 /***/ },
-/* 92 */
+/* 86 */
 /***/ function(module, exports) {
 
 	/*!
@@ -34491,1105 +25391,7 @@
 
 
 /***/ },
-/* 93 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/*!
-	 * depd
-	 * Copyright(c) 2014-2015 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	/**
-	 * Module dependencies.
-	 */
-
-	var callSiteToString = __webpack_require__(94).callSiteToString
-	var eventListenerCount = __webpack_require__(94).eventListenerCount
-	var relative = __webpack_require__(35).relative
-
-	/**
-	 * Module exports.
-	 */
-
-	module.exports = depd
-
-	/**
-	 * Get the path to base files on.
-	 */
-
-	var basePath = process.cwd()
-
-	/**
-	 * Determine if namespace is contained in the string.
-	 */
-
-	function containsNamespace(str, namespace) {
-	  var val = str.split(/[ ,]+/)
-
-	  namespace = String(namespace).toLowerCase()
-
-	  for (var i = 0 ; i < val.length; i++) {
-	    if (!(str = val[i])) continue;
-
-	    // namespace contained
-	    if (str === '*' || str.toLowerCase() === namespace) {
-	      return true
-	    }
-	  }
-
-	  return false
-	}
-
-	/**
-	 * Convert a data descriptor to accessor descriptor.
-	 */
-
-	function convertDataDescriptorToAccessor(obj, prop, message) {
-	  var descriptor = Object.getOwnPropertyDescriptor(obj, prop)
-	  var value = descriptor.value
-
-	  descriptor.get = function getter() { return value }
-
-	  if (descriptor.writable) {
-	    descriptor.set = function setter(val) { return value = val }
-	  }
-
-	  delete descriptor.value
-	  delete descriptor.writable
-
-	  Object.defineProperty(obj, prop, descriptor)
-
-	  return descriptor
-	}
-
-	/**
-	 * Create arguments string to keep arity.
-	 */
-
-	function createArgumentsString(arity) {
-	  var str = ''
-
-	  for (var i = 0; i < arity; i++) {
-	    str += ', arg' + i
-	  }
-
-	  return str.substr(2)
-	}
-
-	/**
-	 * Create stack string from stack.
-	 */
-
-	function createStackString(stack) {
-	  var str = this.name + ': ' + this.namespace
-
-	  if (this.message) {
-	    str += ' deprecated ' + this.message
-	  }
-
-	  for (var i = 0; i < stack.length; i++) {
-	    str += '\n    at ' + callSiteToString(stack[i])
-	  }
-
-	  return str
-	}
-
-	/**
-	 * Create deprecate for namespace in caller.
-	 */
-
-	function depd(namespace) {
-	  if (!namespace) {
-	    throw new TypeError('argument namespace is required')
-	  }
-
-	  var stack = getStack()
-	  var site = callSiteLocation(stack[1])
-	  var file = site[0]
-
-	  function deprecate(message) {
-	    // call to self as log
-	    log.call(deprecate, message)
-	  }
-
-	  deprecate._file = file
-	  deprecate._ignored = isignored(namespace)
-	  deprecate._namespace = namespace
-	  deprecate._traced = istraced(namespace)
-	  deprecate._warned = Object.create(null)
-
-	  deprecate.function = wrapfunction
-	  deprecate.property = wrapproperty
-
-	  return deprecate
-	}
-
-	/**
-	 * Determine if namespace is ignored.
-	 */
-
-	function isignored(namespace) {
-	  /* istanbul ignore next: tested in a child processs */
-	  if (process.noDeprecation) {
-	    // --no-deprecation support
-	    return true
-	  }
-
-	  var str = process.env.NO_DEPRECATION || ''
-
-	  // namespace ignored
-	  return containsNamespace(str, namespace)
-	}
-
-	/**
-	 * Determine if namespace is traced.
-	 */
-
-	function istraced(namespace) {
-	  /* istanbul ignore next: tested in a child processs */
-	  if (process.traceDeprecation) {
-	    // --trace-deprecation support
-	    return true
-	  }
-
-	  var str = process.env.TRACE_DEPRECATION || ''
-
-	  // namespace traced
-	  return containsNamespace(str, namespace)
-	}
-
-	/**
-	 * Display deprecation message.
-	 */
-
-	function log(message, site) {
-	  var haslisteners = eventListenerCount(process, 'deprecation') !== 0
-
-	  // abort early if no destination
-	  if (!haslisteners && this._ignored) {
-	    return
-	  }
-
-	  var caller
-	  var callFile
-	  var callSite
-	  var i = 0
-	  var seen = false
-	  var stack = getStack()
-	  var file = this._file
-
-	  if (site) {
-	    // provided site
-	    callSite = callSiteLocation(stack[1])
-	    callSite.name = site.name
-	    file = callSite[0]
-	  } else {
-	    // get call site
-	    i = 2
-	    site = callSiteLocation(stack[i])
-	    callSite = site
-	  }
-
-	  // get caller of deprecated thing in relation to file
-	  for (; i < stack.length; i++) {
-	    caller = callSiteLocation(stack[i])
-	    callFile = caller[0]
-
-	    if (callFile === file) {
-	      seen = true
-	    } else if (callFile === this._file) {
-	      file = this._file
-	    } else if (seen) {
-	      break
-	    }
-	  }
-
-	  var key = caller
-	    ? site.join(':') + '__' + caller.join(':')
-	    : undefined
-
-	  if (key !== undefined && key in this._warned) {
-	    // already warned
-	    return
-	  }
-
-	  this._warned[key] = true
-
-	  // generate automatic message from call site
-	  if (!message) {
-	    message = callSite === site || !callSite.name
-	      ? defaultMessage(site)
-	      : defaultMessage(callSite)
-	  }
-
-	  // emit deprecation if listeners exist
-	  if (haslisteners) {
-	    var err = DeprecationError(this._namespace, message, stack.slice(i))
-	    process.emit('deprecation', err)
-	    return
-	  }
-
-	  // format and write message
-	  var format = process.stderr.isTTY
-	    ? formatColor
-	    : formatPlain
-	  var msg = format.call(this, message, caller, stack.slice(i))
-	  process.stderr.write(msg + '\n', 'utf8')
-
-	  return
-	}
-
-	/**
-	 * Get call site location as array.
-	 */
-
-	function callSiteLocation(callSite) {
-	  var file = callSite.getFileName() || '<anonymous>'
-	  var line = callSite.getLineNumber()
-	  var colm = callSite.getColumnNumber()
-
-	  if (callSite.isEval()) {
-	    file = callSite.getEvalOrigin() + ', ' + file
-	  }
-
-	  var site = [file, line, colm]
-
-	  site.callSite = callSite
-	  site.name = callSite.getFunctionName()
-
-	  return site
-	}
-
-	/**
-	 * Generate a default message from the site.
-	 */
-
-	function defaultMessage(site) {
-	  var callSite = site.callSite
-	  var funcName = site.name
-
-	  // make useful anonymous name
-	  if (!funcName) {
-	    funcName = '<anonymous@' + formatLocation(site) + '>'
-	  }
-
-	  var context = callSite.getThis()
-	  var typeName = context && callSite.getTypeName()
-
-	  // ignore useless type name
-	  if (typeName === 'Object') {
-	    typeName = undefined
-	  }
-
-	  // make useful type name
-	  if (typeName === 'Function') {
-	    typeName = context.name || typeName
-	  }
-
-	  return typeName && callSite.getMethodName()
-	    ? typeName + '.' + funcName
-	    : funcName
-	}
-
-	/**
-	 * Format deprecation message without color.
-	 */
-
-	function formatPlain(msg, caller, stack) {
-	  var timestamp = new Date().toUTCString()
-
-	  var formatted = timestamp
-	    + ' ' + this._namespace
-	    + ' deprecated ' + msg
-
-	  // add stack trace
-	  if (this._traced) {
-	    for (var i = 0; i < stack.length; i++) {
-	      formatted += '\n    at ' + callSiteToString(stack[i])
-	    }
-
-	    return formatted
-	  }
-
-	  if (caller) {
-	    formatted += ' at ' + formatLocation(caller)
-	  }
-
-	  return formatted
-	}
-
-	/**
-	 * Format deprecation message with color.
-	 */
-
-	function formatColor(msg, caller, stack) {
-	  var formatted = '\x1b[36;1m' + this._namespace + '\x1b[22;39m' // bold cyan
-	    + ' \x1b[33;1mdeprecated\x1b[22;39m' // bold yellow
-	    + ' \x1b[0m' + msg + '\x1b[39m' // reset
-
-	  // add stack trace
-	  if (this._traced) {
-	    for (var i = 0; i < stack.length; i++) {
-	      formatted += '\n    \x1b[36mat ' + callSiteToString(stack[i]) + '\x1b[39m' // cyan
-	    }
-
-	    return formatted
-	  }
-
-	  if (caller) {
-	    formatted += ' \x1b[36m' + formatLocation(caller) + '\x1b[39m' // cyan
-	  }
-
-	  return formatted
-	}
-
-	/**
-	 * Format call site location.
-	 */
-
-	function formatLocation(callSite) {
-	  return relative(basePath, callSite[0])
-	    + ':' + callSite[1]
-	    + ':' + callSite[2]
-	}
-
-	/**
-	 * Get the stack as array of call sites.
-	 */
-
-	function getStack() {
-	  var limit = Error.stackTraceLimit
-	  var obj = {}
-	  var prep = Error.prepareStackTrace
-
-	  Error.prepareStackTrace = prepareObjectStackTrace
-	  Error.stackTraceLimit = Math.max(10, limit)
-
-	  // capture the stack
-	  Error.captureStackTrace(obj)
-
-	  // slice this function off the top
-	  var stack = obj.stack.slice(1)
-
-	  Error.prepareStackTrace = prep
-	  Error.stackTraceLimit = limit
-
-	  return stack
-	}
-
-	/**
-	 * Capture call site stack from v8.
-	 */
-
-	function prepareObjectStackTrace(obj, stack) {
-	  return stack
-	}
-
-	/**
-	 * Return a wrapped function in a deprecation message.
-	 */
-
-	function wrapfunction(fn, message) {
-	  if (typeof fn !== 'function') {
-	    throw new TypeError('argument fn must be a function')
-	  }
-
-	  var args = createArgumentsString(fn.length)
-	  var deprecate = this
-	  var stack = getStack()
-	  var site = callSiteLocation(stack[1])
-
-	  site.name = fn.name
-
-	  var deprecatedfn = eval('(function (' + args + ') {\n'
-	    + '"use strict"\n'
-	    + 'log.call(deprecate, message, site)\n'
-	    + 'return fn.apply(this, arguments)\n'
-	    + '})')
-
-	  return deprecatedfn
-	}
-
-	/**
-	 * Wrap property in a deprecation message.
-	 */
-
-	function wrapproperty(obj, prop, message) {
-	  if (!obj || (typeof obj !== 'object' && typeof obj !== 'function')) {
-	    throw new TypeError('argument obj must be object')
-	  }
-
-	  var descriptor = Object.getOwnPropertyDescriptor(obj, prop)
-
-	  if (!descriptor) {
-	    throw new TypeError('must call property on owner object')
-	  }
-
-	  if (!descriptor.configurable) {
-	    throw new TypeError('property must be configurable')
-	  }
-
-	  var deprecate = this
-	  var stack = getStack()
-	  var site = callSiteLocation(stack[1])
-
-	  // set site name
-	  site.name = prop
-
-	  // convert data descriptor
-	  if ('value' in descriptor) {
-	    descriptor = convertDataDescriptorToAccessor(obj, prop, message)
-	  }
-
-	  var get = descriptor.get
-	  var set = descriptor.set
-
-	  // wrap getter
-	  if (typeof get === 'function') {
-	    descriptor.get = function getter() {
-	      log.call(deprecate, message, site)
-	      return get.apply(this, arguments)
-	    }
-	  }
-
-	  // wrap setter
-	  if (typeof set === 'function') {
-	    descriptor.set = function setter() {
-	      log.call(deprecate, message, site)
-	      return set.apply(this, arguments)
-	    }
-	  }
-
-	  Object.defineProperty(obj, prop, descriptor)
-	}
-
-	/**
-	 * Create DeprecationError for deprecation
-	 */
-
-	function DeprecationError(namespace, message, stack) {
-	  var error = new Error()
-	  var stackString
-
-	  Object.defineProperty(error, 'constructor', {
-	    value: DeprecationError
-	  })
-
-	  Object.defineProperty(error, 'message', {
-	    configurable: true,
-	    enumerable: false,
-	    value: message,
-	    writable: true
-	  })
-
-	  Object.defineProperty(error, 'name', {
-	    enumerable: false,
-	    configurable: true,
-	    value: 'DeprecationError',
-	    writable: true
-	  })
-
-	  Object.defineProperty(error, 'namespace', {
-	    configurable: true,
-	    enumerable: false,
-	    value: namespace,
-	    writable: true
-	  })
-
-	  Object.defineProperty(error, 'stack', {
-	    configurable: true,
-	    enumerable: false,
-	    get: function () {
-	      if (stackString !== undefined) {
-	        return stackString
-	      }
-
-	      // prepare stack trace
-	      return stackString = createStackString.call(this, stack)
-	    },
-	    set: function setter(val) {
-	      stackString = val
-	    }
-	  })
-
-	  return error
-	}
-
-
-/***/ },
-/* 94 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/*!
-	 * depd
-	 * Copyright(c) 2014-2015 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	'use strict'
-
-	/**
-	 * Module dependencies.
-	 * @private
-	 */
-
-	var Buffer = __webpack_require__(31)
-	var EventEmitter = __webpack_require__(4).EventEmitter
-
-	/**
-	 * Module exports.
-	 * @public
-	 */
-
-	lazyProperty(module.exports, 'bufferConcat', function bufferConcat() {
-	  return Buffer.concat || __webpack_require__(95)
-	})
-
-	lazyProperty(module.exports, 'callSiteToString', function callSiteToString() {
-	  var limit = Error.stackTraceLimit
-	  var obj = {}
-	  var prep = Error.prepareStackTrace
-
-	  function prepareObjectStackTrace(obj, stack) {
-	    return stack
-	  }
-
-	  Error.prepareStackTrace = prepareObjectStackTrace
-	  Error.stackTraceLimit = 2
-
-	  // capture the stack
-	  Error.captureStackTrace(obj)
-
-	  // slice the stack
-	  var stack = obj.stack.slice()
-
-	  Error.prepareStackTrace = prep
-	  Error.stackTraceLimit = limit
-
-	  return stack[0].toString ? toString : __webpack_require__(96)
-	})
-
-	lazyProperty(module.exports, 'eventListenerCount', function eventListenerCount() {
-	  return EventEmitter.listenerCount || __webpack_require__(97)
-	})
-
-	/**
-	 * Define a lazy property.
-	 */
-
-	function lazyProperty(obj, prop, getter) {
-	  function get() {
-	    var val = getter()
-
-	    Object.defineProperty(obj, prop, {
-	      configurable: true,
-	      enumerable: true,
-	      value: val
-	    })
-
-	    return val
-	  }
-
-	  Object.defineProperty(obj, prop, {
-	    configurable: true,
-	    enumerable: true,
-	    get: get
-	  })
-	}
-
-	/**
-	 * Call toString() on the obj
-	 */
-
-	function toString(obj) {
-	  return obj.toString()
-	}
-
-
-/***/ },
-/* 95 */
-/***/ function(module, exports) {
-
-	/*!
-	 * depd
-	 * Copyright(c) 2014 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	'use strict'
-
-	/**
-	 * Module exports.
-	 */
-
-	module.exports = bufferConcat
-
-	/**
-	 * Concatenate an array of Buffers.
-	 */
-
-	function bufferConcat(bufs) {
-	  var length = 0
-
-	  for (var i = 0, len = bufs.length; i < len; i++) {
-	    length += bufs[i].length
-	  }
-
-	  var buf = new Buffer(length)
-	  var pos = 0
-
-	  for (var i = 0, len = bufs.length; i < len; i++) {
-	    bufs[i].copy(buf, pos)
-	    pos += bufs[i].length
-	  }
-
-	  return buf
-	}
-
-
-/***/ },
-/* 96 */
-/***/ function(module, exports) {
-
-	/*!
-	 * depd
-	 * Copyright(c) 2014 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	'use strict'
-
-	/**
-	 * Module exports.
-	 */
-
-	module.exports = callSiteToString
-
-	/**
-	 * Format a CallSite file location to a string.
-	 */
-
-	function callSiteFileLocation(callSite) {
-	  var fileName
-	  var fileLocation = ''
-
-	  if (callSite.isNative()) {
-	    fileLocation = 'native'
-	  } else if (callSite.isEval()) {
-	    fileName = callSite.getScriptNameOrSourceURL()
-	    if (!fileName) {
-	      fileLocation = callSite.getEvalOrigin()
-	    }
-	  } else {
-	    fileName = callSite.getFileName()
-	  }
-
-	  if (fileName) {
-	    fileLocation += fileName
-
-	    var lineNumber = callSite.getLineNumber()
-	    if (lineNumber != null) {
-	      fileLocation += ':' + lineNumber
-
-	      var columnNumber = callSite.getColumnNumber()
-	      if (columnNumber) {
-	        fileLocation += ':' + columnNumber
-	      }
-	    }
-	  }
-
-	  return fileLocation || 'unknown source'
-	}
-
-	/**
-	 * Format a CallSite to a string.
-	 */
-
-	function callSiteToString(callSite) {
-	  var addSuffix = true
-	  var fileLocation = callSiteFileLocation(callSite)
-	  var functionName = callSite.getFunctionName()
-	  var isConstructor = callSite.isConstructor()
-	  var isMethodCall = !(callSite.isToplevel() || isConstructor)
-	  var line = ''
-
-	  if (isMethodCall) {
-	    var methodName = callSite.getMethodName()
-	    var typeName = getConstructorName(callSite)
-
-	    if (functionName) {
-	      if (typeName && functionName.indexOf(typeName) !== 0) {
-	        line += typeName + '.'
-	      }
-
-	      line += functionName
-
-	      if (methodName && functionName.lastIndexOf('.' + methodName) !== functionName.length - methodName.length - 1) {
-	        line += ' [as ' + methodName + ']'
-	      }
-	    } else {
-	      line += typeName + '.' + (methodName || '<anonymous>')
-	    }
-	  } else if (isConstructor) {
-	    line += 'new ' + (functionName || '<anonymous>')
-	  } else if (functionName) {
-	    line += functionName
-	  } else {
-	    addSuffix = false
-	    line += fileLocation
-	  }
-
-	  if (addSuffix) {
-	    line += ' (' + fileLocation + ')'
-	  }
-
-	  return line
-	}
-
-	/**
-	 * Get constructor name of reviver.
-	 */
-
-	function getConstructorName(obj) {
-	  var receiver = obj.receiver
-	  return (receiver.constructor && receiver.constructor.name) || null
-	}
-
-
-/***/ },
-/* 97 */
-/***/ function(module, exports) {
-
-	/*!
-	 * depd
-	 * Copyright(c) 2015 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	'use strict'
-
-	/**
-	 * Module exports.
-	 * @public
-	 */
-
-	module.exports = eventListenerCount
-
-	/**
-	 * Get the count of listeners on an event emitter of a specific type.
-	 */
-
-	function eventListenerCount(emitter, type) {
-	  return emitter.listeners(type).length
-	}
-
-
-/***/ },
-/* 98 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/*!
-	 * on-finished
-	 * Copyright(c) 2013 Jonathan Ong
-	 * Copyright(c) 2014 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	'use strict'
-
-	/**
-	 * Module exports.
-	 * @public
-	 */
-
-	module.exports = onFinished
-	module.exports.isFinished = isFinished
-
-	/**
-	 * Module dependencies.
-	 * @private
-	 */
-
-	var first = __webpack_require__(99)
-
-	/**
-	 * Variables.
-	 * @private
-	 */
-
-	/* istanbul ignore next */
-	var defer = typeof setImmediate === 'function'
-	  ? setImmediate
-	  : function(fn){ process.nextTick(fn.bind.apply(fn, arguments)) }
-
-	/**
-	 * Invoke callback when the response has finished, useful for
-	 * cleaning up resources afterwards.
-	 *
-	 * @param {object} msg
-	 * @param {function} listener
-	 * @return {object}
-	 * @public
-	 */
-
-	function onFinished(msg, listener) {
-	  if (isFinished(msg) !== false) {
-	    defer(listener, null, msg)
-	    return msg
-	  }
-
-	  // attach the listener to the message
-	  attachListener(msg, listener)
-
-	  return msg
-	}
-
-	/**
-	 * Determine if message is already finished.
-	 *
-	 * @param {object} msg
-	 * @return {boolean}
-	 * @public
-	 */
-
-	function isFinished(msg) {
-	  var socket = msg.socket
-
-	  if (typeof msg.finished === 'boolean') {
-	    // OutgoingMessage
-	    return Boolean(msg.finished || (socket && !socket.writable))
-	  }
-
-	  if (typeof msg.complete === 'boolean') {
-	    // IncomingMessage
-	    return Boolean(msg.upgrade || !socket || !socket.readable || (msg.complete && !msg.readable))
-	  }
-
-	  // don't know
-	  return undefined
-	}
-
-	/**
-	 * Attach a finished listener to the message.
-	 *
-	 * @param {object} msg
-	 * @param {function} callback
-	 * @private
-	 */
-
-	function attachFinishedListener(msg, callback) {
-	  var eeMsg
-	  var eeSocket
-	  var finished = false
-
-	  function onFinish(error) {
-	    eeMsg.cancel()
-	    eeSocket.cancel()
-
-	    finished = true
-	    callback(error)
-	  }
-
-	  // finished on first message event
-	  eeMsg = eeSocket = first([[msg, 'end', 'finish']], onFinish)
-
-	  function onSocket(socket) {
-	    // remove listener
-	    msg.removeListener('socket', onSocket)
-
-	    if (finished) return
-	    if (eeMsg !== eeSocket) return
-
-	    // finished on first socket event
-	    eeSocket = first([[socket, 'error', 'close']], onFinish)
-	  }
-
-	  if (msg.socket) {
-	    // socket already assigned
-	    onSocket(msg.socket)
-	    return
-	  }
-
-	  // wait for socket to be assigned
-	  msg.on('socket', onSocket)
-
-	  if (msg.socket === undefined) {
-	    // node.js 0.8 patch
-	    patchAssignSocket(msg, onSocket)
-	  }
-	}
-
-	/**
-	 * Attach the listener to the message.
-	 *
-	 * @param {object} msg
-	 * @return {function}
-	 * @private
-	 */
-
-	function attachListener(msg, listener) {
-	  var attached = msg.__onFinished
-
-	  // create a private single listener with queue
-	  if (!attached || !attached.queue) {
-	    attached = msg.__onFinished = createListener(msg)
-	    attachFinishedListener(msg, attached)
-	  }
-
-	  attached.queue.push(listener)
-	}
-
-	/**
-	 * Create listener on message.
-	 *
-	 * @param {object} msg
-	 * @return {function}
-	 * @private
-	 */
-
-	function createListener(msg) {
-	  function listener(err) {
-	    if (msg.__onFinished === listener) msg.__onFinished = null
-	    if (!listener.queue) return
-
-	    var queue = listener.queue
-	    listener.queue = null
-
-	    for (var i = 0; i < queue.length; i++) {
-	      queue[i](err, msg)
-	    }
-	  }
-
-	  listener.queue = []
-
-	  return listener
-	}
-
-	/**
-	 * Patch ServerResponse.prototype.assignSocket for node.js 0.8.
-	 *
-	 * @param {ServerResponse} res
-	 * @param {function} callback
-	 * @private
-	 */
-
-	function patchAssignSocket(res, callback) {
-	  var assignSocket = res.assignSocket
-
-	  if (typeof assignSocket !== 'function') return
-
-	  // res.on('socket', callback) is broken in 0.8
-	  res.assignSocket = function _assignSocket(socket) {
-	    assignSocket.call(this, socket)
-	    callback(socket)
-	  }
-	}
-
-
-/***/ },
-/* 99 */
-/***/ function(module, exports) {
-
-	/*!
-	 * ee-first
-	 * Copyright(c) 2014 Jonathan Ong
-	 * MIT Licensed
-	 */
-
-	'use strict'
-
-	/**
-	 * Module exports.
-	 * @public
-	 */
-
-	module.exports = first
-
-	/**
-	 * Get the first event in a set of event emitters and event pairs.
-	 *
-	 * @param {array} stuff
-	 * @param {function} done
-	 * @public
-	 */
-
-	function first(stuff, done) {
-	  if (!Array.isArray(stuff))
-	    throw new TypeError('arg must be an array of [ee, events...] arrays')
-
-	  var cleanups = []
-
-	  for (var i = 0; i < stuff.length; i++) {
-	    var arr = stuff[i]
-
-	    if (!Array.isArray(arr) || arr.length < 2)
-	      throw new TypeError('each array member must be [ee, events...]')
-
-	    var ee = arr[0]
-
-	    for (var j = 1; j < arr.length; j++) {
-	      var event = arr[j]
-	      var fn = listener(event, callback)
-
-	      // listen to the event
-	      ee.on(event, fn)
-	      // push this listener to the list of cleanups
-	      cleanups.push({
-	        ee: ee,
-	        event: event,
-	        fn: fn,
-	      })
-	    }
-	  }
-
-	  function callback() {
-	    cleanup()
-	    done.apply(null, arguments)
-	  }
-
-	  function cleanup() {
-	    var x
-	    for (var i = 0; i < cleanups.length; i++) {
-	      x = cleanups[i]
-	      x.ee.removeListener(x.event, x.fn)
-	    }
-	  }
-
-	  function thunk(fn) {
-	    done = fn
-	  }
-
-	  thunk.cancel = cleanup
-
-	  return thunk
-	}
-
-	/**
-	 * Create the event listener.
-	 * @private
-	 */
-
-	function listener(event, done) {
-	  return function onevent(arg1) {
-	    var args = new Array(arguments.length)
-	    var ee = this
-	    var err = event === 'error'
-	      ? arg1
-	      : null
-
-	    // copy args to prevent arguments escaping scope
-	    for (var i = 0; i < args.length; i++) {
-	      args[i] = arguments[i]
-	    }
-
-	    done(err, ee, event, args)
-	  }
-	}
-
-
-/***/ },
-/* 100 */
+/* 87 */
 /***/ function(module, exports) {
 
 	/*!
@@ -35688,7 +25490,7 @@
 
 
 /***/ },
-/* 101 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -35705,8 +25507,8 @@
 	 * @private
 	 */
 
-	var cookie = __webpack_require__(102);
-	var signature = __webpack_require__(103);
+	var cookie = __webpack_require__(82);
+	var signature = __webpack_require__(81);
 
 	/**
 	 * Module exports.
@@ -35875,265 +25677,7 @@
 
 
 /***/ },
-/* 102 */
-/***/ function(module, exports) {
-
-	/*!
-	 * cookie
-	 * Copyright(c) 2012-2014 Roman Shtylman
-	 * Copyright(c) 2015 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	'use strict';
-
-	/**
-	 * Module exports.
-	 * @public
-	 */
-
-	exports.parse = parse;
-	exports.serialize = serialize;
-
-	/**
-	 * Module variables.
-	 * @private
-	 */
-
-	var decode = decodeURIComponent;
-	var encode = encodeURIComponent;
-	var pairSplitRegExp = /; */;
-
-	/**
-	 * RegExp to match field-content in RFC 7230 sec 3.2
-	 *
-	 * field-content = field-vchar [ 1*( SP / HTAB ) field-vchar ]
-	 * field-vchar   = VCHAR / obs-text
-	 * obs-text      = %x80-FF
-	 */
-
-	var fieldContentRegExp = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/;
-
-	/**
-	 * Parse a cookie header.
-	 *
-	 * Parse the given cookie header string into an object
-	 * The object has the various cookies as keys(names) => values
-	 *
-	 * @param {string} str
-	 * @param {object} [options]
-	 * @return {object}
-	 * @public
-	 */
-
-	function parse(str, options) {
-	  if (typeof str !== 'string') {
-	    throw new TypeError('argument str must be a string');
-	  }
-
-	  var obj = {}
-	  var opt = options || {};
-	  var pairs = str.split(pairSplitRegExp);
-	  var dec = opt.decode || decode;
-
-	  for (var i = 0; i < pairs.length; i++) {
-	    var pair = pairs[i];
-	    var eq_idx = pair.indexOf('=');
-
-	    // skip things that don't look like key=value
-	    if (eq_idx < 0) {
-	      continue;
-	    }
-
-	    var key = pair.substr(0, eq_idx).trim()
-	    var val = pair.substr(++eq_idx, pair.length).trim();
-
-	    // quoted values
-	    if ('"' == val[0]) {
-	      val = val.slice(1, -1);
-	    }
-
-	    // only assign once
-	    if (undefined == obj[key]) {
-	      obj[key] = tryDecode(val, dec);
-	    }
-	  }
-
-	  return obj;
-	}
-
-	/**
-	 * Serialize data into a cookie header.
-	 *
-	 * Serialize the a name value pair into a cookie string suitable for
-	 * http headers. An optional options object specified cookie parameters.
-	 *
-	 * serialize('foo', 'bar', { httpOnly: true })
-	 *   => "foo=bar; httpOnly"
-	 *
-	 * @param {string} name
-	 * @param {string} val
-	 * @param {object} [options]
-	 * @return {string}
-	 * @public
-	 */
-
-	function serialize(name, val, options) {
-	  var opt = options || {};
-	  var enc = opt.encode || encode;
-
-	  if (typeof enc !== 'function') {
-	    throw new TypeError('option encode is invalid');
-	  }
-
-	  if (!fieldContentRegExp.test(name)) {
-	    throw new TypeError('argument name is invalid');
-	  }
-
-	  var value = enc(val);
-
-	  if (value && !fieldContentRegExp.test(value)) {
-	    throw new TypeError('argument val is invalid');
-	  }
-
-	  var str = name + '=' + value;
-
-	  if (null != opt.maxAge) {
-	    var maxAge = opt.maxAge - 0;
-	    if (isNaN(maxAge)) throw new Error('maxAge should be a Number');
-	    str += '; Max-Age=' + Math.floor(maxAge);
-	  }
-
-	  if (opt.domain) {
-	    if (!fieldContentRegExp.test(opt.domain)) {
-	      throw new TypeError('option domain is invalid');
-	    }
-
-	    str += '; Domain=' + opt.domain;
-	  }
-
-	  if (opt.path) {
-	    if (!fieldContentRegExp.test(opt.path)) {
-	      throw new TypeError('option path is invalid');
-	    }
-
-	    str += '; Path=' + opt.path;
-	  }
-
-	  if (opt.expires) {
-	    if (typeof opt.expires.toUTCString !== 'function') {
-	      throw new TypeError('option expires is invalid');
-	    }
-
-	    str += '; Expires=' + opt.expires.toUTCString();
-	  }
-
-	  if (opt.httpOnly) {
-	    str += '; HttpOnly';
-	  }
-
-	  if (opt.secure) {
-	    str += '; Secure';
-	  }
-
-	  if (opt.sameSite) {
-	    var sameSite = typeof opt.sameSite === 'string'
-	      ? opt.sameSite.toLowerCase() : opt.sameSite;
-
-	    switch (sameSite) {
-	      case true:
-	        str += '; SameSite=Strict';
-	        break;
-	      case 'lax':
-	        str += '; SameSite=Lax';
-	        break;
-	      case 'strict':
-	        str += '; SameSite=Strict';
-	        break;
-	      default:
-	        throw new TypeError('option sameSite is invalid');
-	    }
-	  }
-
-	  return str;
-	}
-
-	/**
-	 * Try decoding a string using a decoding function.
-	 *
-	 * @param {string} str
-	 * @param {function} decode
-	 * @private
-	 */
-
-	function tryDecode(str, decode) {
-	  try {
-	    return decode(str);
-	  } catch (e) {
-	    return str;
-	  }
-	}
-
-
-/***/ },
-/* 103 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Module dependencies.
-	 */
-
-	var crypto = __webpack_require__(59);
-
-	/**
-	 * Sign the given `val` with `secret`.
-	 *
-	 * @param {String} val
-	 * @param {String} secret
-	 * @return {String}
-	 * @api private
-	 */
-
-	exports.sign = function(val, secret){
-	  if ('string' != typeof val) throw new TypeError("Cookie value must be provided as a string.");
-	  if ('string' != typeof secret) throw new TypeError("Secret string must be provided.");
-	  return val + '.' + crypto
-	    .createHmac('sha256', secret)
-	    .update(val)
-	    .digest('base64')
-	    .replace(/\=+$/, '');
-	};
-
-	/**
-	 * Unsign and decode the given `val` with `secret`,
-	 * returning `false` if the signature is invalid.
-	 *
-	 * @param {String} val
-	 * @param {String} secret
-	 * @return {String|Boolean}
-	 * @api private
-	 */
-
-	exports.unsign = function(val, secret){
-	  if ('string' != typeof val) throw new TypeError("Signed cookie string must be provided.");
-	  if ('string' != typeof secret) throw new TypeError("Secret string must be provided.");
-	  var str = val.slice(0, val.lastIndexOf('.'))
-	    , mac = exports.sign(str, secret);
-	  
-	  return sha1(mac) == sha1(val) ? str : false;
-	};
-
-	/**
-	 * Private
-	 */
-
-	function sha1(str){
-	  return crypto.createHash('sha1').update(str).digest('hex');
-	}
-
-
-/***/ },
-/* 104 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -36149,7 +25693,7 @@
 	 * @private
 	 */
 
-	var deprecate = __webpack_require__(105)('body-parser')
+	var deprecate = __webpack_require__(29)('body-parser')
 
 	/**
 	 * Cache of loaded parsers.
@@ -36277,16 +25821,16 @@
 	  // this uses a switch for static require analysis
 	  switch (parserName) {
 	    case 'json':
-	      parser = __webpack_require__(110)
+	      parser = __webpack_require__(90)
 	      break
 	    case 'raw':
-	      parser = __webpack_require__(152)
+	      parser = __webpack_require__(117)
 	      break
 	    case 'text':
-	      parser = __webpack_require__(153)
+	      parser = __webpack_require__(118)
 	      break
 	    case 'urlencoded':
-	      parser = __webpack_require__(154)
+	      parser = __webpack_require__(119)
 	      break
 	  }
 
@@ -36296,802 +25840,7 @@
 
 
 /***/ },
-/* 105 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/*!
-	 * depd
-	 * Copyright(c) 2014-2015 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	/**
-	 * Module dependencies.
-	 */
-
-	var callSiteToString = __webpack_require__(106).callSiteToString
-	var eventListenerCount = __webpack_require__(106).eventListenerCount
-	var relative = __webpack_require__(35).relative
-
-	/**
-	 * Module exports.
-	 */
-
-	module.exports = depd
-
-	/**
-	 * Get the path to base files on.
-	 */
-
-	var basePath = process.cwd()
-
-	/**
-	 * Determine if namespace is contained in the string.
-	 */
-
-	function containsNamespace(str, namespace) {
-	  var val = str.split(/[ ,]+/)
-
-	  namespace = String(namespace).toLowerCase()
-
-	  for (var i = 0 ; i < val.length; i++) {
-	    if (!(str = val[i])) continue;
-
-	    // namespace contained
-	    if (str === '*' || str.toLowerCase() === namespace) {
-	      return true
-	    }
-	  }
-
-	  return false
-	}
-
-	/**
-	 * Convert a data descriptor to accessor descriptor.
-	 */
-
-	function convertDataDescriptorToAccessor(obj, prop, message) {
-	  var descriptor = Object.getOwnPropertyDescriptor(obj, prop)
-	  var value = descriptor.value
-
-	  descriptor.get = function getter() { return value }
-
-	  if (descriptor.writable) {
-	    descriptor.set = function setter(val) { return value = val }
-	  }
-
-	  delete descriptor.value
-	  delete descriptor.writable
-
-	  Object.defineProperty(obj, prop, descriptor)
-
-	  return descriptor
-	}
-
-	/**
-	 * Create arguments string to keep arity.
-	 */
-
-	function createArgumentsString(arity) {
-	  var str = ''
-
-	  for (var i = 0; i < arity; i++) {
-	    str += ', arg' + i
-	  }
-
-	  return str.substr(2)
-	}
-
-	/**
-	 * Create stack string from stack.
-	 */
-
-	function createStackString(stack) {
-	  var str = this.name + ': ' + this.namespace
-
-	  if (this.message) {
-	    str += ' deprecated ' + this.message
-	  }
-
-	  for (var i = 0; i < stack.length; i++) {
-	    str += '\n    at ' + callSiteToString(stack[i])
-	  }
-
-	  return str
-	}
-
-	/**
-	 * Create deprecate for namespace in caller.
-	 */
-
-	function depd(namespace) {
-	  if (!namespace) {
-	    throw new TypeError('argument namespace is required')
-	  }
-
-	  var stack = getStack()
-	  var site = callSiteLocation(stack[1])
-	  var file = site[0]
-
-	  function deprecate(message) {
-	    // call to self as log
-	    log.call(deprecate, message)
-	  }
-
-	  deprecate._file = file
-	  deprecate._ignored = isignored(namespace)
-	  deprecate._namespace = namespace
-	  deprecate._traced = istraced(namespace)
-	  deprecate._warned = Object.create(null)
-
-	  deprecate.function = wrapfunction
-	  deprecate.property = wrapproperty
-
-	  return deprecate
-	}
-
-	/**
-	 * Determine if namespace is ignored.
-	 */
-
-	function isignored(namespace) {
-	  /* istanbul ignore next: tested in a child processs */
-	  if (process.noDeprecation) {
-	    // --no-deprecation support
-	    return true
-	  }
-
-	  var str = process.env.NO_DEPRECATION || ''
-
-	  // namespace ignored
-	  return containsNamespace(str, namespace)
-	}
-
-	/**
-	 * Determine if namespace is traced.
-	 */
-
-	function istraced(namespace) {
-	  /* istanbul ignore next: tested in a child processs */
-	  if (process.traceDeprecation) {
-	    // --trace-deprecation support
-	    return true
-	  }
-
-	  var str = process.env.TRACE_DEPRECATION || ''
-
-	  // namespace traced
-	  return containsNamespace(str, namespace)
-	}
-
-	/**
-	 * Display deprecation message.
-	 */
-
-	function log(message, site) {
-	  var haslisteners = eventListenerCount(process, 'deprecation') !== 0
-
-	  // abort early if no destination
-	  if (!haslisteners && this._ignored) {
-	    return
-	  }
-
-	  var caller
-	  var callFile
-	  var callSite
-	  var i = 0
-	  var seen = false
-	  var stack = getStack()
-	  var file = this._file
-
-	  if (site) {
-	    // provided site
-	    callSite = callSiteLocation(stack[1])
-	    callSite.name = site.name
-	    file = callSite[0]
-	  } else {
-	    // get call site
-	    i = 2
-	    site = callSiteLocation(stack[i])
-	    callSite = site
-	  }
-
-	  // get caller of deprecated thing in relation to file
-	  for (; i < stack.length; i++) {
-	    caller = callSiteLocation(stack[i])
-	    callFile = caller[0]
-
-	    if (callFile === file) {
-	      seen = true
-	    } else if (callFile === this._file) {
-	      file = this._file
-	    } else if (seen) {
-	      break
-	    }
-	  }
-
-	  var key = caller
-	    ? site.join(':') + '__' + caller.join(':')
-	    : undefined
-
-	  if (key !== undefined && key in this._warned) {
-	    // already warned
-	    return
-	  }
-
-	  this._warned[key] = true
-
-	  // generate automatic message from call site
-	  if (!message) {
-	    message = callSite === site || !callSite.name
-	      ? defaultMessage(site)
-	      : defaultMessage(callSite)
-	  }
-
-	  // emit deprecation if listeners exist
-	  if (haslisteners) {
-	    var err = DeprecationError(this._namespace, message, stack.slice(i))
-	    process.emit('deprecation', err)
-	    return
-	  }
-
-	  // format and write message
-	  var format = process.stderr.isTTY
-	    ? formatColor
-	    : formatPlain
-	  var msg = format.call(this, message, caller, stack.slice(i))
-	  process.stderr.write(msg + '\n', 'utf8')
-
-	  return
-	}
-
-	/**
-	 * Get call site location as array.
-	 */
-
-	function callSiteLocation(callSite) {
-	  var file = callSite.getFileName() || '<anonymous>'
-	  var line = callSite.getLineNumber()
-	  var colm = callSite.getColumnNumber()
-
-	  if (callSite.isEval()) {
-	    file = callSite.getEvalOrigin() + ', ' + file
-	  }
-
-	  var site = [file, line, colm]
-
-	  site.callSite = callSite
-	  site.name = callSite.getFunctionName()
-
-	  return site
-	}
-
-	/**
-	 * Generate a default message from the site.
-	 */
-
-	function defaultMessage(site) {
-	  var callSite = site.callSite
-	  var funcName = site.name
-
-	  // make useful anonymous name
-	  if (!funcName) {
-	    funcName = '<anonymous@' + formatLocation(site) + '>'
-	  }
-
-	  var context = callSite.getThis()
-	  var typeName = context && callSite.getTypeName()
-
-	  // ignore useless type name
-	  if (typeName === 'Object') {
-	    typeName = undefined
-	  }
-
-	  // make useful type name
-	  if (typeName === 'Function') {
-	    typeName = context.name || typeName
-	  }
-
-	  return typeName && callSite.getMethodName()
-	    ? typeName + '.' + funcName
-	    : funcName
-	}
-
-	/**
-	 * Format deprecation message without color.
-	 */
-
-	function formatPlain(msg, caller, stack) {
-	  var timestamp = new Date().toUTCString()
-
-	  var formatted = timestamp
-	    + ' ' + this._namespace
-	    + ' deprecated ' + msg
-
-	  // add stack trace
-	  if (this._traced) {
-	    for (var i = 0; i < stack.length; i++) {
-	      formatted += '\n    at ' + callSiteToString(stack[i])
-	    }
-
-	    return formatted
-	  }
-
-	  if (caller) {
-	    formatted += ' at ' + formatLocation(caller)
-	  }
-
-	  return formatted
-	}
-
-	/**
-	 * Format deprecation message with color.
-	 */
-
-	function formatColor(msg, caller, stack) {
-	  var formatted = '\x1b[36;1m' + this._namespace + '\x1b[22;39m' // bold cyan
-	    + ' \x1b[33;1mdeprecated\x1b[22;39m' // bold yellow
-	    + ' \x1b[0m' + msg + '\x1b[39m' // reset
-
-	  // add stack trace
-	  if (this._traced) {
-	    for (var i = 0; i < stack.length; i++) {
-	      formatted += '\n    \x1b[36mat ' + callSiteToString(stack[i]) + '\x1b[39m' // cyan
-	    }
-
-	    return formatted
-	  }
-
-	  if (caller) {
-	    formatted += ' \x1b[36m' + formatLocation(caller) + '\x1b[39m' // cyan
-	  }
-
-	  return formatted
-	}
-
-	/**
-	 * Format call site location.
-	 */
-
-	function formatLocation(callSite) {
-	  return relative(basePath, callSite[0])
-	    + ':' + callSite[1]
-	    + ':' + callSite[2]
-	}
-
-	/**
-	 * Get the stack as array of call sites.
-	 */
-
-	function getStack() {
-	  var limit = Error.stackTraceLimit
-	  var obj = {}
-	  var prep = Error.prepareStackTrace
-
-	  Error.prepareStackTrace = prepareObjectStackTrace
-	  Error.stackTraceLimit = Math.max(10, limit)
-
-	  // capture the stack
-	  Error.captureStackTrace(obj)
-
-	  // slice this function off the top
-	  var stack = obj.stack.slice(1)
-
-	  Error.prepareStackTrace = prep
-	  Error.stackTraceLimit = limit
-
-	  return stack
-	}
-
-	/**
-	 * Capture call site stack from v8.
-	 */
-
-	function prepareObjectStackTrace(obj, stack) {
-	  return stack
-	}
-
-	/**
-	 * Return a wrapped function in a deprecation message.
-	 */
-
-	function wrapfunction(fn, message) {
-	  if (typeof fn !== 'function') {
-	    throw new TypeError('argument fn must be a function')
-	  }
-
-	  var args = createArgumentsString(fn.length)
-	  var deprecate = this
-	  var stack = getStack()
-	  var site = callSiteLocation(stack[1])
-
-	  site.name = fn.name
-
-	  var deprecatedfn = eval('(function (' + args + ') {\n'
-	    + '"use strict"\n'
-	    + 'log.call(deprecate, message, site)\n'
-	    + 'return fn.apply(this, arguments)\n'
-	    + '})')
-
-	  return deprecatedfn
-	}
-
-	/**
-	 * Wrap property in a deprecation message.
-	 */
-
-	function wrapproperty(obj, prop, message) {
-	  if (!obj || (typeof obj !== 'object' && typeof obj !== 'function')) {
-	    throw new TypeError('argument obj must be object')
-	  }
-
-	  var descriptor = Object.getOwnPropertyDescriptor(obj, prop)
-
-	  if (!descriptor) {
-	    throw new TypeError('must call property on owner object')
-	  }
-
-	  if (!descriptor.configurable) {
-	    throw new TypeError('property must be configurable')
-	  }
-
-	  var deprecate = this
-	  var stack = getStack()
-	  var site = callSiteLocation(stack[1])
-
-	  // set site name
-	  site.name = prop
-
-	  // convert data descriptor
-	  if ('value' in descriptor) {
-	    descriptor = convertDataDescriptorToAccessor(obj, prop, message)
-	  }
-
-	  var get = descriptor.get
-	  var set = descriptor.set
-
-	  // wrap getter
-	  if (typeof get === 'function') {
-	    descriptor.get = function getter() {
-	      log.call(deprecate, message, site)
-	      return get.apply(this, arguments)
-	    }
-	  }
-
-	  // wrap setter
-	  if (typeof set === 'function') {
-	    descriptor.set = function setter() {
-	      log.call(deprecate, message, site)
-	      return set.apply(this, arguments)
-	    }
-	  }
-
-	  Object.defineProperty(obj, prop, descriptor)
-	}
-
-	/**
-	 * Create DeprecationError for deprecation
-	 */
-
-	function DeprecationError(namespace, message, stack) {
-	  var error = new Error()
-	  var stackString
-
-	  Object.defineProperty(error, 'constructor', {
-	    value: DeprecationError
-	  })
-
-	  Object.defineProperty(error, 'message', {
-	    configurable: true,
-	    enumerable: false,
-	    value: message,
-	    writable: true
-	  })
-
-	  Object.defineProperty(error, 'name', {
-	    enumerable: false,
-	    configurable: true,
-	    value: 'DeprecationError',
-	    writable: true
-	  })
-
-	  Object.defineProperty(error, 'namespace', {
-	    configurable: true,
-	    enumerable: false,
-	    value: namespace,
-	    writable: true
-	  })
-
-	  Object.defineProperty(error, 'stack', {
-	    configurable: true,
-	    enumerable: false,
-	    get: function () {
-	      if (stackString !== undefined) {
-	        return stackString
-	      }
-
-	      // prepare stack trace
-	      return stackString = createStackString.call(this, stack)
-	    },
-	    set: function setter(val) {
-	      stackString = val
-	    }
-	  })
-
-	  return error
-	}
-
-
-/***/ },
-/* 106 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/*!
-	 * depd
-	 * Copyright(c) 2014-2015 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	'use strict'
-
-	/**
-	 * Module dependencies.
-	 * @private
-	 */
-
-	var Buffer = __webpack_require__(31)
-	var EventEmitter = __webpack_require__(4).EventEmitter
-
-	/**
-	 * Module exports.
-	 * @public
-	 */
-
-	lazyProperty(module.exports, 'bufferConcat', function bufferConcat() {
-	  return Buffer.concat || __webpack_require__(107)
-	})
-
-	lazyProperty(module.exports, 'callSiteToString', function callSiteToString() {
-	  var limit = Error.stackTraceLimit
-	  var obj = {}
-	  var prep = Error.prepareStackTrace
-
-	  function prepareObjectStackTrace(obj, stack) {
-	    return stack
-	  }
-
-	  Error.prepareStackTrace = prepareObjectStackTrace
-	  Error.stackTraceLimit = 2
-
-	  // capture the stack
-	  Error.captureStackTrace(obj)
-
-	  // slice the stack
-	  var stack = obj.stack.slice()
-
-	  Error.prepareStackTrace = prep
-	  Error.stackTraceLimit = limit
-
-	  return stack[0].toString ? toString : __webpack_require__(108)
-	})
-
-	lazyProperty(module.exports, 'eventListenerCount', function eventListenerCount() {
-	  return EventEmitter.listenerCount || __webpack_require__(109)
-	})
-
-	/**
-	 * Define a lazy property.
-	 */
-
-	function lazyProperty(obj, prop, getter) {
-	  function get() {
-	    var val = getter()
-
-	    Object.defineProperty(obj, prop, {
-	      configurable: true,
-	      enumerable: true,
-	      value: val
-	    })
-
-	    return val
-	  }
-
-	  Object.defineProperty(obj, prop, {
-	    configurable: true,
-	    enumerable: true,
-	    get: get
-	  })
-	}
-
-	/**
-	 * Call toString() on the obj
-	 */
-
-	function toString(obj) {
-	  return obj.toString()
-	}
-
-
-/***/ },
-/* 107 */
-/***/ function(module, exports) {
-
-	/*!
-	 * depd
-	 * Copyright(c) 2014 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	'use strict'
-
-	/**
-	 * Module exports.
-	 */
-
-	module.exports = bufferConcat
-
-	/**
-	 * Concatenate an array of Buffers.
-	 */
-
-	function bufferConcat(bufs) {
-	  var length = 0
-
-	  for (var i = 0, len = bufs.length; i < len; i++) {
-	    length += bufs[i].length
-	  }
-
-	  var buf = new Buffer(length)
-	  var pos = 0
-
-	  for (var i = 0, len = bufs.length; i < len; i++) {
-	    bufs[i].copy(buf, pos)
-	    pos += bufs[i].length
-	  }
-
-	  return buf
-	}
-
-
-/***/ },
-/* 108 */
-/***/ function(module, exports) {
-
-	/*!
-	 * depd
-	 * Copyright(c) 2014 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	'use strict'
-
-	/**
-	 * Module exports.
-	 */
-
-	module.exports = callSiteToString
-
-	/**
-	 * Format a CallSite file location to a string.
-	 */
-
-	function callSiteFileLocation(callSite) {
-	  var fileName
-	  var fileLocation = ''
-
-	  if (callSite.isNative()) {
-	    fileLocation = 'native'
-	  } else if (callSite.isEval()) {
-	    fileName = callSite.getScriptNameOrSourceURL()
-	    if (!fileName) {
-	      fileLocation = callSite.getEvalOrigin()
-	    }
-	  } else {
-	    fileName = callSite.getFileName()
-	  }
-
-	  if (fileName) {
-	    fileLocation += fileName
-
-	    var lineNumber = callSite.getLineNumber()
-	    if (lineNumber != null) {
-	      fileLocation += ':' + lineNumber
-
-	      var columnNumber = callSite.getColumnNumber()
-	      if (columnNumber) {
-	        fileLocation += ':' + columnNumber
-	      }
-	    }
-	  }
-
-	  return fileLocation || 'unknown source'
-	}
-
-	/**
-	 * Format a CallSite to a string.
-	 */
-
-	function callSiteToString(callSite) {
-	  var addSuffix = true
-	  var fileLocation = callSiteFileLocation(callSite)
-	  var functionName = callSite.getFunctionName()
-	  var isConstructor = callSite.isConstructor()
-	  var isMethodCall = !(callSite.isToplevel() || isConstructor)
-	  var line = ''
-
-	  if (isMethodCall) {
-	    var methodName = callSite.getMethodName()
-	    var typeName = getConstructorName(callSite)
-
-	    if (functionName) {
-	      if (typeName && functionName.indexOf(typeName) !== 0) {
-	        line += typeName + '.'
-	      }
-
-	      line += functionName
-
-	      if (methodName && functionName.lastIndexOf('.' + methodName) !== functionName.length - methodName.length - 1) {
-	        line += ' [as ' + methodName + ']'
-	      }
-	    } else {
-	      line += typeName + '.' + (methodName || '<anonymous>')
-	    }
-	  } else if (isConstructor) {
-	    line += 'new ' + (functionName || '<anonymous>')
-	  } else if (functionName) {
-	    line += functionName
-	  } else {
-	    addSuffix = false
-	    line += fileLocation
-	  }
-
-	  if (addSuffix) {
-	    line += ' (' + fileLocation + ')'
-	  }
-
-	  return line
-	}
-
-	/**
-	 * Get constructor name of reviver.
-	 */
-
-	function getConstructorName(obj) {
-	  var receiver = obj.receiver
-	  return (receiver.constructor && receiver.constructor.name) || null
-	}
-
-
-/***/ },
-/* 109 */
-/***/ function(module, exports) {
-
-	/*!
-	 * depd
-	 * Copyright(c) 2015 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	'use strict'
-
-	/**
-	 * Module exports.
-	 * @public
-	 */
-
-	module.exports = eventListenerCount
-
-	/**
-	 * Get the count of listeners on an event emitter of a specific type.
-	 */
-
-	function eventListenerCount(emitter, type) {
-	  return emitter.listeners(type).length
-	}
-
-
-/***/ },
-/* 110 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -37108,12 +25857,12 @@
 	 * @private
 	 */
 
-	var bytes = __webpack_require__(111)
-	var contentType = __webpack_require__(112)
-	var createError = __webpack_require__(113)
+	var bytes = __webpack_require__(91)
+	var contentType = __webpack_require__(47)
+	var createError = __webpack_require__(49)
 	var debug = __webpack_require__(8)('body-parser:json')
-	var read = __webpack_require__(119)
-	var typeis = __webpack_require__(147)
+	var read = __webpack_require__(92)
+	var typeis = __webpack_require__(78)
 
 	/**
 	 * Module exports.
@@ -37272,7 +26021,7 @@
 
 
 /***/ },
-/* 111 */
+/* 91 */
 /***/ function(module, exports) {
 
 	/*!
@@ -37435,705 +26184,7 @@
 
 
 /***/ },
-/* 112 */
-/***/ function(module, exports) {
-
-	/*!
-	 * content-type
-	 * Copyright(c) 2015 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	'use strict'
-
-	/**
-	 * RegExp to match *( ";" parameter ) in RFC 7231 sec 3.1.1.1
-	 *
-	 * parameter     = token "=" ( token / quoted-string )
-	 * token         = 1*tchar
-	 * tchar         = "!" / "#" / "$" / "%" / "&" / "'" / "*"
-	 *               / "+" / "-" / "." / "^" / "_" / "`" / "|" / "~"
-	 *               / DIGIT / ALPHA
-	 *               ; any VCHAR, except delimiters
-	 * quoted-string = DQUOTE *( qdtext / quoted-pair ) DQUOTE
-	 * qdtext        = HTAB / SP / %x21 / %x23-5B / %x5D-7E / obs-text
-	 * obs-text      = %x80-FF
-	 * quoted-pair   = "\" ( HTAB / SP / VCHAR / obs-text )
-	 */
-	var paramRegExp = /; *([!#$%&'\*\+\-\.\^_`\|~0-9A-Za-z]+) *= *("(?:[\u000b\u0020\u0021\u0023-\u005b\u005d-\u007e\u0080-\u00ff]|\\[\u000b\u0020-\u00ff])*"|[!#$%&'\*\+\-\.\^_`\|~0-9A-Za-z]+) */g
-	var textRegExp = /^[\u000b\u0020-\u007e\u0080-\u00ff]+$/
-	var tokenRegExp = /^[!#$%&'\*\+\-\.\^_`\|~0-9A-Za-z]+$/
-
-	/**
-	 * RegExp to match quoted-pair in RFC 7230 sec 3.2.6
-	 *
-	 * quoted-pair = "\" ( HTAB / SP / VCHAR / obs-text )
-	 * obs-text    = %x80-FF
-	 */
-	var qescRegExp = /\\([\u000b\u0020-\u00ff])/g
-
-	/**
-	 * RegExp to match chars that must be quoted-pair in RFC 7230 sec 3.2.6
-	 */
-	var quoteRegExp = /([\\"])/g
-
-	/**
-	 * RegExp to match type in RFC 6838
-	 *
-	 * media-type = type "/" subtype
-	 * type       = token
-	 * subtype    = token
-	 */
-	var typeRegExp = /^[!#$%&'\*\+\-\.\^_`\|~0-9A-Za-z]+\/[!#$%&'\*\+\-\.\^_`\|~0-9A-Za-z]+$/
-
-	/**
-	 * Module exports.
-	 * @public
-	 */
-
-	exports.format = format
-	exports.parse = parse
-
-	/**
-	 * Format object to media type.
-	 *
-	 * @param {object} obj
-	 * @return {string}
-	 * @public
-	 */
-
-	function format(obj) {
-	  if (!obj || typeof obj !== 'object') {
-	    throw new TypeError('argument obj is required')
-	  }
-
-	  var parameters = obj.parameters
-	  var type = obj.type
-
-	  if (!type || !typeRegExp.test(type)) {
-	    throw new TypeError('invalid type')
-	  }
-
-	  var string = type
-
-	  // append parameters
-	  if (parameters && typeof parameters === 'object') {
-	    var param
-	    var params = Object.keys(parameters).sort()
-
-	    for (var i = 0; i < params.length; i++) {
-	      param = params[i]
-
-	      if (!tokenRegExp.test(param)) {
-	        throw new TypeError('invalid parameter name')
-	      }
-
-	      string += '; ' + param + '=' + qstring(parameters[param])
-	    }
-	  }
-
-	  return string
-	}
-
-	/**
-	 * Parse media type to object.
-	 *
-	 * @param {string|object} string
-	 * @return {Object}
-	 * @public
-	 */
-
-	function parse(string) {
-	  if (!string) {
-	    throw new TypeError('argument string is required')
-	  }
-
-	  if (typeof string === 'object') {
-	    // support req/res-like objects as argument
-	    string = getcontenttype(string)
-
-	    if (typeof string !== 'string') {
-	      throw new TypeError('content-type header is missing from object');
-	    }
-	  }
-
-	  if (typeof string !== 'string') {
-	    throw new TypeError('argument string is required to be a string')
-	  }
-
-	  var index = string.indexOf(';')
-	  var type = index !== -1
-	    ? string.substr(0, index).trim()
-	    : string.trim()
-
-	  if (!typeRegExp.test(type)) {
-	    throw new TypeError('invalid media type')
-	  }
-
-	  var key
-	  var match
-	  var obj = new ContentType(type.toLowerCase())
-	  var value
-
-	  paramRegExp.lastIndex = index
-
-	  while (match = paramRegExp.exec(string)) {
-	    if (match.index !== index) {
-	      throw new TypeError('invalid parameter format')
-	    }
-
-	    index += match[0].length
-	    key = match[1].toLowerCase()
-	    value = match[2]
-
-	    if (value[0] === '"') {
-	      // remove quotes and escapes
-	      value = value
-	        .substr(1, value.length - 2)
-	        .replace(qescRegExp, '$1')
-	    }
-
-	    obj.parameters[key] = value
-	  }
-
-	  if (index !== -1 && index !== string.length) {
-	    throw new TypeError('invalid parameter format')
-	  }
-
-	  return obj
-	}
-
-	/**
-	 * Get content-type from req/res objects.
-	 *
-	 * @param {object}
-	 * @return {Object}
-	 * @private
-	 */
-
-	function getcontenttype(obj) {
-	  if (typeof obj.getHeader === 'function') {
-	    // res-like
-	    return obj.getHeader('content-type')
-	  }
-
-	  if (typeof obj.headers === 'object') {
-	    // req-like
-	    return obj.headers && obj.headers['content-type']
-	  }
-	}
-
-	/**
-	 * Quote a string if necessary.
-	 *
-	 * @param {string} val
-	 * @return {string}
-	 * @private
-	 */
-
-	function qstring(val) {
-	  var str = String(val)
-
-	  // no need to quote tokens
-	  if (tokenRegExp.test(str)) {
-	    return str
-	  }
-
-	  if (str.length > 0 && !textRegExp.test(str)) {
-	    throw new TypeError('invalid parameter value')
-	  }
-
-	  return '"' + str.replace(quoteRegExp, '\\$1') + '"'
-	}
-
-	/**
-	 * Class to represent a content type.
-	 * @private
-	 */
-	function ContentType(type) {
-	  this.parameters = Object.create(null)
-	  this.type = type
-	}
-
-
-/***/ },
-/* 113 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/*!
-	 * http-errors
-	 * Copyright(c) 2014 Jonathan Ong
-	 * Copyright(c) 2016 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	'use strict'
-
-	/**
-	 * Module dependencies.
-	 * @private
-	 */
-
-	var setPrototypeOf = __webpack_require__(114)
-	var statuses = __webpack_require__(115)
-	var inherits = __webpack_require__(117)
-
-	/**
-	 * Module exports.
-	 * @public
-	 */
-
-	module.exports = createError
-	module.exports.HttpError = createHttpErrorConstructor()
-
-	// Populate exports for all constructors
-	populateConstructorExports(module.exports, statuses.codes, module.exports.HttpError)
-
-	/**
-	 * Create a new HTTP Error.
-	 *
-	 * @returns {Error}
-	 * @public
-	 */
-
-	function createError () {
-	  // so much arity going on ~_~
-	  var err
-	  var msg
-	  var status = 500
-	  var props = {}
-	  for (var i = 0; i < arguments.length; i++) {
-	    var arg = arguments[i]
-	    if (arg instanceof Error) {
-	      err = arg
-	      status = err.status || err.statusCode || status
-	      continue
-	    }
-	    switch (typeof arg) {
-	      case 'string':
-	        msg = arg
-	        break
-	      case 'number':
-	        status = arg
-	        break
-	      case 'object':
-	        props = arg
-	        break
-	    }
-	  }
-
-	  if (typeof status !== 'number' || !statuses[status]) {
-	    status = 500
-	  }
-
-	  // constructor
-	  var HttpError = createError[status]
-
-	  if (!err) {
-	    // create error
-	    err = HttpError
-	      ? new HttpError(msg)
-	      : new Error(msg || statuses[status])
-	    Error.captureStackTrace(err, createError)
-	  }
-
-	  if (!HttpError || !(err instanceof HttpError)) {
-	    // add properties to generic error
-	    err.expose = status < 500
-	    err.status = err.statusCode = status
-	  }
-
-	  for (var key in props) {
-	    if (key !== 'status' && key !== 'statusCode') {
-	      err[key] = props[key]
-	    }
-	  }
-
-	  return err
-	}
-
-	/**
-	 * Create HTTP error abstract base class.
-	 * @private
-	 */
-
-	function createHttpErrorConstructor () {
-	  function HttpError () {
-	    throw new TypeError('cannot construct abstract class')
-	  }
-
-	  inherits(HttpError, Error)
-
-	  return HttpError
-	}
-
-	/**
-	 * Create a constructor for a client error.
-	 * @private
-	 */
-
-	function createClientErrorConstructor (HttpError, name, code) {
-	  var className = name.match(/Error$/) ? name : name + 'Error'
-
-	  function ClientError (message) {
-	    // create the error object
-	    var err = new Error(message != null ? message : statuses[code])
-
-	    // capture a stack trace to the construction point
-	    Error.captureStackTrace(err, ClientError)
-
-	    // adjust the [[Prototype]]
-	    setPrototypeOf(err, ClientError.prototype)
-
-	    // redefine the error name
-	    Object.defineProperty(err, 'name', {
-	      enumerable: false,
-	      configurable: true,
-	      value: className,
-	      writable: true
-	    })
-
-	    return err
-	  }
-
-	  inherits(ClientError, HttpError)
-
-	  ClientError.prototype.status = code
-	  ClientError.prototype.statusCode = code
-	  ClientError.prototype.expose = true
-
-	  return ClientError
-	}
-
-	/**
-	 * Create a constructor for a server error.
-	 * @private
-	 */
-
-	function createServerErrorConstructor (HttpError, name, code) {
-	  var className = name.match(/Error$/) ? name : name + 'Error'
-
-	  function ServerError (message) {
-	    // create the error object
-	    var err = new Error(message != null ? message : statuses[code])
-
-	    // capture a stack trace to the construction point
-	    Error.captureStackTrace(err, ServerError)
-
-	    // adjust the [[Prototype]]
-	    setPrototypeOf(err, ServerError.prototype)
-
-	    // redefine the error name
-	    Object.defineProperty(err, 'name', {
-	      enumerable: false,
-	      configurable: true,
-	      value: className,
-	      writable: true
-	    })
-
-	    return err
-	  }
-
-	  inherits(ServerError, HttpError)
-
-	  ServerError.prototype.status = code
-	  ServerError.prototype.statusCode = code
-	  ServerError.prototype.expose = false
-
-	  return ServerError
-	}
-
-	/**
-	 * Populate the exports object with constructors for every error class.
-	 * @private
-	 */
-
-	function populateConstructorExports (exports, codes, HttpError) {
-	  codes.forEach(function forEachCode (code) {
-	    var CodeError
-	    var name = toIdentifier(statuses[code])
-
-	    switch (String(code).charAt(0)) {
-	      case '4':
-	        CodeError = createClientErrorConstructor(HttpError, name, code)
-	        break
-	      case '5':
-	        CodeError = createServerErrorConstructor(HttpError, name, code)
-	        break
-	    }
-
-	    if (CodeError) {
-	      // export the constructor
-	      exports[code] = CodeError
-	      exports[name] = CodeError
-	    }
-	  })
-
-	  // backwards-compatibility
-	  exports["I'mateapot"] = exports.ImATeapot
-	}
-
-	/**
-	 * Convert a string of words to a JavaScript identifier.
-	 * @private
-	 */
-
-	function toIdentifier (str) {
-	  return str.split(' ').map(function (token) {
-	    return token.slice(0, 1).toUpperCase() + token.slice(1)
-	  }).join('').replace(/[^ _0-9a-z]/gi, '')
-	}
-
-
-/***/ },
-/* 114 */
-/***/ function(module, exports) {
-
-	module.exports = Object.setPrototypeOf || ({__proto__:[]} instanceof Array ? setProtoOf : mixinProperties);
-
-	function setProtoOf(obj, proto) {
-		obj.__proto__ = proto;
-		return obj;
-	}
-
-	function mixinProperties(obj, proto) {
-		for (var prop in proto) {
-			obj[prop] = proto[prop];
-		}
-		return obj;
-	}
-
-
-/***/ },
-/* 115 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/*!
-	 * statuses
-	 * Copyright(c) 2014 Jonathan Ong
-	 * Copyright(c) 2016 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	'use strict'
-
-	/**
-	 * Module dependencies.
-	 * @private
-	 */
-
-	var codes = __webpack_require__(116)
-
-	/**
-	 * Module exports.
-	 * @public
-	 */
-
-	module.exports = status
-
-	// array of status codes
-	status.codes = populateStatusesMap(status, codes)
-
-	// status codes for redirects
-	status.redirect = {
-	  300: true,
-	  301: true,
-	  302: true,
-	  303: true,
-	  305: true,
-	  307: true,
-	  308: true
-	}
-
-	// status codes for empty bodies
-	status.empty = {
-	  204: true,
-	  205: true,
-	  304: true
-	}
-
-	// status codes for when you should retry the request
-	status.retry = {
-	  502: true,
-	  503: true,
-	  504: true
-	}
-
-	/**
-	 * Populate the statuses map for given codes.
-	 * @private
-	 */
-
-	function populateStatusesMap (statuses, codes) {
-	  var arr = []
-
-	  Object.keys(codes).forEach(function forEachCode (code) {
-	    var message = codes[code]
-	    var status = Number(code)
-
-	    // Populate properties
-	    statuses[status] = message
-	    statuses[message] = status
-	    statuses[message.toLowerCase()] = status
-
-	    // Add to array
-	    arr.push(status)
-	  })
-
-	  return arr
-	}
-
-	/**
-	 * Get the status code.
-	 *
-	 * Given a number, this will throw if it is not a known status
-	 * code, otherwise the code will be returned. Given a string,
-	 * the string will be parsed for a number and return the code
-	 * if valid, otherwise will lookup the code assuming this is
-	 * the status message.
-	 *
-	 * @param {string|number} code
-	 * @returns {number}
-	 * @public
-	 */
-
-	function status (code) {
-	  if (typeof code === 'number') {
-	    if (!status[code]) throw new Error('invalid status code: ' + code)
-	    return code
-	  }
-
-	  if (typeof code !== 'string') {
-	    throw new TypeError('code must be a number or string')
-	  }
-
-	  // '403'
-	  var n = parseInt(code, 10)
-	  if (!isNaN(n)) {
-	    if (!status[n]) throw new Error('invalid status code: ' + n)
-	    return n
-	  }
-
-	  n = status[code.toLowerCase()]
-	  if (!n) throw new Error('invalid status message: "' + code + '"')
-	  return n
-	}
-
-
-/***/ },
-/* 116 */
-/***/ function(module, exports) {
-
-	module.exports = {
-		"100": "Continue",
-		"101": "Switching Protocols",
-		"102": "Processing",
-		"200": "OK",
-		"201": "Created",
-		"202": "Accepted",
-		"203": "Non-Authoritative Information",
-		"204": "No Content",
-		"205": "Reset Content",
-		"206": "Partial Content",
-		"207": "Multi-Status",
-		"208": "Already Reported",
-		"226": "IM Used",
-		"300": "Multiple Choices",
-		"301": "Moved Permanently",
-		"302": "Found",
-		"303": "See Other",
-		"304": "Not Modified",
-		"305": "Use Proxy",
-		"306": "(Unused)",
-		"307": "Temporary Redirect",
-		"308": "Permanent Redirect",
-		"400": "Bad Request",
-		"401": "Unauthorized",
-		"402": "Payment Required",
-		"403": "Forbidden",
-		"404": "Not Found",
-		"405": "Method Not Allowed",
-		"406": "Not Acceptable",
-		"407": "Proxy Authentication Required",
-		"408": "Request Timeout",
-		"409": "Conflict",
-		"410": "Gone",
-		"411": "Length Required",
-		"412": "Precondition Failed",
-		"413": "Payload Too Large",
-		"414": "URI Too Long",
-		"415": "Unsupported Media Type",
-		"416": "Range Not Satisfiable",
-		"417": "Expectation Failed",
-		"418": "I'm a teapot",
-		"421": "Misdirected Request",
-		"422": "Unprocessable Entity",
-		"423": "Locked",
-		"424": "Failed Dependency",
-		"425": "Unordered Collection",
-		"426": "Upgrade Required",
-		"428": "Precondition Required",
-		"429": "Too Many Requests",
-		"431": "Request Header Fields Too Large",
-		"451": "Unavailable For Legal Reasons",
-		"500": "Internal Server Error",
-		"501": "Not Implemented",
-		"502": "Bad Gateway",
-		"503": "Service Unavailable",
-		"504": "Gateway Timeout",
-		"505": "HTTP Version Not Supported",
-		"506": "Variant Also Negotiates",
-		"507": "Insufficient Storage",
-		"508": "Loop Detected",
-		"509": "Bandwidth Limit Exceeded",
-		"510": "Not Extended",
-		"511": "Network Authentication Required"
-	};
-
-/***/ },
-/* 117 */
-/***/ function(module, exports, __webpack_require__) {
-
-	try {
-	  var util = __webpack_require__(10);
-	  if (typeof util.inherits !== 'function') throw '';
-	  module.exports = util.inherits;
-	} catch (e) {
-	  module.exports = __webpack_require__(118);
-	}
-
-
-/***/ },
-/* 118 */
-/***/ function(module, exports) {
-
-	if (typeof Object.create === 'function') {
-	  // implementation from standard node.js 'util' module
-	  module.exports = function inherits(ctor, superCtor) {
-	    ctor.super_ = superCtor
-	    ctor.prototype = Object.create(superCtor.prototype, {
-	      constructor: {
-	        value: ctor,
-	        enumerable: false,
-	        writable: true,
-	        configurable: true
-	      }
-	    });
-	  };
-	} else {
-	  // old school shim for old browsers
-	  module.exports = function inherits(ctor, superCtor) {
-	    ctor.super_ = superCtor
-	    var TempCtor = function () {}
-	    TempCtor.prototype = superCtor.prototype
-	    ctor.prototype = new TempCtor()
-	    ctor.prototype.constructor = ctor
-	  }
-	}
-
-
-/***/ },
-/* 119 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -38149,11 +26200,11 @@
 	 * @private
 	 */
 
-	var createError = __webpack_require__(113)
-	var getBody = __webpack_require__(120)
-	var iconv = __webpack_require__(121)
-	var onFinished = __webpack_require__(144)
-	var zlib = __webpack_require__(146)
+	var createError = __webpack_require__(49)
+	var getBody = __webpack_require__(93)
+	var iconv = __webpack_require__(94)
+	var onFinished = __webpack_require__(16)
+	var zlib = __webpack_require__(116)
 
 	/**
 	 * Module exports.
@@ -38327,7 +26378,7 @@
 
 
 /***/ },
-/* 120 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -38344,9 +26395,9 @@
 	 * @private
 	 */
 
-	var bytes = __webpack_require__(111)
-	var iconv = __webpack_require__(121)
-	var unpipe = __webpack_require__(143)
+	var bytes = __webpack_require__(91)
+	var iconv = __webpack_require__(94)
+	var unpipe = __webpack_require__(20)
 
 	/**
 	 * Module exports.
@@ -38653,12 +26704,12 @@
 
 
 /***/ },
-/* 121 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict"
 
-	var bomHandling = __webpack_require__(122),
+	var bomHandling = __webpack_require__(95),
 	    iconv = module.exports;
 
 	// All codecs and aliases are kept here, keyed by encoding name/alias.
@@ -38716,7 +26767,7 @@
 	iconv._codecDataCache = {};
 	iconv.getCodec = function getCodec(encoding) {
 	    if (!iconv.encodings)
-	        iconv.encodings = __webpack_require__(123); // Lazy load all encoding definitions.
+	        iconv.encodings = __webpack_require__(96); // Lazy load all encoding definitions.
 	    
 	    // Canonicalize encoding name: strip all non-alphanumeric chars and appended year.
 	    var enc = (''+encoding).toLowerCase().replace(/[^0-9a-z]|:\d{4}$/g, "");
@@ -38790,17 +26841,17 @@
 	    // Load streaming support in Node v0.10+
 	    var nodeVerArr = nodeVer.split(".").map(Number);
 	    if (nodeVerArr[0] > 0 || nodeVerArr[1] >= 10) {
-	        __webpack_require__(141)(iconv);
+	        __webpack_require__(114)(iconv);
 	    }
 
 	    // Load Node primitive extensions.
-	    __webpack_require__(142)(iconv);
+	    __webpack_require__(115)(iconv);
 	}
 
 
 
 /***/ },
-/* 122 */
+/* 95 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -38858,7 +26909,7 @@
 
 
 /***/ },
-/* 123 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict"
@@ -38866,14 +26917,14 @@
 	// Update this array if you add/rename/remove files in this directory.
 	// We support Browserify by skipping automatic module discovery and requiring modules directly.
 	var modules = [
-	    __webpack_require__(124),
-	    __webpack_require__(126),
-	    __webpack_require__(127),
-	    __webpack_require__(128),
-	    __webpack_require__(129),
-	    __webpack_require__(130),
-	    __webpack_require__(131),
-	    __webpack_require__(132),
+	    __webpack_require__(97),
+	    __webpack_require__(99),
+	    __webpack_require__(100),
+	    __webpack_require__(101),
+	    __webpack_require__(102),
+	    __webpack_require__(103),
+	    __webpack_require__(104),
+	    __webpack_require__(105),
 	];
 
 	// Put all encoding/alias/codec definitions to single object and export it. 
@@ -38886,7 +26937,7 @@
 
 
 /***/ },
-/* 124 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict"
@@ -38936,7 +26987,7 @@
 	//------------------------------------------------------------------------------
 
 	// We use node.js internal decoder. Its signature is the same as ours.
-	var StringDecoder = __webpack_require__(125).StringDecoder;
+	var StringDecoder = __webpack_require__(98).StringDecoder;
 
 	if (!StringDecoder.prototype.end) // Node v0.8 doesn't have this method.
 	    StringDecoder.prototype.end = function() {};
@@ -39079,13 +27130,13 @@
 
 
 /***/ },
-/* 125 */
+/* 98 */
 /***/ function(module, exports) {
 
 	module.exports = require("string_decoder");
 
 /***/ },
-/* 126 */
+/* 99 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -39265,7 +27316,7 @@
 
 
 /***/ },
-/* 127 */
+/* 100 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -39560,7 +27611,7 @@
 
 
 /***/ },
-/* 128 */
+/* 101 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -39638,7 +27689,7 @@
 
 
 /***/ },
-/* 129 */
+/* 102 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -39813,7 +27864,7 @@
 
 
 /***/ },
-/* 130 */
+/* 103 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -40269,7 +28320,7 @@
 	}
 
 /***/ },
-/* 131 */
+/* 104 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -40829,7 +28880,7 @@
 
 
 /***/ },
-/* 132 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict"
@@ -40875,7 +28926,7 @@
 
 	    'shiftjis': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(133) },
+	        table: function() { return __webpack_require__(106) },
 	        encodeAdd: {'\u00a5': 0x5C, '\u203E': 0x7E},
 	        encodeSkipVals: [{from: 0xED40, to: 0xF940}],
 	    },
@@ -40890,7 +28941,7 @@
 
 	    'eucjp': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(134) },
+	        table: function() { return __webpack_require__(107) },
 	        encodeAdd: {'\u00a5': 0x5C, '\u203E': 0x7E},
 	    },
 
@@ -40916,21 +28967,21 @@
 	    '936': 'cp936',
 	    'cp936': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(135) },
+	        table: function() { return __webpack_require__(108) },
 	    },
 
 	    // GBK (~22000 chars) is an extension of CP936 that added user-mapped chars and some other.
 	    'gbk': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(135).concat(__webpack_require__(136)) },
+	        table: function() { return __webpack_require__(108).concat(__webpack_require__(109)) },
 	    },
 	    'xgbk': 'gbk',
 
 	    // GB18030 is an algorithmic extension of GBK.
 	    'gb18030': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(135).concat(__webpack_require__(136)) },
-	        gb18030: function() { return __webpack_require__(137) },
+	        table: function() { return __webpack_require__(108).concat(__webpack_require__(109)) },
+	        gb18030: function() { return __webpack_require__(110) },
 	    },
 
 	    'chinese': 'gb18030',
@@ -40946,7 +28997,7 @@
 	    '949': 'cp949',
 	    'cp949': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(138) },
+	        table: function() { return __webpack_require__(111) },
 	    },
 
 	    'cseuckr': 'cp949',
@@ -40986,14 +29037,14 @@
 	    '950': 'cp950',
 	    'cp950': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(139) },
+	        table: function() { return __webpack_require__(112) },
 	    },
 
 	    // Big5 has many variations and is an extension of cp950. We use Encoding Standard's as a consensus.
 	    'big5': 'big5hkscs',
 	    'big5hkscs': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(139).concat(__webpack_require__(140)) },
+	        table: function() { return __webpack_require__(112).concat(__webpack_require__(113)) },
 	        encodeSkipVals: [0xa2cc],
 	    },
 
@@ -41005,7 +29056,7 @@
 
 
 /***/ },
-/* 133 */
+/* 106 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -41556,7 +29607,7 @@
 	];
 
 /***/ },
-/* 134 */
+/* 107 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -42381,7 +30432,7 @@
 	];
 
 /***/ },
-/* 135 */
+/* 108 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -45005,7 +33056,7 @@
 	];
 
 /***/ },
-/* 136 */
+/* 109 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -45268,7 +33319,7 @@
 	];
 
 /***/ },
-/* 137 */
+/* 110 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -45693,7 +33744,7 @@
 	};
 
 /***/ },
-/* 138 */
+/* 111 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -48076,7 +36127,7 @@
 	];
 
 /***/ },
-/* 139 */
+/* 112 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -48808,7 +36859,7 @@
 	];
 
 /***/ },
-/* 140 */
+/* 113 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -49317,12 +37368,12 @@
 	];
 
 /***/ },
-/* 141 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict"
 
-	var Transform = __webpack_require__(56).Transform;
+	var Transform = __webpack_require__(54).Transform;
 
 
 	// == Exports ==================================================================
@@ -49443,7 +37494,7 @@
 
 
 /***/ },
-/* 142 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict"
@@ -49617,7 +37668,7 @@
 
 	        // -- Readable -------------------------------------------------------------
 	        if (iconv.supportsStreams) {
-	            var Readable = __webpack_require__(56).Readable;
+	            var Readable = __webpack_require__(54).Readable;
 
 	            original.ReadableSetEncoding = Readable.prototype.setEncoding;
 	            Readable.prototype.setEncoding = function setEncoding(enc, options) {
@@ -49651,7 +37702,7 @@
 	        Buffer.prototype.write = original.BufferWrite;
 
 	        if (iconv.supportsStreams) {
-	            var Readable = __webpack_require__(56).Readable;
+	            var Readable = __webpack_require__(54).Readable;
 
 	            Readable.prototype.setEncoding = original.ReadableSetEncoding;
 	            delete Readable.prototype.collect;
@@ -49663,9791 +37714,13 @@
 
 
 /***/ },
-/* 143 */
-/***/ function(module, exports) {
-
-	/*!
-	 * unpipe
-	 * Copyright(c) 2015 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	'use strict'
-
-	/**
-	 * Module exports.
-	 * @public
-	 */
-
-	module.exports = unpipe
-
-	/**
-	 * Determine if there are Node.js pipe-like data listeners.
-	 * @private
-	 */
-
-	function hasPipeDataListeners(stream) {
-	  var listeners = stream.listeners('data')
-
-	  for (var i = 0; i < listeners.length; i++) {
-	    if (listeners[i].name === 'ondata') {
-	      return true
-	    }
-	  }
-
-	  return false
-	}
-
-	/**
-	 * Unpipe a stream from all destinations.
-	 *
-	 * @param {object} stream
-	 * @public
-	 */
-
-	function unpipe(stream) {
-	  if (!stream) {
-	    throw new TypeError('argument stream is required')
-	  }
-
-	  if (typeof stream.unpipe === 'function') {
-	    // new-style
-	    stream.unpipe()
-	    return
-	  }
-
-	  // Node.js 0.8 hack
-	  if (!hasPipeDataListeners(stream)) {
-	    return
-	  }
-
-	  var listener
-	  var listeners = stream.listeners('close')
-
-	  for (var i = 0; i < listeners.length; i++) {
-	    listener = listeners[i]
-
-	    if (listener.name !== 'cleanup' && listener.name !== 'onclose') {
-	      continue
-	    }
-
-	    // invoke the listener
-	    listener.call(stream)
-	  }
-	}
-
-
-/***/ },
-/* 144 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/*!
-	 * on-finished
-	 * Copyright(c) 2013 Jonathan Ong
-	 * Copyright(c) 2014 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	'use strict'
-
-	/**
-	 * Module exports.
-	 * @public
-	 */
-
-	module.exports = onFinished
-	module.exports.isFinished = isFinished
-
-	/**
-	 * Module dependencies.
-	 * @private
-	 */
-
-	var first = __webpack_require__(145)
-
-	/**
-	 * Variables.
-	 * @private
-	 */
-
-	/* istanbul ignore next */
-	var defer = typeof setImmediate === 'function'
-	  ? setImmediate
-	  : function(fn){ process.nextTick(fn.bind.apply(fn, arguments)) }
-
-	/**
-	 * Invoke callback when the response has finished, useful for
-	 * cleaning up resources afterwards.
-	 *
-	 * @param {object} msg
-	 * @param {function} listener
-	 * @return {object}
-	 * @public
-	 */
-
-	function onFinished(msg, listener) {
-	  if (isFinished(msg) !== false) {
-	    defer(listener, null, msg)
-	    return msg
-	  }
-
-	  // attach the listener to the message
-	  attachListener(msg, listener)
-
-	  return msg
-	}
-
-	/**
-	 * Determine if message is already finished.
-	 *
-	 * @param {object} msg
-	 * @return {boolean}
-	 * @public
-	 */
-
-	function isFinished(msg) {
-	  var socket = msg.socket
-
-	  if (typeof msg.finished === 'boolean') {
-	    // OutgoingMessage
-	    return Boolean(msg.finished || (socket && !socket.writable))
-	  }
-
-	  if (typeof msg.complete === 'boolean') {
-	    // IncomingMessage
-	    return Boolean(msg.upgrade || !socket || !socket.readable || (msg.complete && !msg.readable))
-	  }
-
-	  // don't know
-	  return undefined
-	}
-
-	/**
-	 * Attach a finished listener to the message.
-	 *
-	 * @param {object} msg
-	 * @param {function} callback
-	 * @private
-	 */
-
-	function attachFinishedListener(msg, callback) {
-	  var eeMsg
-	  var eeSocket
-	  var finished = false
-
-	  function onFinish(error) {
-	    eeMsg.cancel()
-	    eeSocket.cancel()
-
-	    finished = true
-	    callback(error)
-	  }
-
-	  // finished on first message event
-	  eeMsg = eeSocket = first([[msg, 'end', 'finish']], onFinish)
-
-	  function onSocket(socket) {
-	    // remove listener
-	    msg.removeListener('socket', onSocket)
-
-	    if (finished) return
-	    if (eeMsg !== eeSocket) return
-
-	    // finished on first socket event
-	    eeSocket = first([[socket, 'error', 'close']], onFinish)
-	  }
-
-	  if (msg.socket) {
-	    // socket already assigned
-	    onSocket(msg.socket)
-	    return
-	  }
-
-	  // wait for socket to be assigned
-	  msg.on('socket', onSocket)
-
-	  if (msg.socket === undefined) {
-	    // node.js 0.8 patch
-	    patchAssignSocket(msg, onSocket)
-	  }
-	}
-
-	/**
-	 * Attach the listener to the message.
-	 *
-	 * @param {object} msg
-	 * @return {function}
-	 * @private
-	 */
-
-	function attachListener(msg, listener) {
-	  var attached = msg.__onFinished
-
-	  // create a private single listener with queue
-	  if (!attached || !attached.queue) {
-	    attached = msg.__onFinished = createListener(msg)
-	    attachFinishedListener(msg, attached)
-	  }
-
-	  attached.queue.push(listener)
-	}
-
-	/**
-	 * Create listener on message.
-	 *
-	 * @param {object} msg
-	 * @return {function}
-	 * @private
-	 */
-
-	function createListener(msg) {
-	  function listener(err) {
-	    if (msg.__onFinished === listener) msg.__onFinished = null
-	    if (!listener.queue) return
-
-	    var queue = listener.queue
-	    listener.queue = null
-
-	    for (var i = 0; i < queue.length; i++) {
-	      queue[i](err, msg)
-	    }
-	  }
-
-	  listener.queue = []
-
-	  return listener
-	}
-
-	/**
-	 * Patch ServerResponse.prototype.assignSocket for node.js 0.8.
-	 *
-	 * @param {ServerResponse} res
-	 * @param {function} callback
-	 * @private
-	 */
-
-	function patchAssignSocket(res, callback) {
-	  var assignSocket = res.assignSocket
-
-	  if (typeof assignSocket !== 'function') return
-
-	  // res.on('socket', callback) is broken in 0.8
-	  res.assignSocket = function _assignSocket(socket) {
-	    assignSocket.call(this, socket)
-	    callback(socket)
-	  }
-	}
-
-
-/***/ },
-/* 145 */
-/***/ function(module, exports) {
-
-	/*!
-	 * ee-first
-	 * Copyright(c) 2014 Jonathan Ong
-	 * MIT Licensed
-	 */
-
-	'use strict'
-
-	/**
-	 * Module exports.
-	 * @public
-	 */
-
-	module.exports = first
-
-	/**
-	 * Get the first event in a set of event emitters and event pairs.
-	 *
-	 * @param {array} stuff
-	 * @param {function} done
-	 * @public
-	 */
-
-	function first(stuff, done) {
-	  if (!Array.isArray(stuff))
-	    throw new TypeError('arg must be an array of [ee, events...] arrays')
-
-	  var cleanups = []
-
-	  for (var i = 0; i < stuff.length; i++) {
-	    var arr = stuff[i]
-
-	    if (!Array.isArray(arr) || arr.length < 2)
-	      throw new TypeError('each array member must be [ee, events...]')
-
-	    var ee = arr[0]
-
-	    for (var j = 1; j < arr.length; j++) {
-	      var event = arr[j]
-	      var fn = listener(event, callback)
-
-	      // listen to the event
-	      ee.on(event, fn)
-	      // push this listener to the list of cleanups
-	      cleanups.push({
-	        ee: ee,
-	        event: event,
-	        fn: fn,
-	      })
-	    }
-	  }
-
-	  function callback() {
-	    cleanup()
-	    done.apply(null, arguments)
-	  }
-
-	  function cleanup() {
-	    var x
-	    for (var i = 0; i < cleanups.length; i++) {
-	      x = cleanups[i]
-	      x.ee.removeListener(x.event, x.fn)
-	    }
-	  }
-
-	  function thunk(fn) {
-	    done = fn
-	  }
-
-	  thunk.cancel = cleanup
-
-	  return thunk
-	}
-
-	/**
-	 * Create the event listener.
-	 * @private
-	 */
-
-	function listener(event, done) {
-	  return function onevent(arg1) {
-	    var args = new Array(arguments.length)
-	    var ee = this
-	    var err = event === 'error'
-	      ? arg1
-	      : null
-
-	    // copy args to prevent arguments escaping scope
-	    for (var i = 0; i < args.length; i++) {
-	      args[i] = arguments[i]
-	    }
-
-	    done(err, ee, event, args)
-	  }
-	}
-
-
-/***/ },
-/* 146 */
+/* 116 */
 /***/ function(module, exports) {
 
 	module.exports = require("zlib");
 
 /***/ },
-/* 147 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/*!
-	 * type-is
-	 * Copyright(c) 2014 Jonathan Ong
-	 * Copyright(c) 2014-2015 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	'use strict'
-
-	/**
-	 * Module dependencies.
-	 * @private
-	 */
-
-	var typer = __webpack_require__(148)
-	var mime = __webpack_require__(149)
-
-	/**
-	 * Module exports.
-	 * @public
-	 */
-
-	module.exports = typeofrequest
-	module.exports.is = typeis
-	module.exports.hasBody = hasbody
-	module.exports.normalize = normalize
-	module.exports.match = mimeMatch
-
-	/**
-	 * Compare a `value` content-type with `types`.
-	 * Each `type` can be an extension like `html`,
-	 * a special shortcut like `multipart` or `urlencoded`,
-	 * or a mime type.
-	 *
-	 * If no types match, `false` is returned.
-	 * Otherwise, the first `type` that matches is returned.
-	 *
-	 * @param {String} value
-	 * @param {Array} types
-	 * @public
-	 */
-
-	function typeis (value, types_) {
-	  var i
-	  var types = types_
-
-	  // remove parameters and normalize
-	  var val = tryNormalizeType(value)
-
-	  // no type or invalid
-	  if (!val) {
-	    return false
-	  }
-
-	  // support flattened arguments
-	  if (types && !Array.isArray(types)) {
-	    types = new Array(arguments.length - 1)
-	    for (i = 0; i < types.length; i++) {
-	      types[i] = arguments[i + 1]
-	    }
-	  }
-
-	  // no types, return the content type
-	  if (!types || !types.length) {
-	    return val
-	  }
-
-	  var type
-	  for (i = 0; i < types.length; i++) {
-	    if (mimeMatch(normalize(type = types[i]), val)) {
-	      return type[0] === '+' || type.indexOf('*') !== -1
-	        ? val
-	        : type
-	    }
-	  }
-
-	  // no matches
-	  return false
-	}
-
-	/**
-	 * Check if a request has a request body.
-	 * A request with a body __must__ either have `transfer-encoding`
-	 * or `content-length` headers set.
-	 * http://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.3
-	 *
-	 * @param {Object} request
-	 * @return {Boolean}
-	 * @public
-	 */
-
-	function hasbody (req) {
-	  return req.headers['transfer-encoding'] !== undefined ||
-	    !isNaN(req.headers['content-length'])
-	}
-
-	/**
-	 * Check if the incoming request contains the "Content-Type"
-	 * header field, and it contains any of the give mime `type`s.
-	 * If there is no request body, `null` is returned.
-	 * If there is no content type, `false` is returned.
-	 * Otherwise, it returns the first `type` that matches.
-	 *
-	 * Examples:
-	 *
-	 *     // With Content-Type: text/html; charset=utf-8
-	 *     this.is('html'); // => 'html'
-	 *     this.is('text/html'); // => 'text/html'
-	 *     this.is('text/*', 'application/json'); // => 'text/html'
-	 *
-	 *     // When Content-Type is application/json
-	 *     this.is('json', 'urlencoded'); // => 'json'
-	 *     this.is('application/json'); // => 'application/json'
-	 *     this.is('html', 'application/*'); // => 'application/json'
-	 *
-	 *     this.is('html'); // => false
-	 *
-	 * @param {String|Array} types...
-	 * @return {String|false|null}
-	 * @public
-	 */
-
-	function typeofrequest (req, types_) {
-	  var types = types_
-
-	  // no body
-	  if (!hasbody(req)) {
-	    return null
-	  }
-
-	  // support flattened arguments
-	  if (arguments.length > 2) {
-	    types = new Array(arguments.length - 1)
-	    for (var i = 0; i < types.length; i++) {
-	      types[i] = arguments[i + 1]
-	    }
-	  }
-
-	  // request content type
-	  var value = req.headers['content-type']
-
-	  return typeis(value, types)
-	}
-
-	/**
-	 * Normalize a mime type.
-	 * If it's a shorthand, expand it to a valid mime type.
-	 *
-	 * In general, you probably want:
-	 *
-	 *   var type = is(req, ['urlencoded', 'json', 'multipart']);
-	 *
-	 * Then use the appropriate body parsers.
-	 * These three are the most common request body types
-	 * and are thus ensured to work.
-	 *
-	 * @param {String} type
-	 * @private
-	 */
-
-	function normalize (type) {
-	  if (typeof type !== 'string') {
-	    // invalid type
-	    return false
-	  }
-
-	  switch (type) {
-	    case 'urlencoded':
-	      return 'application/x-www-form-urlencoded'
-	    case 'multipart':
-	      return 'multipart/*'
-	  }
-
-	  if (type[0] === '+') {
-	    // "+json" -> "*/*+json" expando
-	    return '*/*' + type
-	  }
-
-	  return type.indexOf('/') === -1
-	    ? mime.lookup(type)
-	    : type
-	}
-
-	/**
-	 * Check if `expected` mime type
-	 * matches `actual` mime type with
-	 * wildcard and +suffix support.
-	 *
-	 * @param {String} expected
-	 * @param {String} actual
-	 * @return {Boolean}
-	 * @private
-	 */
-
-	function mimeMatch (expected, actual) {
-	  // invalid type
-	  if (expected === false) {
-	    return false
-	  }
-
-	  // split types
-	  var actualParts = actual.split('/')
-	  var expectedParts = expected.split('/')
-
-	  // invalid format
-	  if (actualParts.length !== 2 || expectedParts.length !== 2) {
-	    return false
-	  }
-
-	  // validate type
-	  if (expectedParts[0] !== '*' && expectedParts[0] !== actualParts[0]) {
-	    return false
-	  }
-
-	  // validate suffix wildcard
-	  if (expectedParts[1].substr(0, 2) === '*+') {
-	    return expectedParts[1].length <= actualParts[1].length + 1 &&
-	      expectedParts[1].substr(1) === actualParts[1].substr(1 - expectedParts[1].length)
-	  }
-
-	  // validate subtype
-	  if (expectedParts[1] !== '*' && expectedParts[1] !== actualParts[1]) {
-	    return false
-	  }
-
-	  return true
-	}
-
-	/**
-	 * Normalize a type and remove parameters.
-	 *
-	 * @param {string} value
-	 * @return {string}
-	 * @private
-	 */
-
-	function normalizeType (value) {
-	  // parse the type
-	  var type = typer.parse(value)
-
-	  // remove the parameters
-	  type.parameters = undefined
-
-	  // reformat it
-	  return typer.format(type)
-	}
-
-	/**
-	 * Try to normalize a type and remove parameters.
-	 *
-	 * @param {string} value
-	 * @return {string}
-	 * @private
-	 */
-
-	function tryNormalizeType (value) {
-	  try {
-	    return normalizeType(value)
-	  } catch (err) {
-	    return null
-	  }
-	}
-
-
-/***/ },
-/* 148 */
-/***/ function(module, exports) {
-
-	/*!
-	 * media-typer
-	 * Copyright(c) 2014 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	/**
-	 * RegExp to match *( ";" parameter ) in RFC 2616 sec 3.7
-	 *
-	 * parameter     = token "=" ( token | quoted-string )
-	 * token         = 1*<any CHAR except CTLs or separators>
-	 * separators    = "(" | ")" | "<" | ">" | "@"
-	 *               | "," | ";" | ":" | "\" | <">
-	 *               | "/" | "[" | "]" | "?" | "="
-	 *               | "{" | "}" | SP | HT
-	 * quoted-string = ( <"> *(qdtext | quoted-pair ) <"> )
-	 * qdtext        = <any TEXT except <">>
-	 * quoted-pair   = "\" CHAR
-	 * CHAR          = <any US-ASCII character (octets 0 - 127)>
-	 * TEXT          = <any OCTET except CTLs, but including LWS>
-	 * LWS           = [CRLF] 1*( SP | HT )
-	 * CRLF          = CR LF
-	 * CR            = <US-ASCII CR, carriage return (13)>
-	 * LF            = <US-ASCII LF, linefeed (10)>
-	 * SP            = <US-ASCII SP, space (32)>
-	 * SHT           = <US-ASCII HT, horizontal-tab (9)>
-	 * CTL           = <any US-ASCII control character (octets 0 - 31) and DEL (127)>
-	 * OCTET         = <any 8-bit sequence of data>
-	 */
-	var paramRegExp = /; *([!#$%&'\*\+\-\.0-9A-Z\^_`a-z\|~]+) *= *("(?:[ !\u0023-\u005b\u005d-\u007e\u0080-\u00ff]|\\[\u0020-\u007e])*"|[!#$%&'\*\+\-\.0-9A-Z\^_`a-z\|~]+) */g;
-	var textRegExp = /^[\u0020-\u007e\u0080-\u00ff]+$/
-	var tokenRegExp = /^[!#$%&'\*\+\-\.0-9A-Z\^_`a-z\|~]+$/
-
-	/**
-	 * RegExp to match quoted-pair in RFC 2616
-	 *
-	 * quoted-pair = "\" CHAR
-	 * CHAR        = <any US-ASCII character (octets 0 - 127)>
-	 */
-	var qescRegExp = /\\([\u0000-\u007f])/g;
-
-	/**
-	 * RegExp to match chars that must be quoted-pair in RFC 2616
-	 */
-	var quoteRegExp = /([\\"])/g;
-
-	/**
-	 * RegExp to match type in RFC 6838
-	 *
-	 * type-name = restricted-name
-	 * subtype-name = restricted-name
-	 * restricted-name = restricted-name-first *126restricted-name-chars
-	 * restricted-name-first  = ALPHA / DIGIT
-	 * restricted-name-chars  = ALPHA / DIGIT / "!" / "#" /
-	 *                          "$" / "&" / "-" / "^" / "_"
-	 * restricted-name-chars =/ "." ; Characters before first dot always
-	 *                              ; specify a facet name
-	 * restricted-name-chars =/ "+" ; Characters after last plus always
-	 *                              ; specify a structured syntax suffix
-	 * ALPHA =  %x41-5A / %x61-7A   ; A-Z / a-z
-	 * DIGIT =  %x30-39             ; 0-9
-	 */
-	var subtypeNameRegExp = /^[A-Za-z0-9][A-Za-z0-9!#$&^_.-]{0,126}$/
-	var typeNameRegExp = /^[A-Za-z0-9][A-Za-z0-9!#$&^_-]{0,126}$/
-	var typeRegExp = /^ *([A-Za-z0-9][A-Za-z0-9!#$&^_-]{0,126})\/([A-Za-z0-9][A-Za-z0-9!#$&^_.+-]{0,126}) *$/;
-
-	/**
-	 * Module exports.
-	 */
-
-	exports.format = format
-	exports.parse = parse
-
-	/**
-	 * Format object to media type.
-	 *
-	 * @param {object} obj
-	 * @return {string}
-	 * @api public
-	 */
-
-	function format(obj) {
-	  if (!obj || typeof obj !== 'object') {
-	    throw new TypeError('argument obj is required')
-	  }
-
-	  var parameters = obj.parameters
-	  var subtype = obj.subtype
-	  var suffix = obj.suffix
-	  var type = obj.type
-
-	  if (!type || !typeNameRegExp.test(type)) {
-	    throw new TypeError('invalid type')
-	  }
-
-	  if (!subtype || !subtypeNameRegExp.test(subtype)) {
-	    throw new TypeError('invalid subtype')
-	  }
-
-	  // format as type/subtype
-	  var string = type + '/' + subtype
-
-	  // append +suffix
-	  if (suffix) {
-	    if (!typeNameRegExp.test(suffix)) {
-	      throw new TypeError('invalid suffix')
-	    }
-
-	    string += '+' + suffix
-	  }
-
-	  // append parameters
-	  if (parameters && typeof parameters === 'object') {
-	    var param
-	    var params = Object.keys(parameters).sort()
-
-	    for (var i = 0; i < params.length; i++) {
-	      param = params[i]
-
-	      if (!tokenRegExp.test(param)) {
-	        throw new TypeError('invalid parameter name')
-	      }
-
-	      string += '; ' + param + '=' + qstring(parameters[param])
-	    }
-	  }
-
-	  return string
-	}
-
-	/**
-	 * Parse media type to object.
-	 *
-	 * @param {string|object} string
-	 * @return {Object}
-	 * @api public
-	 */
-
-	function parse(string) {
-	  if (!string) {
-	    throw new TypeError('argument string is required')
-	  }
-
-	  // support req/res-like objects as argument
-	  if (typeof string === 'object') {
-	    string = getcontenttype(string)
-	  }
-
-	  if (typeof string !== 'string') {
-	    throw new TypeError('argument string is required to be a string')
-	  }
-
-	  var index = string.indexOf(';')
-	  var type = index !== -1
-	    ? string.substr(0, index)
-	    : string
-
-	  var key
-	  var match
-	  var obj = splitType(type)
-	  var params = {}
-	  var value
-
-	  paramRegExp.lastIndex = index
-
-	  while (match = paramRegExp.exec(string)) {
-	    if (match.index !== index) {
-	      throw new TypeError('invalid parameter format')
-	    }
-
-	    index += match[0].length
-	    key = match[1].toLowerCase()
-	    value = match[2]
-
-	    if (value[0] === '"') {
-	      // remove quotes and escapes
-	      value = value
-	        .substr(1, value.length - 2)
-	        .replace(qescRegExp, '$1')
-	    }
-
-	    params[key] = value
-	  }
-
-	  if (index !== -1 && index !== string.length) {
-	    throw new TypeError('invalid parameter format')
-	  }
-
-	  obj.parameters = params
-
-	  return obj
-	}
-
-	/**
-	 * Get content-type from req/res objects.
-	 *
-	 * @param {object}
-	 * @return {Object}
-	 * @api private
-	 */
-
-	function getcontenttype(obj) {
-	  if (typeof obj.getHeader === 'function') {
-	    // res-like
-	    return obj.getHeader('content-type')
-	  }
-
-	  if (typeof obj.headers === 'object') {
-	    // req-like
-	    return obj.headers && obj.headers['content-type']
-	  }
-	}
-
-	/**
-	 * Quote a string if necessary.
-	 *
-	 * @param {string} val
-	 * @return {string}
-	 * @api private
-	 */
-
-	function qstring(val) {
-	  var str = String(val)
-
-	  // no need to quote tokens
-	  if (tokenRegExp.test(str)) {
-	    return str
-	  }
-
-	  if (str.length > 0 && !textRegExp.test(str)) {
-	    throw new TypeError('invalid parameter value')
-	  }
-
-	  return '"' + str.replace(quoteRegExp, '\\$1') + '"'
-	}
-
-	/**
-	 * Simply "type/subtype+siffx" into parts.
-	 *
-	 * @param {string} string
-	 * @return {Object}
-	 * @api private
-	 */
-
-	function splitType(string) {
-	  var match = typeRegExp.exec(string.toLowerCase())
-
-	  if (!match) {
-	    throw new TypeError('invalid media type')
-	  }
-
-	  var type = match[1]
-	  var subtype = match[2]
-	  var suffix
-
-	  // suffix after last +
-	  var index = subtype.lastIndexOf('+')
-	  if (index !== -1) {
-	    suffix = subtype.substr(index + 1)
-	    subtype = subtype.substr(0, index)
-	  }
-
-	  var obj = {
-	    type: type,
-	    subtype: subtype,
-	    suffix: suffix
-	  }
-
-	  return obj
-	}
-
-
-/***/ },
-/* 149 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/*!
-	 * mime-types
-	 * Copyright(c) 2014 Jonathan Ong
-	 * Copyright(c) 2015 Douglas Christopher Wilson
-	 * MIT Licensed
-	 */
-
-	'use strict'
-
-	/**
-	 * Module dependencies.
-	 * @private
-	 */
-
-	var db = __webpack_require__(150)
-	var extname = __webpack_require__(35).extname
-
-	/**
-	 * Module variables.
-	 * @private
-	 */
-
-	var extractTypeRegExp = /^\s*([^;\s]*)(?:;|\s|$)/
-	var textTypeRegExp = /^text\//i
-
-	/**
-	 * Module exports.
-	 * @public
-	 */
-
-	exports.charset = charset
-	exports.charsets = { lookup: charset }
-	exports.contentType = contentType
-	exports.extension = extension
-	exports.extensions = Object.create(null)
-	exports.lookup = lookup
-	exports.types = Object.create(null)
-
-	// Populate the extensions/types maps
-	populateMaps(exports.extensions, exports.types)
-
-	/**
-	 * Get the default charset for a MIME type.
-	 *
-	 * @param {string} type
-	 * @return {boolean|string}
-	 */
-
-	function charset (type) {
-	  if (!type || typeof type !== 'string') {
-	    return false
-	  }
-
-	  // TODO: use media-typer
-	  var match = extractTypeRegExp.exec(type)
-	  var mime = match && db[match[1].toLowerCase()]
-
-	  if (mime && mime.charset) {
-	    return mime.charset
-	  }
-
-	  // default text/* to utf-8
-	  if (match && textTypeRegExp.test(match[1])) {
-	    return 'UTF-8'
-	  }
-
-	  return false
-	}
-
-	/**
-	 * Create a full Content-Type header given a MIME type or extension.
-	 *
-	 * @param {string} str
-	 * @return {boolean|string}
-	 */
-
-	function contentType (str) {
-	  // TODO: should this even be in this module?
-	  if (!str || typeof str !== 'string') {
-	    return false
-	  }
-
-	  var mime = str.indexOf('/') === -1
-	    ? exports.lookup(str)
-	    : str
-
-	  if (!mime) {
-	    return false
-	  }
-
-	  // TODO: use content-type or other module
-	  if (mime.indexOf('charset') === -1) {
-	    var charset = exports.charset(mime)
-	    if (charset) mime += '; charset=' + charset.toLowerCase()
-	  }
-
-	  return mime
-	}
-
-	/**
-	 * Get the default extension for a MIME type.
-	 *
-	 * @param {string} type
-	 * @return {boolean|string}
-	 */
-
-	function extension (type) {
-	  if (!type || typeof type !== 'string') {
-	    return false
-	  }
-
-	  // TODO: use media-typer
-	  var match = extractTypeRegExp.exec(type)
-
-	  // get extensions
-	  var exts = match && exports.extensions[match[1].toLowerCase()]
-
-	  if (!exts || !exts.length) {
-	    return false
-	  }
-
-	  return exts[0]
-	}
-
-	/**
-	 * Lookup the MIME type for a file path/extension.
-	 *
-	 * @param {string} path
-	 * @return {boolean|string}
-	 */
-
-	function lookup (path) {
-	  if (!path || typeof path !== 'string') {
-	    return false
-	  }
-
-	  // get the extension ("ext" or ".ext" or full path)
-	  var extension = extname('x.' + path)
-	    .toLowerCase()
-	    .substr(1)
-
-	  if (!extension) {
-	    return false
-	  }
-
-	  return exports.types[extension] || false
-	}
-
-	/**
-	 * Populate the extensions and types maps.
-	 * @private
-	 */
-
-	function populateMaps (extensions, types) {
-	  // source preference (least -> most)
-	  var preference = ['nginx', 'apache', undefined, 'iana']
-
-	  Object.keys(db).forEach(function forEachMimeType (type) {
-	    var mime = db[type]
-	    var exts = mime.extensions
-
-	    if (!exts || !exts.length) {
-	      return
-	    }
-
-	    // mime -> extensions
-	    extensions[type] = exts
-
-	    // extension -> mime
-	    for (var i = 0; i < exts.length; i++) {
-	      var extension = exts[i]
-
-	      if (types[extension]) {
-	        var from = preference.indexOf(db[types[extension]].source)
-	        var to = preference.indexOf(mime.source)
-
-	        if (types[extension] !== 'application/octet-stream' &&
-	          from > to || (from === to && types[extension].substr(0, 12) === 'application/')) {
-	          // skip the remapping
-	          continue
-	        }
-	      }
-
-	      // set the extension -> mime
-	      types[extension] = type
-	    }
-	  })
-	}
-
-
-/***/ },
-/* 150 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/*!
-	 * mime-db
-	 * Copyright(c) 2014 Jonathan Ong
-	 * MIT Licensed
-	 */
-
-	/**
-	 * Module exports.
-	 */
-
-	module.exports = __webpack_require__(151)
-
-
-/***/ },
-/* 151 */
-/***/ function(module, exports) {
-
-	module.exports = {
-		"application/1d-interleaved-parityfec": {
-			"source": "iana"
-		},
-		"application/3gpdash-qoe-report+xml": {
-			"source": "iana"
-		},
-		"application/3gpp-ims+xml": {
-			"source": "iana"
-		},
-		"application/a2l": {
-			"source": "iana"
-		},
-		"application/activemessage": {
-			"source": "iana"
-		},
-		"application/alto-costmap+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/alto-costmapfilter+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/alto-directory+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/alto-endpointcost+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/alto-endpointcostparams+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/alto-endpointprop+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/alto-endpointpropparams+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/alto-error+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/alto-networkmap+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/alto-networkmapfilter+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/aml": {
-			"source": "iana"
-		},
-		"application/andrew-inset": {
-			"source": "iana",
-			"extensions": [
-				"ez"
-			]
-		},
-		"application/applefile": {
-			"source": "iana"
-		},
-		"application/applixware": {
-			"source": "apache",
-			"extensions": [
-				"aw"
-			]
-		},
-		"application/atf": {
-			"source": "iana"
-		},
-		"application/atfx": {
-			"source": "iana"
-		},
-		"application/atom+xml": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"atom"
-			]
-		},
-		"application/atomcat+xml": {
-			"source": "iana",
-			"extensions": [
-				"atomcat"
-			]
-		},
-		"application/atomdeleted+xml": {
-			"source": "iana"
-		},
-		"application/atomicmail": {
-			"source": "iana"
-		},
-		"application/atomsvc+xml": {
-			"source": "iana",
-			"extensions": [
-				"atomsvc"
-			]
-		},
-		"application/atxml": {
-			"source": "iana"
-		},
-		"application/auth-policy+xml": {
-			"source": "iana"
-		},
-		"application/bacnet-xdd+zip": {
-			"source": "iana"
-		},
-		"application/batch-smtp": {
-			"source": "iana"
-		},
-		"application/bdoc": {
-			"compressible": false,
-			"extensions": [
-				"bdoc"
-			]
-		},
-		"application/beep+xml": {
-			"source": "iana"
-		},
-		"application/calendar+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/calendar+xml": {
-			"source": "iana"
-		},
-		"application/call-completion": {
-			"source": "iana"
-		},
-		"application/cals-1840": {
-			"source": "iana"
-		},
-		"application/cbor": {
-			"source": "iana"
-		},
-		"application/ccmp+xml": {
-			"source": "iana"
-		},
-		"application/ccxml+xml": {
-			"source": "iana",
-			"extensions": [
-				"ccxml"
-			]
-		},
-		"application/cdfx+xml": {
-			"source": "iana"
-		},
-		"application/cdmi-capability": {
-			"source": "iana",
-			"extensions": [
-				"cdmia"
-			]
-		},
-		"application/cdmi-container": {
-			"source": "iana",
-			"extensions": [
-				"cdmic"
-			]
-		},
-		"application/cdmi-domain": {
-			"source": "iana",
-			"extensions": [
-				"cdmid"
-			]
-		},
-		"application/cdmi-object": {
-			"source": "iana",
-			"extensions": [
-				"cdmio"
-			]
-		},
-		"application/cdmi-queue": {
-			"source": "iana",
-			"extensions": [
-				"cdmiq"
-			]
-		},
-		"application/cdni": {
-			"source": "iana"
-		},
-		"application/cea": {
-			"source": "iana"
-		},
-		"application/cea-2018+xml": {
-			"source": "iana"
-		},
-		"application/cellml+xml": {
-			"source": "iana"
-		},
-		"application/cfw": {
-			"source": "iana"
-		},
-		"application/clue_info+xml": {
-			"source": "iana"
-		},
-		"application/cms": {
-			"source": "iana"
-		},
-		"application/cnrp+xml": {
-			"source": "iana"
-		},
-		"application/coap-group+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/coap-payload": {
-			"source": "iana"
-		},
-		"application/commonground": {
-			"source": "iana"
-		},
-		"application/conference-info+xml": {
-			"source": "iana"
-		},
-		"application/cose": {
-			"source": "iana"
-		},
-		"application/cose-key": {
-			"source": "iana"
-		},
-		"application/cose-key-set": {
-			"source": "iana"
-		},
-		"application/cpl+xml": {
-			"source": "iana"
-		},
-		"application/csrattrs": {
-			"source": "iana"
-		},
-		"application/csta+xml": {
-			"source": "iana"
-		},
-		"application/cstadata+xml": {
-			"source": "iana"
-		},
-		"application/csvm+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/cu-seeme": {
-			"source": "apache",
-			"extensions": [
-				"cu"
-			]
-		},
-		"application/cybercash": {
-			"source": "iana"
-		},
-		"application/dart": {
-			"compressible": true
-		},
-		"application/dash+xml": {
-			"source": "iana",
-			"extensions": [
-				"mpd"
-			]
-		},
-		"application/dashdelta": {
-			"source": "iana"
-		},
-		"application/davmount+xml": {
-			"source": "iana",
-			"extensions": [
-				"davmount"
-			]
-		},
-		"application/dca-rft": {
-			"source": "iana"
-		},
-		"application/dcd": {
-			"source": "iana"
-		},
-		"application/dec-dx": {
-			"source": "iana"
-		},
-		"application/dialog-info+xml": {
-			"source": "iana"
-		},
-		"application/dicom": {
-			"source": "iana"
-		},
-		"application/dicom+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/dicom+xml": {
-			"source": "iana"
-		},
-		"application/dii": {
-			"source": "iana"
-		},
-		"application/dit": {
-			"source": "iana"
-		},
-		"application/dns": {
-			"source": "iana"
-		},
-		"application/docbook+xml": {
-			"source": "apache",
-			"extensions": [
-				"dbk"
-			]
-		},
-		"application/dskpp+xml": {
-			"source": "iana"
-		},
-		"application/dssc+der": {
-			"source": "iana",
-			"extensions": [
-				"dssc"
-			]
-		},
-		"application/dssc+xml": {
-			"source": "iana",
-			"extensions": [
-				"xdssc"
-			]
-		},
-		"application/dvcs": {
-			"source": "iana"
-		},
-		"application/ecmascript": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"ecma"
-			]
-		},
-		"application/edi-consent": {
-			"source": "iana"
-		},
-		"application/edi-x12": {
-			"source": "iana",
-			"compressible": false
-		},
-		"application/edifact": {
-			"source": "iana",
-			"compressible": false
-		},
-		"application/efi": {
-			"source": "iana"
-		},
-		"application/emergencycalldata.comment+xml": {
-			"source": "iana"
-		},
-		"application/emergencycalldata.deviceinfo+xml": {
-			"source": "iana"
-		},
-		"application/emergencycalldata.providerinfo+xml": {
-			"source": "iana"
-		},
-		"application/emergencycalldata.serviceinfo+xml": {
-			"source": "iana"
-		},
-		"application/emergencycalldata.subscriberinfo+xml": {
-			"source": "iana"
-		},
-		"application/emma+xml": {
-			"source": "iana",
-			"extensions": [
-				"emma"
-			]
-		},
-		"application/emotionml+xml": {
-			"source": "iana"
-		},
-		"application/encaprtp": {
-			"source": "iana"
-		},
-		"application/epp+xml": {
-			"source": "iana"
-		},
-		"application/epub+zip": {
-			"source": "iana",
-			"extensions": [
-				"epub"
-			]
-		},
-		"application/eshop": {
-			"source": "iana"
-		},
-		"application/exi": {
-			"source": "iana",
-			"extensions": [
-				"exi"
-			]
-		},
-		"application/fastinfoset": {
-			"source": "iana"
-		},
-		"application/fastsoap": {
-			"source": "iana"
-		},
-		"application/fdt+xml": {
-			"source": "iana"
-		},
-		"application/fits": {
-			"source": "iana"
-		},
-		"application/font-sfnt": {
-			"source": "iana"
-		},
-		"application/font-tdpfr": {
-			"source": "iana",
-			"extensions": [
-				"pfr"
-			]
-		},
-		"application/font-woff": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"woff"
-			]
-		},
-		"application/font-woff2": {
-			"compressible": false,
-			"extensions": [
-				"woff2"
-			]
-		},
-		"application/framework-attributes+xml": {
-			"source": "iana"
-		},
-		"application/geo+json": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"geojson"
-			]
-		},
-		"application/gml+xml": {
-			"source": "iana",
-			"extensions": [
-				"gml"
-			]
-		},
-		"application/gpx+xml": {
-			"source": "apache",
-			"extensions": [
-				"gpx"
-			]
-		},
-		"application/gxf": {
-			"source": "apache",
-			"extensions": [
-				"gxf"
-			]
-		},
-		"application/gzip": {
-			"source": "iana",
-			"compressible": false
-		},
-		"application/h224": {
-			"source": "iana"
-		},
-		"application/held+xml": {
-			"source": "iana"
-		},
-		"application/http": {
-			"source": "iana"
-		},
-		"application/hyperstudio": {
-			"source": "iana",
-			"extensions": [
-				"stk"
-			]
-		},
-		"application/ibe-key-request+xml": {
-			"source": "iana"
-		},
-		"application/ibe-pkg-reply+xml": {
-			"source": "iana"
-		},
-		"application/ibe-pp-data": {
-			"source": "iana"
-		},
-		"application/iges": {
-			"source": "iana"
-		},
-		"application/im-iscomposing+xml": {
-			"source": "iana"
-		},
-		"application/index": {
-			"source": "iana"
-		},
-		"application/index.cmd": {
-			"source": "iana"
-		},
-		"application/index.obj": {
-			"source": "iana"
-		},
-		"application/index.response": {
-			"source": "iana"
-		},
-		"application/index.vnd": {
-			"source": "iana"
-		},
-		"application/inkml+xml": {
-			"source": "iana",
-			"extensions": [
-				"ink",
-				"inkml"
-			]
-		},
-		"application/iotp": {
-			"source": "iana"
-		},
-		"application/ipfix": {
-			"source": "iana",
-			"extensions": [
-				"ipfix"
-			]
-		},
-		"application/ipp": {
-			"source": "iana"
-		},
-		"application/isup": {
-			"source": "iana"
-		},
-		"application/its+xml": {
-			"source": "iana"
-		},
-		"application/java-archive": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"jar",
-				"war",
-				"ear"
-			]
-		},
-		"application/java-serialized-object": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"ser"
-			]
-		},
-		"application/java-vm": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"class"
-			]
-		},
-		"application/javascript": {
-			"source": "iana",
-			"charset": "UTF-8",
-			"compressible": true,
-			"extensions": [
-				"js"
-			]
-		},
-		"application/jose": {
-			"source": "iana"
-		},
-		"application/jose+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/jrd+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/json": {
-			"source": "iana",
-			"charset": "UTF-8",
-			"compressible": true,
-			"extensions": [
-				"json",
-				"map"
-			]
-		},
-		"application/json-patch+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/json-seq": {
-			"source": "iana"
-		},
-		"application/json5": {
-			"extensions": [
-				"json5"
-			]
-		},
-		"application/jsonml+json": {
-			"source": "apache",
-			"compressible": true,
-			"extensions": [
-				"jsonml"
-			]
-		},
-		"application/jwk+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/jwk-set+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/jwt": {
-			"source": "iana"
-		},
-		"application/kpml-request+xml": {
-			"source": "iana"
-		},
-		"application/kpml-response+xml": {
-			"source": "iana"
-		},
-		"application/ld+json": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"jsonld"
-			]
-		},
-		"application/lgr+xml": {
-			"source": "iana"
-		},
-		"application/link-format": {
-			"source": "iana"
-		},
-		"application/load-control+xml": {
-			"source": "iana"
-		},
-		"application/lost+xml": {
-			"source": "iana",
-			"extensions": [
-				"lostxml"
-			]
-		},
-		"application/lostsync+xml": {
-			"source": "iana"
-		},
-		"application/lxf": {
-			"source": "iana"
-		},
-		"application/mac-binhex40": {
-			"source": "iana",
-			"extensions": [
-				"hqx"
-			]
-		},
-		"application/mac-compactpro": {
-			"source": "apache",
-			"extensions": [
-				"cpt"
-			]
-		},
-		"application/macwriteii": {
-			"source": "iana"
-		},
-		"application/mads+xml": {
-			"source": "iana",
-			"extensions": [
-				"mads"
-			]
-		},
-		"application/manifest+json": {
-			"charset": "UTF-8",
-			"compressible": true,
-			"extensions": [
-				"webmanifest"
-			]
-		},
-		"application/marc": {
-			"source": "iana",
-			"extensions": [
-				"mrc"
-			]
-		},
-		"application/marcxml+xml": {
-			"source": "iana",
-			"extensions": [
-				"mrcx"
-			]
-		},
-		"application/mathematica": {
-			"source": "iana",
-			"extensions": [
-				"ma",
-				"nb",
-				"mb"
-			]
-		},
-		"application/mathml+xml": {
-			"source": "iana",
-			"extensions": [
-				"mathml"
-			]
-		},
-		"application/mathml-content+xml": {
-			"source": "iana"
-		},
-		"application/mathml-presentation+xml": {
-			"source": "iana"
-		},
-		"application/mbms-associated-procedure-description+xml": {
-			"source": "iana"
-		},
-		"application/mbms-deregister+xml": {
-			"source": "iana"
-		},
-		"application/mbms-envelope+xml": {
-			"source": "iana"
-		},
-		"application/mbms-msk+xml": {
-			"source": "iana"
-		},
-		"application/mbms-msk-response+xml": {
-			"source": "iana"
-		},
-		"application/mbms-protection-description+xml": {
-			"source": "iana"
-		},
-		"application/mbms-reception-report+xml": {
-			"source": "iana"
-		},
-		"application/mbms-register+xml": {
-			"source": "iana"
-		},
-		"application/mbms-register-response+xml": {
-			"source": "iana"
-		},
-		"application/mbms-schedule+xml": {
-			"source": "iana"
-		},
-		"application/mbms-user-service-description+xml": {
-			"source": "iana"
-		},
-		"application/mbox": {
-			"source": "iana",
-			"extensions": [
-				"mbox"
-			]
-		},
-		"application/media-policy-dataset+xml": {
-			"source": "iana"
-		},
-		"application/media_control+xml": {
-			"source": "iana"
-		},
-		"application/mediaservercontrol+xml": {
-			"source": "iana",
-			"extensions": [
-				"mscml"
-			]
-		},
-		"application/merge-patch+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/metalink+xml": {
-			"source": "apache",
-			"extensions": [
-				"metalink"
-			]
-		},
-		"application/metalink4+xml": {
-			"source": "iana",
-			"extensions": [
-				"meta4"
-			]
-		},
-		"application/mets+xml": {
-			"source": "iana",
-			"extensions": [
-				"mets"
-			]
-		},
-		"application/mf4": {
-			"source": "iana"
-		},
-		"application/mikey": {
-			"source": "iana"
-		},
-		"application/mods+xml": {
-			"source": "iana",
-			"extensions": [
-				"mods"
-			]
-		},
-		"application/moss-keys": {
-			"source": "iana"
-		},
-		"application/moss-signature": {
-			"source": "iana"
-		},
-		"application/mosskey-data": {
-			"source": "iana"
-		},
-		"application/mosskey-request": {
-			"source": "iana"
-		},
-		"application/mp21": {
-			"source": "iana",
-			"extensions": [
-				"m21",
-				"mp21"
-			]
-		},
-		"application/mp4": {
-			"source": "iana",
-			"extensions": [
-				"mp4s",
-				"m4p"
-			]
-		},
-		"application/mpeg4-generic": {
-			"source": "iana"
-		},
-		"application/mpeg4-iod": {
-			"source": "iana"
-		},
-		"application/mpeg4-iod-xmt": {
-			"source": "iana"
-		},
-		"application/mrb-consumer+xml": {
-			"source": "iana"
-		},
-		"application/mrb-publish+xml": {
-			"source": "iana"
-		},
-		"application/msc-ivr+xml": {
-			"source": "iana"
-		},
-		"application/msc-mixer+xml": {
-			"source": "iana"
-		},
-		"application/msword": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"doc",
-				"dot"
-			]
-		},
-		"application/mud+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/mxf": {
-			"source": "iana",
-			"extensions": [
-				"mxf"
-			]
-		},
-		"application/nasdata": {
-			"source": "iana"
-		},
-		"application/news-checkgroups": {
-			"source": "iana"
-		},
-		"application/news-groupinfo": {
-			"source": "iana"
-		},
-		"application/news-transmission": {
-			"source": "iana"
-		},
-		"application/nlsml+xml": {
-			"source": "iana"
-		},
-		"application/nss": {
-			"source": "iana"
-		},
-		"application/ocsp-request": {
-			"source": "iana"
-		},
-		"application/ocsp-response": {
-			"source": "iana"
-		},
-		"application/octet-stream": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"bin",
-				"dms",
-				"lrf",
-				"mar",
-				"so",
-				"dist",
-				"distz",
-				"pkg",
-				"bpk",
-				"dump",
-				"elc",
-				"deploy",
-				"exe",
-				"dll",
-				"deb",
-				"dmg",
-				"iso",
-				"img",
-				"msi",
-				"msp",
-				"msm",
-				"buffer"
-			]
-		},
-		"application/oda": {
-			"source": "iana",
-			"extensions": [
-				"oda"
-			]
-		},
-		"application/odx": {
-			"source": "iana"
-		},
-		"application/oebps-package+xml": {
-			"source": "iana",
-			"extensions": [
-				"opf"
-			]
-		},
-		"application/ogg": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"ogx"
-			]
-		},
-		"application/omdoc+xml": {
-			"source": "apache",
-			"extensions": [
-				"omdoc"
-			]
-		},
-		"application/onenote": {
-			"source": "apache",
-			"extensions": [
-				"onetoc",
-				"onetoc2",
-				"onetmp",
-				"onepkg"
-			]
-		},
-		"application/oxps": {
-			"source": "iana",
-			"extensions": [
-				"oxps"
-			]
-		},
-		"application/p2p-overlay+xml": {
-			"source": "iana"
-		},
-		"application/parityfec": {
-			"source": "iana"
-		},
-		"application/patch-ops-error+xml": {
-			"source": "iana",
-			"extensions": [
-				"xer"
-			]
-		},
-		"application/pdf": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"pdf"
-			]
-		},
-		"application/pdx": {
-			"source": "iana"
-		},
-		"application/pgp-encrypted": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"pgp"
-			]
-		},
-		"application/pgp-keys": {
-			"source": "iana"
-		},
-		"application/pgp-signature": {
-			"source": "iana",
-			"extensions": [
-				"asc",
-				"sig"
-			]
-		},
-		"application/pics-rules": {
-			"source": "apache",
-			"extensions": [
-				"prf"
-			]
-		},
-		"application/pidf+xml": {
-			"source": "iana"
-		},
-		"application/pidf-diff+xml": {
-			"source": "iana"
-		},
-		"application/pkcs10": {
-			"source": "iana",
-			"extensions": [
-				"p10"
-			]
-		},
-		"application/pkcs12": {
-			"source": "iana"
-		},
-		"application/pkcs7-mime": {
-			"source": "iana",
-			"extensions": [
-				"p7m",
-				"p7c"
-			]
-		},
-		"application/pkcs7-signature": {
-			"source": "iana",
-			"extensions": [
-				"p7s"
-			]
-		},
-		"application/pkcs8": {
-			"source": "iana",
-			"extensions": [
-				"p8"
-			]
-		},
-		"application/pkix-attr-cert": {
-			"source": "iana",
-			"extensions": [
-				"ac"
-			]
-		},
-		"application/pkix-cert": {
-			"source": "iana",
-			"extensions": [
-				"cer"
-			]
-		},
-		"application/pkix-crl": {
-			"source": "iana",
-			"extensions": [
-				"crl"
-			]
-		},
-		"application/pkix-pkipath": {
-			"source": "iana",
-			"extensions": [
-				"pkipath"
-			]
-		},
-		"application/pkixcmp": {
-			"source": "iana",
-			"extensions": [
-				"pki"
-			]
-		},
-		"application/pls+xml": {
-			"source": "iana",
-			"extensions": [
-				"pls"
-			]
-		},
-		"application/poc-settings+xml": {
-			"source": "iana"
-		},
-		"application/postscript": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"ai",
-				"eps",
-				"ps"
-			]
-		},
-		"application/ppsp-tracker+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/problem+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/problem+xml": {
-			"source": "iana"
-		},
-		"application/provenance+xml": {
-			"source": "iana"
-		},
-		"application/prs.alvestrand.titrax-sheet": {
-			"source": "iana"
-		},
-		"application/prs.cww": {
-			"source": "iana",
-			"extensions": [
-				"cww"
-			]
-		},
-		"application/prs.hpub+zip": {
-			"source": "iana"
-		},
-		"application/prs.nprend": {
-			"source": "iana"
-		},
-		"application/prs.plucker": {
-			"source": "iana"
-		},
-		"application/prs.rdf-xml-crypt": {
-			"source": "iana"
-		},
-		"application/prs.xsf+xml": {
-			"source": "iana"
-		},
-		"application/pskc+xml": {
-			"source": "iana",
-			"extensions": [
-				"pskcxml"
-			]
-		},
-		"application/qsig": {
-			"source": "iana"
-		},
-		"application/raptorfec": {
-			"source": "iana"
-		},
-		"application/rdap+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/rdf+xml": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"rdf"
-			]
-		},
-		"application/reginfo+xml": {
-			"source": "iana",
-			"extensions": [
-				"rif"
-			]
-		},
-		"application/relax-ng-compact-syntax": {
-			"source": "iana",
-			"extensions": [
-				"rnc"
-			]
-		},
-		"application/remote-printing": {
-			"source": "iana"
-		},
-		"application/reputon+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/resource-lists+xml": {
-			"source": "iana",
-			"extensions": [
-				"rl"
-			]
-		},
-		"application/resource-lists-diff+xml": {
-			"source": "iana",
-			"extensions": [
-				"rld"
-			]
-		},
-		"application/rfc+xml": {
-			"source": "iana"
-		},
-		"application/riscos": {
-			"source": "iana"
-		},
-		"application/rlmi+xml": {
-			"source": "iana"
-		},
-		"application/rls-services+xml": {
-			"source": "iana",
-			"extensions": [
-				"rs"
-			]
-		},
-		"application/rpki-ghostbusters": {
-			"source": "iana",
-			"extensions": [
-				"gbr"
-			]
-		},
-		"application/rpki-manifest": {
-			"source": "iana",
-			"extensions": [
-				"mft"
-			]
-		},
-		"application/rpki-roa": {
-			"source": "iana",
-			"extensions": [
-				"roa"
-			]
-		},
-		"application/rpki-updown": {
-			"source": "iana"
-		},
-		"application/rsd+xml": {
-			"source": "apache",
-			"extensions": [
-				"rsd"
-			]
-		},
-		"application/rss+xml": {
-			"source": "apache",
-			"compressible": true,
-			"extensions": [
-				"rss"
-			]
-		},
-		"application/rtf": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"rtf"
-			]
-		},
-		"application/rtploopback": {
-			"source": "iana"
-		},
-		"application/rtx": {
-			"source": "iana"
-		},
-		"application/samlassertion+xml": {
-			"source": "iana"
-		},
-		"application/samlmetadata+xml": {
-			"source": "iana"
-		},
-		"application/sbml+xml": {
-			"source": "iana",
-			"extensions": [
-				"sbml"
-			]
-		},
-		"application/scaip+xml": {
-			"source": "iana"
-		},
-		"application/scim+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/scvp-cv-request": {
-			"source": "iana",
-			"extensions": [
-				"scq"
-			]
-		},
-		"application/scvp-cv-response": {
-			"source": "iana",
-			"extensions": [
-				"scs"
-			]
-		},
-		"application/scvp-vp-request": {
-			"source": "iana",
-			"extensions": [
-				"spq"
-			]
-		},
-		"application/scvp-vp-response": {
-			"source": "iana",
-			"extensions": [
-				"spp"
-			]
-		},
-		"application/sdp": {
-			"source": "iana",
-			"extensions": [
-				"sdp"
-			]
-		},
-		"application/sep+xml": {
-			"source": "iana"
-		},
-		"application/sep-exi": {
-			"source": "iana"
-		},
-		"application/session-info": {
-			"source": "iana"
-		},
-		"application/set-payment": {
-			"source": "iana"
-		},
-		"application/set-payment-initiation": {
-			"source": "iana",
-			"extensions": [
-				"setpay"
-			]
-		},
-		"application/set-registration": {
-			"source": "iana"
-		},
-		"application/set-registration-initiation": {
-			"source": "iana",
-			"extensions": [
-				"setreg"
-			]
-		},
-		"application/sgml": {
-			"source": "iana"
-		},
-		"application/sgml-open-catalog": {
-			"source": "iana"
-		},
-		"application/shf+xml": {
-			"source": "iana",
-			"extensions": [
-				"shf"
-			]
-		},
-		"application/sieve": {
-			"source": "iana"
-		},
-		"application/simple-filter+xml": {
-			"source": "iana"
-		},
-		"application/simple-message-summary": {
-			"source": "iana"
-		},
-		"application/simplesymbolcontainer": {
-			"source": "iana"
-		},
-		"application/slate": {
-			"source": "iana"
-		},
-		"application/smil": {
-			"source": "iana"
-		},
-		"application/smil+xml": {
-			"source": "iana",
-			"extensions": [
-				"smi",
-				"smil"
-			]
-		},
-		"application/smpte336m": {
-			"source": "iana"
-		},
-		"application/soap+fastinfoset": {
-			"source": "iana"
-		},
-		"application/soap+xml": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/sparql-query": {
-			"source": "iana",
-			"extensions": [
-				"rq"
-			]
-		},
-		"application/sparql-results+xml": {
-			"source": "iana",
-			"extensions": [
-				"srx"
-			]
-		},
-		"application/spirits-event+xml": {
-			"source": "iana"
-		},
-		"application/sql": {
-			"source": "iana"
-		},
-		"application/srgs": {
-			"source": "iana",
-			"extensions": [
-				"gram"
-			]
-		},
-		"application/srgs+xml": {
-			"source": "iana",
-			"extensions": [
-				"grxml"
-			]
-		},
-		"application/sru+xml": {
-			"source": "iana",
-			"extensions": [
-				"sru"
-			]
-		},
-		"application/ssdl+xml": {
-			"source": "apache",
-			"extensions": [
-				"ssdl"
-			]
-		},
-		"application/ssml+xml": {
-			"source": "iana",
-			"extensions": [
-				"ssml"
-			]
-		},
-		"application/tamp-apex-update": {
-			"source": "iana"
-		},
-		"application/tamp-apex-update-confirm": {
-			"source": "iana"
-		},
-		"application/tamp-community-update": {
-			"source": "iana"
-		},
-		"application/tamp-community-update-confirm": {
-			"source": "iana"
-		},
-		"application/tamp-error": {
-			"source": "iana"
-		},
-		"application/tamp-sequence-adjust": {
-			"source": "iana"
-		},
-		"application/tamp-sequence-adjust-confirm": {
-			"source": "iana"
-		},
-		"application/tamp-status-query": {
-			"source": "iana"
-		},
-		"application/tamp-status-response": {
-			"source": "iana"
-		},
-		"application/tamp-update": {
-			"source": "iana"
-		},
-		"application/tamp-update-confirm": {
-			"source": "iana"
-		},
-		"application/tar": {
-			"compressible": true
-		},
-		"application/tei+xml": {
-			"source": "iana",
-			"extensions": [
-				"tei",
-				"teicorpus"
-			]
-		},
-		"application/thraud+xml": {
-			"source": "iana",
-			"extensions": [
-				"tfi"
-			]
-		},
-		"application/timestamp-query": {
-			"source": "iana"
-		},
-		"application/timestamp-reply": {
-			"source": "iana"
-		},
-		"application/timestamped-data": {
-			"source": "iana",
-			"extensions": [
-				"tsd"
-			]
-		},
-		"application/trig": {
-			"source": "iana"
-		},
-		"application/ttml+xml": {
-			"source": "iana"
-		},
-		"application/tve-trigger": {
-			"source": "iana"
-		},
-		"application/ulpfec": {
-			"source": "iana"
-		},
-		"application/urc-grpsheet+xml": {
-			"source": "iana"
-		},
-		"application/urc-ressheet+xml": {
-			"source": "iana"
-		},
-		"application/urc-targetdesc+xml": {
-			"source": "iana"
-		},
-		"application/urc-uisocketdesc+xml": {
-			"source": "iana"
-		},
-		"application/vcard+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vcard+xml": {
-			"source": "iana"
-		},
-		"application/vemmi": {
-			"source": "iana"
-		},
-		"application/vividence.scriptfile": {
-			"source": "apache"
-		},
-		"application/vnd.3gpp-prose+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp-prose-pc3ch+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp.access-transfer-events+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp.bsf+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp.mid-call+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp.pic-bw-large": {
-			"source": "iana",
-			"extensions": [
-				"plb"
-			]
-		},
-		"application/vnd.3gpp.pic-bw-small": {
-			"source": "iana",
-			"extensions": [
-				"psb"
-			]
-		},
-		"application/vnd.3gpp.pic-bw-var": {
-			"source": "iana",
-			"extensions": [
-				"pvb"
-			]
-		},
-		"application/vnd.3gpp.sms": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp.sms+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp.srvcc-ext+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp.srvcc-info+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp.state-and-event-info+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp.ussd+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp2.bcmcsinfo+xml": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp2.sms": {
-			"source": "iana"
-		},
-		"application/vnd.3gpp2.tcap": {
-			"source": "iana",
-			"extensions": [
-				"tcap"
-			]
-		},
-		"application/vnd.3lightssoftware.imagescal": {
-			"source": "iana"
-		},
-		"application/vnd.3m.post-it-notes": {
-			"source": "iana",
-			"extensions": [
-				"pwn"
-			]
-		},
-		"application/vnd.accpac.simply.aso": {
-			"source": "iana",
-			"extensions": [
-				"aso"
-			]
-		},
-		"application/vnd.accpac.simply.imp": {
-			"source": "iana",
-			"extensions": [
-				"imp"
-			]
-		},
-		"application/vnd.acucobol": {
-			"source": "iana",
-			"extensions": [
-				"acu"
-			]
-		},
-		"application/vnd.acucorp": {
-			"source": "iana",
-			"extensions": [
-				"atc",
-				"acutc"
-			]
-		},
-		"application/vnd.adobe.air-application-installer-package+zip": {
-			"source": "apache",
-			"extensions": [
-				"air"
-			]
-		},
-		"application/vnd.adobe.flash.movie": {
-			"source": "iana"
-		},
-		"application/vnd.adobe.formscentral.fcdt": {
-			"source": "iana",
-			"extensions": [
-				"fcdt"
-			]
-		},
-		"application/vnd.adobe.fxp": {
-			"source": "iana",
-			"extensions": [
-				"fxp",
-				"fxpl"
-			]
-		},
-		"application/vnd.adobe.partial-upload": {
-			"source": "iana"
-		},
-		"application/vnd.adobe.xdp+xml": {
-			"source": "iana",
-			"extensions": [
-				"xdp"
-			]
-		},
-		"application/vnd.adobe.xfdf": {
-			"source": "iana",
-			"extensions": [
-				"xfdf"
-			]
-		},
-		"application/vnd.aether.imp": {
-			"source": "iana"
-		},
-		"application/vnd.ah-barcode": {
-			"source": "iana"
-		},
-		"application/vnd.ahead.space": {
-			"source": "iana",
-			"extensions": [
-				"ahead"
-			]
-		},
-		"application/vnd.airzip.filesecure.azf": {
-			"source": "iana",
-			"extensions": [
-				"azf"
-			]
-		},
-		"application/vnd.airzip.filesecure.azs": {
-			"source": "iana",
-			"extensions": [
-				"azs"
-			]
-		},
-		"application/vnd.amazon.ebook": {
-			"source": "apache",
-			"extensions": [
-				"azw"
-			]
-		},
-		"application/vnd.amazon.mobi8-ebook": {
-			"source": "iana"
-		},
-		"application/vnd.americandynamics.acc": {
-			"source": "iana",
-			"extensions": [
-				"acc"
-			]
-		},
-		"application/vnd.amiga.ami": {
-			"source": "iana",
-			"extensions": [
-				"ami"
-			]
-		},
-		"application/vnd.amundsen.maze+xml": {
-			"source": "iana"
-		},
-		"application/vnd.android.package-archive": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"apk"
-			]
-		},
-		"application/vnd.anki": {
-			"source": "iana"
-		},
-		"application/vnd.anser-web-certificate-issue-initiation": {
-			"source": "iana",
-			"extensions": [
-				"cii"
-			]
-		},
-		"application/vnd.anser-web-funds-transfer-initiation": {
-			"source": "apache",
-			"extensions": [
-				"fti"
-			]
-		},
-		"application/vnd.antix.game-component": {
-			"source": "iana",
-			"extensions": [
-				"atx"
-			]
-		},
-		"application/vnd.apache.thrift.binary": {
-			"source": "iana"
-		},
-		"application/vnd.apache.thrift.compact": {
-			"source": "iana"
-		},
-		"application/vnd.apache.thrift.json": {
-			"source": "iana"
-		},
-		"application/vnd.api+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.apple.installer+xml": {
-			"source": "iana",
-			"extensions": [
-				"mpkg"
-			]
-		},
-		"application/vnd.apple.mpegurl": {
-			"source": "iana",
-			"extensions": [
-				"m3u8"
-			]
-		},
-		"application/vnd.apple.pkpass": {
-			"compressible": false,
-			"extensions": [
-				"pkpass"
-			]
-		},
-		"application/vnd.arastra.swi": {
-			"source": "iana"
-		},
-		"application/vnd.aristanetworks.swi": {
-			"source": "iana",
-			"extensions": [
-				"swi"
-			]
-		},
-		"application/vnd.artsquare": {
-			"source": "iana"
-		},
-		"application/vnd.astraea-software.iota": {
-			"source": "iana",
-			"extensions": [
-				"iota"
-			]
-		},
-		"application/vnd.audiograph": {
-			"source": "iana",
-			"extensions": [
-				"aep"
-			]
-		},
-		"application/vnd.autopackage": {
-			"source": "iana"
-		},
-		"application/vnd.avistar+xml": {
-			"source": "iana"
-		},
-		"application/vnd.balsamiq.bmml+xml": {
-			"source": "iana"
-		},
-		"application/vnd.balsamiq.bmpr": {
-			"source": "iana"
-		},
-		"application/vnd.bekitzur-stech+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.biopax.rdf+xml": {
-			"source": "iana"
-		},
-		"application/vnd.blueice.multipass": {
-			"source": "iana",
-			"extensions": [
-				"mpm"
-			]
-		},
-		"application/vnd.bluetooth.ep.oob": {
-			"source": "iana"
-		},
-		"application/vnd.bluetooth.le.oob": {
-			"source": "iana"
-		},
-		"application/vnd.bmi": {
-			"source": "iana",
-			"extensions": [
-				"bmi"
-			]
-		},
-		"application/vnd.businessobjects": {
-			"source": "iana",
-			"extensions": [
-				"rep"
-			]
-		},
-		"application/vnd.cab-jscript": {
-			"source": "iana"
-		},
-		"application/vnd.canon-cpdl": {
-			"source": "iana"
-		},
-		"application/vnd.canon-lips": {
-			"source": "iana"
-		},
-		"application/vnd.cendio.thinlinc.clientconf": {
-			"source": "iana"
-		},
-		"application/vnd.century-systems.tcp_stream": {
-			"source": "iana"
-		},
-		"application/vnd.chemdraw+xml": {
-			"source": "iana",
-			"extensions": [
-				"cdxml"
-			]
-		},
-		"application/vnd.chess-pgn": {
-			"source": "iana"
-		},
-		"application/vnd.chipnuts.karaoke-mmd": {
-			"source": "iana",
-			"extensions": [
-				"mmd"
-			]
-		},
-		"application/vnd.cinderella": {
-			"source": "iana",
-			"extensions": [
-				"cdy"
-			]
-		},
-		"application/vnd.cirpack.isdn-ext": {
-			"source": "iana"
-		},
-		"application/vnd.citationstyles.style+xml": {
-			"source": "iana"
-		},
-		"application/vnd.claymore": {
-			"source": "iana",
-			"extensions": [
-				"cla"
-			]
-		},
-		"application/vnd.cloanto.rp9": {
-			"source": "iana",
-			"extensions": [
-				"rp9"
-			]
-		},
-		"application/vnd.clonk.c4group": {
-			"source": "iana",
-			"extensions": [
-				"c4g",
-				"c4d",
-				"c4f",
-				"c4p",
-				"c4u"
-			]
-		},
-		"application/vnd.cluetrust.cartomobile-config": {
-			"source": "iana",
-			"extensions": [
-				"c11amc"
-			]
-		},
-		"application/vnd.cluetrust.cartomobile-config-pkg": {
-			"source": "iana",
-			"extensions": [
-				"c11amz"
-			]
-		},
-		"application/vnd.coffeescript": {
-			"source": "iana"
-		},
-		"application/vnd.collection+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.collection.doc+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.collection.next+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.comicbook+zip": {
-			"source": "iana"
-		},
-		"application/vnd.commerce-battelle": {
-			"source": "iana"
-		},
-		"application/vnd.commonspace": {
-			"source": "iana",
-			"extensions": [
-				"csp"
-			]
-		},
-		"application/vnd.contact.cmsg": {
-			"source": "iana",
-			"extensions": [
-				"cdbcmsg"
-			]
-		},
-		"application/vnd.coreos.ignition+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.cosmocaller": {
-			"source": "iana",
-			"extensions": [
-				"cmc"
-			]
-		},
-		"application/vnd.crick.clicker": {
-			"source": "iana",
-			"extensions": [
-				"clkx"
-			]
-		},
-		"application/vnd.crick.clicker.keyboard": {
-			"source": "iana",
-			"extensions": [
-				"clkk"
-			]
-		},
-		"application/vnd.crick.clicker.palette": {
-			"source": "iana",
-			"extensions": [
-				"clkp"
-			]
-		},
-		"application/vnd.crick.clicker.template": {
-			"source": "iana",
-			"extensions": [
-				"clkt"
-			]
-		},
-		"application/vnd.crick.clicker.wordbank": {
-			"source": "iana",
-			"extensions": [
-				"clkw"
-			]
-		},
-		"application/vnd.criticaltools.wbs+xml": {
-			"source": "iana",
-			"extensions": [
-				"wbs"
-			]
-		},
-		"application/vnd.ctc-posml": {
-			"source": "iana",
-			"extensions": [
-				"pml"
-			]
-		},
-		"application/vnd.ctct.ws+xml": {
-			"source": "iana"
-		},
-		"application/vnd.cups-pdf": {
-			"source": "iana"
-		},
-		"application/vnd.cups-postscript": {
-			"source": "iana"
-		},
-		"application/vnd.cups-ppd": {
-			"source": "iana",
-			"extensions": [
-				"ppd"
-			]
-		},
-		"application/vnd.cups-raster": {
-			"source": "iana"
-		},
-		"application/vnd.cups-raw": {
-			"source": "iana"
-		},
-		"application/vnd.curl": {
-			"source": "iana"
-		},
-		"application/vnd.curl.car": {
-			"source": "apache",
-			"extensions": [
-				"car"
-			]
-		},
-		"application/vnd.curl.pcurl": {
-			"source": "apache",
-			"extensions": [
-				"pcurl"
-			]
-		},
-		"application/vnd.cyan.dean.root+xml": {
-			"source": "iana"
-		},
-		"application/vnd.cybank": {
-			"source": "iana"
-		},
-		"application/vnd.d2l.coursepackage1p0+zip": {
-			"source": "iana"
-		},
-		"application/vnd.dart": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"dart"
-			]
-		},
-		"application/vnd.data-vision.rdz": {
-			"source": "iana",
-			"extensions": [
-				"rdz"
-			]
-		},
-		"application/vnd.dataresource+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.debian.binary-package": {
-			"source": "iana"
-		},
-		"application/vnd.dece.data": {
-			"source": "iana",
-			"extensions": [
-				"uvf",
-				"uvvf",
-				"uvd",
-				"uvvd"
-			]
-		},
-		"application/vnd.dece.ttml+xml": {
-			"source": "iana",
-			"extensions": [
-				"uvt",
-				"uvvt"
-			]
-		},
-		"application/vnd.dece.unspecified": {
-			"source": "iana",
-			"extensions": [
-				"uvx",
-				"uvvx"
-			]
-		},
-		"application/vnd.dece.zip": {
-			"source": "iana",
-			"extensions": [
-				"uvz",
-				"uvvz"
-			]
-		},
-		"application/vnd.denovo.fcselayout-link": {
-			"source": "iana",
-			"extensions": [
-				"fe_launch"
-			]
-		},
-		"application/vnd.desmume-movie": {
-			"source": "iana"
-		},
-		"application/vnd.desmume.movie": {
-			"source": "apache"
-		},
-		"application/vnd.dir-bi.plate-dl-nosuffix": {
-			"source": "iana"
-		},
-		"application/vnd.dm.delegation+xml": {
-			"source": "iana"
-		},
-		"application/vnd.dna": {
-			"source": "iana",
-			"extensions": [
-				"dna"
-			]
-		},
-		"application/vnd.document+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.dolby.mlp": {
-			"source": "apache",
-			"extensions": [
-				"mlp"
-			]
-		},
-		"application/vnd.dolby.mobile.1": {
-			"source": "iana"
-		},
-		"application/vnd.dolby.mobile.2": {
-			"source": "iana"
-		},
-		"application/vnd.doremir.scorecloud-binary-document": {
-			"source": "iana"
-		},
-		"application/vnd.dpgraph": {
-			"source": "iana",
-			"extensions": [
-				"dpg"
-			]
-		},
-		"application/vnd.dreamfactory": {
-			"source": "iana",
-			"extensions": [
-				"dfac"
-			]
-		},
-		"application/vnd.drive+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.ds-keypoint": {
-			"source": "apache",
-			"extensions": [
-				"kpxx"
-			]
-		},
-		"application/vnd.dtg.local": {
-			"source": "iana"
-		},
-		"application/vnd.dtg.local.flash": {
-			"source": "iana"
-		},
-		"application/vnd.dtg.local.html": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.ait": {
-			"source": "iana",
-			"extensions": [
-				"ait"
-			]
-		},
-		"application/vnd.dvb.dvbj": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.esgcontainer": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.ipdcdftnotifaccess": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.ipdcesgaccess": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.ipdcesgaccess2": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.ipdcesgpdd": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.ipdcroaming": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.iptv.alfec-base": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.iptv.alfec-enhancement": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.notif-aggregate-root+xml": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.notif-container+xml": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.notif-generic+xml": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.notif-ia-msglist+xml": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.notif-ia-registration-request+xml": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.notif-ia-registration-response+xml": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.notif-init+xml": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.pfr": {
-			"source": "iana"
-		},
-		"application/vnd.dvb.service": {
-			"source": "iana",
-			"extensions": [
-				"svc"
-			]
-		},
-		"application/vnd.dxr": {
-			"source": "iana"
-		},
-		"application/vnd.dynageo": {
-			"source": "iana",
-			"extensions": [
-				"geo"
-			]
-		},
-		"application/vnd.dzr": {
-			"source": "iana"
-		},
-		"application/vnd.easykaraoke.cdgdownload": {
-			"source": "iana"
-		},
-		"application/vnd.ecdis-update": {
-			"source": "iana"
-		},
-		"application/vnd.ecowin.chart": {
-			"source": "iana",
-			"extensions": [
-				"mag"
-			]
-		},
-		"application/vnd.ecowin.filerequest": {
-			"source": "iana"
-		},
-		"application/vnd.ecowin.fileupdate": {
-			"source": "iana"
-		},
-		"application/vnd.ecowin.series": {
-			"source": "iana"
-		},
-		"application/vnd.ecowin.seriesrequest": {
-			"source": "iana"
-		},
-		"application/vnd.ecowin.seriesupdate": {
-			"source": "iana"
-		},
-		"application/vnd.emclient.accessrequest+xml": {
-			"source": "iana"
-		},
-		"application/vnd.enliven": {
-			"source": "iana",
-			"extensions": [
-				"nml"
-			]
-		},
-		"application/vnd.enphase.envoy": {
-			"source": "iana"
-		},
-		"application/vnd.eprints.data+xml": {
-			"source": "iana"
-		},
-		"application/vnd.epson.esf": {
-			"source": "iana",
-			"extensions": [
-				"esf"
-			]
-		},
-		"application/vnd.epson.msf": {
-			"source": "iana",
-			"extensions": [
-				"msf"
-			]
-		},
-		"application/vnd.epson.quickanime": {
-			"source": "iana",
-			"extensions": [
-				"qam"
-			]
-		},
-		"application/vnd.epson.salt": {
-			"source": "iana",
-			"extensions": [
-				"slt"
-			]
-		},
-		"application/vnd.epson.ssf": {
-			"source": "iana",
-			"extensions": [
-				"ssf"
-			]
-		},
-		"application/vnd.ericsson.quickcall": {
-			"source": "iana"
-		},
-		"application/vnd.espass-espass+zip": {
-			"source": "iana"
-		},
-		"application/vnd.eszigno3+xml": {
-			"source": "iana",
-			"extensions": [
-				"es3",
-				"et3"
-			]
-		},
-		"application/vnd.etsi.aoc+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.asic-e+zip": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.asic-s+zip": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.cug+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.iptvcommand+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.iptvdiscovery+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.iptvprofile+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.iptvsad-bc+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.iptvsad-cod+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.iptvsad-npvr+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.iptvservice+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.iptvsync+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.iptvueprofile+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.mcid+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.mheg5": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.overload-control-policy-dataset+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.pstn+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.sci+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.simservs+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.timestamp-token": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.tsl+xml": {
-			"source": "iana"
-		},
-		"application/vnd.etsi.tsl.der": {
-			"source": "iana"
-		},
-		"application/vnd.eudora.data": {
-			"source": "iana"
-		},
-		"application/vnd.ezpix-album": {
-			"source": "iana",
-			"extensions": [
-				"ez2"
-			]
-		},
-		"application/vnd.ezpix-package": {
-			"source": "iana",
-			"extensions": [
-				"ez3"
-			]
-		},
-		"application/vnd.f-secure.mobile": {
-			"source": "iana"
-		},
-		"application/vnd.fastcopy-disk-image": {
-			"source": "iana"
-		},
-		"application/vnd.fdf": {
-			"source": "iana",
-			"extensions": [
-				"fdf"
-			]
-		},
-		"application/vnd.fdsn.mseed": {
-			"source": "iana",
-			"extensions": [
-				"mseed"
-			]
-		},
-		"application/vnd.fdsn.seed": {
-			"source": "iana",
-			"extensions": [
-				"seed",
-				"dataless"
-			]
-		},
-		"application/vnd.ffsns": {
-			"source": "iana"
-		},
-		"application/vnd.filmit.zfc": {
-			"source": "iana"
-		},
-		"application/vnd.fints": {
-			"source": "iana"
-		},
-		"application/vnd.firemonkeys.cloudcell": {
-			"source": "iana"
-		},
-		"application/vnd.flographit": {
-			"source": "iana",
-			"extensions": [
-				"gph"
-			]
-		},
-		"application/vnd.fluxtime.clip": {
-			"source": "iana",
-			"extensions": [
-				"ftc"
-			]
-		},
-		"application/vnd.font-fontforge-sfd": {
-			"source": "iana"
-		},
-		"application/vnd.framemaker": {
-			"source": "iana",
-			"extensions": [
-				"fm",
-				"frame",
-				"maker",
-				"book"
-			]
-		},
-		"application/vnd.frogans.fnc": {
-			"source": "iana",
-			"extensions": [
-				"fnc"
-			]
-		},
-		"application/vnd.frogans.ltf": {
-			"source": "iana",
-			"extensions": [
-				"ltf"
-			]
-		},
-		"application/vnd.fsc.weblaunch": {
-			"source": "iana",
-			"extensions": [
-				"fsc"
-			]
-		},
-		"application/vnd.fujitsu.oasys": {
-			"source": "iana",
-			"extensions": [
-				"oas"
-			]
-		},
-		"application/vnd.fujitsu.oasys2": {
-			"source": "iana",
-			"extensions": [
-				"oa2"
-			]
-		},
-		"application/vnd.fujitsu.oasys3": {
-			"source": "iana",
-			"extensions": [
-				"oa3"
-			]
-		},
-		"application/vnd.fujitsu.oasysgp": {
-			"source": "iana",
-			"extensions": [
-				"fg5"
-			]
-		},
-		"application/vnd.fujitsu.oasysprs": {
-			"source": "iana",
-			"extensions": [
-				"bh2"
-			]
-		},
-		"application/vnd.fujixerox.art-ex": {
-			"source": "iana"
-		},
-		"application/vnd.fujixerox.art4": {
-			"source": "iana"
-		},
-		"application/vnd.fujixerox.ddd": {
-			"source": "iana",
-			"extensions": [
-				"ddd"
-			]
-		},
-		"application/vnd.fujixerox.docuworks": {
-			"source": "iana",
-			"extensions": [
-				"xdw"
-			]
-		},
-		"application/vnd.fujixerox.docuworks.binder": {
-			"source": "iana",
-			"extensions": [
-				"xbd"
-			]
-		},
-		"application/vnd.fujixerox.docuworks.container": {
-			"source": "iana"
-		},
-		"application/vnd.fujixerox.hbpl": {
-			"source": "iana"
-		},
-		"application/vnd.fut-misnet": {
-			"source": "iana"
-		},
-		"application/vnd.fuzzysheet": {
-			"source": "iana",
-			"extensions": [
-				"fzs"
-			]
-		},
-		"application/vnd.genomatix.tuxedo": {
-			"source": "iana",
-			"extensions": [
-				"txd"
-			]
-		},
-		"application/vnd.geo+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.geocube+xml": {
-			"source": "iana"
-		},
-		"application/vnd.geogebra.file": {
-			"source": "iana",
-			"extensions": [
-				"ggb"
-			]
-		},
-		"application/vnd.geogebra.tool": {
-			"source": "iana",
-			"extensions": [
-				"ggt"
-			]
-		},
-		"application/vnd.geometry-explorer": {
-			"source": "iana",
-			"extensions": [
-				"gex",
-				"gre"
-			]
-		},
-		"application/vnd.geonext": {
-			"source": "iana",
-			"extensions": [
-				"gxt"
-			]
-		},
-		"application/vnd.geoplan": {
-			"source": "iana",
-			"extensions": [
-				"g2w"
-			]
-		},
-		"application/vnd.geospace": {
-			"source": "iana",
-			"extensions": [
-				"g3w"
-			]
-		},
-		"application/vnd.gerber": {
-			"source": "iana"
-		},
-		"application/vnd.globalplatform.card-content-mgt": {
-			"source": "iana"
-		},
-		"application/vnd.globalplatform.card-content-mgt-response": {
-			"source": "iana"
-		},
-		"application/vnd.gmx": {
-			"source": "iana",
-			"extensions": [
-				"gmx"
-			]
-		},
-		"application/vnd.google-apps.document": {
-			"compressible": false,
-			"extensions": [
-				"gdoc"
-			]
-		},
-		"application/vnd.google-apps.presentation": {
-			"compressible": false,
-			"extensions": [
-				"gslides"
-			]
-		},
-		"application/vnd.google-apps.spreadsheet": {
-			"compressible": false,
-			"extensions": [
-				"gsheet"
-			]
-		},
-		"application/vnd.google-earth.kml+xml": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"kml"
-			]
-		},
-		"application/vnd.google-earth.kmz": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"kmz"
-			]
-		},
-		"application/vnd.gov.sk.e-form+xml": {
-			"source": "iana"
-		},
-		"application/vnd.gov.sk.e-form+zip": {
-			"source": "iana"
-		},
-		"application/vnd.gov.sk.xmldatacontainer+xml": {
-			"source": "iana"
-		},
-		"application/vnd.grafeq": {
-			"source": "iana",
-			"extensions": [
-				"gqf",
-				"gqs"
-			]
-		},
-		"application/vnd.gridmp": {
-			"source": "iana"
-		},
-		"application/vnd.groove-account": {
-			"source": "iana",
-			"extensions": [
-				"gac"
-			]
-		},
-		"application/vnd.groove-help": {
-			"source": "iana",
-			"extensions": [
-				"ghf"
-			]
-		},
-		"application/vnd.groove-identity-message": {
-			"source": "iana",
-			"extensions": [
-				"gim"
-			]
-		},
-		"application/vnd.groove-injector": {
-			"source": "iana",
-			"extensions": [
-				"grv"
-			]
-		},
-		"application/vnd.groove-tool-message": {
-			"source": "iana",
-			"extensions": [
-				"gtm"
-			]
-		},
-		"application/vnd.groove-tool-template": {
-			"source": "iana",
-			"extensions": [
-				"tpl"
-			]
-		},
-		"application/vnd.groove-vcard": {
-			"source": "iana",
-			"extensions": [
-				"vcg"
-			]
-		},
-		"application/vnd.hal+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.hal+xml": {
-			"source": "iana",
-			"extensions": [
-				"hal"
-			]
-		},
-		"application/vnd.handheld-entertainment+xml": {
-			"source": "iana",
-			"extensions": [
-				"zmm"
-			]
-		},
-		"application/vnd.hbci": {
-			"source": "iana",
-			"extensions": [
-				"hbci"
-			]
-		},
-		"application/vnd.hc+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.hcl-bireports": {
-			"source": "iana"
-		},
-		"application/vnd.hdt": {
-			"source": "iana"
-		},
-		"application/vnd.heroku+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.hhe.lesson-player": {
-			"source": "iana",
-			"extensions": [
-				"les"
-			]
-		},
-		"application/vnd.hp-hpgl": {
-			"source": "iana",
-			"extensions": [
-				"hpgl"
-			]
-		},
-		"application/vnd.hp-hpid": {
-			"source": "iana",
-			"extensions": [
-				"hpid"
-			]
-		},
-		"application/vnd.hp-hps": {
-			"source": "iana",
-			"extensions": [
-				"hps"
-			]
-		},
-		"application/vnd.hp-jlyt": {
-			"source": "iana",
-			"extensions": [
-				"jlt"
-			]
-		},
-		"application/vnd.hp-pcl": {
-			"source": "iana",
-			"extensions": [
-				"pcl"
-			]
-		},
-		"application/vnd.hp-pclxl": {
-			"source": "iana",
-			"extensions": [
-				"pclxl"
-			]
-		},
-		"application/vnd.httphone": {
-			"source": "iana"
-		},
-		"application/vnd.hydrostatix.sof-data": {
-			"source": "iana",
-			"extensions": [
-				"sfd-hdstx"
-			]
-		},
-		"application/vnd.hyperdrive+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.hzn-3d-crossword": {
-			"source": "iana"
-		},
-		"application/vnd.ibm.afplinedata": {
-			"source": "iana"
-		},
-		"application/vnd.ibm.electronic-media": {
-			"source": "iana"
-		},
-		"application/vnd.ibm.minipay": {
-			"source": "iana",
-			"extensions": [
-				"mpy"
-			]
-		},
-		"application/vnd.ibm.modcap": {
-			"source": "iana",
-			"extensions": [
-				"afp",
-				"listafp",
-				"list3820"
-			]
-		},
-		"application/vnd.ibm.rights-management": {
-			"source": "iana",
-			"extensions": [
-				"irm"
-			]
-		},
-		"application/vnd.ibm.secure-container": {
-			"source": "iana",
-			"extensions": [
-				"sc"
-			]
-		},
-		"application/vnd.iccprofile": {
-			"source": "iana",
-			"extensions": [
-				"icc",
-				"icm"
-			]
-		},
-		"application/vnd.ieee.1905": {
-			"source": "iana"
-		},
-		"application/vnd.igloader": {
-			"source": "iana",
-			"extensions": [
-				"igl"
-			]
-		},
-		"application/vnd.immervision-ivp": {
-			"source": "iana",
-			"extensions": [
-				"ivp"
-			]
-		},
-		"application/vnd.immervision-ivu": {
-			"source": "iana",
-			"extensions": [
-				"ivu"
-			]
-		},
-		"application/vnd.ims.imsccv1p1": {
-			"source": "iana"
-		},
-		"application/vnd.ims.imsccv1p2": {
-			"source": "iana"
-		},
-		"application/vnd.ims.imsccv1p3": {
-			"source": "iana"
-		},
-		"application/vnd.ims.lis.v2.result+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.ims.lti.v2.toolconsumerprofile+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.ims.lti.v2.toolproxy+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.ims.lti.v2.toolproxy.id+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.ims.lti.v2.toolsettings+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.ims.lti.v2.toolsettings.simple+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.informedcontrol.rms+xml": {
-			"source": "iana"
-		},
-		"application/vnd.informix-visionary": {
-			"source": "iana"
-		},
-		"application/vnd.infotech.project": {
-			"source": "iana"
-		},
-		"application/vnd.infotech.project+xml": {
-			"source": "iana"
-		},
-		"application/vnd.innopath.wamp.notification": {
-			"source": "iana"
-		},
-		"application/vnd.insors.igm": {
-			"source": "iana",
-			"extensions": [
-				"igm"
-			]
-		},
-		"application/vnd.intercon.formnet": {
-			"source": "iana",
-			"extensions": [
-				"xpw",
-				"xpx"
-			]
-		},
-		"application/vnd.intergeo": {
-			"source": "iana",
-			"extensions": [
-				"i2g"
-			]
-		},
-		"application/vnd.intertrust.digibox": {
-			"source": "iana"
-		},
-		"application/vnd.intertrust.nncp": {
-			"source": "iana"
-		},
-		"application/vnd.intu.qbo": {
-			"source": "iana",
-			"extensions": [
-				"qbo"
-			]
-		},
-		"application/vnd.intu.qfx": {
-			"source": "iana",
-			"extensions": [
-				"qfx"
-			]
-		},
-		"application/vnd.iptc.g2.catalogitem+xml": {
-			"source": "iana"
-		},
-		"application/vnd.iptc.g2.conceptitem+xml": {
-			"source": "iana"
-		},
-		"application/vnd.iptc.g2.knowledgeitem+xml": {
-			"source": "iana"
-		},
-		"application/vnd.iptc.g2.newsitem+xml": {
-			"source": "iana"
-		},
-		"application/vnd.iptc.g2.newsmessage+xml": {
-			"source": "iana"
-		},
-		"application/vnd.iptc.g2.packageitem+xml": {
-			"source": "iana"
-		},
-		"application/vnd.iptc.g2.planningitem+xml": {
-			"source": "iana"
-		},
-		"application/vnd.ipunplugged.rcprofile": {
-			"source": "iana",
-			"extensions": [
-				"rcprofile"
-			]
-		},
-		"application/vnd.irepository.package+xml": {
-			"source": "iana",
-			"extensions": [
-				"irp"
-			]
-		},
-		"application/vnd.is-xpr": {
-			"source": "iana",
-			"extensions": [
-				"xpr"
-			]
-		},
-		"application/vnd.isac.fcs": {
-			"source": "iana",
-			"extensions": [
-				"fcs"
-			]
-		},
-		"application/vnd.jam": {
-			"source": "iana",
-			"extensions": [
-				"jam"
-			]
-		},
-		"application/vnd.japannet-directory-service": {
-			"source": "iana"
-		},
-		"application/vnd.japannet-jpnstore-wakeup": {
-			"source": "iana"
-		},
-		"application/vnd.japannet-payment-wakeup": {
-			"source": "iana"
-		},
-		"application/vnd.japannet-registration": {
-			"source": "iana"
-		},
-		"application/vnd.japannet-registration-wakeup": {
-			"source": "iana"
-		},
-		"application/vnd.japannet-setstore-wakeup": {
-			"source": "iana"
-		},
-		"application/vnd.japannet-verification": {
-			"source": "iana"
-		},
-		"application/vnd.japannet-verification-wakeup": {
-			"source": "iana"
-		},
-		"application/vnd.jcp.javame.midlet-rms": {
-			"source": "iana",
-			"extensions": [
-				"rms"
-			]
-		},
-		"application/vnd.jisp": {
-			"source": "iana",
-			"extensions": [
-				"jisp"
-			]
-		},
-		"application/vnd.joost.joda-archive": {
-			"source": "iana",
-			"extensions": [
-				"joda"
-			]
-		},
-		"application/vnd.jsk.isdn-ngn": {
-			"source": "iana"
-		},
-		"application/vnd.kahootz": {
-			"source": "iana",
-			"extensions": [
-				"ktz",
-				"ktr"
-			]
-		},
-		"application/vnd.kde.karbon": {
-			"source": "iana",
-			"extensions": [
-				"karbon"
-			]
-		},
-		"application/vnd.kde.kchart": {
-			"source": "iana",
-			"extensions": [
-				"chrt"
-			]
-		},
-		"application/vnd.kde.kformula": {
-			"source": "iana",
-			"extensions": [
-				"kfo"
-			]
-		},
-		"application/vnd.kde.kivio": {
-			"source": "iana",
-			"extensions": [
-				"flw"
-			]
-		},
-		"application/vnd.kde.kontour": {
-			"source": "iana",
-			"extensions": [
-				"kon"
-			]
-		},
-		"application/vnd.kde.kpresenter": {
-			"source": "iana",
-			"extensions": [
-				"kpr",
-				"kpt"
-			]
-		},
-		"application/vnd.kde.kspread": {
-			"source": "iana",
-			"extensions": [
-				"ksp"
-			]
-		},
-		"application/vnd.kde.kword": {
-			"source": "iana",
-			"extensions": [
-				"kwd",
-				"kwt"
-			]
-		},
-		"application/vnd.kenameaapp": {
-			"source": "iana",
-			"extensions": [
-				"htke"
-			]
-		},
-		"application/vnd.kidspiration": {
-			"source": "iana",
-			"extensions": [
-				"kia"
-			]
-		},
-		"application/vnd.kinar": {
-			"source": "iana",
-			"extensions": [
-				"kne",
-				"knp"
-			]
-		},
-		"application/vnd.koan": {
-			"source": "iana",
-			"extensions": [
-				"skp",
-				"skd",
-				"skt",
-				"skm"
-			]
-		},
-		"application/vnd.kodak-descriptor": {
-			"source": "iana",
-			"extensions": [
-				"sse"
-			]
-		},
-		"application/vnd.las.las+xml": {
-			"source": "iana",
-			"extensions": [
-				"lasxml"
-			]
-		},
-		"application/vnd.liberty-request+xml": {
-			"source": "iana"
-		},
-		"application/vnd.llamagraphics.life-balance.desktop": {
-			"source": "iana",
-			"extensions": [
-				"lbd"
-			]
-		},
-		"application/vnd.llamagraphics.life-balance.exchange+xml": {
-			"source": "iana",
-			"extensions": [
-				"lbe"
-			]
-		},
-		"application/vnd.lotus-1-2-3": {
-			"source": "iana",
-			"extensions": [
-				"123"
-			]
-		},
-		"application/vnd.lotus-approach": {
-			"source": "iana",
-			"extensions": [
-				"apr"
-			]
-		},
-		"application/vnd.lotus-freelance": {
-			"source": "iana",
-			"extensions": [
-				"pre"
-			]
-		},
-		"application/vnd.lotus-notes": {
-			"source": "iana",
-			"extensions": [
-				"nsf"
-			]
-		},
-		"application/vnd.lotus-organizer": {
-			"source": "iana",
-			"extensions": [
-				"org"
-			]
-		},
-		"application/vnd.lotus-screencam": {
-			"source": "iana",
-			"extensions": [
-				"scm"
-			]
-		},
-		"application/vnd.lotus-wordpro": {
-			"source": "iana",
-			"extensions": [
-				"lwp"
-			]
-		},
-		"application/vnd.macports.portpkg": {
-			"source": "iana",
-			"extensions": [
-				"portpkg"
-			]
-		},
-		"application/vnd.mapbox-vector-tile": {
-			"source": "iana"
-		},
-		"application/vnd.marlin.drm.actiontoken+xml": {
-			"source": "iana"
-		},
-		"application/vnd.marlin.drm.conftoken+xml": {
-			"source": "iana"
-		},
-		"application/vnd.marlin.drm.license+xml": {
-			"source": "iana"
-		},
-		"application/vnd.marlin.drm.mdcf": {
-			"source": "iana"
-		},
-		"application/vnd.mason+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.maxmind.maxmind-db": {
-			"source": "iana"
-		},
-		"application/vnd.mcd": {
-			"source": "iana",
-			"extensions": [
-				"mcd"
-			]
-		},
-		"application/vnd.medcalcdata": {
-			"source": "iana",
-			"extensions": [
-				"mc1"
-			]
-		},
-		"application/vnd.mediastation.cdkey": {
-			"source": "iana",
-			"extensions": [
-				"cdkey"
-			]
-		},
-		"application/vnd.meridian-slingshot": {
-			"source": "iana"
-		},
-		"application/vnd.mfer": {
-			"source": "iana",
-			"extensions": [
-				"mwf"
-			]
-		},
-		"application/vnd.mfmp": {
-			"source": "iana",
-			"extensions": [
-				"mfm"
-			]
-		},
-		"application/vnd.micro+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.micrografx.flo": {
-			"source": "iana",
-			"extensions": [
-				"flo"
-			]
-		},
-		"application/vnd.micrografx.igx": {
-			"source": "iana",
-			"extensions": [
-				"igx"
-			]
-		},
-		"application/vnd.microsoft.portable-executable": {
-			"source": "iana"
-		},
-		"application/vnd.miele+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.mif": {
-			"source": "iana",
-			"extensions": [
-				"mif"
-			]
-		},
-		"application/vnd.minisoft-hp3000-save": {
-			"source": "iana"
-		},
-		"application/vnd.mitsubishi.misty-guard.trustweb": {
-			"source": "iana"
-		},
-		"application/vnd.mobius.daf": {
-			"source": "iana",
-			"extensions": [
-				"daf"
-			]
-		},
-		"application/vnd.mobius.dis": {
-			"source": "iana",
-			"extensions": [
-				"dis"
-			]
-		},
-		"application/vnd.mobius.mbk": {
-			"source": "iana",
-			"extensions": [
-				"mbk"
-			]
-		},
-		"application/vnd.mobius.mqy": {
-			"source": "iana",
-			"extensions": [
-				"mqy"
-			]
-		},
-		"application/vnd.mobius.msl": {
-			"source": "iana",
-			"extensions": [
-				"msl"
-			]
-		},
-		"application/vnd.mobius.plc": {
-			"source": "iana",
-			"extensions": [
-				"plc"
-			]
-		},
-		"application/vnd.mobius.txf": {
-			"source": "iana",
-			"extensions": [
-				"txf"
-			]
-		},
-		"application/vnd.mophun.application": {
-			"source": "iana",
-			"extensions": [
-				"mpn"
-			]
-		},
-		"application/vnd.mophun.certificate": {
-			"source": "iana",
-			"extensions": [
-				"mpc"
-			]
-		},
-		"application/vnd.motorola.flexsuite": {
-			"source": "iana"
-		},
-		"application/vnd.motorola.flexsuite.adsi": {
-			"source": "iana"
-		},
-		"application/vnd.motorola.flexsuite.fis": {
-			"source": "iana"
-		},
-		"application/vnd.motorola.flexsuite.gotap": {
-			"source": "iana"
-		},
-		"application/vnd.motorola.flexsuite.kmr": {
-			"source": "iana"
-		},
-		"application/vnd.motorola.flexsuite.ttc": {
-			"source": "iana"
-		},
-		"application/vnd.motorola.flexsuite.wem": {
-			"source": "iana"
-		},
-		"application/vnd.motorola.iprm": {
-			"source": "iana"
-		},
-		"application/vnd.mozilla.xul+xml": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"xul"
-			]
-		},
-		"application/vnd.ms-3mfdocument": {
-			"source": "iana"
-		},
-		"application/vnd.ms-artgalry": {
-			"source": "iana",
-			"extensions": [
-				"cil"
-			]
-		},
-		"application/vnd.ms-asf": {
-			"source": "iana"
-		},
-		"application/vnd.ms-cab-compressed": {
-			"source": "iana",
-			"extensions": [
-				"cab"
-			]
-		},
-		"application/vnd.ms-color.iccprofile": {
-			"source": "apache"
-		},
-		"application/vnd.ms-excel": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"xls",
-				"xlm",
-				"xla",
-				"xlc",
-				"xlt",
-				"xlw"
-			]
-		},
-		"application/vnd.ms-excel.addin.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"xlam"
-			]
-		},
-		"application/vnd.ms-excel.sheet.binary.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"xlsb"
-			]
-		},
-		"application/vnd.ms-excel.sheet.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"xlsm"
-			]
-		},
-		"application/vnd.ms-excel.template.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"xltm"
-			]
-		},
-		"application/vnd.ms-fontobject": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"eot"
-			]
-		},
-		"application/vnd.ms-htmlhelp": {
-			"source": "iana",
-			"extensions": [
-				"chm"
-			]
-		},
-		"application/vnd.ms-ims": {
-			"source": "iana",
-			"extensions": [
-				"ims"
-			]
-		},
-		"application/vnd.ms-lrm": {
-			"source": "iana",
-			"extensions": [
-				"lrm"
-			]
-		},
-		"application/vnd.ms-office.activex+xml": {
-			"source": "iana"
-		},
-		"application/vnd.ms-officetheme": {
-			"source": "iana",
-			"extensions": [
-				"thmx"
-			]
-		},
-		"application/vnd.ms-opentype": {
-			"source": "apache",
-			"compressible": true
-		},
-		"application/vnd.ms-package.obfuscated-opentype": {
-			"source": "apache"
-		},
-		"application/vnd.ms-pki.seccat": {
-			"source": "apache",
-			"extensions": [
-				"cat"
-			]
-		},
-		"application/vnd.ms-pki.stl": {
-			"source": "apache",
-			"extensions": [
-				"stl"
-			]
-		},
-		"application/vnd.ms-playready.initiator+xml": {
-			"source": "iana"
-		},
-		"application/vnd.ms-powerpoint": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"ppt",
-				"pps",
-				"pot"
-			]
-		},
-		"application/vnd.ms-powerpoint.addin.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"ppam"
-			]
-		},
-		"application/vnd.ms-powerpoint.presentation.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"pptm"
-			]
-		},
-		"application/vnd.ms-powerpoint.slide.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"sldm"
-			]
-		},
-		"application/vnd.ms-powerpoint.slideshow.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"ppsm"
-			]
-		},
-		"application/vnd.ms-powerpoint.template.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"potm"
-			]
-		},
-		"application/vnd.ms-printdevicecapabilities+xml": {
-			"source": "iana"
-		},
-		"application/vnd.ms-printing.printticket+xml": {
-			"source": "apache"
-		},
-		"application/vnd.ms-printschematicket+xml": {
-			"source": "iana"
-		},
-		"application/vnd.ms-project": {
-			"source": "iana",
-			"extensions": [
-				"mpp",
-				"mpt"
-			]
-		},
-		"application/vnd.ms-tnef": {
-			"source": "iana"
-		},
-		"application/vnd.ms-windows.devicepairing": {
-			"source": "iana"
-		},
-		"application/vnd.ms-windows.nwprinting.oob": {
-			"source": "iana"
-		},
-		"application/vnd.ms-windows.printerpairing": {
-			"source": "iana"
-		},
-		"application/vnd.ms-windows.wsd.oob": {
-			"source": "iana"
-		},
-		"application/vnd.ms-wmdrm.lic-chlg-req": {
-			"source": "iana"
-		},
-		"application/vnd.ms-wmdrm.lic-resp": {
-			"source": "iana"
-		},
-		"application/vnd.ms-wmdrm.meter-chlg-req": {
-			"source": "iana"
-		},
-		"application/vnd.ms-wmdrm.meter-resp": {
-			"source": "iana"
-		},
-		"application/vnd.ms-word.document.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"docm"
-			]
-		},
-		"application/vnd.ms-word.template.macroenabled.12": {
-			"source": "iana",
-			"extensions": [
-				"dotm"
-			]
-		},
-		"application/vnd.ms-works": {
-			"source": "iana",
-			"extensions": [
-				"wps",
-				"wks",
-				"wcm",
-				"wdb"
-			]
-		},
-		"application/vnd.ms-wpl": {
-			"source": "iana",
-			"extensions": [
-				"wpl"
-			]
-		},
-		"application/vnd.ms-xpsdocument": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"xps"
-			]
-		},
-		"application/vnd.msa-disk-image": {
-			"source": "iana"
-		},
-		"application/vnd.mseq": {
-			"source": "iana",
-			"extensions": [
-				"mseq"
-			]
-		},
-		"application/vnd.msign": {
-			"source": "iana"
-		},
-		"application/vnd.multiad.creator": {
-			"source": "iana"
-		},
-		"application/vnd.multiad.creator.cif": {
-			"source": "iana"
-		},
-		"application/vnd.music-niff": {
-			"source": "iana"
-		},
-		"application/vnd.musician": {
-			"source": "iana",
-			"extensions": [
-				"mus"
-			]
-		},
-		"application/vnd.muvee.style": {
-			"source": "iana",
-			"extensions": [
-				"msty"
-			]
-		},
-		"application/vnd.mynfc": {
-			"source": "iana",
-			"extensions": [
-				"taglet"
-			]
-		},
-		"application/vnd.ncd.control": {
-			"source": "iana"
-		},
-		"application/vnd.ncd.reference": {
-			"source": "iana"
-		},
-		"application/vnd.nearst.inv+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.nervana": {
-			"source": "iana"
-		},
-		"application/vnd.netfpx": {
-			"source": "iana"
-		},
-		"application/vnd.neurolanguage.nlu": {
-			"source": "iana",
-			"extensions": [
-				"nlu"
-			]
-		},
-		"application/vnd.nintendo.nitro.rom": {
-			"source": "iana"
-		},
-		"application/vnd.nintendo.snes.rom": {
-			"source": "iana"
-		},
-		"application/vnd.nitf": {
-			"source": "iana",
-			"extensions": [
-				"ntf",
-				"nitf"
-			]
-		},
-		"application/vnd.noblenet-directory": {
-			"source": "iana",
-			"extensions": [
-				"nnd"
-			]
-		},
-		"application/vnd.noblenet-sealer": {
-			"source": "iana",
-			"extensions": [
-				"nns"
-			]
-		},
-		"application/vnd.noblenet-web": {
-			"source": "iana",
-			"extensions": [
-				"nnw"
-			]
-		},
-		"application/vnd.nokia.catalogs": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.conml+wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.conml+xml": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.iptv.config+xml": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.isds-radio-presets": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.landmark+wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.landmark+xml": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.landmarkcollection+xml": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.n-gage.ac+xml": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.n-gage.data": {
-			"source": "iana",
-			"extensions": [
-				"ngdat"
-			]
-		},
-		"application/vnd.nokia.n-gage.symbian.install": {
-			"source": "iana",
-			"extensions": [
-				"n-gage"
-			]
-		},
-		"application/vnd.nokia.ncd": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.pcd+wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.pcd+xml": {
-			"source": "iana"
-		},
-		"application/vnd.nokia.radio-preset": {
-			"source": "iana",
-			"extensions": [
-				"rpst"
-			]
-		},
-		"application/vnd.nokia.radio-presets": {
-			"source": "iana",
-			"extensions": [
-				"rpss"
-			]
-		},
-		"application/vnd.novadigm.edm": {
-			"source": "iana",
-			"extensions": [
-				"edm"
-			]
-		},
-		"application/vnd.novadigm.edx": {
-			"source": "iana",
-			"extensions": [
-				"edx"
-			]
-		},
-		"application/vnd.novadigm.ext": {
-			"source": "iana",
-			"extensions": [
-				"ext"
-			]
-		},
-		"application/vnd.ntt-local.content-share": {
-			"source": "iana"
-		},
-		"application/vnd.ntt-local.file-transfer": {
-			"source": "iana"
-		},
-		"application/vnd.ntt-local.ogw_remote-access": {
-			"source": "iana"
-		},
-		"application/vnd.ntt-local.sip-ta_remote": {
-			"source": "iana"
-		},
-		"application/vnd.ntt-local.sip-ta_tcp_stream": {
-			"source": "iana"
-		},
-		"application/vnd.oasis.opendocument.chart": {
-			"source": "iana",
-			"extensions": [
-				"odc"
-			]
-		},
-		"application/vnd.oasis.opendocument.chart-template": {
-			"source": "iana",
-			"extensions": [
-				"otc"
-			]
-		},
-		"application/vnd.oasis.opendocument.database": {
-			"source": "iana",
-			"extensions": [
-				"odb"
-			]
-		},
-		"application/vnd.oasis.opendocument.formula": {
-			"source": "iana",
-			"extensions": [
-				"odf"
-			]
-		},
-		"application/vnd.oasis.opendocument.formula-template": {
-			"source": "iana",
-			"extensions": [
-				"odft"
-			]
-		},
-		"application/vnd.oasis.opendocument.graphics": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"odg"
-			]
-		},
-		"application/vnd.oasis.opendocument.graphics-template": {
-			"source": "iana",
-			"extensions": [
-				"otg"
-			]
-		},
-		"application/vnd.oasis.opendocument.image": {
-			"source": "iana",
-			"extensions": [
-				"odi"
-			]
-		},
-		"application/vnd.oasis.opendocument.image-template": {
-			"source": "iana",
-			"extensions": [
-				"oti"
-			]
-		},
-		"application/vnd.oasis.opendocument.presentation": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"odp"
-			]
-		},
-		"application/vnd.oasis.opendocument.presentation-template": {
-			"source": "iana",
-			"extensions": [
-				"otp"
-			]
-		},
-		"application/vnd.oasis.opendocument.spreadsheet": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"ods"
-			]
-		},
-		"application/vnd.oasis.opendocument.spreadsheet-template": {
-			"source": "iana",
-			"extensions": [
-				"ots"
-			]
-		},
-		"application/vnd.oasis.opendocument.text": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"odt"
-			]
-		},
-		"application/vnd.oasis.opendocument.text-master": {
-			"source": "iana",
-			"extensions": [
-				"odm"
-			]
-		},
-		"application/vnd.oasis.opendocument.text-template": {
-			"source": "iana",
-			"extensions": [
-				"ott"
-			]
-		},
-		"application/vnd.oasis.opendocument.text-web": {
-			"source": "iana",
-			"extensions": [
-				"oth"
-			]
-		},
-		"application/vnd.obn": {
-			"source": "iana"
-		},
-		"application/vnd.oftn.l10n+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.oipf.contentaccessdownload+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oipf.contentaccessstreaming+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oipf.cspg-hexbinary": {
-			"source": "iana"
-		},
-		"application/vnd.oipf.dae.svg+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oipf.dae.xhtml+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oipf.mippvcontrolmessage+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oipf.pae.gem": {
-			"source": "iana"
-		},
-		"application/vnd.oipf.spdiscovery+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oipf.spdlist+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oipf.ueprofile+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oipf.userprofile+xml": {
-			"source": "iana"
-		},
-		"application/vnd.olpc-sugar": {
-			"source": "iana",
-			"extensions": [
-				"xo"
-			]
-		},
-		"application/vnd.oma-scws-config": {
-			"source": "iana"
-		},
-		"application/vnd.oma-scws-http-request": {
-			"source": "iana"
-		},
-		"application/vnd.oma-scws-http-response": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.associated-procedure-parameter+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.drm-trigger+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.imd+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.ltkm": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.notification+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.provisioningtrigger": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.sgboot": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.sgdd+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.sgdu": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.simple-symbol-container": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.smartcard-trigger+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.sprov+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.bcast.stkm": {
-			"source": "iana"
-		},
-		"application/vnd.oma.cab-address-book+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.cab-feature-handler+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.cab-pcc+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.cab-subs-invite+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.cab-user-prefs+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.dcd": {
-			"source": "iana"
-		},
-		"application/vnd.oma.dcdc": {
-			"source": "iana"
-		},
-		"application/vnd.oma.dd2+xml": {
-			"source": "iana",
-			"extensions": [
-				"dd2"
-			]
-		},
-		"application/vnd.oma.drm.risd+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.group-usage-list+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.lwm2m+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.oma.lwm2m+tlv": {
-			"source": "iana"
-		},
-		"application/vnd.oma.pal+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.poc.detailed-progress-report+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.poc.final-report+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.poc.groups+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.poc.invocation-descriptor+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.poc.optimized-progress-report+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.push": {
-			"source": "iana"
-		},
-		"application/vnd.oma.scidm.messages+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oma.xcap-directory+xml": {
-			"source": "iana"
-		},
-		"application/vnd.omads-email+xml": {
-			"source": "iana"
-		},
-		"application/vnd.omads-file+xml": {
-			"source": "iana"
-		},
-		"application/vnd.omads-folder+xml": {
-			"source": "iana"
-		},
-		"application/vnd.omaloc-supl-init": {
-			"source": "iana"
-		},
-		"application/vnd.onepager": {
-			"source": "iana"
-		},
-		"application/vnd.openblox.game+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openblox.game-binary": {
-			"source": "iana"
-		},
-		"application/vnd.openeye.oeb": {
-			"source": "iana"
-		},
-		"application/vnd.openofficeorg.extension": {
-			"source": "apache",
-			"extensions": [
-				"oxt"
-			]
-		},
-		"application/vnd.openstreetmap.data+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.custom-properties+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.customxmlproperties+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.drawing+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.drawingml.chart+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.drawingml.chartshapes+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.drawingml.diagramcolors+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.drawingml.diagramdata+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.drawingml.diagramlayout+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.drawingml.diagramstyle+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.extended-properties+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml-template": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.commentauthors+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.comments+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.handoutmaster+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.notesmaster+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.notesslide+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.presentation": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"pptx"
-			]
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.presprops+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.slide": {
-			"source": "iana",
-			"extensions": [
-				"sldx"
-			]
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.slide+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.slidelayout+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.slidemaster+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.slideshow": {
-			"source": "iana",
-			"extensions": [
-				"ppsx"
-			]
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.slideshow.main+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.slideupdateinfo+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.tablestyles+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.tags+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.template": {
-			"source": "apache",
-			"extensions": [
-				"potx"
-			]
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.template.main+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.presentationml.viewprops+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml-template": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.calcchain+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.chartsheet+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.comments+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.connections+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.dialogsheet+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.externallink+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.pivotcachedefinition+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.pivotcacherecords+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.pivottable+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.querytable+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.revisionheaders+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.revisionlog+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.sharedstrings+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"xlsx"
-			]
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.sheetmetadata+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.table+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.tablesinglecells+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.template": {
-			"source": "apache",
-			"extensions": [
-				"xltx"
-			]
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.template.main+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.usernames+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.volatiledependencies+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.theme+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.themeoverride+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.vmldrawing": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml-template": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.comments+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.document": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"docx"
-			]
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.document.glossary+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.endnotes+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.fonttable+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.footnotes+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.numbering+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.settings+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.template": {
-			"source": "apache",
-			"extensions": [
-				"dotx"
-			]
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.template.main+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-officedocument.wordprocessingml.websettings+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-package.core-properties+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-package.digital-signature-xmlsignature+xml": {
-			"source": "iana"
-		},
-		"application/vnd.openxmlformats-package.relationships+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oracle.resource+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.orange.indata": {
-			"source": "iana"
-		},
-		"application/vnd.osa.netdeploy": {
-			"source": "iana"
-		},
-		"application/vnd.osgeo.mapguide.package": {
-			"source": "iana",
-			"extensions": [
-				"mgp"
-			]
-		},
-		"application/vnd.osgi.bundle": {
-			"source": "iana"
-		},
-		"application/vnd.osgi.dp": {
-			"source": "iana",
-			"extensions": [
-				"dp"
-			]
-		},
-		"application/vnd.osgi.subsystem": {
-			"source": "iana",
-			"extensions": [
-				"esa"
-			]
-		},
-		"application/vnd.otps.ct-kip+xml": {
-			"source": "iana"
-		},
-		"application/vnd.oxli.countgraph": {
-			"source": "iana"
-		},
-		"application/vnd.pagerduty+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.palm": {
-			"source": "iana",
-			"extensions": [
-				"pdb",
-				"pqa",
-				"oprc"
-			]
-		},
-		"application/vnd.panoply": {
-			"source": "iana"
-		},
-		"application/vnd.paos+xml": {
-			"source": "iana"
-		},
-		"application/vnd.paos.xml": {
-			"source": "apache"
-		},
-		"application/vnd.pawaafile": {
-			"source": "iana",
-			"extensions": [
-				"paw"
-			]
-		},
-		"application/vnd.pcos": {
-			"source": "iana"
-		},
-		"application/vnd.pg.format": {
-			"source": "iana",
-			"extensions": [
-				"str"
-			]
-		},
-		"application/vnd.pg.osasli": {
-			"source": "iana",
-			"extensions": [
-				"ei6"
-			]
-		},
-		"application/vnd.piaccess.application-licence": {
-			"source": "iana"
-		},
-		"application/vnd.picsel": {
-			"source": "iana",
-			"extensions": [
-				"efif"
-			]
-		},
-		"application/vnd.pmi.widget": {
-			"source": "iana",
-			"extensions": [
-				"wg"
-			]
-		},
-		"application/vnd.poc.group-advertisement+xml": {
-			"source": "iana"
-		},
-		"application/vnd.pocketlearn": {
-			"source": "iana",
-			"extensions": [
-				"plf"
-			]
-		},
-		"application/vnd.powerbuilder6": {
-			"source": "iana",
-			"extensions": [
-				"pbd"
-			]
-		},
-		"application/vnd.powerbuilder6-s": {
-			"source": "iana"
-		},
-		"application/vnd.powerbuilder7": {
-			"source": "iana"
-		},
-		"application/vnd.powerbuilder7-s": {
-			"source": "iana"
-		},
-		"application/vnd.powerbuilder75": {
-			"source": "iana"
-		},
-		"application/vnd.powerbuilder75-s": {
-			"source": "iana"
-		},
-		"application/vnd.preminet": {
-			"source": "iana"
-		},
-		"application/vnd.previewsystems.box": {
-			"source": "iana",
-			"extensions": [
-				"box"
-			]
-		},
-		"application/vnd.proteus.magazine": {
-			"source": "iana",
-			"extensions": [
-				"mgz"
-			]
-		},
-		"application/vnd.publishare-delta-tree": {
-			"source": "iana",
-			"extensions": [
-				"qps"
-			]
-		},
-		"application/vnd.pvi.ptid1": {
-			"source": "iana",
-			"extensions": [
-				"ptid"
-			]
-		},
-		"application/vnd.pwg-multiplexed": {
-			"source": "iana"
-		},
-		"application/vnd.pwg-xhtml-print+xml": {
-			"source": "iana"
-		},
-		"application/vnd.qualcomm.brew-app-res": {
-			"source": "iana"
-		},
-		"application/vnd.quarantainenet": {
-			"source": "iana"
-		},
-		"application/vnd.quark.quarkxpress": {
-			"source": "iana",
-			"extensions": [
-				"qxd",
-				"qxt",
-				"qwd",
-				"qwt",
-				"qxl",
-				"qxb"
-			]
-		},
-		"application/vnd.quobject-quoxdocument": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.moml+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-audit+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-audit-conf+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-audit-conn+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-audit-dialog+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-audit-stream+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-conf+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-dialog+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-dialog-base+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-dialog-fax-detect+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-dialog-fax-sendrecv+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-dialog-group+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-dialog-speech+xml": {
-			"source": "iana"
-		},
-		"application/vnd.radisys.msml-dialog-transform+xml": {
-			"source": "iana"
-		},
-		"application/vnd.rainstor.data": {
-			"source": "iana"
-		},
-		"application/vnd.rapid": {
-			"source": "iana"
-		},
-		"application/vnd.rar": {
-			"source": "iana"
-		},
-		"application/vnd.realvnc.bed": {
-			"source": "iana",
-			"extensions": [
-				"bed"
-			]
-		},
-		"application/vnd.recordare.musicxml": {
-			"source": "iana",
-			"extensions": [
-				"mxl"
-			]
-		},
-		"application/vnd.recordare.musicxml+xml": {
-			"source": "iana",
-			"extensions": [
-				"musicxml"
-			]
-		},
-		"application/vnd.renlearn.rlprint": {
-			"source": "iana"
-		},
-		"application/vnd.rig.cryptonote": {
-			"source": "iana",
-			"extensions": [
-				"cryptonote"
-			]
-		},
-		"application/vnd.rim.cod": {
-			"source": "apache",
-			"extensions": [
-				"cod"
-			]
-		},
-		"application/vnd.rn-realmedia": {
-			"source": "apache",
-			"extensions": [
-				"rm"
-			]
-		},
-		"application/vnd.rn-realmedia-vbr": {
-			"source": "apache",
-			"extensions": [
-				"rmvb"
-			]
-		},
-		"application/vnd.route66.link66+xml": {
-			"source": "iana",
-			"extensions": [
-				"link66"
-			]
-		},
-		"application/vnd.rs-274x": {
-			"source": "iana"
-		},
-		"application/vnd.ruckus.download": {
-			"source": "iana"
-		},
-		"application/vnd.s3sms": {
-			"source": "iana"
-		},
-		"application/vnd.sailingtracker.track": {
-			"source": "iana",
-			"extensions": [
-				"st"
-			]
-		},
-		"application/vnd.sbm.cid": {
-			"source": "iana"
-		},
-		"application/vnd.sbm.mid2": {
-			"source": "iana"
-		},
-		"application/vnd.scribus": {
-			"source": "iana"
-		},
-		"application/vnd.sealed.3df": {
-			"source": "iana"
-		},
-		"application/vnd.sealed.csf": {
-			"source": "iana"
-		},
-		"application/vnd.sealed.doc": {
-			"source": "iana"
-		},
-		"application/vnd.sealed.eml": {
-			"source": "iana"
-		},
-		"application/vnd.sealed.mht": {
-			"source": "iana"
-		},
-		"application/vnd.sealed.net": {
-			"source": "iana"
-		},
-		"application/vnd.sealed.ppt": {
-			"source": "iana"
-		},
-		"application/vnd.sealed.tiff": {
-			"source": "iana"
-		},
-		"application/vnd.sealed.xls": {
-			"source": "iana"
-		},
-		"application/vnd.sealedmedia.softseal.html": {
-			"source": "iana"
-		},
-		"application/vnd.sealedmedia.softseal.pdf": {
-			"source": "iana"
-		},
-		"application/vnd.seemail": {
-			"source": "iana",
-			"extensions": [
-				"see"
-			]
-		},
-		"application/vnd.sema": {
-			"source": "iana",
-			"extensions": [
-				"sema"
-			]
-		},
-		"application/vnd.semd": {
-			"source": "iana",
-			"extensions": [
-				"semd"
-			]
-		},
-		"application/vnd.semf": {
-			"source": "iana",
-			"extensions": [
-				"semf"
-			]
-		},
-		"application/vnd.shana.informed.formdata": {
-			"source": "iana",
-			"extensions": [
-				"ifm"
-			]
-		},
-		"application/vnd.shana.informed.formtemplate": {
-			"source": "iana",
-			"extensions": [
-				"itp"
-			]
-		},
-		"application/vnd.shana.informed.interchange": {
-			"source": "iana",
-			"extensions": [
-				"iif"
-			]
-		},
-		"application/vnd.shana.informed.package": {
-			"source": "iana",
-			"extensions": [
-				"ipk"
-			]
-		},
-		"application/vnd.simtech-mindmapper": {
-			"source": "iana",
-			"extensions": [
-				"twd",
-				"twds"
-			]
-		},
-		"application/vnd.siren+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.smaf": {
-			"source": "iana",
-			"extensions": [
-				"mmf"
-			]
-		},
-		"application/vnd.smart.notebook": {
-			"source": "iana"
-		},
-		"application/vnd.smart.teacher": {
-			"source": "iana",
-			"extensions": [
-				"teacher"
-			]
-		},
-		"application/vnd.software602.filler.form+xml": {
-			"source": "iana"
-		},
-		"application/vnd.software602.filler.form-xml-zip": {
-			"source": "iana"
-		},
-		"application/vnd.solent.sdkm+xml": {
-			"source": "iana",
-			"extensions": [
-				"sdkm",
-				"sdkd"
-			]
-		},
-		"application/vnd.spotfire.dxp": {
-			"source": "iana",
-			"extensions": [
-				"dxp"
-			]
-		},
-		"application/vnd.spotfire.sfs": {
-			"source": "iana",
-			"extensions": [
-				"sfs"
-			]
-		},
-		"application/vnd.sss-cod": {
-			"source": "iana"
-		},
-		"application/vnd.sss-dtf": {
-			"source": "iana"
-		},
-		"application/vnd.sss-ntf": {
-			"source": "iana"
-		},
-		"application/vnd.stardivision.calc": {
-			"source": "apache",
-			"extensions": [
-				"sdc"
-			]
-		},
-		"application/vnd.stardivision.draw": {
-			"source": "apache",
-			"extensions": [
-				"sda"
-			]
-		},
-		"application/vnd.stardivision.impress": {
-			"source": "apache",
-			"extensions": [
-				"sdd"
-			]
-		},
-		"application/vnd.stardivision.math": {
-			"source": "apache",
-			"extensions": [
-				"smf"
-			]
-		},
-		"application/vnd.stardivision.writer": {
-			"source": "apache",
-			"extensions": [
-				"sdw",
-				"vor"
-			]
-		},
-		"application/vnd.stardivision.writer-global": {
-			"source": "apache",
-			"extensions": [
-				"sgl"
-			]
-		},
-		"application/vnd.stepmania.package": {
-			"source": "iana",
-			"extensions": [
-				"smzip"
-			]
-		},
-		"application/vnd.stepmania.stepchart": {
-			"source": "iana",
-			"extensions": [
-				"sm"
-			]
-		},
-		"application/vnd.street-stream": {
-			"source": "iana"
-		},
-		"application/vnd.sun.wadl+xml": {
-			"source": "iana"
-		},
-		"application/vnd.sun.xml.calc": {
-			"source": "apache",
-			"extensions": [
-				"sxc"
-			]
-		},
-		"application/vnd.sun.xml.calc.template": {
-			"source": "apache",
-			"extensions": [
-				"stc"
-			]
-		},
-		"application/vnd.sun.xml.draw": {
-			"source": "apache",
-			"extensions": [
-				"sxd"
-			]
-		},
-		"application/vnd.sun.xml.draw.template": {
-			"source": "apache",
-			"extensions": [
-				"std"
-			]
-		},
-		"application/vnd.sun.xml.impress": {
-			"source": "apache",
-			"extensions": [
-				"sxi"
-			]
-		},
-		"application/vnd.sun.xml.impress.template": {
-			"source": "apache",
-			"extensions": [
-				"sti"
-			]
-		},
-		"application/vnd.sun.xml.math": {
-			"source": "apache",
-			"extensions": [
-				"sxm"
-			]
-		},
-		"application/vnd.sun.xml.writer": {
-			"source": "apache",
-			"extensions": [
-				"sxw"
-			]
-		},
-		"application/vnd.sun.xml.writer.global": {
-			"source": "apache",
-			"extensions": [
-				"sxg"
-			]
-		},
-		"application/vnd.sun.xml.writer.template": {
-			"source": "apache",
-			"extensions": [
-				"stw"
-			]
-		},
-		"application/vnd.sus-calendar": {
-			"source": "iana",
-			"extensions": [
-				"sus",
-				"susp"
-			]
-		},
-		"application/vnd.svd": {
-			"source": "iana",
-			"extensions": [
-				"svd"
-			]
-		},
-		"application/vnd.swiftview-ics": {
-			"source": "iana"
-		},
-		"application/vnd.symbian.install": {
-			"source": "apache",
-			"extensions": [
-				"sis",
-				"sisx"
-			]
-		},
-		"application/vnd.syncml+xml": {
-			"source": "iana",
-			"extensions": [
-				"xsm"
-			]
-		},
-		"application/vnd.syncml.dm+wbxml": {
-			"source": "iana",
-			"extensions": [
-				"bdm"
-			]
-		},
-		"application/vnd.syncml.dm+xml": {
-			"source": "iana",
-			"extensions": [
-				"xdm"
-			]
-		},
-		"application/vnd.syncml.dm.notification": {
-			"source": "iana"
-		},
-		"application/vnd.syncml.dmddf+wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.syncml.dmddf+xml": {
-			"source": "iana"
-		},
-		"application/vnd.syncml.dmtnds+wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.syncml.dmtnds+xml": {
-			"source": "iana"
-		},
-		"application/vnd.syncml.ds.notification": {
-			"source": "iana"
-		},
-		"application/vnd.tableschema+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.tao.intent-module-archive": {
-			"source": "iana",
-			"extensions": [
-				"tao"
-			]
-		},
-		"application/vnd.tcpdump.pcap": {
-			"source": "iana",
-			"extensions": [
-				"pcap",
-				"cap",
-				"dmp"
-			]
-		},
-		"application/vnd.tmd.mediaflex.api+xml": {
-			"source": "iana"
-		},
-		"application/vnd.tml": {
-			"source": "iana"
-		},
-		"application/vnd.tmobile-livetv": {
-			"source": "iana",
-			"extensions": [
-				"tmo"
-			]
-		},
-		"application/vnd.tri.onesource": {
-			"source": "iana"
-		},
-		"application/vnd.trid.tpt": {
-			"source": "iana",
-			"extensions": [
-				"tpt"
-			]
-		},
-		"application/vnd.triscape.mxs": {
-			"source": "iana",
-			"extensions": [
-				"mxs"
-			]
-		},
-		"application/vnd.trueapp": {
-			"source": "iana",
-			"extensions": [
-				"tra"
-			]
-		},
-		"application/vnd.truedoc": {
-			"source": "iana"
-		},
-		"application/vnd.ubisoft.webplayer": {
-			"source": "iana"
-		},
-		"application/vnd.ufdl": {
-			"source": "iana",
-			"extensions": [
-				"ufd",
-				"ufdl"
-			]
-		},
-		"application/vnd.uiq.theme": {
-			"source": "iana",
-			"extensions": [
-				"utz"
-			]
-		},
-		"application/vnd.umajin": {
-			"source": "iana",
-			"extensions": [
-				"umj"
-			]
-		},
-		"application/vnd.unity": {
-			"source": "iana",
-			"extensions": [
-				"unityweb"
-			]
-		},
-		"application/vnd.uoml+xml": {
-			"source": "iana",
-			"extensions": [
-				"uoml"
-			]
-		},
-		"application/vnd.uplanet.alert": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.alert-wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.bearer-choice": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.bearer-choice-wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.cacheop": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.cacheop-wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.channel": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.channel-wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.list": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.list-wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.listcmd": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.listcmd-wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.uplanet.signal": {
-			"source": "iana"
-		},
-		"application/vnd.uri-map": {
-			"source": "iana"
-		},
-		"application/vnd.valve.source.material": {
-			"source": "iana"
-		},
-		"application/vnd.vcx": {
-			"source": "iana",
-			"extensions": [
-				"vcx"
-			]
-		},
-		"application/vnd.vd-study": {
-			"source": "iana"
-		},
-		"application/vnd.vectorworks": {
-			"source": "iana"
-		},
-		"application/vnd.vel+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.verimatrix.vcas": {
-			"source": "iana"
-		},
-		"application/vnd.vidsoft.vidconference": {
-			"source": "iana"
-		},
-		"application/vnd.visio": {
-			"source": "iana",
-			"extensions": [
-				"vsd",
-				"vst",
-				"vss",
-				"vsw"
-			]
-		},
-		"application/vnd.visionary": {
-			"source": "iana",
-			"extensions": [
-				"vis"
-			]
-		},
-		"application/vnd.vividence.scriptfile": {
-			"source": "iana"
-		},
-		"application/vnd.vsf": {
-			"source": "iana",
-			"extensions": [
-				"vsf"
-			]
-		},
-		"application/vnd.wap.sic": {
-			"source": "iana"
-		},
-		"application/vnd.wap.slc": {
-			"source": "iana"
-		},
-		"application/vnd.wap.wbxml": {
-			"source": "iana",
-			"extensions": [
-				"wbxml"
-			]
-		},
-		"application/vnd.wap.wmlc": {
-			"source": "iana",
-			"extensions": [
-				"wmlc"
-			]
-		},
-		"application/vnd.wap.wmlscriptc": {
-			"source": "iana",
-			"extensions": [
-				"wmlsc"
-			]
-		},
-		"application/vnd.webturbo": {
-			"source": "iana",
-			"extensions": [
-				"wtb"
-			]
-		},
-		"application/vnd.wfa.p2p": {
-			"source": "iana"
-		},
-		"application/vnd.wfa.wsc": {
-			"source": "iana"
-		},
-		"application/vnd.windows.devicepairing": {
-			"source": "iana"
-		},
-		"application/vnd.wmc": {
-			"source": "iana"
-		},
-		"application/vnd.wmf.bootstrap": {
-			"source": "iana"
-		},
-		"application/vnd.wolfram.mathematica": {
-			"source": "iana"
-		},
-		"application/vnd.wolfram.mathematica.package": {
-			"source": "iana"
-		},
-		"application/vnd.wolfram.player": {
-			"source": "iana",
-			"extensions": [
-				"nbp"
-			]
-		},
-		"application/vnd.wordperfect": {
-			"source": "iana",
-			"extensions": [
-				"wpd"
-			]
-		},
-		"application/vnd.wqd": {
-			"source": "iana",
-			"extensions": [
-				"wqd"
-			]
-		},
-		"application/vnd.wrq-hp3000-labelled": {
-			"source": "iana"
-		},
-		"application/vnd.wt.stf": {
-			"source": "iana",
-			"extensions": [
-				"stf"
-			]
-		},
-		"application/vnd.wv.csp+wbxml": {
-			"source": "iana"
-		},
-		"application/vnd.wv.csp+xml": {
-			"source": "iana"
-		},
-		"application/vnd.wv.ssp+xml": {
-			"source": "iana"
-		},
-		"application/vnd.xacml+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/vnd.xara": {
-			"source": "iana",
-			"extensions": [
-				"xar"
-			]
-		},
-		"application/vnd.xfdl": {
-			"source": "iana",
-			"extensions": [
-				"xfdl"
-			]
-		},
-		"application/vnd.xfdl.webform": {
-			"source": "iana"
-		},
-		"application/vnd.xmi+xml": {
-			"source": "iana"
-		},
-		"application/vnd.xmpie.cpkg": {
-			"source": "iana"
-		},
-		"application/vnd.xmpie.dpkg": {
-			"source": "iana"
-		},
-		"application/vnd.xmpie.plan": {
-			"source": "iana"
-		},
-		"application/vnd.xmpie.ppkg": {
-			"source": "iana"
-		},
-		"application/vnd.xmpie.xlim": {
-			"source": "iana"
-		},
-		"application/vnd.yamaha.hv-dic": {
-			"source": "iana",
-			"extensions": [
-				"hvd"
-			]
-		},
-		"application/vnd.yamaha.hv-script": {
-			"source": "iana",
-			"extensions": [
-				"hvs"
-			]
-		},
-		"application/vnd.yamaha.hv-voice": {
-			"source": "iana",
-			"extensions": [
-				"hvp"
-			]
-		},
-		"application/vnd.yamaha.openscoreformat": {
-			"source": "iana",
-			"extensions": [
-				"osf"
-			]
-		},
-		"application/vnd.yamaha.openscoreformat.osfpvg+xml": {
-			"source": "iana",
-			"extensions": [
-				"osfpvg"
-			]
-		},
-		"application/vnd.yamaha.remote-setup": {
-			"source": "iana"
-		},
-		"application/vnd.yamaha.smaf-audio": {
-			"source": "iana",
-			"extensions": [
-				"saf"
-			]
-		},
-		"application/vnd.yamaha.smaf-phrase": {
-			"source": "iana",
-			"extensions": [
-				"spf"
-			]
-		},
-		"application/vnd.yamaha.through-ngn": {
-			"source": "iana"
-		},
-		"application/vnd.yamaha.tunnel-udpencap": {
-			"source": "iana"
-		},
-		"application/vnd.yaoweme": {
-			"source": "iana"
-		},
-		"application/vnd.yellowriver-custom-menu": {
-			"source": "iana",
-			"extensions": [
-				"cmp"
-			]
-		},
-		"application/vnd.zul": {
-			"source": "iana",
-			"extensions": [
-				"zir",
-				"zirz"
-			]
-		},
-		"application/vnd.zzazz.deck+xml": {
-			"source": "iana",
-			"extensions": [
-				"zaz"
-			]
-		},
-		"application/voicexml+xml": {
-			"source": "iana",
-			"extensions": [
-				"vxml"
-			]
-		},
-		"application/vq-rtcpxr": {
-			"source": "iana"
-		},
-		"application/watcherinfo+xml": {
-			"source": "iana"
-		},
-		"application/whoispp-query": {
-			"source": "iana"
-		},
-		"application/whoispp-response": {
-			"source": "iana"
-		},
-		"application/widget": {
-			"source": "iana",
-			"extensions": [
-				"wgt"
-			]
-		},
-		"application/winhlp": {
-			"source": "apache",
-			"extensions": [
-				"hlp"
-			]
-		},
-		"application/wita": {
-			"source": "iana"
-		},
-		"application/wordperfect5.1": {
-			"source": "iana"
-		},
-		"application/wsdl+xml": {
-			"source": "iana",
-			"extensions": [
-				"wsdl"
-			]
-		},
-		"application/wspolicy+xml": {
-			"source": "iana",
-			"extensions": [
-				"wspolicy"
-			]
-		},
-		"application/x-7z-compressed": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"7z"
-			]
-		},
-		"application/x-abiword": {
-			"source": "apache",
-			"extensions": [
-				"abw"
-			]
-		},
-		"application/x-ace-compressed": {
-			"source": "apache",
-			"extensions": [
-				"ace"
-			]
-		},
-		"application/x-amf": {
-			"source": "apache"
-		},
-		"application/x-apple-diskimage": {
-			"source": "apache",
-			"extensions": [
-				"dmg"
-			]
-		},
-		"application/x-authorware-bin": {
-			"source": "apache",
-			"extensions": [
-				"aab",
-				"x32",
-				"u32",
-				"vox"
-			]
-		},
-		"application/x-authorware-map": {
-			"source": "apache",
-			"extensions": [
-				"aam"
-			]
-		},
-		"application/x-authorware-seg": {
-			"source": "apache",
-			"extensions": [
-				"aas"
-			]
-		},
-		"application/x-bcpio": {
-			"source": "apache",
-			"extensions": [
-				"bcpio"
-			]
-		},
-		"application/x-bdoc": {
-			"compressible": false,
-			"extensions": [
-				"bdoc"
-			]
-		},
-		"application/x-bittorrent": {
-			"source": "apache",
-			"extensions": [
-				"torrent"
-			]
-		},
-		"application/x-blorb": {
-			"source": "apache",
-			"extensions": [
-				"blb",
-				"blorb"
-			]
-		},
-		"application/x-bzip": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"bz"
-			]
-		},
-		"application/x-bzip2": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"bz2",
-				"boz"
-			]
-		},
-		"application/x-cbr": {
-			"source": "apache",
-			"extensions": [
-				"cbr",
-				"cba",
-				"cbt",
-				"cbz",
-				"cb7"
-			]
-		},
-		"application/x-cdlink": {
-			"source": "apache",
-			"extensions": [
-				"vcd"
-			]
-		},
-		"application/x-cfs-compressed": {
-			"source": "apache",
-			"extensions": [
-				"cfs"
-			]
-		},
-		"application/x-chat": {
-			"source": "apache",
-			"extensions": [
-				"chat"
-			]
-		},
-		"application/x-chess-pgn": {
-			"source": "apache",
-			"extensions": [
-				"pgn"
-			]
-		},
-		"application/x-chrome-extension": {
-			"extensions": [
-				"crx"
-			]
-		},
-		"application/x-cocoa": {
-			"source": "nginx",
-			"extensions": [
-				"cco"
-			]
-		},
-		"application/x-compress": {
-			"source": "apache"
-		},
-		"application/x-conference": {
-			"source": "apache",
-			"extensions": [
-				"nsc"
-			]
-		},
-		"application/x-cpio": {
-			"source": "apache",
-			"extensions": [
-				"cpio"
-			]
-		},
-		"application/x-csh": {
-			"source": "apache",
-			"extensions": [
-				"csh"
-			]
-		},
-		"application/x-deb": {
-			"compressible": false
-		},
-		"application/x-debian-package": {
-			"source": "apache",
-			"extensions": [
-				"deb",
-				"udeb"
-			]
-		},
-		"application/x-dgc-compressed": {
-			"source": "apache",
-			"extensions": [
-				"dgc"
-			]
-		},
-		"application/x-director": {
-			"source": "apache",
-			"extensions": [
-				"dir",
-				"dcr",
-				"dxr",
-				"cst",
-				"cct",
-				"cxt",
-				"w3d",
-				"fgd",
-				"swa"
-			]
-		},
-		"application/x-doom": {
-			"source": "apache",
-			"extensions": [
-				"wad"
-			]
-		},
-		"application/x-dtbncx+xml": {
-			"source": "apache",
-			"extensions": [
-				"ncx"
-			]
-		},
-		"application/x-dtbook+xml": {
-			"source": "apache",
-			"extensions": [
-				"dtb"
-			]
-		},
-		"application/x-dtbresource+xml": {
-			"source": "apache",
-			"extensions": [
-				"res"
-			]
-		},
-		"application/x-dvi": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"dvi"
-			]
-		},
-		"application/x-envoy": {
-			"source": "apache",
-			"extensions": [
-				"evy"
-			]
-		},
-		"application/x-eva": {
-			"source": "apache",
-			"extensions": [
-				"eva"
-			]
-		},
-		"application/x-font-bdf": {
-			"source": "apache",
-			"extensions": [
-				"bdf"
-			]
-		},
-		"application/x-font-dos": {
-			"source": "apache"
-		},
-		"application/x-font-framemaker": {
-			"source": "apache"
-		},
-		"application/x-font-ghostscript": {
-			"source": "apache",
-			"extensions": [
-				"gsf"
-			]
-		},
-		"application/x-font-libgrx": {
-			"source": "apache"
-		},
-		"application/x-font-linux-psf": {
-			"source": "apache",
-			"extensions": [
-				"psf"
-			]
-		},
-		"application/x-font-otf": {
-			"source": "apache",
-			"compressible": true,
-			"extensions": [
-				"otf"
-			]
-		},
-		"application/x-font-pcf": {
-			"source": "apache",
-			"extensions": [
-				"pcf"
-			]
-		},
-		"application/x-font-snf": {
-			"source": "apache",
-			"extensions": [
-				"snf"
-			]
-		},
-		"application/x-font-speedo": {
-			"source": "apache"
-		},
-		"application/x-font-sunos-news": {
-			"source": "apache"
-		},
-		"application/x-font-ttf": {
-			"source": "apache",
-			"compressible": true,
-			"extensions": [
-				"ttf",
-				"ttc"
-			]
-		},
-		"application/x-font-type1": {
-			"source": "apache",
-			"extensions": [
-				"pfa",
-				"pfb",
-				"pfm",
-				"afm"
-			]
-		},
-		"application/x-font-vfont": {
-			"source": "apache"
-		},
-		"application/x-freearc": {
-			"source": "apache",
-			"extensions": [
-				"arc"
-			]
-		},
-		"application/x-futuresplash": {
-			"source": "apache",
-			"extensions": [
-				"spl"
-			]
-		},
-		"application/x-gca-compressed": {
-			"source": "apache",
-			"extensions": [
-				"gca"
-			]
-		},
-		"application/x-glulx": {
-			"source": "apache",
-			"extensions": [
-				"ulx"
-			]
-		},
-		"application/x-gnumeric": {
-			"source": "apache",
-			"extensions": [
-				"gnumeric"
-			]
-		},
-		"application/x-gramps-xml": {
-			"source": "apache",
-			"extensions": [
-				"gramps"
-			]
-		},
-		"application/x-gtar": {
-			"source": "apache",
-			"extensions": [
-				"gtar"
-			]
-		},
-		"application/x-gzip": {
-			"source": "apache"
-		},
-		"application/x-hdf": {
-			"source": "apache",
-			"extensions": [
-				"hdf"
-			]
-		},
-		"application/x-httpd-php": {
-			"compressible": true,
-			"extensions": [
-				"php"
-			]
-		},
-		"application/x-install-instructions": {
-			"source": "apache",
-			"extensions": [
-				"install"
-			]
-		},
-		"application/x-iso9660-image": {
-			"source": "apache",
-			"extensions": [
-				"iso"
-			]
-		},
-		"application/x-java-archive-diff": {
-			"source": "nginx",
-			"extensions": [
-				"jardiff"
-			]
-		},
-		"application/x-java-jnlp-file": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"jnlp"
-			]
-		},
-		"application/x-javascript": {
-			"compressible": true
-		},
-		"application/x-latex": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"latex"
-			]
-		},
-		"application/x-lua-bytecode": {
-			"extensions": [
-				"luac"
-			]
-		},
-		"application/x-lzh-compressed": {
-			"source": "apache",
-			"extensions": [
-				"lzh",
-				"lha"
-			]
-		},
-		"application/x-makeself": {
-			"source": "nginx",
-			"extensions": [
-				"run"
-			]
-		},
-		"application/x-mie": {
-			"source": "apache",
-			"extensions": [
-				"mie"
-			]
-		},
-		"application/x-mobipocket-ebook": {
-			"source": "apache",
-			"extensions": [
-				"prc",
-				"mobi"
-			]
-		},
-		"application/x-mpegurl": {
-			"compressible": false
-		},
-		"application/x-ms-application": {
-			"source": "apache",
-			"extensions": [
-				"application"
-			]
-		},
-		"application/x-ms-shortcut": {
-			"source": "apache",
-			"extensions": [
-				"lnk"
-			]
-		},
-		"application/x-ms-wmd": {
-			"source": "apache",
-			"extensions": [
-				"wmd"
-			]
-		},
-		"application/x-ms-wmz": {
-			"source": "apache",
-			"extensions": [
-				"wmz"
-			]
-		},
-		"application/x-ms-xbap": {
-			"source": "apache",
-			"extensions": [
-				"xbap"
-			]
-		},
-		"application/x-msaccess": {
-			"source": "apache",
-			"extensions": [
-				"mdb"
-			]
-		},
-		"application/x-msbinder": {
-			"source": "apache",
-			"extensions": [
-				"obd"
-			]
-		},
-		"application/x-mscardfile": {
-			"source": "apache",
-			"extensions": [
-				"crd"
-			]
-		},
-		"application/x-msclip": {
-			"source": "apache",
-			"extensions": [
-				"clp"
-			]
-		},
-		"application/x-msdos-program": {
-			"extensions": [
-				"exe"
-			]
-		},
-		"application/x-msdownload": {
-			"source": "apache",
-			"extensions": [
-				"exe",
-				"dll",
-				"com",
-				"bat",
-				"msi"
-			]
-		},
-		"application/x-msmediaview": {
-			"source": "apache",
-			"extensions": [
-				"mvb",
-				"m13",
-				"m14"
-			]
-		},
-		"application/x-msmetafile": {
-			"source": "apache",
-			"extensions": [
-				"wmf",
-				"wmz",
-				"emf",
-				"emz"
-			]
-		},
-		"application/x-msmoney": {
-			"source": "apache",
-			"extensions": [
-				"mny"
-			]
-		},
-		"application/x-mspublisher": {
-			"source": "apache",
-			"extensions": [
-				"pub"
-			]
-		},
-		"application/x-msschedule": {
-			"source": "apache",
-			"extensions": [
-				"scd"
-			]
-		},
-		"application/x-msterminal": {
-			"source": "apache",
-			"extensions": [
-				"trm"
-			]
-		},
-		"application/x-mswrite": {
-			"source": "apache",
-			"extensions": [
-				"wri"
-			]
-		},
-		"application/x-netcdf": {
-			"source": "apache",
-			"extensions": [
-				"nc",
-				"cdf"
-			]
-		},
-		"application/x-ns-proxy-autoconfig": {
-			"compressible": true,
-			"extensions": [
-				"pac"
-			]
-		},
-		"application/x-nzb": {
-			"source": "apache",
-			"extensions": [
-				"nzb"
-			]
-		},
-		"application/x-perl": {
-			"source": "nginx",
-			"extensions": [
-				"pl",
-				"pm"
-			]
-		},
-		"application/x-pilot": {
-			"source": "nginx",
-			"extensions": [
-				"prc",
-				"pdb"
-			]
-		},
-		"application/x-pkcs12": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"p12",
-				"pfx"
-			]
-		},
-		"application/x-pkcs7-certificates": {
-			"source": "apache",
-			"extensions": [
-				"p7b",
-				"spc"
-			]
-		},
-		"application/x-pkcs7-certreqresp": {
-			"source": "apache",
-			"extensions": [
-				"p7r"
-			]
-		},
-		"application/x-rar-compressed": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"rar"
-			]
-		},
-		"application/x-redhat-package-manager": {
-			"source": "nginx",
-			"extensions": [
-				"rpm"
-			]
-		},
-		"application/x-research-info-systems": {
-			"source": "apache",
-			"extensions": [
-				"ris"
-			]
-		},
-		"application/x-sea": {
-			"source": "nginx",
-			"extensions": [
-				"sea"
-			]
-		},
-		"application/x-sh": {
-			"source": "apache",
-			"compressible": true,
-			"extensions": [
-				"sh"
-			]
-		},
-		"application/x-shar": {
-			"source": "apache",
-			"extensions": [
-				"shar"
-			]
-		},
-		"application/x-shockwave-flash": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"swf"
-			]
-		},
-		"application/x-silverlight-app": {
-			"source": "apache",
-			"extensions": [
-				"xap"
-			]
-		},
-		"application/x-sql": {
-			"source": "apache",
-			"extensions": [
-				"sql"
-			]
-		},
-		"application/x-stuffit": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"sit"
-			]
-		},
-		"application/x-stuffitx": {
-			"source": "apache",
-			"extensions": [
-				"sitx"
-			]
-		},
-		"application/x-subrip": {
-			"source": "apache",
-			"extensions": [
-				"srt"
-			]
-		},
-		"application/x-sv4cpio": {
-			"source": "apache",
-			"extensions": [
-				"sv4cpio"
-			]
-		},
-		"application/x-sv4crc": {
-			"source": "apache",
-			"extensions": [
-				"sv4crc"
-			]
-		},
-		"application/x-t3vm-image": {
-			"source": "apache",
-			"extensions": [
-				"t3"
-			]
-		},
-		"application/x-tads": {
-			"source": "apache",
-			"extensions": [
-				"gam"
-			]
-		},
-		"application/x-tar": {
-			"source": "apache",
-			"compressible": true,
-			"extensions": [
-				"tar"
-			]
-		},
-		"application/x-tcl": {
-			"source": "apache",
-			"extensions": [
-				"tcl",
-				"tk"
-			]
-		},
-		"application/x-tex": {
-			"source": "apache",
-			"extensions": [
-				"tex"
-			]
-		},
-		"application/x-tex-tfm": {
-			"source": "apache",
-			"extensions": [
-				"tfm"
-			]
-		},
-		"application/x-texinfo": {
-			"source": "apache",
-			"extensions": [
-				"texinfo",
-				"texi"
-			]
-		},
-		"application/x-tgif": {
-			"source": "apache",
-			"extensions": [
-				"obj"
-			]
-		},
-		"application/x-ustar": {
-			"source": "apache",
-			"extensions": [
-				"ustar"
-			]
-		},
-		"application/x-wais-source": {
-			"source": "apache",
-			"extensions": [
-				"src"
-			]
-		},
-		"application/x-web-app-manifest+json": {
-			"compressible": true,
-			"extensions": [
-				"webapp"
-			]
-		},
-		"application/x-www-form-urlencoded": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/x-x509-ca-cert": {
-			"source": "apache",
-			"extensions": [
-				"der",
-				"crt",
-				"pem"
-			]
-		},
-		"application/x-xfig": {
-			"source": "apache",
-			"extensions": [
-				"fig"
-			]
-		},
-		"application/x-xliff+xml": {
-			"source": "apache",
-			"extensions": [
-				"xlf"
-			]
-		},
-		"application/x-xpinstall": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"xpi"
-			]
-		},
-		"application/x-xz": {
-			"source": "apache",
-			"extensions": [
-				"xz"
-			]
-		},
-		"application/x-zmachine": {
-			"source": "apache",
-			"extensions": [
-				"z1",
-				"z2",
-				"z3",
-				"z4",
-				"z5",
-				"z6",
-				"z7",
-				"z8"
-			]
-		},
-		"application/x400-bp": {
-			"source": "iana"
-		},
-		"application/xacml+xml": {
-			"source": "iana"
-		},
-		"application/xaml+xml": {
-			"source": "apache",
-			"extensions": [
-				"xaml"
-			]
-		},
-		"application/xcap-att+xml": {
-			"source": "iana"
-		},
-		"application/xcap-caps+xml": {
-			"source": "iana"
-		},
-		"application/xcap-diff+xml": {
-			"source": "iana",
-			"extensions": [
-				"xdf"
-			]
-		},
-		"application/xcap-el+xml": {
-			"source": "iana"
-		},
-		"application/xcap-error+xml": {
-			"source": "iana"
-		},
-		"application/xcap-ns+xml": {
-			"source": "iana"
-		},
-		"application/xcon-conference-info+xml": {
-			"source": "iana"
-		},
-		"application/xcon-conference-info-diff+xml": {
-			"source": "iana"
-		},
-		"application/xenc+xml": {
-			"source": "iana",
-			"extensions": [
-				"xenc"
-			]
-		},
-		"application/xhtml+xml": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"xhtml",
-				"xht"
-			]
-		},
-		"application/xhtml-voice+xml": {
-			"source": "apache"
-		},
-		"application/xml": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"xml",
-				"xsl",
-				"xsd",
-				"rng"
-			]
-		},
-		"application/xml-dtd": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"dtd"
-			]
-		},
-		"application/xml-external-parsed-entity": {
-			"source": "iana"
-		},
-		"application/xml-patch+xml": {
-			"source": "iana"
-		},
-		"application/xmpp+xml": {
-			"source": "iana"
-		},
-		"application/xop+xml": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"xop"
-			]
-		},
-		"application/xproc+xml": {
-			"source": "apache",
-			"extensions": [
-				"xpl"
-			]
-		},
-		"application/xslt+xml": {
-			"source": "iana",
-			"extensions": [
-				"xslt"
-			]
-		},
-		"application/xspf+xml": {
-			"source": "apache",
-			"extensions": [
-				"xspf"
-			]
-		},
-		"application/xv+xml": {
-			"source": "iana",
-			"extensions": [
-				"mxml",
-				"xhvml",
-				"xvml",
-				"xvm"
-			]
-		},
-		"application/yang": {
-			"source": "iana",
-			"extensions": [
-				"yang"
-			]
-		},
-		"application/yang-data+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/yang-data+xml": {
-			"source": "iana"
-		},
-		"application/yang-patch+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"application/yang-patch+xml": {
-			"source": "iana"
-		},
-		"application/yin+xml": {
-			"source": "iana",
-			"extensions": [
-				"yin"
-			]
-		},
-		"application/zip": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"zip"
-			]
-		},
-		"application/zlib": {
-			"source": "iana"
-		},
-		"audio/1d-interleaved-parityfec": {
-			"source": "iana"
-		},
-		"audio/32kadpcm": {
-			"source": "iana"
-		},
-		"audio/3gpp": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"3gpp"
-			]
-		},
-		"audio/3gpp2": {
-			"source": "iana"
-		},
-		"audio/ac3": {
-			"source": "iana"
-		},
-		"audio/adpcm": {
-			"source": "apache",
-			"extensions": [
-				"adp"
-			]
-		},
-		"audio/amr": {
-			"source": "iana"
-		},
-		"audio/amr-wb": {
-			"source": "iana"
-		},
-		"audio/amr-wb+": {
-			"source": "iana"
-		},
-		"audio/aptx": {
-			"source": "iana"
-		},
-		"audio/asc": {
-			"source": "iana"
-		},
-		"audio/atrac-advanced-lossless": {
-			"source": "iana"
-		},
-		"audio/atrac-x": {
-			"source": "iana"
-		},
-		"audio/atrac3": {
-			"source": "iana"
-		},
-		"audio/basic": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"au",
-				"snd"
-			]
-		},
-		"audio/bv16": {
-			"source": "iana"
-		},
-		"audio/bv32": {
-			"source": "iana"
-		},
-		"audio/clearmode": {
-			"source": "iana"
-		},
-		"audio/cn": {
-			"source": "iana"
-		},
-		"audio/dat12": {
-			"source": "iana"
-		},
-		"audio/dls": {
-			"source": "iana"
-		},
-		"audio/dsr-es201108": {
-			"source": "iana"
-		},
-		"audio/dsr-es202050": {
-			"source": "iana"
-		},
-		"audio/dsr-es202211": {
-			"source": "iana"
-		},
-		"audio/dsr-es202212": {
-			"source": "iana"
-		},
-		"audio/dv": {
-			"source": "iana"
-		},
-		"audio/dvi4": {
-			"source": "iana"
-		},
-		"audio/eac3": {
-			"source": "iana"
-		},
-		"audio/encaprtp": {
-			"source": "iana"
-		},
-		"audio/evrc": {
-			"source": "iana"
-		},
-		"audio/evrc-qcp": {
-			"source": "iana"
-		},
-		"audio/evrc0": {
-			"source": "iana"
-		},
-		"audio/evrc1": {
-			"source": "iana"
-		},
-		"audio/evrcb": {
-			"source": "iana"
-		},
-		"audio/evrcb0": {
-			"source": "iana"
-		},
-		"audio/evrcb1": {
-			"source": "iana"
-		},
-		"audio/evrcnw": {
-			"source": "iana"
-		},
-		"audio/evrcnw0": {
-			"source": "iana"
-		},
-		"audio/evrcnw1": {
-			"source": "iana"
-		},
-		"audio/evrcwb": {
-			"source": "iana"
-		},
-		"audio/evrcwb0": {
-			"source": "iana"
-		},
-		"audio/evrcwb1": {
-			"source": "iana"
-		},
-		"audio/evs": {
-			"source": "iana"
-		},
-		"audio/fwdred": {
-			"source": "iana"
-		},
-		"audio/g711-0": {
-			"source": "iana"
-		},
-		"audio/g719": {
-			"source": "iana"
-		},
-		"audio/g722": {
-			"source": "iana"
-		},
-		"audio/g7221": {
-			"source": "iana"
-		},
-		"audio/g723": {
-			"source": "iana"
-		},
-		"audio/g726-16": {
-			"source": "iana"
-		},
-		"audio/g726-24": {
-			"source": "iana"
-		},
-		"audio/g726-32": {
-			"source": "iana"
-		},
-		"audio/g726-40": {
-			"source": "iana"
-		},
-		"audio/g728": {
-			"source": "iana"
-		},
-		"audio/g729": {
-			"source": "iana"
-		},
-		"audio/g7291": {
-			"source": "iana"
-		},
-		"audio/g729d": {
-			"source": "iana"
-		},
-		"audio/g729e": {
-			"source": "iana"
-		},
-		"audio/gsm": {
-			"source": "iana"
-		},
-		"audio/gsm-efr": {
-			"source": "iana"
-		},
-		"audio/gsm-hr-08": {
-			"source": "iana"
-		},
-		"audio/ilbc": {
-			"source": "iana"
-		},
-		"audio/ip-mr_v2.5": {
-			"source": "iana"
-		},
-		"audio/isac": {
-			"source": "apache"
-		},
-		"audio/l16": {
-			"source": "iana"
-		},
-		"audio/l20": {
-			"source": "iana"
-		},
-		"audio/l24": {
-			"source": "iana",
-			"compressible": false
-		},
-		"audio/l8": {
-			"source": "iana"
-		},
-		"audio/lpc": {
-			"source": "iana"
-		},
-		"audio/midi": {
-			"source": "apache",
-			"extensions": [
-				"mid",
-				"midi",
-				"kar",
-				"rmi"
-			]
-		},
-		"audio/mobile-xmf": {
-			"source": "iana"
-		},
-		"audio/mp3": {
-			"compressible": false,
-			"extensions": [
-				"mp3"
-			]
-		},
-		"audio/mp4": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"m4a",
-				"mp4a"
-			]
-		},
-		"audio/mp4a-latm": {
-			"source": "iana"
-		},
-		"audio/mpa": {
-			"source": "iana"
-		},
-		"audio/mpa-robust": {
-			"source": "iana"
-		},
-		"audio/mpeg": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"mpga",
-				"mp2",
-				"mp2a",
-				"mp3",
-				"m2a",
-				"m3a"
-			]
-		},
-		"audio/mpeg4-generic": {
-			"source": "iana"
-		},
-		"audio/musepack": {
-			"source": "apache"
-		},
-		"audio/ogg": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"oga",
-				"ogg",
-				"spx"
-			]
-		},
-		"audio/opus": {
-			"source": "iana"
-		},
-		"audio/parityfec": {
-			"source": "iana"
-		},
-		"audio/pcma": {
-			"source": "iana"
-		},
-		"audio/pcma-wb": {
-			"source": "iana"
-		},
-		"audio/pcmu": {
-			"source": "iana"
-		},
-		"audio/pcmu-wb": {
-			"source": "iana"
-		},
-		"audio/prs.sid": {
-			"source": "iana"
-		},
-		"audio/qcelp": {
-			"source": "iana"
-		},
-		"audio/raptorfec": {
-			"source": "iana"
-		},
-		"audio/red": {
-			"source": "iana"
-		},
-		"audio/rtp-enc-aescm128": {
-			"source": "iana"
-		},
-		"audio/rtp-midi": {
-			"source": "iana"
-		},
-		"audio/rtploopback": {
-			"source": "iana"
-		},
-		"audio/rtx": {
-			"source": "iana"
-		},
-		"audio/s3m": {
-			"source": "apache",
-			"extensions": [
-				"s3m"
-			]
-		},
-		"audio/silk": {
-			"source": "apache",
-			"extensions": [
-				"sil"
-			]
-		},
-		"audio/smv": {
-			"source": "iana"
-		},
-		"audio/smv-qcp": {
-			"source": "iana"
-		},
-		"audio/smv0": {
-			"source": "iana"
-		},
-		"audio/sp-midi": {
-			"source": "iana"
-		},
-		"audio/speex": {
-			"source": "iana"
-		},
-		"audio/t140c": {
-			"source": "iana"
-		},
-		"audio/t38": {
-			"source": "iana"
-		},
-		"audio/telephone-event": {
-			"source": "iana"
-		},
-		"audio/tone": {
-			"source": "iana"
-		},
-		"audio/uemclip": {
-			"source": "iana"
-		},
-		"audio/ulpfec": {
-			"source": "iana"
-		},
-		"audio/vdvi": {
-			"source": "iana"
-		},
-		"audio/vmr-wb": {
-			"source": "iana"
-		},
-		"audio/vnd.3gpp.iufp": {
-			"source": "iana"
-		},
-		"audio/vnd.4sb": {
-			"source": "iana"
-		},
-		"audio/vnd.audiokoz": {
-			"source": "iana"
-		},
-		"audio/vnd.celp": {
-			"source": "iana"
-		},
-		"audio/vnd.cisco.nse": {
-			"source": "iana"
-		},
-		"audio/vnd.cmles.radio-events": {
-			"source": "iana"
-		},
-		"audio/vnd.cns.anp1": {
-			"source": "iana"
-		},
-		"audio/vnd.cns.inf1": {
-			"source": "iana"
-		},
-		"audio/vnd.dece.audio": {
-			"source": "iana",
-			"extensions": [
-				"uva",
-				"uvva"
-			]
-		},
-		"audio/vnd.digital-winds": {
-			"source": "iana",
-			"extensions": [
-				"eol"
-			]
-		},
-		"audio/vnd.dlna.adts": {
-			"source": "iana"
-		},
-		"audio/vnd.dolby.heaac.1": {
-			"source": "iana"
-		},
-		"audio/vnd.dolby.heaac.2": {
-			"source": "iana"
-		},
-		"audio/vnd.dolby.mlp": {
-			"source": "iana"
-		},
-		"audio/vnd.dolby.mps": {
-			"source": "iana"
-		},
-		"audio/vnd.dolby.pl2": {
-			"source": "iana"
-		},
-		"audio/vnd.dolby.pl2x": {
-			"source": "iana"
-		},
-		"audio/vnd.dolby.pl2z": {
-			"source": "iana"
-		},
-		"audio/vnd.dolby.pulse.1": {
-			"source": "iana"
-		},
-		"audio/vnd.dra": {
-			"source": "iana",
-			"extensions": [
-				"dra"
-			]
-		},
-		"audio/vnd.dts": {
-			"source": "iana",
-			"extensions": [
-				"dts"
-			]
-		},
-		"audio/vnd.dts.hd": {
-			"source": "iana",
-			"extensions": [
-				"dtshd"
-			]
-		},
-		"audio/vnd.dvb.file": {
-			"source": "iana"
-		},
-		"audio/vnd.everad.plj": {
-			"source": "iana"
-		},
-		"audio/vnd.hns.audio": {
-			"source": "iana"
-		},
-		"audio/vnd.lucent.voice": {
-			"source": "iana",
-			"extensions": [
-				"lvp"
-			]
-		},
-		"audio/vnd.ms-playready.media.pya": {
-			"source": "iana",
-			"extensions": [
-				"pya"
-			]
-		},
-		"audio/vnd.nokia.mobile-xmf": {
-			"source": "iana"
-		},
-		"audio/vnd.nortel.vbk": {
-			"source": "iana"
-		},
-		"audio/vnd.nuera.ecelp4800": {
-			"source": "iana",
-			"extensions": [
-				"ecelp4800"
-			]
-		},
-		"audio/vnd.nuera.ecelp7470": {
-			"source": "iana",
-			"extensions": [
-				"ecelp7470"
-			]
-		},
-		"audio/vnd.nuera.ecelp9600": {
-			"source": "iana",
-			"extensions": [
-				"ecelp9600"
-			]
-		},
-		"audio/vnd.octel.sbc": {
-			"source": "iana"
-		},
-		"audio/vnd.qcelp": {
-			"source": "iana"
-		},
-		"audio/vnd.rhetorex.32kadpcm": {
-			"source": "iana"
-		},
-		"audio/vnd.rip": {
-			"source": "iana",
-			"extensions": [
-				"rip"
-			]
-		},
-		"audio/vnd.rn-realaudio": {
-			"compressible": false
-		},
-		"audio/vnd.sealedmedia.softseal.mpeg": {
-			"source": "iana"
-		},
-		"audio/vnd.vmx.cvsd": {
-			"source": "iana"
-		},
-		"audio/vnd.wave": {
-			"compressible": false
-		},
-		"audio/vorbis": {
-			"source": "iana",
-			"compressible": false
-		},
-		"audio/vorbis-config": {
-			"source": "iana"
-		},
-		"audio/wav": {
-			"compressible": false,
-			"extensions": [
-				"wav"
-			]
-		},
-		"audio/wave": {
-			"compressible": false,
-			"extensions": [
-				"wav"
-			]
-		},
-		"audio/webm": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"weba"
-			]
-		},
-		"audio/x-aac": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"aac"
-			]
-		},
-		"audio/x-aiff": {
-			"source": "apache",
-			"extensions": [
-				"aif",
-				"aiff",
-				"aifc"
-			]
-		},
-		"audio/x-caf": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"caf"
-			]
-		},
-		"audio/x-flac": {
-			"source": "apache",
-			"extensions": [
-				"flac"
-			]
-		},
-		"audio/x-m4a": {
-			"source": "nginx",
-			"extensions": [
-				"m4a"
-			]
-		},
-		"audio/x-matroska": {
-			"source": "apache",
-			"extensions": [
-				"mka"
-			]
-		},
-		"audio/x-mpegurl": {
-			"source": "apache",
-			"extensions": [
-				"m3u"
-			]
-		},
-		"audio/x-ms-wax": {
-			"source": "apache",
-			"extensions": [
-				"wax"
-			]
-		},
-		"audio/x-ms-wma": {
-			"source": "apache",
-			"extensions": [
-				"wma"
-			]
-		},
-		"audio/x-pn-realaudio": {
-			"source": "apache",
-			"extensions": [
-				"ram",
-				"ra"
-			]
-		},
-		"audio/x-pn-realaudio-plugin": {
-			"source": "apache",
-			"extensions": [
-				"rmp"
-			]
-		},
-		"audio/x-realaudio": {
-			"source": "nginx",
-			"extensions": [
-				"ra"
-			]
-		},
-		"audio/x-tta": {
-			"source": "apache"
-		},
-		"audio/x-wav": {
-			"source": "apache",
-			"extensions": [
-				"wav"
-			]
-		},
-		"audio/xm": {
-			"source": "apache",
-			"extensions": [
-				"xm"
-			]
-		},
-		"chemical/x-cdx": {
-			"source": "apache",
-			"extensions": [
-				"cdx"
-			]
-		},
-		"chemical/x-cif": {
-			"source": "apache",
-			"extensions": [
-				"cif"
-			]
-		},
-		"chemical/x-cmdf": {
-			"source": "apache",
-			"extensions": [
-				"cmdf"
-			]
-		},
-		"chemical/x-cml": {
-			"source": "apache",
-			"extensions": [
-				"cml"
-			]
-		},
-		"chemical/x-csml": {
-			"source": "apache",
-			"extensions": [
-				"csml"
-			]
-		},
-		"chemical/x-pdb": {
-			"source": "apache"
-		},
-		"chemical/x-xyz": {
-			"source": "apache",
-			"extensions": [
-				"xyz"
-			]
-		},
-		"font/opentype": {
-			"compressible": true,
-			"extensions": [
-				"otf"
-			]
-		},
-		"image/bmp": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"bmp"
-			]
-		},
-		"image/cgm": {
-			"source": "iana",
-			"extensions": [
-				"cgm"
-			]
-		},
-		"image/dicom-rle": {
-			"source": "iana"
-		},
-		"image/emf": {
-			"source": "iana"
-		},
-		"image/fits": {
-			"source": "iana"
-		},
-		"image/g3fax": {
-			"source": "iana",
-			"extensions": [
-				"g3"
-			]
-		},
-		"image/gif": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"gif"
-			]
-		},
-		"image/ief": {
-			"source": "iana",
-			"extensions": [
-				"ief"
-			]
-		},
-		"image/jls": {
-			"source": "iana"
-		},
-		"image/jp2": {
-			"source": "iana"
-		},
-		"image/jpeg": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"jpeg",
-				"jpg",
-				"jpe"
-			]
-		},
-		"image/jpm": {
-			"source": "iana"
-		},
-		"image/jpx": {
-			"source": "iana"
-		},
-		"image/ktx": {
-			"source": "iana",
-			"extensions": [
-				"ktx"
-			]
-		},
-		"image/naplps": {
-			"source": "iana"
-		},
-		"image/pjpeg": {
-			"compressible": false
-		},
-		"image/png": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"png"
-			]
-		},
-		"image/prs.btif": {
-			"source": "iana",
-			"extensions": [
-				"btif"
-			]
-		},
-		"image/prs.pti": {
-			"source": "iana"
-		},
-		"image/pwg-raster": {
-			"source": "iana"
-		},
-		"image/sgi": {
-			"source": "apache",
-			"extensions": [
-				"sgi"
-			]
-		},
-		"image/svg+xml": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"svg",
-				"svgz"
-			]
-		},
-		"image/t38": {
-			"source": "iana"
-		},
-		"image/tiff": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"tiff",
-				"tif"
-			]
-		},
-		"image/tiff-fx": {
-			"source": "iana"
-		},
-		"image/vnd.adobe.photoshop": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"psd"
-			]
-		},
-		"image/vnd.airzip.accelerator.azv": {
-			"source": "iana"
-		},
-		"image/vnd.cns.inf2": {
-			"source": "iana"
-		},
-		"image/vnd.dece.graphic": {
-			"source": "iana",
-			"extensions": [
-				"uvi",
-				"uvvi",
-				"uvg",
-				"uvvg"
-			]
-		},
-		"image/vnd.djvu": {
-			"source": "iana",
-			"extensions": [
-				"djvu",
-				"djv"
-			]
-		},
-		"image/vnd.dvb.subtitle": {
-			"source": "iana",
-			"extensions": [
-				"sub"
-			]
-		},
-		"image/vnd.dwg": {
-			"source": "iana",
-			"extensions": [
-				"dwg"
-			]
-		},
-		"image/vnd.dxf": {
-			"source": "iana",
-			"extensions": [
-				"dxf"
-			]
-		},
-		"image/vnd.fastbidsheet": {
-			"source": "iana",
-			"extensions": [
-				"fbs"
-			]
-		},
-		"image/vnd.fpx": {
-			"source": "iana",
-			"extensions": [
-				"fpx"
-			]
-		},
-		"image/vnd.fst": {
-			"source": "iana",
-			"extensions": [
-				"fst"
-			]
-		},
-		"image/vnd.fujixerox.edmics-mmr": {
-			"source": "iana",
-			"extensions": [
-				"mmr"
-			]
-		},
-		"image/vnd.fujixerox.edmics-rlc": {
-			"source": "iana",
-			"extensions": [
-				"rlc"
-			]
-		},
-		"image/vnd.globalgraphics.pgb": {
-			"source": "iana"
-		},
-		"image/vnd.microsoft.icon": {
-			"source": "iana"
-		},
-		"image/vnd.mix": {
-			"source": "iana"
-		},
-		"image/vnd.mozilla.apng": {
-			"source": "iana"
-		},
-		"image/vnd.ms-modi": {
-			"source": "iana",
-			"extensions": [
-				"mdi"
-			]
-		},
-		"image/vnd.ms-photo": {
-			"source": "apache",
-			"extensions": [
-				"wdp"
-			]
-		},
-		"image/vnd.net-fpx": {
-			"source": "iana",
-			"extensions": [
-				"npx"
-			]
-		},
-		"image/vnd.radiance": {
-			"source": "iana"
-		},
-		"image/vnd.sealed.png": {
-			"source": "iana"
-		},
-		"image/vnd.sealedmedia.softseal.gif": {
-			"source": "iana"
-		},
-		"image/vnd.sealedmedia.softseal.jpg": {
-			"source": "iana"
-		},
-		"image/vnd.svf": {
-			"source": "iana"
-		},
-		"image/vnd.tencent.tap": {
-			"source": "iana"
-		},
-		"image/vnd.valve.source.texture": {
-			"source": "iana"
-		},
-		"image/vnd.wap.wbmp": {
-			"source": "iana",
-			"extensions": [
-				"wbmp"
-			]
-		},
-		"image/vnd.xiff": {
-			"source": "iana",
-			"extensions": [
-				"xif"
-			]
-		},
-		"image/vnd.zbrush.pcx": {
-			"source": "iana"
-		},
-		"image/webp": {
-			"source": "apache",
-			"extensions": [
-				"webp"
-			]
-		},
-		"image/wmf": {
-			"source": "iana"
-		},
-		"image/x-3ds": {
-			"source": "apache",
-			"extensions": [
-				"3ds"
-			]
-		},
-		"image/x-cmu-raster": {
-			"source": "apache",
-			"extensions": [
-				"ras"
-			]
-		},
-		"image/x-cmx": {
-			"source": "apache",
-			"extensions": [
-				"cmx"
-			]
-		},
-		"image/x-freehand": {
-			"source": "apache",
-			"extensions": [
-				"fh",
-				"fhc",
-				"fh4",
-				"fh5",
-				"fh7"
-			]
-		},
-		"image/x-icon": {
-			"source": "apache",
-			"compressible": true,
-			"extensions": [
-				"ico"
-			]
-		},
-		"image/x-jng": {
-			"source": "nginx",
-			"extensions": [
-				"jng"
-			]
-		},
-		"image/x-mrsid-image": {
-			"source": "apache",
-			"extensions": [
-				"sid"
-			]
-		},
-		"image/x-ms-bmp": {
-			"source": "nginx",
-			"compressible": true,
-			"extensions": [
-				"bmp"
-			]
-		},
-		"image/x-pcx": {
-			"source": "apache",
-			"extensions": [
-				"pcx"
-			]
-		},
-		"image/x-pict": {
-			"source": "apache",
-			"extensions": [
-				"pic",
-				"pct"
-			]
-		},
-		"image/x-portable-anymap": {
-			"source": "apache",
-			"extensions": [
-				"pnm"
-			]
-		},
-		"image/x-portable-bitmap": {
-			"source": "apache",
-			"extensions": [
-				"pbm"
-			]
-		},
-		"image/x-portable-graymap": {
-			"source": "apache",
-			"extensions": [
-				"pgm"
-			]
-		},
-		"image/x-portable-pixmap": {
-			"source": "apache",
-			"extensions": [
-				"ppm"
-			]
-		},
-		"image/x-rgb": {
-			"source": "apache",
-			"extensions": [
-				"rgb"
-			]
-		},
-		"image/x-tga": {
-			"source": "apache",
-			"extensions": [
-				"tga"
-			]
-		},
-		"image/x-xbitmap": {
-			"source": "apache",
-			"extensions": [
-				"xbm"
-			]
-		},
-		"image/x-xcf": {
-			"compressible": false
-		},
-		"image/x-xpixmap": {
-			"source": "apache",
-			"extensions": [
-				"xpm"
-			]
-		},
-		"image/x-xwindowdump": {
-			"source": "apache",
-			"extensions": [
-				"xwd"
-			]
-		},
-		"message/cpim": {
-			"source": "iana"
-		},
-		"message/delivery-status": {
-			"source": "iana"
-		},
-		"message/disposition-notification": {
-			"source": "iana"
-		},
-		"message/external-body": {
-			"source": "iana"
-		},
-		"message/feedback-report": {
-			"source": "iana"
-		},
-		"message/global": {
-			"source": "iana"
-		},
-		"message/global-delivery-status": {
-			"source": "iana"
-		},
-		"message/global-disposition-notification": {
-			"source": "iana"
-		},
-		"message/global-headers": {
-			"source": "iana"
-		},
-		"message/http": {
-			"source": "iana",
-			"compressible": false
-		},
-		"message/imdn+xml": {
-			"source": "iana",
-			"compressible": true
-		},
-		"message/news": {
-			"source": "iana"
-		},
-		"message/partial": {
-			"source": "iana",
-			"compressible": false
-		},
-		"message/rfc822": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"eml",
-				"mime"
-			]
-		},
-		"message/s-http": {
-			"source": "iana"
-		},
-		"message/sip": {
-			"source": "iana"
-		},
-		"message/sipfrag": {
-			"source": "iana"
-		},
-		"message/tracking-status": {
-			"source": "iana"
-		},
-		"message/vnd.si.simp": {
-			"source": "iana"
-		},
-		"message/vnd.wfa.wsc": {
-			"source": "iana"
-		},
-		"model/gltf+json": {
-			"source": "iana",
-			"compressible": true
-		},
-		"model/iges": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"igs",
-				"iges"
-			]
-		},
-		"model/mesh": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"msh",
-				"mesh",
-				"silo"
-			]
-		},
-		"model/vnd.collada+xml": {
-			"source": "iana",
-			"extensions": [
-				"dae"
-			]
-		},
-		"model/vnd.dwf": {
-			"source": "iana",
-			"extensions": [
-				"dwf"
-			]
-		},
-		"model/vnd.flatland.3dml": {
-			"source": "iana"
-		},
-		"model/vnd.gdl": {
-			"source": "iana",
-			"extensions": [
-				"gdl"
-			]
-		},
-		"model/vnd.gs-gdl": {
-			"source": "apache"
-		},
-		"model/vnd.gs.gdl": {
-			"source": "iana"
-		},
-		"model/vnd.gtw": {
-			"source": "iana",
-			"extensions": [
-				"gtw"
-			]
-		},
-		"model/vnd.moml+xml": {
-			"source": "iana"
-		},
-		"model/vnd.mts": {
-			"source": "iana",
-			"extensions": [
-				"mts"
-			]
-		},
-		"model/vnd.opengex": {
-			"source": "iana"
-		},
-		"model/vnd.parasolid.transmit.binary": {
-			"source": "iana"
-		},
-		"model/vnd.parasolid.transmit.text": {
-			"source": "iana"
-		},
-		"model/vnd.rosette.annotated-data-model": {
-			"source": "iana"
-		},
-		"model/vnd.valve.source.compiled-map": {
-			"source": "iana"
-		},
-		"model/vnd.vtu": {
-			"source": "iana",
-			"extensions": [
-				"vtu"
-			]
-		},
-		"model/vrml": {
-			"source": "iana",
-			"compressible": false,
-			"extensions": [
-				"wrl",
-				"vrml"
-			]
-		},
-		"model/x3d+binary": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"x3db",
-				"x3dbz"
-			]
-		},
-		"model/x3d+fastinfoset": {
-			"source": "iana"
-		},
-		"model/x3d+vrml": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"x3dv",
-				"x3dvz"
-			]
-		},
-		"model/x3d+xml": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"x3d",
-				"x3dz"
-			]
-		},
-		"model/x3d-vrml": {
-			"source": "iana"
-		},
-		"multipart/alternative": {
-			"source": "iana",
-			"compressible": false
-		},
-		"multipart/appledouble": {
-			"source": "iana"
-		},
-		"multipart/byteranges": {
-			"source": "iana"
-		},
-		"multipart/digest": {
-			"source": "iana"
-		},
-		"multipart/encrypted": {
-			"source": "iana",
-			"compressible": false
-		},
-		"multipart/form-data": {
-			"source": "iana",
-			"compressible": false
-		},
-		"multipart/header-set": {
-			"source": "iana"
-		},
-		"multipart/mixed": {
-			"source": "iana",
-			"compressible": false
-		},
-		"multipart/parallel": {
-			"source": "iana"
-		},
-		"multipart/related": {
-			"source": "iana",
-			"compressible": false
-		},
-		"multipart/report": {
-			"source": "iana"
-		},
-		"multipart/signed": {
-			"source": "iana",
-			"compressible": false
-		},
-		"multipart/voice-message": {
-			"source": "iana"
-		},
-		"multipart/x-mixed-replace": {
-			"source": "iana"
-		},
-		"text/1d-interleaved-parityfec": {
-			"source": "iana"
-		},
-		"text/cache-manifest": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"appcache",
-				"manifest"
-			]
-		},
-		"text/calendar": {
-			"source": "iana",
-			"extensions": [
-				"ics",
-				"ifb"
-			]
-		},
-		"text/calender": {
-			"compressible": true
-		},
-		"text/cmd": {
-			"compressible": true
-		},
-		"text/coffeescript": {
-			"extensions": [
-				"coffee",
-				"litcoffee"
-			]
-		},
-		"text/css": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"css"
-			]
-		},
-		"text/csv": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"csv"
-			]
-		},
-		"text/csv-schema": {
-			"source": "iana"
-		},
-		"text/directory": {
-			"source": "iana"
-		},
-		"text/dns": {
-			"source": "iana"
-		},
-		"text/ecmascript": {
-			"source": "iana"
-		},
-		"text/encaprtp": {
-			"source": "iana"
-		},
-		"text/enriched": {
-			"source": "iana"
-		},
-		"text/fwdred": {
-			"source": "iana"
-		},
-		"text/grammar-ref-list": {
-			"source": "iana"
-		},
-		"text/hjson": {
-			"extensions": [
-				"hjson"
-			]
-		},
-		"text/html": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"html",
-				"htm",
-				"shtml"
-			]
-		},
-		"text/jade": {
-			"extensions": [
-				"jade"
-			]
-		},
-		"text/javascript": {
-			"source": "iana",
-			"compressible": true
-		},
-		"text/jcr-cnd": {
-			"source": "iana"
-		},
-		"text/jsx": {
-			"compressible": true,
-			"extensions": [
-				"jsx"
-			]
-		},
-		"text/less": {
-			"extensions": [
-				"less"
-			]
-		},
-		"text/markdown": {
-			"source": "iana"
-		},
-		"text/mathml": {
-			"source": "nginx",
-			"extensions": [
-				"mml"
-			]
-		},
-		"text/mizar": {
-			"source": "iana"
-		},
-		"text/n3": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"n3"
-			]
-		},
-		"text/parameters": {
-			"source": "iana"
-		},
-		"text/parityfec": {
-			"source": "iana"
-		},
-		"text/plain": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"txt",
-				"text",
-				"conf",
-				"def",
-				"list",
-				"log",
-				"in",
-				"ini"
-			]
-		},
-		"text/provenance-notation": {
-			"source": "iana"
-		},
-		"text/prs.fallenstein.rst": {
-			"source": "iana"
-		},
-		"text/prs.lines.tag": {
-			"source": "iana",
-			"extensions": [
-				"dsc"
-			]
-		},
-		"text/prs.prop.logic": {
-			"source": "iana"
-		},
-		"text/raptorfec": {
-			"source": "iana"
-		},
-		"text/red": {
-			"source": "iana"
-		},
-		"text/rfc822-headers": {
-			"source": "iana"
-		},
-		"text/richtext": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"rtx"
-			]
-		},
-		"text/rtf": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"rtf"
-			]
-		},
-		"text/rtp-enc-aescm128": {
-			"source": "iana"
-		},
-		"text/rtploopback": {
-			"source": "iana"
-		},
-		"text/rtx": {
-			"source": "iana"
-		},
-		"text/sgml": {
-			"source": "iana",
-			"extensions": [
-				"sgml",
-				"sgm"
-			]
-		},
-		"text/slim": {
-			"extensions": [
-				"slim",
-				"slm"
-			]
-		},
-		"text/stylus": {
-			"extensions": [
-				"stylus",
-				"styl"
-			]
-		},
-		"text/t140": {
-			"source": "iana"
-		},
-		"text/tab-separated-values": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"tsv"
-			]
-		},
-		"text/troff": {
-			"source": "iana",
-			"extensions": [
-				"t",
-				"tr",
-				"roff",
-				"man",
-				"me",
-				"ms"
-			]
-		},
-		"text/turtle": {
-			"source": "iana",
-			"extensions": [
-				"ttl"
-			]
-		},
-		"text/ulpfec": {
-			"source": "iana"
-		},
-		"text/uri-list": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"uri",
-				"uris",
-				"urls"
-			]
-		},
-		"text/vcard": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"vcard"
-			]
-		},
-		"text/vnd.a": {
-			"source": "iana"
-		},
-		"text/vnd.abc": {
-			"source": "iana"
-		},
-		"text/vnd.ascii-art": {
-			"source": "iana"
-		},
-		"text/vnd.curl": {
-			"source": "iana",
-			"extensions": [
-				"curl"
-			]
-		},
-		"text/vnd.curl.dcurl": {
-			"source": "apache",
-			"extensions": [
-				"dcurl"
-			]
-		},
-		"text/vnd.curl.mcurl": {
-			"source": "apache",
-			"extensions": [
-				"mcurl"
-			]
-		},
-		"text/vnd.curl.scurl": {
-			"source": "apache",
-			"extensions": [
-				"scurl"
-			]
-		},
-		"text/vnd.debian.copyright": {
-			"source": "iana"
-		},
-		"text/vnd.dmclientscript": {
-			"source": "iana"
-		},
-		"text/vnd.dvb.subtitle": {
-			"source": "iana",
-			"extensions": [
-				"sub"
-			]
-		},
-		"text/vnd.esmertec.theme-descriptor": {
-			"source": "iana"
-		},
-		"text/vnd.fly": {
-			"source": "iana",
-			"extensions": [
-				"fly"
-			]
-		},
-		"text/vnd.fmi.flexstor": {
-			"source": "iana",
-			"extensions": [
-				"flx"
-			]
-		},
-		"text/vnd.graphviz": {
-			"source": "iana",
-			"extensions": [
-				"gv"
-			]
-		},
-		"text/vnd.in3d.3dml": {
-			"source": "iana",
-			"extensions": [
-				"3dml"
-			]
-		},
-		"text/vnd.in3d.spot": {
-			"source": "iana",
-			"extensions": [
-				"spot"
-			]
-		},
-		"text/vnd.iptc.newsml": {
-			"source": "iana"
-		},
-		"text/vnd.iptc.nitf": {
-			"source": "iana"
-		},
-		"text/vnd.latex-z": {
-			"source": "iana"
-		},
-		"text/vnd.motorola.reflex": {
-			"source": "iana"
-		},
-		"text/vnd.ms-mediapackage": {
-			"source": "iana"
-		},
-		"text/vnd.net2phone.commcenter.command": {
-			"source": "iana"
-		},
-		"text/vnd.radisys.msml-basic-layout": {
-			"source": "iana"
-		},
-		"text/vnd.si.uricatalogue": {
-			"source": "iana"
-		},
-		"text/vnd.sun.j2me.app-descriptor": {
-			"source": "iana",
-			"extensions": [
-				"jad"
-			]
-		},
-		"text/vnd.trolltech.linguist": {
-			"source": "iana"
-		},
-		"text/vnd.wap.si": {
-			"source": "iana"
-		},
-		"text/vnd.wap.sl": {
-			"source": "iana"
-		},
-		"text/vnd.wap.wml": {
-			"source": "iana",
-			"extensions": [
-				"wml"
-			]
-		},
-		"text/vnd.wap.wmlscript": {
-			"source": "iana",
-			"extensions": [
-				"wmls"
-			]
-		},
-		"text/vtt": {
-			"charset": "UTF-8",
-			"compressible": true,
-			"extensions": [
-				"vtt"
-			]
-		},
-		"text/x-asm": {
-			"source": "apache",
-			"extensions": [
-				"s",
-				"asm"
-			]
-		},
-		"text/x-c": {
-			"source": "apache",
-			"extensions": [
-				"c",
-				"cc",
-				"cxx",
-				"cpp",
-				"h",
-				"hh",
-				"dic"
-			]
-		},
-		"text/x-component": {
-			"source": "nginx",
-			"extensions": [
-				"htc"
-			]
-		},
-		"text/x-fortran": {
-			"source": "apache",
-			"extensions": [
-				"f",
-				"for",
-				"f77",
-				"f90"
-			]
-		},
-		"text/x-gwt-rpc": {
-			"compressible": true
-		},
-		"text/x-handlebars-template": {
-			"extensions": [
-				"hbs"
-			]
-		},
-		"text/x-java-source": {
-			"source": "apache",
-			"extensions": [
-				"java"
-			]
-		},
-		"text/x-jquery-tmpl": {
-			"compressible": true
-		},
-		"text/x-lua": {
-			"extensions": [
-				"lua"
-			]
-		},
-		"text/x-markdown": {
-			"compressible": true,
-			"extensions": [
-				"markdown",
-				"md",
-				"mkd"
-			]
-		},
-		"text/x-nfo": {
-			"source": "apache",
-			"extensions": [
-				"nfo"
-			]
-		},
-		"text/x-opml": {
-			"source": "apache",
-			"extensions": [
-				"opml"
-			]
-		},
-		"text/x-pascal": {
-			"source": "apache",
-			"extensions": [
-				"p",
-				"pas"
-			]
-		},
-		"text/x-processing": {
-			"compressible": true,
-			"extensions": [
-				"pde"
-			]
-		},
-		"text/x-sass": {
-			"extensions": [
-				"sass"
-			]
-		},
-		"text/x-scss": {
-			"extensions": [
-				"scss"
-			]
-		},
-		"text/x-setext": {
-			"source": "apache",
-			"extensions": [
-				"etx"
-			]
-		},
-		"text/x-sfv": {
-			"source": "apache",
-			"extensions": [
-				"sfv"
-			]
-		},
-		"text/x-suse-ymp": {
-			"compressible": true,
-			"extensions": [
-				"ymp"
-			]
-		},
-		"text/x-uuencode": {
-			"source": "apache",
-			"extensions": [
-				"uu"
-			]
-		},
-		"text/x-vcalendar": {
-			"source": "apache",
-			"extensions": [
-				"vcs"
-			]
-		},
-		"text/x-vcard": {
-			"source": "apache",
-			"extensions": [
-				"vcf"
-			]
-		},
-		"text/xml": {
-			"source": "iana",
-			"compressible": true,
-			"extensions": [
-				"xml"
-			]
-		},
-		"text/xml-external-parsed-entity": {
-			"source": "iana"
-		},
-		"text/yaml": {
-			"extensions": [
-				"yaml",
-				"yml"
-			]
-		},
-		"video/1d-interleaved-parityfec": {
-			"source": "apache"
-		},
-		"video/3gpp": {
-			"source": "apache",
-			"extensions": [
-				"3gp",
-				"3gpp"
-			]
-		},
-		"video/3gpp-tt": {
-			"source": "apache"
-		},
-		"video/3gpp2": {
-			"source": "apache",
-			"extensions": [
-				"3g2"
-			]
-		},
-		"video/bmpeg": {
-			"source": "apache"
-		},
-		"video/bt656": {
-			"source": "apache"
-		},
-		"video/celb": {
-			"source": "apache"
-		},
-		"video/dv": {
-			"source": "apache"
-		},
-		"video/encaprtp": {
-			"source": "apache"
-		},
-		"video/h261": {
-			"source": "apache",
-			"extensions": [
-				"h261"
-			]
-		},
-		"video/h263": {
-			"source": "apache",
-			"extensions": [
-				"h263"
-			]
-		},
-		"video/h263-1998": {
-			"source": "apache"
-		},
-		"video/h263-2000": {
-			"source": "apache"
-		},
-		"video/h264": {
-			"source": "apache",
-			"extensions": [
-				"h264"
-			]
-		},
-		"video/h264-rcdo": {
-			"source": "apache"
-		},
-		"video/h264-svc": {
-			"source": "apache"
-		},
-		"video/h265": {
-			"source": "apache"
-		},
-		"video/iso.segment": {
-			"source": "apache"
-		},
-		"video/jpeg": {
-			"source": "apache",
-			"extensions": [
-				"jpgv"
-			]
-		},
-		"video/jpeg2000": {
-			"source": "apache"
-		},
-		"video/jpm": {
-			"source": "apache",
-			"extensions": [
-				"jpm",
-				"jpgm"
-			]
-		},
-		"video/mj2": {
-			"source": "apache",
-			"extensions": [
-				"mj2",
-				"mjp2"
-			]
-		},
-		"video/mp1s": {
-			"source": "apache"
-		},
-		"video/mp2p": {
-			"source": "apache"
-		},
-		"video/mp2t": {
-			"source": "apache",
-			"extensions": [
-				"ts"
-			]
-		},
-		"video/mp4": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"mp4",
-				"mp4v",
-				"mpg4"
-			]
-		},
-		"video/mp4v-es": {
-			"source": "apache"
-		},
-		"video/mpeg": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"mpeg",
-				"mpg",
-				"mpe",
-				"m1v",
-				"m2v"
-			]
-		},
-		"video/mpeg4-generic": {
-			"source": "apache"
-		},
-		"video/mpv": {
-			"source": "apache"
-		},
-		"video/nv": {
-			"source": "apache"
-		},
-		"video/ogg": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"ogv"
-			]
-		},
-		"video/parityfec": {
-			"source": "apache"
-		},
-		"video/pointer": {
-			"source": "apache"
-		},
-		"video/quicktime": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"qt",
-				"mov"
-			]
-		},
-		"video/raptorfec": {
-			"source": "apache"
-		},
-		"video/raw": {
-			"source": "apache"
-		},
-		"video/rtp-enc-aescm128": {
-			"source": "apache"
-		},
-		"video/rtploopback": {
-			"source": "apache"
-		},
-		"video/rtx": {
-			"source": "apache"
-		},
-		"video/smpte292m": {
-			"source": "apache"
-		},
-		"video/ulpfec": {
-			"source": "apache"
-		},
-		"video/vc1": {
-			"source": "apache"
-		},
-		"video/vnd.cctv": {
-			"source": "apache"
-		},
-		"video/vnd.dece.hd": {
-			"source": "apache",
-			"extensions": [
-				"uvh",
-				"uvvh"
-			]
-		},
-		"video/vnd.dece.mobile": {
-			"source": "apache",
-			"extensions": [
-				"uvm",
-				"uvvm"
-			]
-		},
-		"video/vnd.dece.mp4": {
-			"source": "apache"
-		},
-		"video/vnd.dece.pd": {
-			"source": "apache",
-			"extensions": [
-				"uvp",
-				"uvvp"
-			]
-		},
-		"video/vnd.dece.sd": {
-			"source": "apache",
-			"extensions": [
-				"uvs",
-				"uvvs"
-			]
-		},
-		"video/vnd.dece.video": {
-			"source": "apache",
-			"extensions": [
-				"uvv",
-				"uvvv"
-			]
-		},
-		"video/vnd.directv.mpeg": {
-			"source": "apache"
-		},
-		"video/vnd.directv.mpeg-tts": {
-			"source": "apache"
-		},
-		"video/vnd.dlna.mpeg-tts": {
-			"source": "apache"
-		},
-		"video/vnd.dvb.file": {
-			"source": "apache",
-			"extensions": [
-				"dvb"
-			]
-		},
-		"video/vnd.fvt": {
-			"source": "apache",
-			"extensions": [
-				"fvt"
-			]
-		},
-		"video/vnd.hns.video": {
-			"source": "apache"
-		},
-		"video/vnd.iptvforum.1dparityfec-1010": {
-			"source": "apache"
-		},
-		"video/vnd.iptvforum.1dparityfec-2005": {
-			"source": "apache"
-		},
-		"video/vnd.iptvforum.2dparityfec-1010": {
-			"source": "apache"
-		},
-		"video/vnd.iptvforum.2dparityfec-2005": {
-			"source": "apache"
-		},
-		"video/vnd.iptvforum.ttsavc": {
-			"source": "apache"
-		},
-		"video/vnd.iptvforum.ttsmpeg2": {
-			"source": "apache"
-		},
-		"video/vnd.motorola.video": {
-			"source": "apache"
-		},
-		"video/vnd.motorola.videop": {
-			"source": "apache"
-		},
-		"video/vnd.mpegurl": {
-			"source": "apache",
-			"extensions": [
-				"mxu",
-				"m4u"
-			]
-		},
-		"video/vnd.ms-playready.media.pyv": {
-			"source": "apache",
-			"extensions": [
-				"pyv"
-			]
-		},
-		"video/vnd.nokia.interleaved-multimedia": {
-			"source": "apache"
-		},
-		"video/vnd.nokia.videovoip": {
-			"source": "apache"
-		},
-		"video/vnd.objectvideo": {
-			"source": "apache"
-		},
-		"video/vnd.radgamettools.bink": {
-			"source": "apache"
-		},
-		"video/vnd.radgamettools.smacker": {
-			"source": "apache"
-		},
-		"video/vnd.sealed.mpeg1": {
-			"source": "apache"
-		},
-		"video/vnd.sealed.mpeg4": {
-			"source": "apache"
-		},
-		"video/vnd.sealed.swf": {
-			"source": "apache"
-		},
-		"video/vnd.sealedmedia.softseal.mov": {
-			"source": "apache"
-		},
-		"video/vnd.uvvu.mp4": {
-			"source": "apache",
-			"extensions": [
-				"uvu",
-				"uvvu"
-			]
-		},
-		"video/vnd.vivo": {
-			"source": "apache",
-			"extensions": [
-				"viv"
-			]
-		},
-		"video/vp8": {
-			"source": "apache"
-		},
-		"video/webm": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"webm"
-			]
-		},
-		"video/x-f4v": {
-			"source": "apache",
-			"extensions": [
-				"f4v"
-			]
-		},
-		"video/x-fli": {
-			"source": "apache",
-			"extensions": [
-				"fli"
-			]
-		},
-		"video/x-flv": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"flv"
-			]
-		},
-		"video/x-m4v": {
-			"source": "apache",
-			"extensions": [
-				"m4v"
-			]
-		},
-		"video/x-matroska": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"mkv",
-				"mk3d",
-				"mks"
-			]
-		},
-		"video/x-mng": {
-			"source": "apache",
-			"extensions": [
-				"mng"
-			]
-		},
-		"video/x-ms-asf": {
-			"source": "apache",
-			"extensions": [
-				"asf",
-				"asx"
-			]
-		},
-		"video/x-ms-vob": {
-			"source": "apache",
-			"extensions": [
-				"vob"
-			]
-		},
-		"video/x-ms-wm": {
-			"source": "apache",
-			"extensions": [
-				"wm"
-			]
-		},
-		"video/x-ms-wmv": {
-			"source": "apache",
-			"compressible": false,
-			"extensions": [
-				"wmv"
-			]
-		},
-		"video/x-ms-wmx": {
-			"source": "apache",
-			"extensions": [
-				"wmx"
-			]
-		},
-		"video/x-ms-wvx": {
-			"source": "apache",
-			"extensions": [
-				"wvx"
-			]
-		},
-		"video/x-msvideo": {
-			"source": "apache",
-			"extensions": [
-				"avi"
-			]
-		},
-		"video/x-sgi-movie": {
-			"source": "apache",
-			"extensions": [
-				"movie"
-			]
-		},
-		"video/x-smv": {
-			"source": "apache",
-			"extensions": [
-				"smv"
-			]
-		},
-		"x-conference/x-cooltalk": {
-			"source": "apache",
-			"extensions": [
-				"ice"
-			]
-		},
-		"x-shader/x-fragment": {
-			"compressible": true
-		},
-		"x-shader/x-vertex": {
-			"compressible": true
-		}
-	};
-
-/***/ },
-/* 152 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -59462,10 +37735,10 @@
 	 * Module dependencies.
 	 */
 
-	var bytes = __webpack_require__(111)
+	var bytes = __webpack_require__(91)
 	var debug = __webpack_require__(8)('body-parser:raw')
-	var read = __webpack_require__(119)
-	var typeis = __webpack_require__(147)
+	var read = __webpack_require__(92)
+	var typeis = __webpack_require__(78)
 
 	/**
 	 * Module exports.
@@ -59554,7 +37827,7 @@
 
 
 /***/ },
-/* 153 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -59569,11 +37842,11 @@
 	 * Module dependencies.
 	 */
 
-	var bytes = __webpack_require__(111)
-	var contentType = __webpack_require__(112)
+	var bytes = __webpack_require__(91)
+	var contentType = __webpack_require__(47)
 	var debug = __webpack_require__(8)('body-parser:text')
-	var read = __webpack_require__(119)
-	var typeis = __webpack_require__(147)
+	var read = __webpack_require__(92)
+	var typeis = __webpack_require__(78)
 
 	/**
 	 * Module exports.
@@ -59681,7 +37954,7 @@
 
 
 /***/ },
-/* 154 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -59698,13 +37971,13 @@
 	 * @private
 	 */
 
-	var bytes = __webpack_require__(111)
-	var contentType = __webpack_require__(112)
-	var createError = __webpack_require__(113)
+	var bytes = __webpack_require__(91)
+	var contentType = __webpack_require__(47)
+	var createError = __webpack_require__(49)
 	var debug = __webpack_require__(8)('body-parser:urlencoded')
-	var deprecate = __webpack_require__(105)('body-parser')
-	var read = __webpack_require__(119)
-	var typeis = __webpack_require__(147)
+	var deprecate = __webpack_require__(29)('body-parser')
+	var read = __webpack_require__(92)
+	var typeis = __webpack_require__(78)
 
 	/**
 	 * Module exports.
@@ -59905,10 +38178,10 @@
 	  // this uses a switch for static require analysis
 	  switch (name) {
 	    case 'qs':
-	      mod = __webpack_require__(155)
+	      mod = __webpack_require__(40)
 	      break
 	    case 'querystring':
-	      mod = __webpack_require__(69)
+	      mod = __webpack_require__(66)
 	      break
 	  }
 
@@ -59966,518 +38239,16 @@
 
 
 /***/ },
-/* 155 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Stringify = __webpack_require__(156);
-	var Parse = __webpack_require__(158);
-
-	module.exports = {
-	    stringify: Stringify,
-	    parse: Parse
-	};
+	module.exports = __webpack_require__(121);
 
 
 /***/ },
-/* 156 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var Utils = __webpack_require__(157);
-
-	var arrayPrefixGenerators = {
-	    brackets: function brackets(prefix) {
-	        return prefix + '[]';
-	    },
-	    indices: function indices(prefix, key) {
-	        return prefix + '[' + key + ']';
-	    },
-	    repeat: function repeat(prefix) {
-	        return prefix;
-	    }
-	};
-
-	var defaults = {
-	    delimiter: '&',
-	    strictNullHandling: false,
-	    skipNulls: false,
-	    encode: true,
-	    encoder: Utils.encode
-	};
-
-	var stringify = function stringify(object, prefix, generateArrayPrefix, strictNullHandling, skipNulls, encoder, filter, sort, allowDots) {
-	    var obj = object;
-	    if (typeof filter === 'function') {
-	        obj = filter(prefix, obj);
-	    } else if (obj instanceof Date) {
-	        obj = obj.toISOString();
-	    } else if (obj === null) {
-	        if (strictNullHandling) {
-	            return encoder ? encoder(prefix) : prefix;
-	        }
-
-	        obj = '';
-	    }
-
-	    if (typeof obj === 'string' || typeof obj === 'number' || typeof obj === 'boolean' || Utils.isBuffer(obj)) {
-	        if (encoder) {
-	            return [encoder(prefix) + '=' + encoder(obj)];
-	        }
-	        return [prefix + '=' + String(obj)];
-	    }
-
-	    var values = [];
-
-	    if (typeof obj === 'undefined') {
-	        return values;
-	    }
-
-	    var objKeys;
-	    if (Array.isArray(filter)) {
-	        objKeys = filter;
-	    } else {
-	        var keys = Object.keys(obj);
-	        objKeys = sort ? keys.sort(sort) : keys;
-	    }
-
-	    for (var i = 0; i < objKeys.length; ++i) {
-	        var key = objKeys[i];
-
-	        if (skipNulls && obj[key] === null) {
-	            continue;
-	        }
-
-	        if (Array.isArray(obj)) {
-	            values = values.concat(stringify(obj[key], generateArrayPrefix(prefix, key), generateArrayPrefix, strictNullHandling, skipNulls, encoder, filter, sort, allowDots));
-	        } else {
-	            values = values.concat(stringify(obj[key], prefix + (allowDots ? '.' + key : '[' + key + ']'), generateArrayPrefix, strictNullHandling, skipNulls, encoder, filter, sort, allowDots));
-	        }
-	    }
-
-	    return values;
-	};
-
-	module.exports = function (object, opts) {
-	    var obj = object;
-	    var options = opts || {};
-	    var delimiter = typeof options.delimiter === 'undefined' ? defaults.delimiter : options.delimiter;
-	    var strictNullHandling = typeof options.strictNullHandling === 'boolean' ? options.strictNullHandling : defaults.strictNullHandling;
-	    var skipNulls = typeof options.skipNulls === 'boolean' ? options.skipNulls : defaults.skipNulls;
-	    var encode = typeof options.encode === 'boolean' ? options.encode : defaults.encode;
-	    var encoder = encode ? (typeof options.encoder === 'function' ? options.encoder : defaults.encoder) : null;
-	    var sort = typeof options.sort === 'function' ? options.sort : null;
-	    var allowDots = typeof options.allowDots === 'undefined' ? false : options.allowDots;
-	    var objKeys;
-	    var filter;
-
-	    if (options.encoder !== null && options.encoder !== undefined && typeof options.encoder !== 'function') {
-	        throw new TypeError('Encoder has to be a function.');
-	    }
-
-	    if (typeof options.filter === 'function') {
-	        filter = options.filter;
-	        obj = filter('', obj);
-	    } else if (Array.isArray(options.filter)) {
-	        objKeys = filter = options.filter;
-	    }
-
-	    var keys = [];
-
-	    if (typeof obj !== 'object' || obj === null) {
-	        return '';
-	    }
-
-	    var arrayFormat;
-	    if (options.arrayFormat in arrayPrefixGenerators) {
-	        arrayFormat = options.arrayFormat;
-	    } else if ('indices' in options) {
-	        arrayFormat = options.indices ? 'indices' : 'repeat';
-	    } else {
-	        arrayFormat = 'indices';
-	    }
-
-	    var generateArrayPrefix = arrayPrefixGenerators[arrayFormat];
-
-	    if (!objKeys) {
-	        objKeys = Object.keys(obj);
-	    }
-
-	    if (sort) {
-	        objKeys.sort(sort);
-	    }
-
-	    for (var i = 0; i < objKeys.length; ++i) {
-	        var key = objKeys[i];
-
-	        if (skipNulls && obj[key] === null) {
-	            continue;
-	        }
-
-	        keys = keys.concat(stringify(obj[key], key, generateArrayPrefix, strictNullHandling, skipNulls, encoder, filter, sort, allowDots));
-	    }
-
-	    return keys.join(delimiter);
-	};
-
-
-/***/ },
-/* 157 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	var hexTable = (function () {
-	    var array = new Array(256);
-	    for (var i = 0; i < 256; ++i) {
-	        array[i] = '%' + ((i < 16 ? '0' : '') + i.toString(16)).toUpperCase();
-	    }
-
-	    return array;
-	}());
-
-	exports.arrayToObject = function (source, options) {
-	    var obj = options.plainObjects ? Object.create(null) : {};
-	    for (var i = 0; i < source.length; ++i) {
-	        if (typeof source[i] !== 'undefined') {
-	            obj[i] = source[i];
-	        }
-	    }
-
-	    return obj;
-	};
-
-	exports.merge = function (target, source, options) {
-	    if (!source) {
-	        return target;
-	    }
-
-	    if (typeof source !== 'object') {
-	        if (Array.isArray(target)) {
-	            target.push(source);
-	        } else if (typeof target === 'object') {
-	            target[source] = true;
-	        } else {
-	            return [target, source];
-	        }
-
-	        return target;
-	    }
-
-	    if (typeof target !== 'object') {
-	        return [target].concat(source);
-	    }
-
-	    var mergeTarget = target;
-	    if (Array.isArray(target) && !Array.isArray(source)) {
-	        mergeTarget = exports.arrayToObject(target, options);
-	    }
-
-	    return Object.keys(source).reduce(function (acc, key) {
-	        var value = source[key];
-
-	        if (Object.prototype.hasOwnProperty.call(acc, key)) {
-	            acc[key] = exports.merge(acc[key], value, options);
-	        } else {
-	            acc[key] = value;
-	        }
-	        return acc;
-	    }, mergeTarget);
-	};
-
-	exports.decode = function (str) {
-	    try {
-	        return decodeURIComponent(str.replace(/\+/g, ' '));
-	    } catch (e) {
-	        return str;
-	    }
-	};
-
-	exports.encode = function (str) {
-	    // This code was originally written by Brian White (mscdex) for the io.js core querystring library.
-	    // It has been adapted here for stricter adherence to RFC 3986
-	    if (str.length === 0) {
-	        return str;
-	    }
-
-	    var string = typeof str === 'string' ? str : String(str);
-
-	    var out = '';
-	    for (var i = 0; i < string.length; ++i) {
-	        var c = string.charCodeAt(i);
-
-	        if (
-	            c === 0x2D || // -
-	            c === 0x2E || // .
-	            c === 0x5F || // _
-	            c === 0x7E || // ~
-	            (c >= 0x30 && c <= 0x39) || // 0-9
-	            (c >= 0x41 && c <= 0x5A) || // a-z
-	            (c >= 0x61 && c <= 0x7A) // A-Z
-	        ) {
-	            out += string.charAt(i);
-	            continue;
-	        }
-
-	        if (c < 0x80) {
-	            out = out + hexTable[c];
-	            continue;
-	        }
-
-	        if (c < 0x800) {
-	            out = out + (hexTable[0xC0 | (c >> 6)] + hexTable[0x80 | (c & 0x3F)]);
-	            continue;
-	        }
-
-	        if (c < 0xD800 || c >= 0xE000) {
-	            out = out + (hexTable[0xE0 | (c >> 12)] + hexTable[0x80 | ((c >> 6) & 0x3F)] + hexTable[0x80 | (c & 0x3F)]);
-	            continue;
-	        }
-
-	        i += 1;
-	        c = 0x10000 + (((c & 0x3FF) << 10) | (string.charCodeAt(i) & 0x3FF));
-	        out += hexTable[0xF0 | (c >> 18)] + hexTable[0x80 | ((c >> 12) & 0x3F)] + hexTable[0x80 | ((c >> 6) & 0x3F)] + hexTable[0x80 | (c & 0x3F)];
-	    }
-
-	    return out;
-	};
-
-	exports.compact = function (obj, references) {
-	    if (typeof obj !== 'object' || obj === null) {
-	        return obj;
-	    }
-
-	    var refs = references || [];
-	    var lookup = refs.indexOf(obj);
-	    if (lookup !== -1) {
-	        return refs[lookup];
-	    }
-
-	    refs.push(obj);
-
-	    if (Array.isArray(obj)) {
-	        var compacted = [];
-
-	        for (var i = 0; i < obj.length; ++i) {
-	            if (obj[i] && typeof obj[i] === 'object') {
-	                compacted.push(exports.compact(obj[i], refs));
-	            } else if (typeof obj[i] !== 'undefined') {
-	                compacted.push(obj[i]);
-	            }
-	        }
-
-	        return compacted;
-	    }
-
-	    var keys = Object.keys(obj);
-	    for (var j = 0; j < keys.length; ++j) {
-	        var key = keys[j];
-	        obj[key] = exports.compact(obj[key], refs);
-	    }
-
-	    return obj;
-	};
-
-	exports.isRegExp = function (obj) {
-	    return Object.prototype.toString.call(obj) === '[object RegExp]';
-	};
-
-	exports.isBuffer = function (obj) {
-	    if (obj === null || typeof obj === 'undefined') {
-	        return false;
-	    }
-
-	    return !!(obj.constructor && obj.constructor.isBuffer && obj.constructor.isBuffer(obj));
-	};
-
-
-/***/ },
-/* 158 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var Utils = __webpack_require__(157);
-
-	var defaults = {
-	    delimiter: '&',
-	    depth: 5,
-	    arrayLimit: 20,
-	    parameterLimit: 1000,
-	    strictNullHandling: false,
-	    plainObjects: false,
-	    allowPrototypes: false,
-	    allowDots: false,
-	    decoder: Utils.decode
-	};
-
-	var parseValues = function parseValues(str, options) {
-	    var obj = {};
-	    var parts = str.split(options.delimiter, options.parameterLimit === Infinity ? undefined : options.parameterLimit);
-
-	    for (var i = 0; i < parts.length; ++i) {
-	        var part = parts[i];
-	        var pos = part.indexOf(']=') === -1 ? part.indexOf('=') : part.indexOf(']=') + 1;
-
-	        if (pos === -1) {
-	            obj[options.decoder(part)] = '';
-
-	            if (options.strictNullHandling) {
-	                obj[options.decoder(part)] = null;
-	            }
-	        } else {
-	            var key = options.decoder(part.slice(0, pos));
-	            var val = options.decoder(part.slice(pos + 1));
-
-	            if (Object.prototype.hasOwnProperty.call(obj, key)) {
-	                obj[key] = [].concat(obj[key]).concat(val);
-	            } else {
-	                obj[key] = val;
-	            }
-	        }
-	    }
-
-	    return obj;
-	};
-
-	var parseObject = function parseObject(chain, val, options) {
-	    if (!chain.length) {
-	        return val;
-	    }
-
-	    var root = chain.shift();
-
-	    var obj;
-	    if (root === '[]') {
-	        obj = [];
-	        obj = obj.concat(parseObject(chain, val, options));
-	    } else {
-	        obj = options.plainObjects ? Object.create(null) : {};
-	        var cleanRoot = root[0] === '[' && root[root.length - 1] === ']' ? root.slice(1, root.length - 1) : root;
-	        var index = parseInt(cleanRoot, 10);
-	        if (
-	            !isNaN(index) &&
-	            root !== cleanRoot &&
-	            String(index) === cleanRoot &&
-	            index >= 0 &&
-	            (options.parseArrays && index <= options.arrayLimit)
-	        ) {
-	            obj = [];
-	            obj[index] = parseObject(chain, val, options);
-	        } else {
-	            obj[cleanRoot] = parseObject(chain, val, options);
-	        }
-	    }
-
-	    return obj;
-	};
-
-	var parseKeys = function parseKeys(givenKey, val, options) {
-	    if (!givenKey) {
-	        return;
-	    }
-
-	    // Transform dot notation to bracket notation
-	    var key = options.allowDots ? givenKey.replace(/\.([^\.\[]+)/g, '[$1]') : givenKey;
-
-	    // The regex chunks
-
-	    var parent = /^([^\[\]]*)/;
-	    var child = /(\[[^\[\]]*\])/g;
-
-	    // Get the parent
-
-	    var segment = parent.exec(key);
-
-	    // Stash the parent if it exists
-
-	    var keys = [];
-	    if (segment[1]) {
-	        // If we aren't using plain objects, optionally prefix keys
-	        // that would overwrite object prototype properties
-	        if (!options.plainObjects && Object.prototype.hasOwnProperty(segment[1])) {
-	            if (!options.allowPrototypes) {
-	                return;
-	            }
-	        }
-
-	        keys.push(segment[1]);
-	    }
-
-	    // Loop through children appending to the array until we hit depth
-
-	    var i = 0;
-	    while ((segment = child.exec(key)) !== null && i < options.depth) {
-	        i += 1;
-	        if (!options.plainObjects && Object.prototype.hasOwnProperty(segment[1].replace(/\[|\]/g, ''))) {
-	            if (!options.allowPrototypes) {
-	                continue;
-	            }
-	        }
-	        keys.push(segment[1]);
-	    }
-
-	    // If there's a remainder, just add whatever is left
-
-	    if (segment) {
-	        keys.push('[' + key.slice(segment.index) + ']');
-	    }
-
-	    return parseObject(keys, val, options);
-	};
-
-	module.exports = function (str, opts) {
-	    var options = opts || {};
-
-	    if (options.decoder !== null && options.decoder !== undefined && typeof options.decoder !== 'function') {
-	        throw new TypeError('Decoder has to be a function.');
-	    }
-
-	    options.delimiter = typeof options.delimiter === 'string' || Utils.isRegExp(options.delimiter) ? options.delimiter : defaults.delimiter;
-	    options.depth = typeof options.depth === 'number' ? options.depth : defaults.depth;
-	    options.arrayLimit = typeof options.arrayLimit === 'number' ? options.arrayLimit : defaults.arrayLimit;
-	    options.parseArrays = options.parseArrays !== false;
-	    options.decoder = typeof options.decoder === 'function' ? options.decoder : defaults.decoder;
-	    options.allowDots = typeof options.allowDots === 'boolean' ? options.allowDots : defaults.allowDots;
-	    options.plainObjects = typeof options.plainObjects === 'boolean' ? options.plainObjects : defaults.plainObjects;
-	    options.allowPrototypes = typeof options.allowPrototypes === 'boolean' ? options.allowPrototypes : defaults.allowPrototypes;
-	    options.parameterLimit = typeof options.parameterLimit === 'number' ? options.parameterLimit : defaults.parameterLimit;
-	    options.strictNullHandling = typeof options.strictNullHandling === 'boolean' ? options.strictNullHandling : defaults.strictNullHandling;
-
-	    if (str === '' || str === null || typeof str === 'undefined') {
-	        return options.plainObjects ? Object.create(null) : {};
-	    }
-
-	    var tempObj = typeof str === 'string' ? parseValues(str, options) : str;
-	    var obj = options.plainObjects ? Object.create(null) : {};
-
-	    // Iterate over the keys and setup the new object
-
-	    var keys = Object.keys(tempObj);
-	    for (var i = 0; i < keys.length; ++i) {
-	        var key = keys[i];
-	        var newObj = parseKeys(key, tempObj[key], options);
-	        obj = Utils.merge(obj, newObj, options);
-	    }
-
-	    return Utils.compact(obj);
-	};
-
-
-/***/ },
-/* 159 */,
-/* 160 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	module.exports = __webpack_require__(161);
-
-
-/***/ },
-/* 161 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -60492,26 +38263,26 @@
 
 	'use strict';
 
-	var _assign = __webpack_require__(162);
+	var _assign = __webpack_require__(122);
 
-	var ReactChildren = __webpack_require__(163);
-	var ReactComponent = __webpack_require__(176);
-	var ReactPureComponent = __webpack_require__(179);
-	var ReactClass = __webpack_require__(180);
-	var ReactDOMFactories = __webpack_require__(182);
-	var ReactElement = __webpack_require__(167);
-	var ReactPropTypes = __webpack_require__(187);
-	var ReactVersion = __webpack_require__(188);
+	var ReactChildren = __webpack_require__(123);
+	var ReactComponent = __webpack_require__(136);
+	var ReactPureComponent = __webpack_require__(139);
+	var ReactClass = __webpack_require__(140);
+	var ReactDOMFactories = __webpack_require__(142);
+	var ReactElement = __webpack_require__(127);
+	var ReactPropTypes = __webpack_require__(147);
+	var ReactVersion = __webpack_require__(148);
 
-	var onlyChild = __webpack_require__(189);
-	var warning = __webpack_require__(169);
+	var onlyChild = __webpack_require__(149);
+	var warning = __webpack_require__(129);
 
 	var createElement = ReactElement.createElement;
 	var createFactory = ReactElement.createFactory;
 	var cloneElement = ReactElement.cloneElement;
 
 	if (process.env.NODE_ENV !== 'production') {
-	  var ReactElementValidator = __webpack_require__(183);
+	  var ReactElementValidator = __webpack_require__(143);
 	  createElement = ReactElementValidator.createElement;
 	  createFactory = ReactElementValidator.createFactory;
 	  cloneElement = ReactElementValidator.cloneElement;
@@ -60570,7 +38341,7 @@
 	module.exports = React;
 
 /***/ },
-/* 162 */
+/* 122 */
 /***/ function(module, exports) {
 
 	/*
@@ -60666,7 +38437,7 @@
 
 
 /***/ },
-/* 163 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -60681,11 +38452,11 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(164);
-	var ReactElement = __webpack_require__(167);
+	var PooledClass = __webpack_require__(124);
+	var ReactElement = __webpack_require__(127);
 
-	var emptyFunction = __webpack_require__(170);
-	var traverseAllChildren = __webpack_require__(173);
+	var emptyFunction = __webpack_require__(130);
+	var traverseAllChildren = __webpack_require__(133);
 
 	var twoArgumentPooler = PooledClass.twoArgumentPooler;
 	var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -60861,7 +38632,7 @@
 	module.exports = ReactChildren;
 
 /***/ },
-/* 164 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -60877,9 +38648,9 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(165);
+	var _prodInvariant = __webpack_require__(125);
 
-	var invariant = __webpack_require__(166);
+	var invariant = __webpack_require__(126);
 
 	/**
 	 * Static poolers. Several custom versions for each potential number of
@@ -60977,7 +38748,7 @@
 	module.exports = PooledClass;
 
 /***/ },
-/* 165 */
+/* 125 */
 /***/ function(module, exports) {
 
 	/**
@@ -61020,7 +38791,7 @@
 	module.exports = reactProdInvariant;
 
 /***/ },
-/* 166 */
+/* 126 */
 /***/ function(module, exports) {
 
 	/**
@@ -61080,7 +38851,7 @@
 	module.exports = invariant;
 
 /***/ },
-/* 167 */
+/* 127 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -61095,15 +38866,15 @@
 
 	'use strict';
 
-	var _assign = __webpack_require__(162);
+	var _assign = __webpack_require__(122);
 
-	var ReactCurrentOwner = __webpack_require__(168);
+	var ReactCurrentOwner = __webpack_require__(128);
 
-	var warning = __webpack_require__(169);
-	var canDefineProperty = __webpack_require__(171);
+	var warning = __webpack_require__(129);
+	var canDefineProperty = __webpack_require__(131);
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
 
-	var REACT_ELEMENT_TYPE = __webpack_require__(172);
+	var REACT_ELEMENT_TYPE = __webpack_require__(132);
 
 	var RESERVED_PROPS = {
 	  key: true,
@@ -61425,7 +39196,7 @@
 	module.exports = ReactElement;
 
 /***/ },
-/* 168 */
+/* 128 */
 /***/ function(module, exports) {
 
 	/**
@@ -61460,7 +39231,7 @@
 	module.exports = ReactCurrentOwner;
 
 /***/ },
-/* 169 */
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -61475,7 +39246,7 @@
 
 	'use strict';
 
-	var emptyFunction = __webpack_require__(170);
+	var emptyFunction = __webpack_require__(130);
 
 	/**
 	 * Similar to invariant but only logs a warning if the condition is not met.
@@ -61531,7 +39302,7 @@
 	module.exports = warning;
 
 /***/ },
-/* 170 */
+/* 130 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -61574,7 +39345,7 @@
 	module.exports = emptyFunction;
 
 /***/ },
-/* 171 */
+/* 131 */
 /***/ function(module, exports) {
 
 	/**
@@ -61604,7 +39375,7 @@
 	module.exports = canDefineProperty;
 
 /***/ },
-/* 172 */
+/* 132 */
 /***/ function(module, exports) {
 
 	/**
@@ -61628,7 +39399,7 @@
 	module.exports = REACT_ELEMENT_TYPE;
 
 /***/ },
-/* 173 */
+/* 133 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -61643,15 +39414,15 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(165);
+	var _prodInvariant = __webpack_require__(125);
 
-	var ReactCurrentOwner = __webpack_require__(168);
-	var REACT_ELEMENT_TYPE = __webpack_require__(172);
+	var ReactCurrentOwner = __webpack_require__(128);
+	var REACT_ELEMENT_TYPE = __webpack_require__(132);
 
-	var getIteratorFn = __webpack_require__(174);
-	var invariant = __webpack_require__(166);
-	var KeyEscapeUtils = __webpack_require__(175);
-	var warning = __webpack_require__(169);
+	var getIteratorFn = __webpack_require__(134);
+	var invariant = __webpack_require__(126);
+	var KeyEscapeUtils = __webpack_require__(135);
+	var warning = __webpack_require__(129);
 
 	var SEPARATOR = '.';
 	var SUBSEPARATOR = ':';
@@ -61808,7 +39579,7 @@
 	module.exports = traverseAllChildren;
 
 /***/ },
-/* 174 */
+/* 134 */
 /***/ function(module, exports) {
 
 	/**
@@ -61853,7 +39624,7 @@
 	module.exports = getIteratorFn;
 
 /***/ },
-/* 175 */
+/* 135 */
 /***/ function(module, exports) {
 
 	/**
@@ -61916,7 +39687,7 @@
 	module.exports = KeyEscapeUtils;
 
 /***/ },
-/* 176 */
+/* 136 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -61931,14 +39702,14 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(165);
+	var _prodInvariant = __webpack_require__(125);
 
-	var ReactNoopUpdateQueue = __webpack_require__(177);
+	var ReactNoopUpdateQueue = __webpack_require__(137);
 
-	var canDefineProperty = __webpack_require__(171);
-	var emptyObject = __webpack_require__(178);
-	var invariant = __webpack_require__(166);
-	var warning = __webpack_require__(169);
+	var canDefineProperty = __webpack_require__(131);
+	var emptyObject = __webpack_require__(138);
+	var invariant = __webpack_require__(126);
+	var warning = __webpack_require__(129);
 
 	/**
 	 * Base class helpers for the updating state of a component.
@@ -62038,7 +39809,7 @@
 	module.exports = ReactComponent;
 
 /***/ },
-/* 177 */
+/* 137 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -62053,7 +39824,7 @@
 
 	'use strict';
 
-	var warning = __webpack_require__(169);
+	var warning = __webpack_require__(129);
 
 	function warnNoop(publicInstance, callerName) {
 	  if (process.env.NODE_ENV !== 'production') {
@@ -62138,7 +39909,7 @@
 	module.exports = ReactNoopUpdateQueue;
 
 /***/ },
-/* 178 */
+/* 138 */
 /***/ function(module, exports) {
 
 	/**
@@ -62162,7 +39933,7 @@
 	module.exports = emptyObject;
 
 /***/ },
-/* 179 */
+/* 139 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -62177,12 +39948,12 @@
 
 	'use strict';
 
-	var _assign = __webpack_require__(162);
+	var _assign = __webpack_require__(122);
 
-	var ReactComponent = __webpack_require__(176);
-	var ReactNoopUpdateQueue = __webpack_require__(177);
+	var ReactComponent = __webpack_require__(136);
+	var ReactNoopUpdateQueue = __webpack_require__(137);
 
-	var emptyObject = __webpack_require__(178);
+	var emptyObject = __webpack_require__(138);
 
 	/**
 	 * Base class helpers for the updating state of a component.
@@ -62208,7 +39979,7 @@
 	module.exports = ReactPureComponent;
 
 /***/ },
-/* 180 */
+/* 140 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -62223,17 +39994,17 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(165),
-	    _assign = __webpack_require__(162);
+	var _prodInvariant = __webpack_require__(125),
+	    _assign = __webpack_require__(122);
 
-	var ReactComponent = __webpack_require__(176);
-	var ReactElement = __webpack_require__(167);
-	var ReactPropTypeLocationNames = __webpack_require__(181);
-	var ReactNoopUpdateQueue = __webpack_require__(177);
+	var ReactComponent = __webpack_require__(136);
+	var ReactElement = __webpack_require__(127);
+	var ReactPropTypeLocationNames = __webpack_require__(141);
+	var ReactNoopUpdateQueue = __webpack_require__(137);
 
-	var emptyObject = __webpack_require__(178);
-	var invariant = __webpack_require__(166);
-	var warning = __webpack_require__(169);
+	var emptyObject = __webpack_require__(138);
+	var invariant = __webpack_require__(126);
+	var warning = __webpack_require__(129);
 
 	var MIXINS_KEY = 'mixins';
 
@@ -62929,7 +40700,7 @@
 	module.exports = ReactClass;
 
 /***/ },
-/* 181 */
+/* 141 */
 /***/ function(module, exports) {
 
 	/**
@@ -62958,7 +40729,7 @@
 	module.exports = ReactPropTypeLocationNames;
 
 /***/ },
-/* 182 */
+/* 142 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -62973,7 +40744,7 @@
 
 	'use strict';
 
-	var ReactElement = __webpack_require__(167);
+	var ReactElement = __webpack_require__(127);
 
 	/**
 	 * Create a factory that creates HTML tag elements.
@@ -62982,7 +40753,7 @@
 	 */
 	var createDOMFactory = ReactElement.createFactory;
 	if (process.env.NODE_ENV !== 'production') {
-	  var ReactElementValidator = __webpack_require__(183);
+	  var ReactElementValidator = __webpack_require__(143);
 	  createDOMFactory = ReactElementValidator.createFactory;
 	}
 
@@ -63132,7 +40903,7 @@
 	module.exports = ReactDOMFactories;
 
 /***/ },
-/* 183 */
+/* 143 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -63154,15 +40925,15 @@
 
 	'use strict';
 
-	var ReactCurrentOwner = __webpack_require__(168);
-	var ReactComponentTreeHook = __webpack_require__(184);
-	var ReactElement = __webpack_require__(167);
+	var ReactCurrentOwner = __webpack_require__(128);
+	var ReactComponentTreeHook = __webpack_require__(144);
+	var ReactElement = __webpack_require__(127);
 
-	var checkReactTypeSpec = __webpack_require__(185);
+	var checkReactTypeSpec = __webpack_require__(145);
 
-	var canDefineProperty = __webpack_require__(171);
-	var getIteratorFn = __webpack_require__(174);
-	var warning = __webpack_require__(169);
+	var canDefineProperty = __webpack_require__(131);
+	var getIteratorFn = __webpack_require__(134);
+	var warning = __webpack_require__(129);
 
 	function getDeclarationErrorAddendum() {
 	  if (ReactCurrentOwner.current) {
@@ -63370,7 +41141,7 @@
 	module.exports = ReactElementValidator;
 
 /***/ },
-/* 184 */
+/* 144 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -63386,12 +41157,12 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(165);
+	var _prodInvariant = __webpack_require__(125);
 
-	var ReactCurrentOwner = __webpack_require__(168);
+	var ReactCurrentOwner = __webpack_require__(128);
 
-	var invariant = __webpack_require__(166);
-	var warning = __webpack_require__(169);
+	var invariant = __webpack_require__(126);
+	var warning = __webpack_require__(129);
 
 	function isNative(fn) {
 	  // Based on isNative() from Lodash
@@ -63708,7 +41479,7 @@
 	module.exports = ReactComponentTreeHook;
 
 /***/ },
-/* 185 */
+/* 145 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -63723,13 +41494,13 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(165);
+	var _prodInvariant = __webpack_require__(125);
 
-	var ReactPropTypeLocationNames = __webpack_require__(181);
-	var ReactPropTypesSecret = __webpack_require__(186);
+	var ReactPropTypeLocationNames = __webpack_require__(141);
+	var ReactPropTypesSecret = __webpack_require__(146);
 
-	var invariant = __webpack_require__(166);
-	var warning = __webpack_require__(169);
+	var invariant = __webpack_require__(126);
+	var warning = __webpack_require__(129);
 
 	var ReactComponentTreeHook;
 
@@ -63739,7 +41510,7 @@
 	  // https://github.com/facebook/react/issues/7240
 	  // Remove the inline requires when we don't need them anymore:
 	  // https://github.com/facebook/react/pull/7178
-	  ReactComponentTreeHook = __webpack_require__(184);
+	  ReactComponentTreeHook = __webpack_require__(144);
 	}
 
 	var loggedTypeFailures = {};
@@ -63781,7 +41552,7 @@
 
 	        if (process.env.NODE_ENV !== 'production') {
 	          if (!ReactComponentTreeHook) {
-	            ReactComponentTreeHook = __webpack_require__(184);
+	            ReactComponentTreeHook = __webpack_require__(144);
 	          }
 	          if (debugID !== null) {
 	            componentStackInfo = ReactComponentTreeHook.getStackAddendumByID(debugID);
@@ -63799,7 +41570,7 @@
 	module.exports = checkReactTypeSpec;
 
 /***/ },
-/* 186 */
+/* 146 */
 /***/ function(module, exports) {
 
 	/**
@@ -63820,7 +41591,7 @@
 	module.exports = ReactPropTypesSecret;
 
 /***/ },
-/* 187 */
+/* 147 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -63835,13 +41606,13 @@
 
 	'use strict';
 
-	var ReactElement = __webpack_require__(167);
-	var ReactPropTypeLocationNames = __webpack_require__(181);
-	var ReactPropTypesSecret = __webpack_require__(186);
+	var ReactElement = __webpack_require__(127);
+	var ReactPropTypeLocationNames = __webpack_require__(141);
+	var ReactPropTypesSecret = __webpack_require__(146);
 
-	var emptyFunction = __webpack_require__(170);
-	var getIteratorFn = __webpack_require__(174);
-	var warning = __webpack_require__(169);
+	var emptyFunction = __webpack_require__(130);
+	var getIteratorFn = __webpack_require__(134);
+	var warning = __webpack_require__(129);
 
 	/**
 	 * Collection of methods that allow declaration and validation of props that are
@@ -64258,7 +42029,7 @@
 	module.exports = ReactPropTypes;
 
 /***/ },
-/* 188 */
+/* 148 */
 /***/ function(module, exports) {
 
 	/**
@@ -64276,7 +42047,7 @@
 	module.exports = '15.4.2';
 
 /***/ },
-/* 189 */
+/* 149 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -64290,11 +42061,11 @@
 	 */
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(165);
+	var _prodInvariant = __webpack_require__(125);
 
-	var ReactElement = __webpack_require__(167);
+	var ReactElement = __webpack_require__(127);
 
-	var invariant = __webpack_require__(166);
+	var invariant = __webpack_require__(126);
 
 	/**
 	 * Returns the first child in a collection of children and verifies that there
@@ -64318,16 +42089,16 @@
 	module.exports = onlyChild;
 
 /***/ },
-/* 190 */
+/* 150 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	module.exports = __webpack_require__(191);
+	module.exports = __webpack_require__(151);
 
 
 /***/ },
-/* 191 */
+/* 151 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -64342,9 +42113,9 @@
 
 	'use strict';
 
-	var ReactDefaultInjection = __webpack_require__(192);
-	var ReactServerRendering = __webpack_require__(324);
-	var ReactVersion = __webpack_require__(329);
+	var ReactDefaultInjection = __webpack_require__(152);
+	var ReactServerRendering = __webpack_require__(284);
+	var ReactVersion = __webpack_require__(289);
 
 	ReactDefaultInjection.inject();
 
@@ -64357,7 +42128,7 @@
 	module.exports = ReactDOMServer;
 
 /***/ },
-/* 192 */
+/* 152 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -64372,25 +42143,25 @@
 
 	'use strict';
 
-	var ARIADOMPropertyConfig = __webpack_require__(193);
-	var BeforeInputEventPlugin = __webpack_require__(194);
-	var ChangeEventPlugin = __webpack_require__(210);
-	var DefaultEventPluginOrder = __webpack_require__(230);
-	var EnterLeaveEventPlugin = __webpack_require__(231);
-	var HTMLDOMPropertyConfig = __webpack_require__(236);
-	var ReactComponentBrowserEnvironment = __webpack_require__(237);
-	var ReactDOMComponent = __webpack_require__(250);
-	var ReactDOMComponentTree = __webpack_require__(211);
-	var ReactDOMEmptyComponent = __webpack_require__(295);
-	var ReactDOMTreeTraversal = __webpack_require__(296);
-	var ReactDOMTextComponent = __webpack_require__(297);
-	var ReactDefaultBatchingStrategy = __webpack_require__(298);
-	var ReactEventListener = __webpack_require__(299);
-	var ReactInjection = __webpack_require__(302);
-	var ReactReconcileTransaction = __webpack_require__(303);
-	var SVGDOMPropertyConfig = __webpack_require__(311);
-	var SelectEventPlugin = __webpack_require__(312);
-	var SimpleEventPlugin = __webpack_require__(313);
+	var ARIADOMPropertyConfig = __webpack_require__(153);
+	var BeforeInputEventPlugin = __webpack_require__(154);
+	var ChangeEventPlugin = __webpack_require__(170);
+	var DefaultEventPluginOrder = __webpack_require__(190);
+	var EnterLeaveEventPlugin = __webpack_require__(191);
+	var HTMLDOMPropertyConfig = __webpack_require__(196);
+	var ReactComponentBrowserEnvironment = __webpack_require__(197);
+	var ReactDOMComponent = __webpack_require__(210);
+	var ReactDOMComponentTree = __webpack_require__(171);
+	var ReactDOMEmptyComponent = __webpack_require__(255);
+	var ReactDOMTreeTraversal = __webpack_require__(256);
+	var ReactDOMTextComponent = __webpack_require__(257);
+	var ReactDefaultBatchingStrategy = __webpack_require__(258);
+	var ReactEventListener = __webpack_require__(259);
+	var ReactInjection = __webpack_require__(262);
+	var ReactReconcileTransaction = __webpack_require__(263);
+	var SVGDOMPropertyConfig = __webpack_require__(271);
+	var SelectEventPlugin = __webpack_require__(272);
+	var SimpleEventPlugin = __webpack_require__(273);
 
 	var alreadyInjected = false;
 
@@ -64447,7 +42218,7 @@
 	};
 
 /***/ },
-/* 193 */
+/* 153 */
 /***/ function(module, exports) {
 
 	/**
@@ -64525,7 +42296,7 @@
 	module.exports = ARIADOMPropertyConfig;
 
 /***/ },
-/* 194 */
+/* 154 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -64540,11 +42311,11 @@
 
 	'use strict';
 
-	var EventPropagators = __webpack_require__(195);
-	var ExecutionEnvironment = __webpack_require__(203);
-	var FallbackCompositionState = __webpack_require__(204);
-	var SyntheticCompositionEvent = __webpack_require__(207);
-	var SyntheticInputEvent = __webpack_require__(209);
+	var EventPropagators = __webpack_require__(155);
+	var ExecutionEnvironment = __webpack_require__(163);
+	var FallbackCompositionState = __webpack_require__(164);
+	var SyntheticCompositionEvent = __webpack_require__(167);
+	var SyntheticInputEvent = __webpack_require__(169);
 
 	var END_KEYCODES = [9, 13, 27, 32]; // Tab, Return, Esc, Space
 	var START_KEYCODE = 229;
@@ -64914,7 +42685,7 @@
 	module.exports = BeforeInputEventPlugin;
 
 /***/ },
-/* 195 */
+/* 155 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -64929,12 +42700,12 @@
 
 	'use strict';
 
-	var EventPluginHub = __webpack_require__(196);
-	var EventPluginUtils = __webpack_require__(199);
+	var EventPluginHub = __webpack_require__(156);
+	var EventPluginUtils = __webpack_require__(159);
 
-	var accumulateInto = __webpack_require__(201);
-	var forEachAccumulated = __webpack_require__(202);
-	var warning = __webpack_require__(169);
+	var accumulateInto = __webpack_require__(161);
+	var forEachAccumulated = __webpack_require__(162);
+	var warning = __webpack_require__(129);
 
 	var getListener = EventPluginHub.getListener;
 
@@ -65052,7 +42823,7 @@
 	module.exports = EventPropagators;
 
 /***/ },
-/* 196 */
+/* 156 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -65067,15 +42838,15 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
-	var EventPluginRegistry = __webpack_require__(198);
-	var EventPluginUtils = __webpack_require__(199);
-	var ReactErrorUtils = __webpack_require__(200);
+	var EventPluginRegistry = __webpack_require__(158);
+	var EventPluginUtils = __webpack_require__(159);
+	var ReactErrorUtils = __webpack_require__(160);
 
-	var accumulateInto = __webpack_require__(201);
-	var forEachAccumulated = __webpack_require__(202);
-	var invariant = __webpack_require__(166);
+	var accumulateInto = __webpack_require__(161);
+	var forEachAccumulated = __webpack_require__(162);
+	var invariant = __webpack_require__(126);
 
 	/**
 	 * Internal store for event listeners
@@ -65334,7 +43105,7 @@
 	module.exports = EventPluginHub;
 
 /***/ },
-/* 197 */
+/* 157 */
 /***/ function(module, exports) {
 
 	/**
@@ -65377,7 +43148,7 @@
 	module.exports = reactProdInvariant;
 
 /***/ },
-/* 198 */
+/* 158 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -65393,9 +43164,9 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
-	var invariant = __webpack_require__(166);
+	var invariant = __webpack_require__(126);
 
 	/**
 	 * Injectable ordering of event plugins.
@@ -65636,7 +43407,7 @@
 	module.exports = EventPluginRegistry;
 
 /***/ },
-/* 199 */
+/* 159 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -65651,12 +43422,12 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
-	var ReactErrorUtils = __webpack_require__(200);
+	var ReactErrorUtils = __webpack_require__(160);
 
-	var invariant = __webpack_require__(166);
-	var warning = __webpack_require__(169);
+	var invariant = __webpack_require__(126);
+	var warning = __webpack_require__(129);
 
 	/**
 	 * Injected dependencies:
@@ -65866,7 +43637,7 @@
 	module.exports = EventPluginUtils;
 
 /***/ },
-/* 200 */
+/* 160 */
 /***/ function(module, exports) {
 
 	/**
@@ -65947,7 +43718,7 @@
 	module.exports = ReactErrorUtils;
 
 /***/ },
-/* 201 */
+/* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -65963,9 +43734,9 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
-	var invariant = __webpack_require__(166);
+	var invariant = __webpack_require__(126);
 
 	/**
 	 * Accumulates items that must not be null or undefined into the first one. This
@@ -66009,7 +43780,7 @@
 	module.exports = accumulateInto;
 
 /***/ },
-/* 202 */
+/* 162 */
 /***/ function(module, exports) {
 
 	/**
@@ -66044,7 +43815,7 @@
 	module.exports = forEachAccumulated;
 
 /***/ },
-/* 203 */
+/* 163 */
 /***/ function(module, exports) {
 
 	/**
@@ -66084,7 +43855,7 @@
 	module.exports = ExecutionEnvironment;
 
 /***/ },
-/* 204 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -66099,11 +43870,11 @@
 
 	'use strict';
 
-	var _assign = __webpack_require__(162);
+	var _assign = __webpack_require__(122);
 
-	var PooledClass = __webpack_require__(205);
+	var PooledClass = __webpack_require__(165);
 
-	var getTextContentAccessor = __webpack_require__(206);
+	var getTextContentAccessor = __webpack_require__(166);
 
 	/**
 	 * This helper class stores information about text content of a target node,
@@ -66183,7 +43954,7 @@
 	module.exports = FallbackCompositionState;
 
 /***/ },
-/* 205 */
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -66199,9 +43970,9 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
-	var invariant = __webpack_require__(166);
+	var invariant = __webpack_require__(126);
 
 	/**
 	 * Static poolers. Several custom versions for each potential number of
@@ -66299,7 +44070,7 @@
 	module.exports = PooledClass;
 
 /***/ },
-/* 206 */
+/* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -66314,7 +44085,7 @@
 
 	'use strict';
 
-	var ExecutionEnvironment = __webpack_require__(203);
+	var ExecutionEnvironment = __webpack_require__(163);
 
 	var contentKey = null;
 
@@ -66336,7 +44107,7 @@
 	module.exports = getTextContentAccessor;
 
 /***/ },
-/* 207 */
+/* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -66351,7 +44122,7 @@
 
 	'use strict';
 
-	var SyntheticEvent = __webpack_require__(208);
+	var SyntheticEvent = __webpack_require__(168);
 
 	/**
 	 * @interface Event
@@ -66376,7 +44147,7 @@
 	module.exports = SyntheticCompositionEvent;
 
 /***/ },
-/* 208 */
+/* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -66391,12 +44162,12 @@
 
 	'use strict';
 
-	var _assign = __webpack_require__(162);
+	var _assign = __webpack_require__(122);
 
-	var PooledClass = __webpack_require__(205);
+	var PooledClass = __webpack_require__(165);
 
-	var emptyFunction = __webpack_require__(170);
-	var warning = __webpack_require__(169);
+	var emptyFunction = __webpack_require__(130);
+	var warning = __webpack_require__(129);
 
 	var didWarnForAddedNewProperty = false;
 	var isProxySupported = typeof Proxy === 'function';
@@ -66648,7 +44419,7 @@
 	}
 
 /***/ },
-/* 209 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -66663,7 +44434,7 @@
 
 	'use strict';
 
-	var SyntheticEvent = __webpack_require__(208);
+	var SyntheticEvent = __webpack_require__(168);
 
 	/**
 	 * @interface Event
@@ -66689,7 +44460,7 @@
 	module.exports = SyntheticInputEvent;
 
 /***/ },
-/* 210 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -66704,16 +44475,16 @@
 
 	'use strict';
 
-	var EventPluginHub = __webpack_require__(196);
-	var EventPropagators = __webpack_require__(195);
-	var ExecutionEnvironment = __webpack_require__(203);
-	var ReactDOMComponentTree = __webpack_require__(211);
-	var ReactUpdates = __webpack_require__(214);
-	var SyntheticEvent = __webpack_require__(208);
+	var EventPluginHub = __webpack_require__(156);
+	var EventPropagators = __webpack_require__(155);
+	var ExecutionEnvironment = __webpack_require__(163);
+	var ReactDOMComponentTree = __webpack_require__(171);
+	var ReactUpdates = __webpack_require__(174);
+	var SyntheticEvent = __webpack_require__(168);
 
-	var getEventTarget = __webpack_require__(227);
-	var isEventSupported = __webpack_require__(228);
-	var isTextInputElement = __webpack_require__(229);
+	var getEventTarget = __webpack_require__(187);
+	var isEventSupported = __webpack_require__(188);
+	var isTextInputElement = __webpack_require__(189);
 
 	var eventTypes = {
 	  change: {
@@ -67014,7 +44785,7 @@
 	module.exports = ChangeEventPlugin;
 
 /***/ },
-/* 211 */
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -67029,12 +44800,12 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
-	var DOMProperty = __webpack_require__(212);
-	var ReactDOMComponentFlags = __webpack_require__(213);
+	var DOMProperty = __webpack_require__(172);
+	var ReactDOMComponentFlags = __webpack_require__(173);
 
-	var invariant = __webpack_require__(166);
+	var invariant = __webpack_require__(126);
 
 	var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
 	var Flags = ReactDOMComponentFlags;
@@ -67213,7 +44984,7 @@
 	module.exports = ReactDOMComponentTree;
 
 /***/ },
-/* 212 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -67228,9 +44999,9 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
-	var invariant = __webpack_require__(166);
+	var invariant = __webpack_require__(126);
 
 	function checkMask(value, bitmask) {
 	  return (value & bitmask) === bitmask;
@@ -67427,7 +45198,7 @@
 	module.exports = DOMProperty;
 
 /***/ },
-/* 213 */
+/* 173 */
 /***/ function(module, exports) {
 
 	/**
@@ -67449,7 +45220,7 @@
 	module.exports = ReactDOMComponentFlags;
 
 /***/ },
-/* 214 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -67464,16 +45235,16 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197),
-	    _assign = __webpack_require__(162);
+	var _prodInvariant = __webpack_require__(157),
+	    _assign = __webpack_require__(122);
 
-	var CallbackQueue = __webpack_require__(215);
-	var PooledClass = __webpack_require__(205);
-	var ReactFeatureFlags = __webpack_require__(216);
-	var ReactReconciler = __webpack_require__(217);
-	var Transaction = __webpack_require__(226);
+	var CallbackQueue = __webpack_require__(175);
+	var PooledClass = __webpack_require__(165);
+	var ReactFeatureFlags = __webpack_require__(176);
+	var ReactReconciler = __webpack_require__(177);
+	var Transaction = __webpack_require__(186);
 
-	var invariant = __webpack_require__(166);
+	var invariant = __webpack_require__(126);
 
 	var dirtyComponents = [];
 	var updateBatchNumber = 0;
@@ -67704,7 +45475,7 @@
 	module.exports = ReactUpdates;
 
 /***/ },
-/* 215 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -67720,13 +45491,13 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var PooledClass = __webpack_require__(205);
+	var PooledClass = __webpack_require__(165);
 
-	var invariant = __webpack_require__(166);
+	var invariant = __webpack_require__(126);
 
 	/**
 	 * A specialized pseudo-event module to help keep track of components waiting to
@@ -67827,7 +45598,7 @@
 	module.exports = PooledClass.addPoolingTo(CallbackQueue);
 
 /***/ },
-/* 216 */
+/* 176 */
 /***/ function(module, exports) {
 
 	/**
@@ -67853,7 +45624,7 @@
 	module.exports = ReactFeatureFlags;
 
 /***/ },
-/* 217 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -67868,10 +45639,10 @@
 
 	'use strict';
 
-	var ReactRef = __webpack_require__(218);
-	var ReactInstrumentation = __webpack_require__(220);
+	var ReactRef = __webpack_require__(178);
+	var ReactInstrumentation = __webpack_require__(180);
 
-	var warning = __webpack_require__(169);
+	var warning = __webpack_require__(129);
 
 	/**
 	 * Helper to call ReactRef.attachRefs with this composite component, split out
@@ -68025,7 +45796,7 @@
 	module.exports = ReactReconciler;
 
 /***/ },
-/* 218 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -68041,7 +45812,7 @@
 
 	'use strict';
 
-	var ReactOwner = __webpack_require__(219);
+	var ReactOwner = __webpack_require__(179);
 
 	var ReactRef = {};
 
@@ -68118,7 +45889,7 @@
 	module.exports = ReactRef;
 
 /***/ },
-/* 219 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -68134,9 +45905,9 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
-	var invariant = __webpack_require__(166);
+	var invariant = __webpack_require__(126);
 
 	/**
 	 * @param {?object} object
@@ -68216,7 +45987,7 @@
 	module.exports = ReactOwner;
 
 /***/ },
-/* 220 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -68237,14 +46008,14 @@
 	var debugTool = null;
 
 	if (process.env.NODE_ENV !== 'production') {
-	  var ReactDebugTool = __webpack_require__(221);
+	  var ReactDebugTool = __webpack_require__(181);
 	  debugTool = ReactDebugTool;
 	}
 
 	module.exports = { debugTool: debugTool };
 
 /***/ },
-/* 221 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -68260,13 +46031,13 @@
 
 	'use strict';
 
-	var ReactInvalidSetStateWarningHook = __webpack_require__(222);
-	var ReactHostOperationHistoryHook = __webpack_require__(223);
-	var ReactComponentTreeHook = __webpack_require__(184);
-	var ExecutionEnvironment = __webpack_require__(203);
+	var ReactInvalidSetStateWarningHook = __webpack_require__(182);
+	var ReactHostOperationHistoryHook = __webpack_require__(183);
+	var ReactComponentTreeHook = __webpack_require__(144);
+	var ExecutionEnvironment = __webpack_require__(163);
 
-	var performanceNow = __webpack_require__(224);
-	var warning = __webpack_require__(169);
+	var performanceNow = __webpack_require__(184);
+	var warning = __webpack_require__(129);
 
 	var hooks = [];
 	var didHookThrowForEvent = {};
@@ -68609,7 +46380,7 @@
 	module.exports = ReactDebugTool;
 
 /***/ },
-/* 222 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -68625,7 +46396,7 @@
 
 	'use strict';
 
-	var warning = __webpack_require__(169);
+	var warning = __webpack_require__(129);
 
 	if (process.env.NODE_ENV !== 'production') {
 	  var processingChildContext = false;
@@ -68650,7 +46421,7 @@
 	module.exports = ReactInvalidSetStateWarningHook;
 
 /***/ },
-/* 223 */
+/* 183 */
 /***/ function(module, exports) {
 
 	/**
@@ -68688,7 +46459,7 @@
 	module.exports = ReactHostOperationHistoryHook;
 
 /***/ },
-/* 224 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -68704,7 +46475,7 @@
 	 * @typechecks
 	 */
 
-	var performance = __webpack_require__(225);
+	var performance = __webpack_require__(185);
 
 	var performanceNow;
 
@@ -68726,7 +46497,7 @@
 	module.exports = performanceNow;
 
 /***/ },
-/* 225 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -68742,7 +46513,7 @@
 
 	'use strict';
 
-	var ExecutionEnvironment = __webpack_require__(203);
+	var ExecutionEnvironment = __webpack_require__(163);
 
 	var performance;
 
@@ -68753,7 +46524,7 @@
 	module.exports = performance || {};
 
 /***/ },
-/* 226 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -68769,9 +46540,9 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
-	var invariant = __webpack_require__(166);
+	var invariant = __webpack_require__(126);
 
 	var OBSERVED_ERROR = {};
 
@@ -68982,7 +46753,7 @@
 	module.exports = TransactionImpl;
 
 /***/ },
-/* 227 */
+/* 187 */
 /***/ function(module, exports) {
 
 	/**
@@ -69021,7 +46792,7 @@
 	module.exports = getEventTarget;
 
 /***/ },
-/* 228 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -69036,7 +46807,7 @@
 
 	'use strict';
 
-	var ExecutionEnvironment = __webpack_require__(203);
+	var ExecutionEnvironment = __webpack_require__(163);
 
 	var useHasFeature;
 	if (ExecutionEnvironment.canUseDOM) {
@@ -69085,7 +46856,7 @@
 	module.exports = isEventSupported;
 
 /***/ },
-/* 229 */
+/* 189 */
 /***/ function(module, exports) {
 
 	/**
@@ -69140,7 +46911,7 @@
 	module.exports = isTextInputElement;
 
 /***/ },
-/* 230 */
+/* 190 */
 /***/ function(module, exports) {
 
 	/**
@@ -69170,7 +46941,7 @@
 	module.exports = DefaultEventPluginOrder;
 
 /***/ },
-/* 231 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -69185,9 +46956,9 @@
 
 	'use strict';
 
-	var EventPropagators = __webpack_require__(195);
-	var ReactDOMComponentTree = __webpack_require__(211);
-	var SyntheticMouseEvent = __webpack_require__(232);
+	var EventPropagators = __webpack_require__(155);
+	var ReactDOMComponentTree = __webpack_require__(171);
+	var SyntheticMouseEvent = __webpack_require__(192);
 
 	var eventTypes = {
 	  mouseEnter: {
@@ -69274,7 +47045,7 @@
 	module.exports = EnterLeaveEventPlugin;
 
 /***/ },
-/* 232 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -69289,10 +47060,10 @@
 
 	'use strict';
 
-	var SyntheticUIEvent = __webpack_require__(233);
-	var ViewportMetrics = __webpack_require__(234);
+	var SyntheticUIEvent = __webpack_require__(193);
+	var ViewportMetrics = __webpack_require__(194);
 
-	var getEventModifierState = __webpack_require__(235);
+	var getEventModifierState = __webpack_require__(195);
 
 	/**
 	 * @interface MouseEvent
@@ -69350,7 +47121,7 @@
 	module.exports = SyntheticMouseEvent;
 
 /***/ },
-/* 233 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -69365,9 +47136,9 @@
 
 	'use strict';
 
-	var SyntheticEvent = __webpack_require__(208);
+	var SyntheticEvent = __webpack_require__(168);
 
-	var getEventTarget = __webpack_require__(227);
+	var getEventTarget = __webpack_require__(187);
 
 	/**
 	 * @interface UIEvent
@@ -69413,7 +47184,7 @@
 	module.exports = SyntheticUIEvent;
 
 /***/ },
-/* 234 */
+/* 194 */
 /***/ function(module, exports) {
 
 	/**
@@ -69444,7 +47215,7 @@
 	module.exports = ViewportMetrics;
 
 /***/ },
-/* 235 */
+/* 195 */
 /***/ function(module, exports) {
 
 	/**
@@ -69491,7 +47262,7 @@
 	module.exports = getEventModifierState;
 
 /***/ },
-/* 236 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -69506,7 +47277,7 @@
 
 	'use strict';
 
-	var DOMProperty = __webpack_require__(212);
+	var DOMProperty = __webpack_require__(172);
 
 	var MUST_USE_PROPERTY = DOMProperty.injection.MUST_USE_PROPERTY;
 	var HAS_BOOLEAN_VALUE = DOMProperty.injection.HAS_BOOLEAN_VALUE;
@@ -69707,7 +47478,7 @@
 	module.exports = HTMLDOMPropertyConfig;
 
 /***/ },
-/* 237 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -69722,8 +47493,8 @@
 
 	'use strict';
 
-	var DOMChildrenOperations = __webpack_require__(238);
-	var ReactDOMIDOperations = __webpack_require__(249);
+	var DOMChildrenOperations = __webpack_require__(198);
+	var ReactDOMIDOperations = __webpack_require__(209);
 
 	/**
 	 * Abstracts away all functionality of the reconciler that requires knowledge of
@@ -69741,7 +47512,7 @@
 	module.exports = ReactComponentBrowserEnvironment;
 
 /***/ },
-/* 238 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -69756,14 +47527,14 @@
 
 	'use strict';
 
-	var DOMLazyTree = __webpack_require__(239);
-	var Danger = __webpack_require__(245);
-	var ReactDOMComponentTree = __webpack_require__(211);
-	var ReactInstrumentation = __webpack_require__(220);
+	var DOMLazyTree = __webpack_require__(199);
+	var Danger = __webpack_require__(205);
+	var ReactDOMComponentTree = __webpack_require__(171);
+	var ReactInstrumentation = __webpack_require__(180);
 
-	var createMicrosoftUnsafeLocalFunction = __webpack_require__(242);
-	var setInnerHTML = __webpack_require__(241);
-	var setTextContent = __webpack_require__(243);
+	var createMicrosoftUnsafeLocalFunction = __webpack_require__(202);
+	var setInnerHTML = __webpack_require__(201);
+	var setTextContent = __webpack_require__(203);
 
 	function getNodeAfter(parentNode, node) {
 	  // Special case for text components, which return [open, close] comments
@@ -69970,7 +47741,7 @@
 	module.exports = DOMChildrenOperations;
 
 /***/ },
-/* 239 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -69985,11 +47756,11 @@
 
 	'use strict';
 
-	var DOMNamespaces = __webpack_require__(240);
-	var setInnerHTML = __webpack_require__(241);
+	var DOMNamespaces = __webpack_require__(200);
+	var setInnerHTML = __webpack_require__(201);
 
-	var createMicrosoftUnsafeLocalFunction = __webpack_require__(242);
-	var setTextContent = __webpack_require__(243);
+	var createMicrosoftUnsafeLocalFunction = __webpack_require__(202);
+	var setTextContent = __webpack_require__(203);
 
 	var ELEMENT_NODE_TYPE = 1;
 	var DOCUMENT_FRAGMENT_NODE_TYPE = 11;
@@ -70092,7 +47863,7 @@
 	module.exports = DOMLazyTree;
 
 /***/ },
-/* 240 */
+/* 200 */
 /***/ function(module, exports) {
 
 	/**
@@ -70116,7 +47887,7 @@
 	module.exports = DOMNamespaces;
 
 /***/ },
-/* 241 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -70131,13 +47902,13 @@
 
 	'use strict';
 
-	var ExecutionEnvironment = __webpack_require__(203);
-	var DOMNamespaces = __webpack_require__(240);
+	var ExecutionEnvironment = __webpack_require__(163);
+	var DOMNamespaces = __webpack_require__(200);
 
 	var WHITESPACE_TEST = /^[ \r\n\t\f]/;
 	var NONVISIBLE_TEST = /<(!--|link|noscript|meta|script|style)[ \r\n\t\f\/>]/;
 
-	var createMicrosoftUnsafeLocalFunction = __webpack_require__(242);
+	var createMicrosoftUnsafeLocalFunction = __webpack_require__(202);
 
 	// SVG temp container for IE lacking innerHTML
 	var reusableSVGContainer;
@@ -70218,7 +47989,7 @@
 	module.exports = setInnerHTML;
 
 /***/ },
-/* 242 */
+/* 202 */
 /***/ function(module, exports) {
 
 	/**
@@ -70254,7 +48025,7 @@
 	module.exports = createMicrosoftUnsafeLocalFunction;
 
 /***/ },
-/* 243 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -70269,9 +48040,9 @@
 
 	'use strict';
 
-	var ExecutionEnvironment = __webpack_require__(203);
-	var escapeTextContentForBrowser = __webpack_require__(244);
-	var setInnerHTML = __webpack_require__(241);
+	var ExecutionEnvironment = __webpack_require__(163);
+	var escapeTextContentForBrowser = __webpack_require__(204);
+	var setInnerHTML = __webpack_require__(201);
 
 	/**
 	 * Set the textContent property of a node, ensuring that whitespace is preserved
@@ -70310,7 +48081,7 @@
 	module.exports = setTextContent;
 
 /***/ },
-/* 244 */
+/* 204 */
 /***/ function(module, exports) {
 
 	/**
@@ -70437,7 +48208,7 @@
 	module.exports = escapeTextContentForBrowser;
 
 /***/ },
-/* 245 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -70452,14 +48223,14 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
-	var DOMLazyTree = __webpack_require__(239);
-	var ExecutionEnvironment = __webpack_require__(203);
+	var DOMLazyTree = __webpack_require__(199);
+	var ExecutionEnvironment = __webpack_require__(163);
 
-	var createNodesFromMarkup = __webpack_require__(246);
-	var emptyFunction = __webpack_require__(170);
-	var invariant = __webpack_require__(166);
+	var createNodesFromMarkup = __webpack_require__(206);
+	var emptyFunction = __webpack_require__(130);
+	var invariant = __webpack_require__(126);
 
 	var Danger = {
 
@@ -70489,7 +48260,7 @@
 	module.exports = Danger;
 
 /***/ },
-/* 246 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -70507,11 +48278,11 @@
 
 	/*eslint-disable fb-www/unsafe-html*/
 
-	var ExecutionEnvironment = __webpack_require__(203);
+	var ExecutionEnvironment = __webpack_require__(163);
 
-	var createArrayFromMixed = __webpack_require__(247);
-	var getMarkupWrap = __webpack_require__(248);
-	var invariant = __webpack_require__(166);
+	var createArrayFromMixed = __webpack_require__(207);
+	var getMarkupWrap = __webpack_require__(208);
+	var invariant = __webpack_require__(126);
 
 	/**
 	 * Dummy container used to render all markup.
@@ -70577,7 +48348,7 @@
 	module.exports = createNodesFromMarkup;
 
 /***/ },
-/* 247 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -70593,7 +48364,7 @@
 	 * @typechecks
 	 */
 
-	var invariant = __webpack_require__(166);
+	var invariant = __webpack_require__(126);
 
 	/**
 	 * Convert array-like objects to arrays.
@@ -70708,7 +48479,7 @@
 	module.exports = createArrayFromMixed;
 
 /***/ },
-/* 248 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -70725,9 +48496,9 @@
 
 	/*eslint-disable fb-www/unsafe-html */
 
-	var ExecutionEnvironment = __webpack_require__(203);
+	var ExecutionEnvironment = __webpack_require__(163);
 
-	var invariant = __webpack_require__(166);
+	var invariant = __webpack_require__(126);
 
 	/**
 	 * Dummy container used to detect which wraps are necessary.
@@ -70807,7 +48578,7 @@
 	module.exports = getMarkupWrap;
 
 /***/ },
-/* 249 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -70822,8 +48593,8 @@
 
 	'use strict';
 
-	var DOMChildrenOperations = __webpack_require__(238);
-	var ReactDOMComponentTree = __webpack_require__(211);
+	var DOMChildrenOperations = __webpack_require__(198);
+	var ReactDOMComponentTree = __webpack_require__(171);
 
 	/**
 	 * Operations used to process updates to DOM nodes.
@@ -70845,7 +48616,7 @@
 	module.exports = ReactDOMIDOperations;
 
 /***/ },
-/* 250 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -70862,35 +48633,35 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197),
-	    _assign = __webpack_require__(162);
+	var _prodInvariant = __webpack_require__(157),
+	    _assign = __webpack_require__(122);
 
-	var AutoFocusUtils = __webpack_require__(251);
-	var CSSPropertyOperations = __webpack_require__(253);
-	var DOMLazyTree = __webpack_require__(239);
-	var DOMNamespaces = __webpack_require__(240);
-	var DOMProperty = __webpack_require__(212);
-	var DOMPropertyOperations = __webpack_require__(261);
-	var EventPluginHub = __webpack_require__(196);
-	var EventPluginRegistry = __webpack_require__(198);
-	var ReactBrowserEventEmitter = __webpack_require__(263);
-	var ReactDOMComponentFlags = __webpack_require__(213);
-	var ReactDOMComponentTree = __webpack_require__(211);
-	var ReactDOMInput = __webpack_require__(266);
-	var ReactDOMOption = __webpack_require__(269);
-	var ReactDOMSelect = __webpack_require__(270);
-	var ReactDOMTextarea = __webpack_require__(271);
-	var ReactInstrumentation = __webpack_require__(220);
-	var ReactMultiChild = __webpack_require__(272);
-	var ReactServerRenderingTransaction = __webpack_require__(291);
+	var AutoFocusUtils = __webpack_require__(211);
+	var CSSPropertyOperations = __webpack_require__(213);
+	var DOMLazyTree = __webpack_require__(199);
+	var DOMNamespaces = __webpack_require__(200);
+	var DOMProperty = __webpack_require__(172);
+	var DOMPropertyOperations = __webpack_require__(221);
+	var EventPluginHub = __webpack_require__(156);
+	var EventPluginRegistry = __webpack_require__(158);
+	var ReactBrowserEventEmitter = __webpack_require__(223);
+	var ReactDOMComponentFlags = __webpack_require__(173);
+	var ReactDOMComponentTree = __webpack_require__(171);
+	var ReactDOMInput = __webpack_require__(226);
+	var ReactDOMOption = __webpack_require__(229);
+	var ReactDOMSelect = __webpack_require__(230);
+	var ReactDOMTextarea = __webpack_require__(231);
+	var ReactInstrumentation = __webpack_require__(180);
+	var ReactMultiChild = __webpack_require__(232);
+	var ReactServerRenderingTransaction = __webpack_require__(251);
 
-	var emptyFunction = __webpack_require__(170);
-	var escapeTextContentForBrowser = __webpack_require__(244);
-	var invariant = __webpack_require__(166);
-	var isEventSupported = __webpack_require__(228);
-	var shallowEqual = __webpack_require__(281);
-	var validateDOMNesting = __webpack_require__(294);
-	var warning = __webpack_require__(169);
+	var emptyFunction = __webpack_require__(130);
+	var escapeTextContentForBrowser = __webpack_require__(204);
+	var invariant = __webpack_require__(126);
+	var isEventSupported = __webpack_require__(188);
+	var shallowEqual = __webpack_require__(241);
+	var validateDOMNesting = __webpack_require__(254);
+	var warning = __webpack_require__(129);
 
 	var Flags = ReactDOMComponentFlags;
 	var deleteListener = EventPluginHub.deleteListener;
@@ -71850,7 +49621,7 @@
 	module.exports = ReactDOMComponent;
 
 /***/ },
-/* 251 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -71865,9 +49636,9 @@
 
 	'use strict';
 
-	var ReactDOMComponentTree = __webpack_require__(211);
+	var ReactDOMComponentTree = __webpack_require__(171);
 
-	var focusNode = __webpack_require__(252);
+	var focusNode = __webpack_require__(212);
 
 	var AutoFocusUtils = {
 	  focusDOMComponent: function () {
@@ -71878,7 +49649,7 @@
 	module.exports = AutoFocusUtils;
 
 /***/ },
-/* 252 */
+/* 212 */
 /***/ function(module, exports) {
 
 	/**
@@ -71909,7 +49680,7 @@
 	module.exports = focusNode;
 
 /***/ },
-/* 253 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -71924,15 +49695,15 @@
 
 	'use strict';
 
-	var CSSProperty = __webpack_require__(254);
-	var ExecutionEnvironment = __webpack_require__(203);
-	var ReactInstrumentation = __webpack_require__(220);
+	var CSSProperty = __webpack_require__(214);
+	var ExecutionEnvironment = __webpack_require__(163);
+	var ReactInstrumentation = __webpack_require__(180);
 
-	var camelizeStyleName = __webpack_require__(255);
-	var dangerousStyleValue = __webpack_require__(257);
-	var hyphenateStyleName = __webpack_require__(258);
-	var memoizeStringOnly = __webpack_require__(260);
-	var warning = __webpack_require__(169);
+	var camelizeStyleName = __webpack_require__(215);
+	var dangerousStyleValue = __webpack_require__(217);
+	var hyphenateStyleName = __webpack_require__(218);
+	var memoizeStringOnly = __webpack_require__(220);
+	var warning = __webpack_require__(129);
 
 	var processStyleName = memoizeStringOnly(function (styleName) {
 	  return hyphenateStyleName(styleName);
@@ -72122,7 +49893,7 @@
 	module.exports = CSSPropertyOperations;
 
 /***/ },
-/* 254 */
+/* 214 */
 /***/ function(module, exports) {
 
 	/**
@@ -72274,7 +50045,7 @@
 	module.exports = CSSProperty;
 
 /***/ },
-/* 255 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -72290,7 +50061,7 @@
 
 	'use strict';
 
-	var camelize = __webpack_require__(256);
+	var camelize = __webpack_require__(216);
 
 	var msPattern = /^-ms-/;
 
@@ -72318,7 +50089,7 @@
 	module.exports = camelizeStyleName;
 
 /***/ },
-/* 256 */
+/* 216 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -72354,7 +50125,7 @@
 	module.exports = camelize;
 
 /***/ },
-/* 257 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -72369,8 +50140,8 @@
 
 	'use strict';
 
-	var CSSProperty = __webpack_require__(254);
-	var warning = __webpack_require__(169);
+	var CSSProperty = __webpack_require__(214);
+	var warning = __webpack_require__(129);
 
 	var isUnitlessNumber = CSSProperty.isUnitlessNumber;
 	var styleWarnings = {};
@@ -72437,7 +50208,7 @@
 	module.exports = dangerousStyleValue;
 
 /***/ },
-/* 258 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -72453,7 +50224,7 @@
 
 	'use strict';
 
-	var hyphenate = __webpack_require__(259);
+	var hyphenate = __webpack_require__(219);
 
 	var msPattern = /^ms-/;
 
@@ -72480,7 +50251,7 @@
 	module.exports = hyphenateStyleName;
 
 /***/ },
-/* 259 */
+/* 219 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -72517,7 +50288,7 @@
 	module.exports = hyphenate;
 
 /***/ },
-/* 260 */
+/* 220 */
 /***/ function(module, exports) {
 
 	/**
@@ -72551,7 +50322,7 @@
 	module.exports = memoizeStringOnly;
 
 /***/ },
-/* 261 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -72566,12 +50337,12 @@
 
 	'use strict';
 
-	var DOMProperty = __webpack_require__(212);
-	var ReactDOMComponentTree = __webpack_require__(211);
-	var ReactInstrumentation = __webpack_require__(220);
+	var DOMProperty = __webpack_require__(172);
+	var ReactDOMComponentTree = __webpack_require__(171);
+	var ReactInstrumentation = __webpack_require__(180);
 
-	var quoteAttributeValueForBrowser = __webpack_require__(262);
-	var warning = __webpack_require__(169);
+	var quoteAttributeValueForBrowser = __webpack_require__(222);
+	var warning = __webpack_require__(129);
 
 	var VALID_ATTRIBUTE_NAME_REGEX = new RegExp('^[' + DOMProperty.ATTRIBUTE_NAME_START_CHAR + '][' + DOMProperty.ATTRIBUTE_NAME_CHAR + ']*$');
 	var illegalAttributeNameCache = {};
@@ -72792,7 +50563,7 @@
 	module.exports = DOMPropertyOperations;
 
 /***/ },
-/* 262 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -72807,7 +50578,7 @@
 
 	'use strict';
 
-	var escapeTextContentForBrowser = __webpack_require__(244);
+	var escapeTextContentForBrowser = __webpack_require__(204);
 
 	/**
 	 * Escapes attribute value to prevent scripting attacks.
@@ -72822,7 +50593,7 @@
 	module.exports = quoteAttributeValueForBrowser;
 
 /***/ },
-/* 263 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -72837,14 +50608,14 @@
 
 	'use strict';
 
-	var _assign = __webpack_require__(162);
+	var _assign = __webpack_require__(122);
 
-	var EventPluginRegistry = __webpack_require__(198);
-	var ReactEventEmitterMixin = __webpack_require__(264);
-	var ViewportMetrics = __webpack_require__(234);
+	var EventPluginRegistry = __webpack_require__(158);
+	var ReactEventEmitterMixin = __webpack_require__(224);
+	var ViewportMetrics = __webpack_require__(194);
 
-	var getVendorPrefixedEventName = __webpack_require__(265);
-	var isEventSupported = __webpack_require__(228);
+	var getVendorPrefixedEventName = __webpack_require__(225);
+	var isEventSupported = __webpack_require__(188);
 
 	/**
 	 * Summary of `ReactBrowserEventEmitter` event handling:
@@ -73154,7 +50925,7 @@
 	module.exports = ReactBrowserEventEmitter;
 
 /***/ },
-/* 264 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -73169,7 +50940,7 @@
 
 	'use strict';
 
-	var EventPluginHub = __webpack_require__(196);
+	var EventPluginHub = __webpack_require__(156);
 
 	function runEventQueueInBatch(events) {
 	  EventPluginHub.enqueueEvents(events);
@@ -73191,7 +50962,7 @@
 	module.exports = ReactEventEmitterMixin;
 
 /***/ },
-/* 265 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -73206,7 +50977,7 @@
 
 	'use strict';
 
-	var ExecutionEnvironment = __webpack_require__(203);
+	var ExecutionEnvironment = __webpack_require__(163);
 
 	/**
 	 * Generate a mapping of standard vendor prefixes using the defined style property and event name.
@@ -73296,7 +51067,7 @@
 	module.exports = getVendorPrefixedEventName;
 
 /***/ },
-/* 266 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -73311,16 +51082,16 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197),
-	    _assign = __webpack_require__(162);
+	var _prodInvariant = __webpack_require__(157),
+	    _assign = __webpack_require__(122);
 
-	var DOMPropertyOperations = __webpack_require__(261);
-	var LinkedValueUtils = __webpack_require__(267);
-	var ReactDOMComponentTree = __webpack_require__(211);
-	var ReactUpdates = __webpack_require__(214);
+	var DOMPropertyOperations = __webpack_require__(221);
+	var LinkedValueUtils = __webpack_require__(227);
+	var ReactDOMComponentTree = __webpack_require__(171);
+	var ReactUpdates = __webpack_require__(174);
 
-	var invariant = __webpack_require__(166);
-	var warning = __webpack_require__(169);
+	var invariant = __webpack_require__(126);
+	var warning = __webpack_require__(129);
 
 	var didWarnValueLink = false;
 	var didWarnCheckedLink = false;
@@ -73578,7 +51349,7 @@
 	module.exports = ReactDOMInput;
 
 /***/ },
-/* 267 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -73593,13 +51364,13 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
-	var React = __webpack_require__(161);
-	var ReactPropTypesSecret = __webpack_require__(268);
+	var React = __webpack_require__(121);
+	var ReactPropTypesSecret = __webpack_require__(228);
 
-	var invariant = __webpack_require__(166);
-	var warning = __webpack_require__(169);
+	var invariant = __webpack_require__(126);
+	var warning = __webpack_require__(129);
 
 	var hasReadOnlyValue = {
 	  'button': true,
@@ -73717,7 +51488,7 @@
 	module.exports = LinkedValueUtils;
 
 /***/ },
-/* 268 */
+/* 228 */
 /***/ function(module, exports) {
 
 	/**
@@ -73738,7 +51509,7 @@
 	module.exports = ReactPropTypesSecret;
 
 /***/ },
-/* 269 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -73753,13 +51524,13 @@
 
 	'use strict';
 
-	var _assign = __webpack_require__(162);
+	var _assign = __webpack_require__(122);
 
-	var React = __webpack_require__(161);
-	var ReactDOMComponentTree = __webpack_require__(211);
-	var ReactDOMSelect = __webpack_require__(270);
+	var React = __webpack_require__(121);
+	var ReactDOMComponentTree = __webpack_require__(171);
+	var ReactDOMSelect = __webpack_require__(230);
 
-	var warning = __webpack_require__(169);
+	var warning = __webpack_require__(129);
 	var didWarnInvalidOptionChildren = false;
 
 	function flattenChildren(children) {
@@ -73865,7 +51636,7 @@
 	module.exports = ReactDOMOption;
 
 /***/ },
-/* 270 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -73880,13 +51651,13 @@
 
 	'use strict';
 
-	var _assign = __webpack_require__(162);
+	var _assign = __webpack_require__(122);
 
-	var LinkedValueUtils = __webpack_require__(267);
-	var ReactDOMComponentTree = __webpack_require__(211);
-	var ReactUpdates = __webpack_require__(214);
+	var LinkedValueUtils = __webpack_require__(227);
+	var ReactDOMComponentTree = __webpack_require__(171);
+	var ReactUpdates = __webpack_require__(174);
 
-	var warning = __webpack_require__(169);
+	var warning = __webpack_require__(129);
 
 	var didWarnValueLink = false;
 	var didWarnValueDefaultValue = false;
@@ -74069,7 +51840,7 @@
 	module.exports = ReactDOMSelect;
 
 /***/ },
-/* 271 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -74084,15 +51855,15 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197),
-	    _assign = __webpack_require__(162);
+	var _prodInvariant = __webpack_require__(157),
+	    _assign = __webpack_require__(122);
 
-	var LinkedValueUtils = __webpack_require__(267);
-	var ReactDOMComponentTree = __webpack_require__(211);
-	var ReactUpdates = __webpack_require__(214);
+	var LinkedValueUtils = __webpack_require__(227);
+	var ReactDOMComponentTree = __webpack_require__(171);
+	var ReactUpdates = __webpack_require__(174);
 
-	var invariant = __webpack_require__(166);
-	var warning = __webpack_require__(169);
+	var invariant = __webpack_require__(126);
+	var warning = __webpack_require__(129);
 
 	var didWarnValueLink = false;
 	var didWarnValDefaultVal = false;
@@ -74233,7 +52004,7 @@
 	module.exports = ReactDOMTextarea;
 
 /***/ },
-/* 272 */
+/* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -74248,19 +52019,19 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
-	var ReactComponentEnvironment = __webpack_require__(273);
-	var ReactInstanceMap = __webpack_require__(274);
-	var ReactInstrumentation = __webpack_require__(220);
+	var ReactComponentEnvironment = __webpack_require__(233);
+	var ReactInstanceMap = __webpack_require__(234);
+	var ReactInstrumentation = __webpack_require__(180);
 
-	var ReactCurrentOwner = __webpack_require__(168);
-	var ReactReconciler = __webpack_require__(217);
-	var ReactChildReconciler = __webpack_require__(275);
+	var ReactCurrentOwner = __webpack_require__(128);
+	var ReactReconciler = __webpack_require__(177);
+	var ReactChildReconciler = __webpack_require__(235);
 
-	var emptyFunction = __webpack_require__(170);
-	var flattenChildren = __webpack_require__(290);
-	var invariant = __webpack_require__(166);
+	var emptyFunction = __webpack_require__(130);
+	var flattenChildren = __webpack_require__(250);
+	var invariant = __webpack_require__(126);
 
 	/**
 	 * Make an update for markup to be rendered and inserted at a supplied index.
@@ -74687,7 +52458,7 @@
 	module.exports = ReactMultiChild;
 
 /***/ },
-/* 273 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -74703,9 +52474,9 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
-	var invariant = __webpack_require__(166);
+	var invariant = __webpack_require__(126);
 
 	var injected = false;
 
@@ -74737,7 +52508,7 @@
 	module.exports = ReactComponentEnvironment;
 
 /***/ },
-/* 274 */
+/* 234 */
 /***/ function(module, exports) {
 
 	/**
@@ -74789,7 +52560,7 @@
 	module.exports = ReactInstanceMap;
 
 /***/ },
-/* 275 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -74804,13 +52575,13 @@
 
 	'use strict';
 
-	var ReactReconciler = __webpack_require__(217);
+	var ReactReconciler = __webpack_require__(177);
 
-	var instantiateReactComponent = __webpack_require__(276);
-	var KeyEscapeUtils = __webpack_require__(286);
-	var shouldUpdateReactComponent = __webpack_require__(282);
-	var traverseAllChildren = __webpack_require__(287);
-	var warning = __webpack_require__(169);
+	var instantiateReactComponent = __webpack_require__(236);
+	var KeyEscapeUtils = __webpack_require__(246);
+	var shouldUpdateReactComponent = __webpack_require__(242);
+	var traverseAllChildren = __webpack_require__(247);
+	var warning = __webpack_require__(129);
 
 	var ReactComponentTreeHook;
 
@@ -74820,7 +52591,7 @@
 	  // https://github.com/facebook/react/issues/7240
 	  // Remove the inline requires when we don't need them anymore:
 	  // https://github.com/facebook/react/pull/7178
-	  ReactComponentTreeHook = __webpack_require__(184);
+	  ReactComponentTreeHook = __webpack_require__(144);
 	}
 
 	function instantiateChild(childInstances, child, name, selfDebugID) {
@@ -74828,7 +52599,7 @@
 	  var keyUnique = childInstances[name] === undefined;
 	  if (process.env.NODE_ENV !== 'production') {
 	    if (!ReactComponentTreeHook) {
-	      ReactComponentTreeHook = __webpack_require__(184);
+	      ReactComponentTreeHook = __webpack_require__(144);
 	    }
 	    if (!keyUnique) {
 	      process.env.NODE_ENV !== 'production' ? warning(false, 'flattenChildren(...): Encountered two children with the same key, ' + '`%s`. Child keys must be unique; when two children share a key, only ' + 'the first child will be used.%s', KeyEscapeUtils.unescape(name), ReactComponentTreeHook.getStackAddendumByID(selfDebugID)) : void 0;
@@ -74947,7 +52718,7 @@
 	module.exports = ReactChildReconciler;
 
 /***/ },
-/* 276 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -74962,16 +52733,16 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197),
-	    _assign = __webpack_require__(162);
+	var _prodInvariant = __webpack_require__(157),
+	    _assign = __webpack_require__(122);
 
-	var ReactCompositeComponent = __webpack_require__(277);
-	var ReactEmptyComponent = __webpack_require__(283);
-	var ReactHostComponent = __webpack_require__(284);
+	var ReactCompositeComponent = __webpack_require__(237);
+	var ReactEmptyComponent = __webpack_require__(243);
+	var ReactHostComponent = __webpack_require__(244);
 
-	var getNextDebugID = __webpack_require__(285);
-	var invariant = __webpack_require__(166);
-	var warning = __webpack_require__(169);
+	var getNextDebugID = __webpack_require__(245);
+	var invariant = __webpack_require__(126);
+	var warning = __webpack_require__(129);
 
 	// To avoid a cyclic dependency, we create the final class in this module
 	var ReactCompositeComponentWrapper = function (element) {
@@ -75079,7 +52850,7 @@
 	module.exports = instantiateReactComponent;
 
 /***/ },
-/* 277 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -75094,27 +52865,27 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197),
-	    _assign = __webpack_require__(162);
+	var _prodInvariant = __webpack_require__(157),
+	    _assign = __webpack_require__(122);
 
-	var React = __webpack_require__(161);
-	var ReactComponentEnvironment = __webpack_require__(273);
-	var ReactCurrentOwner = __webpack_require__(168);
-	var ReactErrorUtils = __webpack_require__(200);
-	var ReactInstanceMap = __webpack_require__(274);
-	var ReactInstrumentation = __webpack_require__(220);
-	var ReactNodeTypes = __webpack_require__(278);
-	var ReactReconciler = __webpack_require__(217);
+	var React = __webpack_require__(121);
+	var ReactComponentEnvironment = __webpack_require__(233);
+	var ReactCurrentOwner = __webpack_require__(128);
+	var ReactErrorUtils = __webpack_require__(160);
+	var ReactInstanceMap = __webpack_require__(234);
+	var ReactInstrumentation = __webpack_require__(180);
+	var ReactNodeTypes = __webpack_require__(238);
+	var ReactReconciler = __webpack_require__(177);
 
 	if (process.env.NODE_ENV !== 'production') {
-	  var checkReactTypeSpec = __webpack_require__(279);
+	  var checkReactTypeSpec = __webpack_require__(239);
 	}
 
-	var emptyObject = __webpack_require__(178);
-	var invariant = __webpack_require__(166);
-	var shallowEqual = __webpack_require__(281);
-	var shouldUpdateReactComponent = __webpack_require__(282);
-	var warning = __webpack_require__(169);
+	var emptyObject = __webpack_require__(138);
+	var invariant = __webpack_require__(126);
+	var shallowEqual = __webpack_require__(241);
+	var shouldUpdateReactComponent = __webpack_require__(242);
+	var warning = __webpack_require__(129);
 
 	var CompositeTypes = {
 	  ImpureClass: 0,
@@ -75985,7 +53756,7 @@
 	module.exports = ReactCompositeComponent;
 
 /***/ },
-/* 278 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -76001,11 +53772,11 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
-	var React = __webpack_require__(161);
+	var React = __webpack_require__(121);
 
-	var invariant = __webpack_require__(166);
+	var invariant = __webpack_require__(126);
 
 	var ReactNodeTypes = {
 	  HOST: 0,
@@ -76029,7 +53800,7 @@
 	module.exports = ReactNodeTypes;
 
 /***/ },
-/* 279 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -76044,13 +53815,13 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
-	var ReactPropTypeLocationNames = __webpack_require__(280);
-	var ReactPropTypesSecret = __webpack_require__(268);
+	var ReactPropTypeLocationNames = __webpack_require__(240);
+	var ReactPropTypesSecret = __webpack_require__(228);
 
-	var invariant = __webpack_require__(166);
-	var warning = __webpack_require__(169);
+	var invariant = __webpack_require__(126);
+	var warning = __webpack_require__(129);
 
 	var ReactComponentTreeHook;
 
@@ -76060,7 +53831,7 @@
 	  // https://github.com/facebook/react/issues/7240
 	  // Remove the inline requires when we don't need them anymore:
 	  // https://github.com/facebook/react/pull/7178
-	  ReactComponentTreeHook = __webpack_require__(184);
+	  ReactComponentTreeHook = __webpack_require__(144);
 	}
 
 	var loggedTypeFailures = {};
@@ -76102,7 +53873,7 @@
 
 	        if (process.env.NODE_ENV !== 'production') {
 	          if (!ReactComponentTreeHook) {
-	            ReactComponentTreeHook = __webpack_require__(184);
+	            ReactComponentTreeHook = __webpack_require__(144);
 	          }
 	          if (debugID !== null) {
 	            componentStackInfo = ReactComponentTreeHook.getStackAddendumByID(debugID);
@@ -76120,7 +53891,7 @@
 	module.exports = checkReactTypeSpec;
 
 /***/ },
-/* 280 */
+/* 240 */
 /***/ function(module, exports) {
 
 	/**
@@ -76149,7 +53920,7 @@
 	module.exports = ReactPropTypeLocationNames;
 
 /***/ },
-/* 281 */
+/* 241 */
 /***/ function(module, exports) {
 
 	/**
@@ -76221,7 +53992,7 @@
 	module.exports = shallowEqual;
 
 /***/ },
-/* 282 */
+/* 242 */
 /***/ function(module, exports) {
 
 	/**
@@ -76267,7 +54038,7 @@
 	module.exports = shouldUpdateReactComponent;
 
 /***/ },
-/* 283 */
+/* 243 */
 /***/ function(module, exports) {
 
 	/**
@@ -76301,7 +54072,7 @@
 	module.exports = ReactEmptyComponent;
 
 /***/ },
-/* 284 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -76316,9 +54087,9 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
-	var invariant = __webpack_require__(166);
+	var invariant = __webpack_require__(126);
 
 	var genericComponentClass = null;
 	var textComponentClass = null;
@@ -76373,7 +54144,7 @@
 	module.exports = ReactHostComponent;
 
 /***/ },
-/* 285 */
+/* 245 */
 /***/ function(module, exports) {
 
 	/**
@@ -76398,7 +54169,7 @@
 	module.exports = getNextDebugID;
 
 /***/ },
-/* 286 */
+/* 246 */
 /***/ function(module, exports) {
 
 	/**
@@ -76461,7 +54232,7 @@
 	module.exports = KeyEscapeUtils;
 
 /***/ },
-/* 287 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -76476,15 +54247,15 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
-	var ReactCurrentOwner = __webpack_require__(168);
-	var REACT_ELEMENT_TYPE = __webpack_require__(288);
+	var ReactCurrentOwner = __webpack_require__(128);
+	var REACT_ELEMENT_TYPE = __webpack_require__(248);
 
-	var getIteratorFn = __webpack_require__(289);
-	var invariant = __webpack_require__(166);
-	var KeyEscapeUtils = __webpack_require__(286);
-	var warning = __webpack_require__(169);
+	var getIteratorFn = __webpack_require__(249);
+	var invariant = __webpack_require__(126);
+	var KeyEscapeUtils = __webpack_require__(246);
+	var warning = __webpack_require__(129);
 
 	var SEPARATOR = '.';
 	var SUBSEPARATOR = ':';
@@ -76641,7 +54412,7 @@
 	module.exports = traverseAllChildren;
 
 /***/ },
-/* 288 */
+/* 248 */
 /***/ function(module, exports) {
 
 	/**
@@ -76665,7 +54436,7 @@
 	module.exports = REACT_ELEMENT_TYPE;
 
 /***/ },
-/* 289 */
+/* 249 */
 /***/ function(module, exports) {
 
 	/**
@@ -76710,7 +54481,7 @@
 	module.exports = getIteratorFn;
 
 /***/ },
-/* 290 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -76726,9 +54497,9 @@
 
 	'use strict';
 
-	var KeyEscapeUtils = __webpack_require__(286);
-	var traverseAllChildren = __webpack_require__(287);
-	var warning = __webpack_require__(169);
+	var KeyEscapeUtils = __webpack_require__(246);
+	var traverseAllChildren = __webpack_require__(247);
+	var warning = __webpack_require__(129);
 
 	var ReactComponentTreeHook;
 
@@ -76738,7 +54509,7 @@
 	  // https://github.com/facebook/react/issues/7240
 	  // Remove the inline requires when we don't need them anymore:
 	  // https://github.com/facebook/react/pull/7178
-	  ReactComponentTreeHook = __webpack_require__(184);
+	  ReactComponentTreeHook = __webpack_require__(144);
 	}
 
 	/**
@@ -76754,7 +54525,7 @@
 	    var keyUnique = result[name] === undefined;
 	    if (process.env.NODE_ENV !== 'production') {
 	      if (!ReactComponentTreeHook) {
-	        ReactComponentTreeHook = __webpack_require__(184);
+	        ReactComponentTreeHook = __webpack_require__(144);
 	      }
 	      if (!keyUnique) {
 	        process.env.NODE_ENV !== 'production' ? warning(false, 'flattenChildren(...): Encountered two children with the same key, ' + '`%s`. Child keys must be unique; when two children share a key, only ' + 'the first child will be used.%s', KeyEscapeUtils.unescape(name), ReactComponentTreeHook.getStackAddendumByID(selfDebugID)) : void 0;
@@ -76790,7 +54561,7 @@
 	module.exports = flattenChildren;
 
 /***/ },
-/* 291 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -76805,12 +54576,12 @@
 
 	'use strict';
 
-	var _assign = __webpack_require__(162);
+	var _assign = __webpack_require__(122);
 
-	var PooledClass = __webpack_require__(205);
-	var Transaction = __webpack_require__(226);
-	var ReactInstrumentation = __webpack_require__(220);
-	var ReactServerUpdateQueue = __webpack_require__(292);
+	var PooledClass = __webpack_require__(165);
+	var Transaction = __webpack_require__(186);
+	var ReactInstrumentation = __webpack_require__(180);
+	var ReactServerUpdateQueue = __webpack_require__(252);
 
 	/**
 	 * Executed within the scope of the `Transaction` instance. Consider these as
@@ -76884,7 +54655,7 @@
 	module.exports = ReactServerRenderingTransaction;
 
 /***/ },
-/* 292 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -76902,9 +54673,9 @@
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var ReactUpdateQueue = __webpack_require__(293);
+	var ReactUpdateQueue = __webpack_require__(253);
 
-	var warning = __webpack_require__(169);
+	var warning = __webpack_require__(129);
 
 	function warnNoop(publicInstance, callerName) {
 	  if (process.env.NODE_ENV !== 'production') {
@@ -77027,7 +54798,7 @@
 	module.exports = ReactServerUpdateQueue;
 
 /***/ },
-/* 293 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -77042,15 +54813,15 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
-	var ReactCurrentOwner = __webpack_require__(168);
-	var ReactInstanceMap = __webpack_require__(274);
-	var ReactInstrumentation = __webpack_require__(220);
-	var ReactUpdates = __webpack_require__(214);
+	var ReactCurrentOwner = __webpack_require__(128);
+	var ReactInstanceMap = __webpack_require__(234);
+	var ReactInstrumentation = __webpack_require__(180);
+	var ReactUpdates = __webpack_require__(174);
 
-	var invariant = __webpack_require__(166);
-	var warning = __webpack_require__(169);
+	var invariant = __webpack_require__(126);
+	var warning = __webpack_require__(129);
 
 	function enqueueUpdate(internalInstance) {
 	  ReactUpdates.enqueueUpdate(internalInstance);
@@ -77257,7 +55028,7 @@
 	module.exports = ReactUpdateQueue;
 
 /***/ },
-/* 294 */
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -77272,10 +55043,10 @@
 
 	'use strict';
 
-	var _assign = __webpack_require__(162);
+	var _assign = __webpack_require__(122);
 
-	var emptyFunction = __webpack_require__(170);
-	var warning = __webpack_require__(169);
+	var emptyFunction = __webpack_require__(130);
+	var warning = __webpack_require__(129);
 
 	var validateDOMNesting = emptyFunction;
 
@@ -77643,7 +55414,7 @@
 	module.exports = validateDOMNesting;
 
 /***/ },
-/* 295 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -77658,10 +55429,10 @@
 
 	'use strict';
 
-	var _assign = __webpack_require__(162);
+	var _assign = __webpack_require__(122);
 
-	var DOMLazyTree = __webpack_require__(239);
-	var ReactDOMComponentTree = __webpack_require__(211);
+	var DOMLazyTree = __webpack_require__(199);
+	var ReactDOMComponentTree = __webpack_require__(171);
 
 	var ReactDOMEmptyComponent = function (instantiate) {
 	  // ReactCompositeComponent uses this:
@@ -77707,7 +55478,7 @@
 	module.exports = ReactDOMEmptyComponent;
 
 /***/ },
-/* 296 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -77722,9 +55493,9 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
-	var invariant = __webpack_require__(166);
+	var invariant = __webpack_require__(126);
 
 	/**
 	 * Return the lowest common ancestor of A and B, or null if they are in
@@ -77847,7 +55618,7 @@
 	};
 
 /***/ },
-/* 297 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -77862,16 +55633,16 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197),
-	    _assign = __webpack_require__(162);
+	var _prodInvariant = __webpack_require__(157),
+	    _assign = __webpack_require__(122);
 
-	var DOMChildrenOperations = __webpack_require__(238);
-	var DOMLazyTree = __webpack_require__(239);
-	var ReactDOMComponentTree = __webpack_require__(211);
+	var DOMChildrenOperations = __webpack_require__(198);
+	var DOMLazyTree = __webpack_require__(199);
+	var ReactDOMComponentTree = __webpack_require__(171);
 
-	var escapeTextContentForBrowser = __webpack_require__(244);
-	var invariant = __webpack_require__(166);
-	var validateDOMNesting = __webpack_require__(294);
+	var escapeTextContentForBrowser = __webpack_require__(204);
+	var invariant = __webpack_require__(126);
+	var validateDOMNesting = __webpack_require__(254);
 
 	/**
 	 * Text nodes violate a couple assumptions that React makes about components:
@@ -78015,7 +55786,7 @@
 	module.exports = ReactDOMTextComponent;
 
 /***/ },
-/* 298 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -78030,12 +55801,12 @@
 
 	'use strict';
 
-	var _assign = __webpack_require__(162);
+	var _assign = __webpack_require__(122);
 
-	var ReactUpdates = __webpack_require__(214);
-	var Transaction = __webpack_require__(226);
+	var ReactUpdates = __webpack_require__(174);
+	var Transaction = __webpack_require__(186);
 
-	var emptyFunction = __webpack_require__(170);
+	var emptyFunction = __webpack_require__(130);
 
 	var RESET_BATCHED_UPDATES = {
 	  initialize: emptyFunction,
@@ -78087,7 +55858,7 @@
 	module.exports = ReactDefaultBatchingStrategy;
 
 /***/ },
-/* 299 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -78102,16 +55873,16 @@
 
 	'use strict';
 
-	var _assign = __webpack_require__(162);
+	var _assign = __webpack_require__(122);
 
-	var EventListener = __webpack_require__(300);
-	var ExecutionEnvironment = __webpack_require__(203);
-	var PooledClass = __webpack_require__(205);
-	var ReactDOMComponentTree = __webpack_require__(211);
-	var ReactUpdates = __webpack_require__(214);
+	var EventListener = __webpack_require__(260);
+	var ExecutionEnvironment = __webpack_require__(163);
+	var PooledClass = __webpack_require__(165);
+	var ReactDOMComponentTree = __webpack_require__(171);
+	var ReactUpdates = __webpack_require__(174);
 
-	var getEventTarget = __webpack_require__(227);
-	var getUnboundedScrollPosition = __webpack_require__(301);
+	var getEventTarget = __webpack_require__(187);
+	var getUnboundedScrollPosition = __webpack_require__(261);
 
 	/**
 	 * Find the deepest React component completely containing the root of the
@@ -78246,7 +56017,7 @@
 	module.exports = ReactEventListener;
 
 /***/ },
-/* 300 */
+/* 260 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -78269,7 +56040,7 @@
 	 * @typechecks
 	 */
 
-	var emptyFunction = __webpack_require__(170);
+	var emptyFunction = __webpack_require__(130);
 
 	/**
 	 * Upstream version of event listener. Does not take into account specific
@@ -78334,7 +56105,7 @@
 	module.exports = EventListener;
 
 /***/ },
-/* 301 */
+/* 261 */
 /***/ function(module, exports) {
 
 	/**
@@ -78377,7 +56148,7 @@
 	module.exports = getUnboundedScrollPosition;
 
 /***/ },
-/* 302 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -78392,14 +56163,14 @@
 
 	'use strict';
 
-	var DOMProperty = __webpack_require__(212);
-	var EventPluginHub = __webpack_require__(196);
-	var EventPluginUtils = __webpack_require__(199);
-	var ReactComponentEnvironment = __webpack_require__(273);
-	var ReactEmptyComponent = __webpack_require__(283);
-	var ReactBrowserEventEmitter = __webpack_require__(263);
-	var ReactHostComponent = __webpack_require__(284);
-	var ReactUpdates = __webpack_require__(214);
+	var DOMProperty = __webpack_require__(172);
+	var EventPluginHub = __webpack_require__(156);
+	var EventPluginUtils = __webpack_require__(159);
+	var ReactComponentEnvironment = __webpack_require__(233);
+	var ReactEmptyComponent = __webpack_require__(243);
+	var ReactBrowserEventEmitter = __webpack_require__(223);
+	var ReactHostComponent = __webpack_require__(244);
+	var ReactUpdates = __webpack_require__(174);
 
 	var ReactInjection = {
 	  Component: ReactComponentEnvironment.injection,
@@ -78415,7 +56186,7 @@
 	module.exports = ReactInjection;
 
 /***/ },
-/* 303 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -78430,15 +56201,15 @@
 
 	'use strict';
 
-	var _assign = __webpack_require__(162);
+	var _assign = __webpack_require__(122);
 
-	var CallbackQueue = __webpack_require__(215);
-	var PooledClass = __webpack_require__(205);
-	var ReactBrowserEventEmitter = __webpack_require__(263);
-	var ReactInputSelection = __webpack_require__(304);
-	var ReactInstrumentation = __webpack_require__(220);
-	var Transaction = __webpack_require__(226);
-	var ReactUpdateQueue = __webpack_require__(293);
+	var CallbackQueue = __webpack_require__(175);
+	var PooledClass = __webpack_require__(165);
+	var ReactBrowserEventEmitter = __webpack_require__(223);
+	var ReactInputSelection = __webpack_require__(264);
+	var ReactInstrumentation = __webpack_require__(180);
+	var Transaction = __webpack_require__(186);
+	var ReactUpdateQueue = __webpack_require__(253);
 
 	/**
 	 * Ensures that, when possible, the selection range (currently selected text
@@ -78597,7 +56368,7 @@
 	module.exports = ReactReconcileTransaction;
 
 /***/ },
-/* 304 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -78612,11 +56383,11 @@
 
 	'use strict';
 
-	var ReactDOMSelection = __webpack_require__(305);
+	var ReactDOMSelection = __webpack_require__(265);
 
-	var containsNode = __webpack_require__(307);
-	var focusNode = __webpack_require__(252);
-	var getActiveElement = __webpack_require__(310);
+	var containsNode = __webpack_require__(267);
+	var focusNode = __webpack_require__(212);
+	var getActiveElement = __webpack_require__(270);
 
 	function isInDocument(node) {
 	  return containsNode(document.documentElement, node);
@@ -78725,7 +56496,7 @@
 	module.exports = ReactInputSelection;
 
 /***/ },
-/* 305 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -78740,10 +56511,10 @@
 
 	'use strict';
 
-	var ExecutionEnvironment = __webpack_require__(203);
+	var ExecutionEnvironment = __webpack_require__(163);
 
-	var getNodeForCharacterOffset = __webpack_require__(306);
-	var getTextContentAccessor = __webpack_require__(206);
+	var getNodeForCharacterOffset = __webpack_require__(266);
+	var getTextContentAccessor = __webpack_require__(166);
 
 	/**
 	 * While `isCollapsed` is available on the Selection object and `collapsed`
@@ -78941,7 +56712,7 @@
 	module.exports = ReactDOMSelection;
 
 /***/ },
-/* 306 */
+/* 266 */
 /***/ function(module, exports) {
 
 	/**
@@ -79019,7 +56790,7 @@
 	module.exports = getNodeForCharacterOffset;
 
 /***/ },
-/* 307 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79035,7 +56806,7 @@
 	 * 
 	 */
 
-	var isTextNode = __webpack_require__(308);
+	var isTextNode = __webpack_require__(268);
 
 	/*eslint-disable no-bitwise */
 
@@ -79063,7 +56834,7 @@
 	module.exports = containsNode;
 
 /***/ },
-/* 308 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79079,7 +56850,7 @@
 	 * @typechecks
 	 */
 
-	var isNode = __webpack_require__(309);
+	var isNode = __webpack_require__(269);
 
 	/**
 	 * @param {*} object The object to check.
@@ -79092,7 +56863,7 @@
 	module.exports = isTextNode;
 
 /***/ },
-/* 309 */
+/* 269 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -79119,7 +56890,7 @@
 	module.exports = isNode;
 
 /***/ },
-/* 310 */
+/* 270 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -79158,7 +56929,7 @@
 	module.exports = getActiveElement;
 
 /***/ },
-/* 311 */
+/* 271 */
 /***/ function(module, exports) {
 
 	/**
@@ -79464,7 +57235,7 @@
 	module.exports = SVGDOMPropertyConfig;
 
 /***/ },
-/* 312 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -79479,15 +57250,15 @@
 
 	'use strict';
 
-	var EventPropagators = __webpack_require__(195);
-	var ExecutionEnvironment = __webpack_require__(203);
-	var ReactDOMComponentTree = __webpack_require__(211);
-	var ReactInputSelection = __webpack_require__(304);
-	var SyntheticEvent = __webpack_require__(208);
+	var EventPropagators = __webpack_require__(155);
+	var ExecutionEnvironment = __webpack_require__(163);
+	var ReactDOMComponentTree = __webpack_require__(171);
+	var ReactInputSelection = __webpack_require__(264);
+	var SyntheticEvent = __webpack_require__(168);
 
-	var getActiveElement = __webpack_require__(310);
-	var isTextInputElement = __webpack_require__(229);
-	var shallowEqual = __webpack_require__(281);
+	var getActiveElement = __webpack_require__(270);
+	var isTextInputElement = __webpack_require__(189);
+	var shallowEqual = __webpack_require__(241);
 
 	var skipSelectionChangeEvent = ExecutionEnvironment.canUseDOM && 'documentMode' in document && document.documentMode <= 11;
 
@@ -79659,7 +57430,7 @@
 	module.exports = SelectEventPlugin;
 
 /***/ },
-/* 313 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -79675,26 +57446,26 @@
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
-	var EventListener = __webpack_require__(300);
-	var EventPropagators = __webpack_require__(195);
-	var ReactDOMComponentTree = __webpack_require__(211);
-	var SyntheticAnimationEvent = __webpack_require__(314);
-	var SyntheticClipboardEvent = __webpack_require__(315);
-	var SyntheticEvent = __webpack_require__(208);
-	var SyntheticFocusEvent = __webpack_require__(316);
-	var SyntheticKeyboardEvent = __webpack_require__(317);
-	var SyntheticMouseEvent = __webpack_require__(232);
-	var SyntheticDragEvent = __webpack_require__(320);
-	var SyntheticTouchEvent = __webpack_require__(321);
-	var SyntheticTransitionEvent = __webpack_require__(322);
-	var SyntheticUIEvent = __webpack_require__(233);
-	var SyntheticWheelEvent = __webpack_require__(323);
+	var EventListener = __webpack_require__(260);
+	var EventPropagators = __webpack_require__(155);
+	var ReactDOMComponentTree = __webpack_require__(171);
+	var SyntheticAnimationEvent = __webpack_require__(274);
+	var SyntheticClipboardEvent = __webpack_require__(275);
+	var SyntheticEvent = __webpack_require__(168);
+	var SyntheticFocusEvent = __webpack_require__(276);
+	var SyntheticKeyboardEvent = __webpack_require__(277);
+	var SyntheticMouseEvent = __webpack_require__(192);
+	var SyntheticDragEvent = __webpack_require__(280);
+	var SyntheticTouchEvent = __webpack_require__(281);
+	var SyntheticTransitionEvent = __webpack_require__(282);
+	var SyntheticUIEvent = __webpack_require__(193);
+	var SyntheticWheelEvent = __webpack_require__(283);
 
-	var emptyFunction = __webpack_require__(170);
-	var getEventCharCode = __webpack_require__(318);
-	var invariant = __webpack_require__(166);
+	var emptyFunction = __webpack_require__(130);
+	var getEventCharCode = __webpack_require__(278);
+	var invariant = __webpack_require__(126);
 
 	/**
 	 * Turns
@@ -79891,7 +57662,7 @@
 	module.exports = SimpleEventPlugin;
 
 /***/ },
-/* 314 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -79906,7 +57677,7 @@
 
 	'use strict';
 
-	var SyntheticEvent = __webpack_require__(208);
+	var SyntheticEvent = __webpack_require__(168);
 
 	/**
 	 * @interface Event
@@ -79934,7 +57705,7 @@
 	module.exports = SyntheticAnimationEvent;
 
 /***/ },
-/* 315 */
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -79949,7 +57720,7 @@
 
 	'use strict';
 
-	var SyntheticEvent = __webpack_require__(208);
+	var SyntheticEvent = __webpack_require__(168);
 
 	/**
 	 * @interface Event
@@ -79976,7 +57747,7 @@
 	module.exports = SyntheticClipboardEvent;
 
 /***/ },
-/* 316 */
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -79991,7 +57762,7 @@
 
 	'use strict';
 
-	var SyntheticUIEvent = __webpack_require__(233);
+	var SyntheticUIEvent = __webpack_require__(193);
 
 	/**
 	 * @interface FocusEvent
@@ -80016,7 +57787,7 @@
 	module.exports = SyntheticFocusEvent;
 
 /***/ },
-/* 317 */
+/* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -80031,11 +57802,11 @@
 
 	'use strict';
 
-	var SyntheticUIEvent = __webpack_require__(233);
+	var SyntheticUIEvent = __webpack_require__(193);
 
-	var getEventCharCode = __webpack_require__(318);
-	var getEventKey = __webpack_require__(319);
-	var getEventModifierState = __webpack_require__(235);
+	var getEventCharCode = __webpack_require__(278);
+	var getEventKey = __webpack_require__(279);
+	var getEventModifierState = __webpack_require__(195);
 
 	/**
 	 * @interface KeyboardEvent
@@ -80104,7 +57875,7 @@
 	module.exports = SyntheticKeyboardEvent;
 
 /***/ },
-/* 318 */
+/* 278 */
 /***/ function(module, exports) {
 
 	/**
@@ -80158,7 +57929,7 @@
 	module.exports = getEventCharCode;
 
 /***/ },
-/* 319 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -80173,7 +57944,7 @@
 
 	'use strict';
 
-	var getEventCharCode = __webpack_require__(318);
+	var getEventCharCode = __webpack_require__(278);
 
 	/**
 	 * Normalization of deprecated HTML5 `key` values
@@ -80264,7 +58035,7 @@
 	module.exports = getEventKey;
 
 /***/ },
-/* 320 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -80279,7 +58050,7 @@
 
 	'use strict';
 
-	var SyntheticMouseEvent = __webpack_require__(232);
+	var SyntheticMouseEvent = __webpack_require__(192);
 
 	/**
 	 * @interface DragEvent
@@ -80304,7 +58075,7 @@
 	module.exports = SyntheticDragEvent;
 
 /***/ },
-/* 321 */
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -80319,9 +58090,9 @@
 
 	'use strict';
 
-	var SyntheticUIEvent = __webpack_require__(233);
+	var SyntheticUIEvent = __webpack_require__(193);
 
-	var getEventModifierState = __webpack_require__(235);
+	var getEventModifierState = __webpack_require__(195);
 
 	/**
 	 * @interface TouchEvent
@@ -80353,7 +58124,7 @@
 	module.exports = SyntheticTouchEvent;
 
 /***/ },
-/* 322 */
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -80368,7 +58139,7 @@
 
 	'use strict';
 
-	var SyntheticEvent = __webpack_require__(208);
+	var SyntheticEvent = __webpack_require__(168);
 
 	/**
 	 * @interface Event
@@ -80396,7 +58167,7 @@
 	module.exports = SyntheticTransitionEvent;
 
 /***/ },
-/* 323 */
+/* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -80411,7 +58182,7 @@
 
 	'use strict';
 
-	var SyntheticMouseEvent = __webpack_require__(232);
+	var SyntheticMouseEvent = __webpack_require__(192);
 
 	/**
 	 * @interface WheelEvent
@@ -80454,7 +58225,7 @@
 	module.exports = SyntheticWheelEvent;
 
 /***/ },
-/* 324 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -80468,21 +58239,21 @@
 	 */
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(197);
+	var _prodInvariant = __webpack_require__(157);
 
-	var React = __webpack_require__(161);
-	var ReactDOMContainerInfo = __webpack_require__(325);
-	var ReactDefaultBatchingStrategy = __webpack_require__(298);
-	var ReactInstrumentation = __webpack_require__(220);
-	var ReactMarkupChecksum = __webpack_require__(326);
-	var ReactReconciler = __webpack_require__(217);
-	var ReactServerBatchingStrategy = __webpack_require__(328);
-	var ReactServerRenderingTransaction = __webpack_require__(291);
-	var ReactUpdates = __webpack_require__(214);
+	var React = __webpack_require__(121);
+	var ReactDOMContainerInfo = __webpack_require__(285);
+	var ReactDefaultBatchingStrategy = __webpack_require__(258);
+	var ReactInstrumentation = __webpack_require__(180);
+	var ReactMarkupChecksum = __webpack_require__(286);
+	var ReactReconciler = __webpack_require__(177);
+	var ReactServerBatchingStrategy = __webpack_require__(288);
+	var ReactServerRenderingTransaction = __webpack_require__(251);
+	var ReactUpdates = __webpack_require__(174);
 
-	var emptyObject = __webpack_require__(178);
-	var instantiateReactComponent = __webpack_require__(276);
-	var invariant = __webpack_require__(166);
+	var emptyObject = __webpack_require__(138);
+	var instantiateReactComponent = __webpack_require__(236);
+	var invariant = __webpack_require__(126);
 
 	var pendingTransactions = 0;
 
@@ -80548,7 +58319,7 @@
 	};
 
 /***/ },
-/* 325 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -80563,7 +58334,7 @@
 
 	'use strict';
 
-	var validateDOMNesting = __webpack_require__(294);
+	var validateDOMNesting = __webpack_require__(254);
 
 	var DOC_NODE_TYPE = 9;
 
@@ -80585,7 +58356,7 @@
 	module.exports = ReactDOMContainerInfo;
 
 /***/ },
-/* 326 */
+/* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -80600,7 +58371,7 @@
 
 	'use strict';
 
-	var adler32 = __webpack_require__(327);
+	var adler32 = __webpack_require__(287);
 
 	var TAG_END = /\/?>/;
 	var COMMENT_START = /^<\!\-\-/;
@@ -80639,7 +58410,7 @@
 	module.exports = ReactMarkupChecksum;
 
 /***/ },
-/* 327 */
+/* 287 */
 /***/ function(module, exports) {
 
 	/**
@@ -80687,7 +58458,7 @@
 	module.exports = adler32;
 
 /***/ },
-/* 328 */
+/* 288 */
 /***/ function(module, exports) {
 
 	/**
@@ -80713,7 +58484,7 @@
 	module.exports = ReactServerBatchingStrategy;
 
 /***/ },
-/* 329 */
+/* 289 */
 /***/ function(module, exports) {
 
 	/**
@@ -80731,137 +58502,363 @@
 	module.exports = '15.4.2';
 
 /***/ },
-/* 330 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
-	exports.createMemoryHistory = exports.hashHistory = exports.browserHistory = exports.applyRouterMiddleware = exports.formatPattern = exports.useRouterHistory = exports.match = exports.routerShape = exports.locationShape = exports.RouterContext = exports.createRoutes = exports.Route = exports.Redirect = exports.IndexRoute = exports.IndexRedirect = exports.withRouter = exports.IndexLink = exports.Link = exports.Router = undefined;
+	exports.propTypes = exports.createServerRenderContext = exports.matchPattern = exports.StaticRouter = exports.ServerRouter = exports.MemoryRouter = exports.HashRouter = exports.BrowserRouter = exports.Redirect = exports.NavigationPrompt = exports.Miss = exports.Match = exports.Link = undefined;
 
-	var _RouteUtils = __webpack_require__(331);
-
-	Object.defineProperty(exports, 'createRoutes', {
-	  enumerable: true,
-	  get: function get() {
-	    return _RouteUtils.createRoutes;
-	  }
-	});
-
-	var _PropTypes = __webpack_require__(332);
-
-	Object.defineProperty(exports, 'locationShape', {
-	  enumerable: true,
-	  get: function get() {
-	    return _PropTypes.locationShape;
-	  }
-	});
-	Object.defineProperty(exports, 'routerShape', {
-	  enumerable: true,
-	  get: function get() {
-	    return _PropTypes.routerShape;
-	  }
-	});
-
-	var _PatternUtils = __webpack_require__(333);
-
-	Object.defineProperty(exports, 'formatPattern', {
-	  enumerable: true,
-	  get: function get() {
-	    return _PatternUtils.formatPattern;
-	  }
-	});
-
-	var _Router2 = __webpack_require__(335);
-
-	var _Router3 = _interopRequireDefault(_Router2);
-
-	var _Link2 = __webpack_require__(351);
+	var _Link2 = __webpack_require__(291);
 
 	var _Link3 = _interopRequireDefault(_Link2);
 
-	var _IndexLink2 = __webpack_require__(352);
+	var _Match2 = __webpack_require__(298);
 
-	var _IndexLink3 = _interopRequireDefault(_IndexLink2);
+	var _Match3 = _interopRequireDefault(_Match2);
 
-	var _withRouter2 = __webpack_require__(353);
+	var _Miss2 = __webpack_require__(304);
 
-	var _withRouter3 = _interopRequireDefault(_withRouter2);
+	var _Miss3 = _interopRequireDefault(_Miss2);
 
-	var _IndexRedirect2 = __webpack_require__(355);
+	var _NavigationPrompt2 = __webpack_require__(305);
 
-	var _IndexRedirect3 = _interopRequireDefault(_IndexRedirect2);
+	var _NavigationPrompt3 = _interopRequireDefault(_NavigationPrompt2);
 
-	var _IndexRoute2 = __webpack_require__(357);
-
-	var _IndexRoute3 = _interopRequireDefault(_IndexRoute2);
-
-	var _Redirect2 = __webpack_require__(356);
+	var _Redirect2 = __webpack_require__(306);
 
 	var _Redirect3 = _interopRequireDefault(_Redirect2);
 
-	var _Route2 = __webpack_require__(358);
+	var _BrowserRouter2 = __webpack_require__(307);
 
-	var _Route3 = _interopRequireDefault(_Route2);
+	var _BrowserRouter3 = _interopRequireDefault(_BrowserRouter2);
 
-	var _RouterContext2 = __webpack_require__(347);
+	var _HashRouter2 = __webpack_require__(322);
 
-	var _RouterContext3 = _interopRequireDefault(_RouterContext2);
+	var _HashRouter3 = _interopRequireDefault(_HashRouter2);
 
-	var _match2 = __webpack_require__(359);
+	var _MemoryRouter2 = __webpack_require__(324);
 
-	var _match3 = _interopRequireDefault(_match2);
+	var _MemoryRouter3 = _interopRequireDefault(_MemoryRouter2);
 
-	var _useRouterHistory2 = __webpack_require__(372);
+	var _ServerRouter2 = __webpack_require__(326);
 
-	var _useRouterHistory3 = _interopRequireDefault(_useRouterHistory2);
+	var _ServerRouter3 = _interopRequireDefault(_ServerRouter2);
 
-	var _applyRouterMiddleware2 = __webpack_require__(373);
+	var _StaticRouter2 = __webpack_require__(317);
 
-	var _applyRouterMiddleware3 = _interopRequireDefault(_applyRouterMiddleware2);
+	var _StaticRouter3 = _interopRequireDefault(_StaticRouter2);
 
-	var _browserHistory2 = __webpack_require__(374);
+	var _matchPattern2 = __webpack_require__(300);
 
-	var _browserHistory3 = _interopRequireDefault(_browserHistory2);
+	var _matchPattern3 = _interopRequireDefault(_matchPattern2);
 
-	var _hashHistory2 = __webpack_require__(382);
+	var _createServerRenderContext2 = __webpack_require__(327);
 
-	var _hashHistory3 = _interopRequireDefault(_hashHistory2);
+	var _createServerRenderContext3 = _interopRequireDefault(_createServerRenderContext2);
 
-	var _createMemoryHistory2 = __webpack_require__(361);
+	var _PropTypes = __webpack_require__(297);
 
-	var _createMemoryHistory3 = _interopRequireDefault(_createMemoryHistory2);
+	var _propTypes = _interopRequireWildcard(_PropTypes);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.Router = _Router3.default; /* components */
-
 	exports.Link = _Link3.default;
-	exports.IndexLink = _IndexLink3.default;
-	exports.withRouter = _withRouter3.default;
-
-	/* components (configuration) */
-
-	exports.IndexRedirect = _IndexRedirect3.default;
-	exports.IndexRoute = _IndexRoute3.default;
+	exports.Match = _Match3.default;
+	exports.Miss = _Miss3.default;
+	exports.NavigationPrompt = _NavigationPrompt3.default;
 	exports.Redirect = _Redirect3.default;
-	exports.Route = _Route3.default;
 
-	/* utils */
+	// High-level wrappers
 
-	exports.RouterContext = _RouterContext3.default;
-	exports.match = _match3.default;
-	exports.useRouterHistory = _useRouterHistory3.default;
-	exports.applyRouterMiddleware = _applyRouterMiddleware3.default;
+	exports.BrowserRouter = _BrowserRouter3.default;
+	exports.HashRouter = _HashRouter3.default;
+	exports.MemoryRouter = _MemoryRouter3.default;
+	exports.ServerRouter = _ServerRouter3.default;
 
-	/* histories */
+	// Low-level building block
 
-	exports.browserHistory = _browserHistory3.default;
-	exports.hashHistory = _hashHistory3.default;
-	exports.createMemoryHistory = _createMemoryHistory3.default;
+	exports.StaticRouter = _StaticRouter3.default;
+
+	// Util for server rendering "pre-render match"
+
+	exports.matchPattern = _matchPattern3.default;
+
+	// Util for server rendering context
+
+	exports.createServerRenderContext = _createServerRenderContext3.default;
+
+	// React PropTypes for all Components
+
+	exports.propTypes = _propTypes;
 
 /***/ },
-/* 331 */
+/* 291 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(120);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Broadcasts = __webpack_require__(292);
+
+	var _PropTypes = __webpack_require__(297);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Link = function (_React$Component) {
+	  _inherits(Link, _React$Component);
+
+	  function Link() {
+	    var _temp, _this, _ret;
+
+	    _classCallCheck(this, Link);
+
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.handleClick = function (event) {
+	      if (_this.props.onClick) _this.props.onClick(event);
+
+	      if (!event.defaultPrevented && // onClick prevented default
+	      !_this.props.target && // let browser handle "target=_blank" etc.
+	      !isModifiedEvent(event) && isLeftClickEvent(event)) {
+	        event.preventDefault();
+	        _this.handleTransition();
+	      }
+	    }, _this.handleTransition = function () {
+	      var router = _this.context.router;
+	      var _this$props = _this.props,
+	          to = _this$props.to,
+	          replace = _this$props.replace;
+
+	      var navigate = replace ? router.replaceWith : router.transitionTo;
+	      navigate(to);
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+
+	  Link.prototype.render = function render() {
+	    var _this2 = this;
+
+	    var router = this.context.router;
+
+	    var _props = this.props,
+	        to = _props.to,
+	        style = _props.style,
+	        activeStyle = _props.activeStyle,
+	        className = _props.className,
+	        activeClassName = _props.activeClassName,
+	        getIsActive = _props.isActive,
+	        activeOnlyWhenExact = _props.activeOnlyWhenExact,
+	        replace = _props.replace,
+	        children = _props.children,
+	        rest = _objectWithoutProperties(_props, ['to', 'style', 'activeStyle', 'className', 'activeClassName', 'isActive', 'activeOnlyWhenExact', 'replace', 'children']);
+
+	    return _react2.default.createElement(
+	      _Broadcasts.LocationSubscriber,
+	      null,
+	      function (location) {
+	        var isActive = getIsActive(location, createLocationDescriptor(to), _this2.props);
+
+	        // If children is a function, we are using a Function as Children Component
+	        // so useful values will be passed down to the children function.
+	        if (typeof children == 'function') {
+	          return children({
+	            isActive: isActive,
+	            location: location,
+	            href: router ? router.createHref(to) : to,
+	            onClick: _this2.handleClick,
+	            transition: _this2.handleTransition
+	          });
+	        }
+
+	        // Maybe we should use <Match> here? Not sure how the custom `isActive`
+	        // prop would shake out, also, this check happens a LOT so maybe its good
+	        // to optimize here w/ a faster isActive check, so we'd need to benchmark
+	        // any attempt at changing to use <Match>
+	        return _react2.default.createElement('a', _extends({}, rest, {
+	          href: router ? router.createHref(to) : to,
+	          onClick: _this2.handleClick,
+	          style: isActive ? _extends({}, style, activeStyle) : style,
+	          className: isActive ? [className, activeClassName].join(' ').trim() : className,
+	          children: children
+	        }));
+	      }
+	    );
+	  };
+
+	  return Link;
+	}(_react2.default.Component);
+
+	Link.defaultProps = {
+	  replace: false,
+	  activeOnlyWhenExact: false,
+	  className: '',
+	  activeClassName: '',
+	  style: {},
+	  activeStyle: {},
+	  isActive: function isActive(location, to, props) {
+	    return pathIsActive(to.pathname, location.pathname, props.activeOnlyWhenExact) && queryIsActive(to.query, location.query);
+	  }
+	};
+	Link.contextTypes = {
+	  router: _PropTypes.routerContext.isRequired
+	};
+
+
+	if (process.env.NODE_ENV !== 'production') {
+	  Link.propTypes = {
+	    to: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.object]).isRequired,
+	    replace: _react.PropTypes.bool,
+	    activeStyle: _react.PropTypes.object,
+	    activeClassName: _react.PropTypes.string,
+	    activeOnlyWhenExact: _react.PropTypes.bool,
+	    isActive: _react.PropTypes.func,
+	    children: _react.PropTypes.oneOfType([_react.PropTypes.node, _react.PropTypes.func]),
+
+	    // props we have to deal with but aren't necessarily
+	    // part of the Link API
+	    style: _react.PropTypes.object,
+	    className: _react.PropTypes.string,
+	    target: _react.PropTypes.string,
+	    onClick: _react.PropTypes.func
+	  };
+	}
+
+	// we should probably use LocationUtils.createLocationDescriptor
+	var createLocationDescriptor = function createLocationDescriptor(to) {
+	  return (typeof to === 'undefined' ? 'undefined' : _typeof(to)) === 'object' ? to : { pathname: to };
+	};
+
+	var pathIsActive = function pathIsActive(to, pathname, activeOnlyWhenExact) {
+	  return activeOnlyWhenExact ? pathname === to : pathname.indexOf(to) === 0;
+	};
+
+	var queryIsActive = function queryIsActive(query, activeQuery) {
+	  if (activeQuery == null) return query == null;
+
+	  if (query == null) return true;
+
+	  return deepEqual(query, activeQuery);
+	};
+
+	var isLeftClickEvent = function isLeftClickEvent(event) {
+	  return event.button === 0;
+	};
+
+	var isModifiedEvent = function isModifiedEvent(event) {
+	  return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+	};
+
+	var deepEqual = function deepEqual(a, b) {
+	  if (a == b) return true;
+
+	  if (a == null || b == null) return false;
+
+	  if (Array.isArray(a)) {
+	    return Array.isArray(b) && a.length === b.length && a.every(function (item, index) {
+	      return deepEqual(item, b[index]);
+	    });
+	  }
+
+	  if ((typeof a === 'undefined' ? 'undefined' : _typeof(a)) === 'object') {
+	    for (var p in a) {
+	      if (!Object.prototype.hasOwnProperty.call(a, p)) {
+	        continue;
+	      }
+
+	      if (a[p] === undefined) {
+	        if (b[p] !== undefined) {
+	          return false;
+	        }
+	      } else if (!Object.prototype.hasOwnProperty.call(b, p)) {
+	        return false;
+	      } else if (!deepEqual(a[p], b[p])) {
+	        return false;
+	      }
+	    }
+
+	    return true;
+	  }
+
+	  return String(a) === String(b);
+	};
+
+	exports.default = Link;
+
+/***/ },
+/* 292 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.LocationSubscriber = exports.LocationBroadcast = undefined;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(120);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBroadcast = __webpack_require__(293);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var LocationChannel = 'location';
+
+	var LocationBroadcast = exports.LocationBroadcast = function LocationBroadcast(props) {
+	  return _react2.default.createElement(_reactBroadcast.Broadcast, _extends({}, props, { channel: LocationChannel }));
+	};
+
+	var LocationSubscriber = exports.LocationSubscriber = function LocationSubscriber(props) {
+	  return _react2.default.createElement(_reactBroadcast.Subscriber, _extends({}, props, { channel: LocationChannel }));
+	};
+
+/***/ },
+/* 293 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.Subscriber = exports.Broadcast = undefined;
+
+	var _Broadcast2 = __webpack_require__(294);
+
+	var _Broadcast3 = _interopRequireDefault(_Broadcast2);
+
+	var _Subscriber2 = __webpack_require__(296);
+
+	var _Subscriber3 = _interopRequireDefault(_Subscriber2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.Broadcast = _Broadcast3.default;
+	exports.Subscriber = _Subscriber3.default;
+
+/***/ },
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80870,378 +58867,122 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	exports.isReactChildren = isReactChildren;
-	exports.createRouteFromReactElement = createRouteFromReactElement;
-	exports.createRoutesFromReactChildren = createRoutesFromReactChildren;
-	exports.createRoutes = createRoutes;
+	var _invariant = __webpack_require__(295);
 
-	var _react = __webpack_require__(160);
+	var _invariant2 = _interopRequireDefault(_invariant);
+
+	var _react = __webpack_require__(120);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function isValidChild(object) {
-	  return object == null || _react2.default.isValidElement(object);
-	}
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	function isReactChildren(object) {
-	  return isValidChild(object) || Array.isArray(object) && object.every(isValidChild);
-	}
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	function createRoute(defaultProps, props) {
-	  return _extends({}, defaultProps, props);
-	}
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	function createRouteFromReactElement(element) {
-	  var type = element.type;
-	  var route = createRoute(type.defaultProps, element.props);
-
-	  if (route.children) {
-	    var childRoutes = createRoutesFromReactChildren(route.children, route);
-
-	    if (childRoutes.length) route.childRoutes = childRoutes;
-
-	    delete route.children;
-	  }
-
-	  return route;
-	}
-
-	/**
-	 * Creates and returns a routes object from the given ReactChildren. JSX
-	 * provides a convenient way to visualize how routes in the hierarchy are
-	 * nested.
-	 *
-	 *   import { Route, createRoutesFromReactChildren } from 'react-router'
-	 *
-	 *   const routes = createRoutesFromReactChildren(
-	 *     <Route component={App}>
-	 *       <Route path="home" component={Dashboard}/>
-	 *       <Route path="news" component={NewsFeed}/>
-	 *     </Route>
-	 *   )
-	 *
-	 * Note: This method is automatically used when you provide <Route> children
-	 * to a <Router> component.
-	 */
-	function createRoutesFromReactChildren(children, parentRoute) {
-	  var routes = [];
-
-	  _react2.default.Children.forEach(children, function (element) {
-	    if (_react2.default.isValidElement(element)) {
-	      // Component classes may have a static create* method.
-	      if (element.type.createRouteFromReactElement) {
-	        var route = element.type.createRouteFromReactElement(element, parentRoute);
-
-	        if (route) routes.push(route);
-	      } else {
-	        routes.push(createRouteFromReactElement(element));
-	      }
-	    }
-	  });
-
-	  return routes;
-	}
-
-	/**
-	 * Creates and returns an array of routes from the given object which
-	 * may be a JSX route, a plain object route, or an array of either.
-	 */
-	function createRoutes(routes) {
-	  if (isReactChildren(routes)) {
-	    routes = createRoutesFromReactChildren(routes);
-	  } else if (routes && !Array.isArray(routes)) {
-	    routes = [routes];
-	  }
-
-	  return routes;
-	}
-
-/***/ },
-/* 332 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.locationShape = exports.routerShape = undefined;
-
-	var _react = __webpack_require__(160);
-
-	var func = _react.PropTypes.func,
-	    object = _react.PropTypes.object,
-	    shape = _react.PropTypes.shape,
-	    string = _react.PropTypes.string;
-	var routerShape = exports.routerShape = shape({
-	  push: func.isRequired,
-	  replace: func.isRequired,
-	  go: func.isRequired,
-	  goBack: func.isRequired,
-	  goForward: func.isRequired,
-	  setRouteLeaveHook: func.isRequired,
-	  isActive: func.isRequired
-	});
-
-	var locationShape = exports.locationShape = shape({
-	  pathname: string.isRequired,
-	  search: string.isRequired,
-	  state: object,
-	  action: string.isRequired,
-	  key: string
-	});
-
-/***/ },
-/* 333 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.compilePattern = compilePattern;
-	exports.matchPattern = matchPattern;
-	exports.getParamNames = getParamNames;
-	exports.getParams = getParams;
-	exports.formatPattern = formatPattern;
-
-	var _invariant = __webpack_require__(334);
-
-	var _invariant2 = _interopRequireDefault(_invariant);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function escapeRegExp(string) {
-	  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-	}
-
-	function _compilePattern(pattern) {
-	  var regexpSource = '';
-	  var paramNames = [];
-	  var tokens = [];
-
-	  var match = void 0,
-	      lastIndex = 0,
-	      matcher = /:([a-zA-Z_$][a-zA-Z0-9_$]*)|\*\*|\*|\(|\)|\\\(|\\\)/g;
-	  while (match = matcher.exec(pattern)) {
-	    if (match.index !== lastIndex) {
-	      tokens.push(pattern.slice(lastIndex, match.index));
-	      regexpSource += escapeRegExp(pattern.slice(lastIndex, match.index));
-	    }
-
-	    if (match[1]) {
-	      regexpSource += '([^/]+)';
-	      paramNames.push(match[1]);
-	    } else if (match[0] === '**') {
-	      regexpSource += '(.*)';
-	      paramNames.push('splat');
-	    } else if (match[0] === '*') {
-	      regexpSource += '(.*?)';
-	      paramNames.push('splat');
-	    } else if (match[0] === '(') {
-	      regexpSource += '(?:';
-	    } else if (match[0] === ')') {
-	      regexpSource += ')?';
-	    } else if (match[0] === '\\(') {
-	      regexpSource += '\\(';
-	    } else if (match[0] === '\\)') {
-	      regexpSource += '\\)';
-	    }
-
-	    tokens.push(match[0]);
-
-	    lastIndex = matcher.lastIndex;
-	  }
-
-	  if (lastIndex !== pattern.length) {
-	    tokens.push(pattern.slice(lastIndex, pattern.length));
-	    regexpSource += escapeRegExp(pattern.slice(lastIndex, pattern.length));
-	  }
+	var createBroadcast = function createBroadcast(initialValue) {
+	  var listeners = [];
+	  var currentValue = initialValue;
 
 	  return {
-	    pattern: pattern,
-	    regexpSource: regexpSource,
-	    paramNames: paramNames,
-	    tokens: tokens
+	    publish: function publish(value) {
+	      currentValue = value;
+	      listeners.forEach(function (listener) {
+	        return listener(currentValue);
+	      });
+	    },
+	    subscribe: function subscribe(listener) {
+	      listeners.push(listener);
+
+	      // Publish to this subscriber once immediately.
+	      listener(currentValue);
+
+	      return function () {
+	        return listeners = listeners.filter(function (item) {
+	          return item !== listener;
+	        });
+	      };
+	    }
+	  };
+	};
+
+	/**
+	 * A <Broadcast> provides a generic way for descendants to "subscribe"
+	 * to some value that changes over time, bypassing any intermediate
+	 * shouldComponentUpdate's in the hierarchy. It puts all subscription
+	 * functions on context.broadcasts, keyed by "channel".
+	 *
+	 * To use it, a subscriber must opt-in to context.broadcasts. See the
+	 * <Subscriber> component for a reference implementation.
+	 */
+
+	var Broadcast = function (_React$Component) {
+	  _inherits(Broadcast, _React$Component);
+
+	  function Broadcast() {
+	    var _temp, _this, _ret;
+
+	    _classCallCheck(this, Broadcast);
+
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.broadcast = createBroadcast(_this.props.value), _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+
+	  Broadcast.prototype.getBroadcastsContext = function getBroadcastsContext() {
+	    var _extends2;
+
+	    var channel = this.props.channel;
+	    var broadcasts = this.context.broadcasts;
+
+
+	    return _extends({}, broadcasts, (_extends2 = {}, _extends2[channel] = this.broadcast.subscribe, _extends2));
+	  };
+
+	  Broadcast.prototype.getChildContext = function getChildContext() {
+	    return {
+	      broadcasts: this.getBroadcastsContext()
+	    };
+	  };
+
+	  Broadcast.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+	    !(this.props.channel === nextProps.channel) ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'You cannot change <Broadcast channel>') : (0, _invariant2.default)(false) : void 0;
+
+	    if (this.props.value !== nextProps.value) this.broadcast.publish(nextProps.value);
+	  };
+
+	  Broadcast.prototype.render = function render() {
+	    return _react2.default.Children.only(this.props.children);
+	  };
+
+	  return Broadcast;
+	}(_react2.default.Component);
+
+	Broadcast.contextTypes = {
+	  broadcasts: _react.PropTypes.object
+	};
+	Broadcast.childContextTypes = {
+	  broadcasts: _react.PropTypes.object.isRequired
+	};
+
+
+	if (process.env.NODE_ENV !== 'production') {
+	  Broadcast.propTypes = {
+	    channel: _react.PropTypes.string.isRequired,
+	    children: _react.PropTypes.node.isRequired,
+	    value: _react.PropTypes.any
 	  };
 	}
 
-	var CompiledPatternsCache = Object.create(null);
-
-	function compilePattern(pattern) {
-	  if (!CompiledPatternsCache[pattern]) CompiledPatternsCache[pattern] = _compilePattern(pattern);
-
-	  return CompiledPatternsCache[pattern];
-	}
-
-	/**
-	 * Attempts to match a pattern on the given pathname. Patterns may use
-	 * the following special characters:
-	 *
-	 * - :paramName     Matches a URL segment up to the next /, ?, or #. The
-	 *                  captured string is considered a "param"
-	 * - ()             Wraps a segment of the URL that is optional
-	 * - *              Consumes (non-greedy) all characters up to the next
-	 *                  character in the pattern, or to the end of the URL if
-	 *                  there is none
-	 * - **             Consumes (greedy) all characters up to the next character
-	 *                  in the pattern, or to the end of the URL if there is none
-	 *
-	 *  The function calls callback(error, matched) when finished.
-	 * The return value is an object with the following properties:
-	 *
-	 * - remainingPathname
-	 * - paramNames
-	 * - paramValues
-	 */
-	function matchPattern(pattern, pathname) {
-	  // Ensure pattern starts with leading slash for consistency with pathname.
-	  if (pattern.charAt(0) !== '/') {
-	    pattern = '/' + pattern;
-	  }
-
-	  var _compilePattern2 = compilePattern(pattern),
-	      regexpSource = _compilePattern2.regexpSource,
-	      paramNames = _compilePattern2.paramNames,
-	      tokens = _compilePattern2.tokens;
-
-	  if (pattern.charAt(pattern.length - 1) !== '/') {
-	    regexpSource += '/?'; // Allow optional path separator at end.
-	  }
-
-	  // Special-case patterns like '*' for catch-all routes.
-	  if (tokens[tokens.length - 1] === '*') {
-	    regexpSource += '$';
-	  }
-
-	  var match = pathname.match(new RegExp('^' + regexpSource, 'i'));
-	  if (match == null) {
-	    return null;
-	  }
-
-	  var matchedPath = match[0];
-	  var remainingPathname = pathname.substr(matchedPath.length);
-
-	  if (remainingPathname) {
-	    // Require that the match ends at a path separator, if we didn't match
-	    // the full path, so any remaining pathname is a new path segment.
-	    if (matchedPath.charAt(matchedPath.length - 1) !== '/') {
-	      return null;
-	    }
-
-	    // If there is a remaining pathname, treat the path separator as part of
-	    // the remaining pathname for properly continuing the match.
-	    remainingPathname = '/' + remainingPathname;
-	  }
-
-	  return {
-	    remainingPathname: remainingPathname,
-	    paramNames: paramNames,
-	    paramValues: match.slice(1).map(function (v) {
-	      return v && decodeURIComponent(v);
-	    })
-	  };
-	}
-
-	function getParamNames(pattern) {
-	  return compilePattern(pattern).paramNames;
-	}
-
-	function getParams(pattern, pathname) {
-	  var match = matchPattern(pattern, pathname);
-	  if (!match) {
-	    return null;
-	  }
-
-	  var paramNames = match.paramNames,
-	      paramValues = match.paramValues;
-
-	  var params = {};
-
-	  paramNames.forEach(function (paramName, index) {
-	    params[paramName] = paramValues[index];
-	  });
-
-	  return params;
-	}
-
-	/**
-	 * Returns a version of the given pattern with params interpolated. Throws
-	 * if there is a dynamic segment of the pattern for which there is no param.
-	 */
-	function formatPattern(pattern, params) {
-	  params = params || {};
-
-	  var _compilePattern3 = compilePattern(pattern),
-	      tokens = _compilePattern3.tokens;
-
-	  var parenCount = 0,
-	      pathname = '',
-	      splatIndex = 0,
-	      parenHistory = [];
-
-	  var token = void 0,
-	      paramName = void 0,
-	      paramValue = void 0;
-	  for (var i = 0, len = tokens.length; i < len; ++i) {
-	    token = tokens[i];
-
-	    if (token === '*' || token === '**') {
-	      paramValue = Array.isArray(params.splat) ? params.splat[splatIndex++] : params.splat;
-
-	      !(paramValue != null || parenCount > 0) ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'Missing splat #%s for path "%s"', splatIndex, pattern) : (0, _invariant2.default)(false) : void 0;
-
-	      if (paramValue != null) pathname += encodeURI(paramValue);
-	    } else if (token === '(') {
-	      parenHistory[parenCount] = '';
-	      parenCount += 1;
-	    } else if (token === ')') {
-	      var parenText = parenHistory.pop();
-	      parenCount -= 1;
-
-	      if (parenCount) parenHistory[parenCount - 1] += parenText;else pathname += parenText;
-	    } else if (token === '\\(') {
-	      pathname += '(';
-	    } else if (token === '\\)') {
-	      pathname += ')';
-	    } else if (token.charAt(0) === ':') {
-	      paramName = token.substring(1);
-	      paramValue = params[paramName];
-
-	      !(paramValue != null || parenCount > 0) ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'Missing "%s" parameter for path "%s"', paramName, pattern) : (0, _invariant2.default)(false) : void 0;
-
-	      if (paramValue == null) {
-	        if (parenCount) {
-	          parenHistory[parenCount - 1] = '';
-
-	          var curTokenIdx = tokens.indexOf(token);
-	          var tokensSubset = tokens.slice(curTokenIdx, tokens.length);
-	          var nextParenIdx = -1;
-
-	          for (var _i = 0; _i < tokensSubset.length; _i++) {
-	            if (tokensSubset[_i] == ')') {
-	              nextParenIdx = _i;
-	              break;
-	            }
-	          }
-
-	          !(nextParenIdx > 0) ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'Path "%s" is missing end paren at segment "%s"', pattern, tokensSubset.join('')) : (0, _invariant2.default)(false) : void 0;
-
-	          // jump to ending paren
-	          i = curTokenIdx + nextParenIdx - 1;
-	        }
-	      } else if (parenCount) parenHistory[parenCount - 1] += encodeURIComponent(paramValue);else pathname += encodeURIComponent(paramValue);
-	    } else {
-	      if (parenCount) parenHistory[parenCount - 1] += token;else pathname += token;
-	    }
-	  }
-
-	  !(parenCount <= 0) ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'Path "%s" is missing end paren', pattern) : (0, _invariant2.default)(false) : void 0;
-
-	  return pathname.replace(/\/+/g, '/');
-	}
+	exports.default = Broadcast;
 
 /***/ },
-/* 334 */
+/* 295 */
 /***/ function(module, exports) {
 
 	/**
@@ -81300,7 +59041,148 @@
 
 
 /***/ },
-/* 335 */
+/* 296 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _invariant = __webpack_require__(295);
+
+	var _invariant2 = _interopRequireDefault(_invariant);
+
+	var _react = __webpack_require__(120);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	/**
+	 * A <Subscriber> pulls the value for a channel off of context.broadcasts
+	 * and passes it to its children function.
+	 */
+	var Subscriber = function (_React$Component) {
+	  _inherits(Subscriber, _React$Component);
+
+	  function Subscriber() {
+	    var _temp, _this, _ret;
+
+	    _classCallCheck(this, Subscriber);
+
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = {
+	      value: null
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+
+	  Subscriber.prototype.componentWillMount = function componentWillMount() {
+	    var _this2 = this;
+
+	    var channel = this.props.channel;
+
+
+	    if (this.context.broadcasts) {
+	      var subscribe = this.context.broadcasts[channel];
+
+	      !(typeof subscribe === 'function') ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, '<Subscriber channel="%s"> must be rendered in the context of a <Broadcast channel="%s">', channel, channel) : (0, _invariant2.default)(false) : void 0;
+
+	      this.unsubscribe = subscribe(function (value) {
+	        // This function will be called once immediately.
+	        _this2.setState({ value: value });
+	      });
+	    }
+	  };
+
+	  Subscriber.prototype.componentWillUnmount = function componentWillUnmount() {
+	    if (this.unsubscribe) this.unsubscribe();
+	  };
+
+	  Subscriber.prototype.render = function render() {
+	    return this.props.children(this.state.value);
+	  };
+
+	  return Subscriber;
+	}(_react2.default.Component);
+
+	Subscriber.contextTypes = {
+	  broadcasts: _react2.default.PropTypes.object
+	};
+
+
+	if (process.env.NODE_ENV !== 'production') {
+	  Subscriber.propTypes = {
+	    channel: _react.PropTypes.string.isRequired,
+	    children: _react.PropTypes.func.isRequired
+	  };
+	}
+
+	exports.default = Subscriber;
+
+/***/ },
+/* 297 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.routerContext = exports.historyContext = exports.location = exports.history = exports.matchContext = exports.action = undefined;
+
+	var _react = __webpack_require__(120);
+
+	var action = exports.action = _react.PropTypes.oneOf(['PUSH', 'REPLACE', 'POP']);
+
+	var matchContext = exports.matchContext = _react.PropTypes.shape({
+	  addMatch: _react.PropTypes.func.isRequired,
+	  removeMatch: _react.PropTypes.func.isRequired
+	});
+
+	var history = exports.history = _react.PropTypes.shape({
+	  listen: _react.PropTypes.func.isRequired,
+	  listenBefore: _react.PropTypes.func.isRequired,
+	  push: _react.PropTypes.func.isRequired,
+	  replace: _react.PropTypes.func.isRequired,
+	  go: _react.PropTypes.func.isRequired
+	});
+
+	var location = exports.location = _react.PropTypes.shape({
+	  pathname: _react.PropTypes.string.isRequired,
+	  search: _react.PropTypes.string.isRequired,
+	  hash: _react.PropTypes.string.isRequired,
+	  state: _react.PropTypes.any,
+	  key: _react.PropTypes.string
+	});
+
+	var historyContext = exports.historyContext = _react.PropTypes.shape({
+	  action: action.isRequired,
+	  location: location.isRequired,
+	  push: _react.PropTypes.func.isRequired,
+	  replace: _react.PropTypes.func.isRequired,
+	  go: _react.PropTypes.func.isRequired,
+	  goBack: _react.PropTypes.func.isRequired,
+	  goForward: _react.PropTypes.func.isRequired,
+	  canGo: _react.PropTypes.func,
+	  block: _react.PropTypes.func.isRequired
+	});
+
+	var routerContext = exports.routerContext = _react.PropTypes.shape({
+	  transitionTo: _react.PropTypes.func.isRequired,
+	  replaceWith: _react.PropTypes.func.isRequired,
+	  blockTransitions: _react.PropTypes.func.isRequired,
+	  createHref: _react.PropTypes.func.isRequired
+	});
+
+/***/ },
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -81309,499 +59191,1513 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _invariant = __webpack_require__(334);
-
-	var _invariant2 = _interopRequireDefault(_invariant);
-
-	var _react = __webpack_require__(160);
+	var _react = __webpack_require__(120);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _createTransitionManager2 = __webpack_require__(336);
+	var _MatchProvider = __webpack_require__(299);
 
-	var _createTransitionManager3 = _interopRequireDefault(_createTransitionManager2);
+	var _MatchProvider2 = _interopRequireDefault(_MatchProvider);
 
-	var _InternalPropTypes = __webpack_require__(346);
+	var _matchPattern = __webpack_require__(300);
 
-	var _RouterContext = __webpack_require__(347);
+	var _matchPattern2 = _interopRequireDefault(_matchPattern);
 
-	var _RouterContext2 = _interopRequireDefault(_RouterContext);
+	var _Broadcasts = __webpack_require__(292);
 
-	var _RouteUtils = __webpack_require__(331);
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var _RouterUtils = __webpack_require__(350);
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var _routerWarning = __webpack_require__(337);
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	var _routerWarning2 = _interopRequireDefault(_routerWarning);
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var RegisterMatch = function (_React$Component) {
+	  _inherits(RegisterMatch, _React$Component);
+
+	  function RegisterMatch() {
+	    _classCallCheck(this, RegisterMatch);
+
+	    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
+	  }
+
+	  RegisterMatch.prototype.registerMatch = function registerMatch() {
+	    var matchContext = this.context.match;
+	    var match = this.props.match;
+
+
+	    if (match && matchContext) {
+	      matchContext.addMatch(match);
+	    }
+	  };
+
+	  RegisterMatch.prototype.componentWillMount = function componentWillMount() {
+	    if (this.context.serverRouter) {
+	      this.registerMatch();
+	    }
+	  };
+
+	  RegisterMatch.prototype.componentDidMount = function componentDidMount() {
+	    if (!this.context.serverRouter) {
+	      this.registerMatch();
+	    }
+	  };
+
+	  RegisterMatch.prototype.componentDidUpdate = function componentDidUpdate(prevProps) {
+	    var match = this.context.match;
+
+
+	    if (match) {
+	      if (prevProps.match && !this.props.match) {
+	        match.removeMatch(prevProps.match);
+	      } else if (!prevProps.match && this.props.match) {
+	        match.addMatch(this.props.match);
+	      }
+	    }
+	  };
+
+	  RegisterMatch.prototype.componentWillUnmount = function componentWillUnmount() {
+	    if (this.props.match) {
+	      this.context.match.removeMatch(this.props.match);
+	    }
+	  };
+
+	  RegisterMatch.prototype.render = function render() {
+	    return _react2.default.Children.only(this.props.children);
+	  };
+
+	  return RegisterMatch;
+	}(_react2.default.Component);
+
+	RegisterMatch.contextTypes = {
+	  match: _react.PropTypes.object,
+	  serverRouter: _react.PropTypes.object
+	};
+
+
+	if (process.env.NODE_ENV !== 'production') {
+	  RegisterMatch.propTypes = {
+	    children: _react.PropTypes.node.isRequired,
+	    match: _react.PropTypes.any
+	  };
+	}
+
+	var Match = function (_React$Component2) {
+	  _inherits(Match, _React$Component2);
+
+	  function Match() {
+	    _classCallCheck(this, Match);
+
+	    return _possibleConstructorReturn(this, _React$Component2.apply(this, arguments));
+	  }
+
+	  Match.prototype.render = function render() {
+	    var _this3 = this;
+
+	    return _react2.default.createElement(
+	      _Broadcasts.LocationSubscriber,
+	      null,
+	      function (location) {
+	        var _props = _this3.props,
+	            children = _props.children,
+	            render = _props.render,
+	            Component = _props.component,
+	            pattern = _props.pattern,
+	            exactly = _props.exactly;
+	        var matchContext = _this3.context.match;
+
+	        var parent = matchContext && matchContext.parent;
+	        var match = (0, _matchPattern2.default)(pattern, location, exactly, parent);
+	        var props = _extends({}, match, { location: location, pattern: pattern });
+	        return _react2.default.createElement(
+	          RegisterMatch,
+	          { match: match },
+	          _react2.default.createElement(
+	            _MatchProvider2.default,
+	            { match: match },
+	            children ? children(_extends({ matched: !!match }, props)) : match ? render ? render(props) : _react2.default.createElement(Component, props) : null
+	          )
+	        );
+	      }
+	    );
+	  };
+
+	  return Match;
+	}(_react2.default.Component);
+
+	Match.defaultProps = {
+	  exactly: false
+	};
+	Match.contextTypes = {
+	  match: _react.PropTypes.object
+	};
+
+
+	if (process.env.NODE_ENV !== 'production') {
+	  Match.propTypes = {
+	    pattern: _react.PropTypes.string,
+	    exactly: _react.PropTypes.bool,
+
+	    children: _react.PropTypes.func,
+	    render: _react.PropTypes.func,
+	    component: _react.PropTypes.func
+	  };
+	}
+
+	exports.default = Match;
+
+/***/ },
+/* 299 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _react = __webpack_require__(120);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _PropTypes = __webpack_require__(297);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var MatchProvider = function (_React$Component) {
+	  _inherits(MatchProvider, _React$Component);
+
+	  function MatchProvider(props) {
+	    _classCallCheck(this, MatchProvider);
+
+	    // **IMPORTANT** we must mutate matches, never reassign, in order for
+	    // server rendering to work w/ the two-pass render approach for Miss
+	    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
+
+	    _this.addMatch = function (match) {
+	      _this.matches.push(match);
+	    };
+
+	    _this.removeMatch = function (match) {
+	      _this.matches.splice(_this.matches.indexOf(match), 1);
+	    };
+
+	    _this.matches = [];
+	    _this.subscribers = [];
+	    _this.hasMatches = null; // use null for initial value
+	    _this.serverRouterIndex = null;
+	    return _this;
+	  }
+
+	  MatchProvider.prototype.getChildContext = function getChildContext() {
+	    var _this2 = this;
+
+	    return {
+	      match: {
+	        addMatch: this.addMatch,
+	        removeMatch: this.removeMatch,
+	        matches: this.matches,
+	        parent: this.props.match,
+	        serverRouterIndex: this.serverRouterIndex,
+	        subscribe: function subscribe(fn) {
+	          _this2.subscribers.push(fn);
+	          return function () {
+	            _this2.subscribers.splice(_this2.subscribers.indexOf(fn), 1);
+	          };
+	        }
+	      }
+	    };
+	  };
+
+	  MatchProvider.prototype.componentDidUpdate = function componentDidUpdate() {
+	    this.notifySubscribers();
+	  };
+
+	  MatchProvider.prototype.componentWillMount = function componentWillMount() {
+	    var serverRouter = this.context.serverRouter;
+
+	    if (serverRouter) {
+	      this.serverRouterIndex = serverRouter.registerMatchContext(this.matches);
+	    }
+	  };
+
+	  MatchProvider.prototype.componentDidMount = function componentDidMount() {
+	    // React's contract is that cDM of descendants is called before cDM of
+	    // ancestors, so here we can safely check if we found a match
+	    this.notifySubscribers();
+	  };
+
+	  MatchProvider.prototype.notifySubscribers = function notifySubscribers() {
+	    var _this3 = this;
+
+	    if (this.subscribers.length) {
+	      this.hasMatches = this.matches.length !== 0;
+	      this.subscribers.forEach(function (fn) {
+	        return fn(_this3.hasMatches);
+	      });
+	    }
+	  };
+
+	  MatchProvider.prototype.render = function render() {
+	    return this.props.children;
+	  };
+
+	  return MatchProvider;
+	}(_react2.default.Component);
+
+	MatchProvider.childContextTypes = {
+	  match: _PropTypes.matchContext.isRequired
+	};
+	MatchProvider.contextTypes = {
+	  serverRouter: _react.PropTypes.object
+	};
+
+
+	if (process.env.NODE_ENV !== 'production') {
+	  MatchProvider.propTypes = {
+	    match: _react.PropTypes.any,
+	    children: _react.PropTypes.node
+	  };
+	}
+
+	exports.default = MatchProvider;
+
+/***/ },
+/* 300 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _pathToRegexp = __webpack_require__(301);
+
+	var _pathToRegexp2 = _interopRequireDefault(_pathToRegexp);
+
+	var _MatcherCache = __webpack_require__(303);
+
+	var _MatcherCache2 = _interopRequireDefault(_MatcherCache);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// cache[exactly][pattern] contains getMatcher(pattern, exactly)
+	var cache = {
+	  true: new _MatcherCache2.default(),
+	  false: new _MatcherCache2.default()
+	};
+
+	var getMatcher = function getMatcher(pattern, exactly) {
+	  var exactlyStr = exactly ? 'true' : 'false';
+	  var matcher = cache[exactlyStr].get(pattern);
+
+	  if (!matcher) {
+	    var keys = [];
+	    var regex = (0, _pathToRegexp2.default)(pattern, keys, { end: exactly, strict: true });
+	    matcher = { keys: keys, regex: regex };
+	    cache[exactlyStr].set(pattern, matcher);
+	  }
+
+	  return matcher;
+	};
+
+	var parseParams = function parseParams(pattern, match, keys) {
+	  return match.slice(1).filter(function (value) {
+	    return value !== undefined;
+	  }).reduce(function (params, value, index) {
+	    params[keys[index].name] = decodeURIComponent(value);
+	    return params;
+	  }, {});
+	};
+
+	var matchPattern = function matchPattern(pattern, location, matchExactly, parent) {
+	  var specialCase = !matchExactly && pattern === '/';
+
+	  if (specialCase) {
+	    return {
+	      params: null,
+	      isExact: location.pathname === '/',
+	      pathname: '/'
+	    };
+	  } else {
+	    if (parent && pattern.charAt(0) !== '/') {
+	      pattern = parent.pathname + (parent.pathname.charAt(parent.pathname.length - 1) !== '/' ? '/' : '') + pattern;
+	    }
+
+	    var matcher = getMatcher(pattern, matchExactly);
+	    var match = matcher.regex.exec(location.pathname);
+
+	    if (match) {
+	      var params = parseParams(pattern, match, matcher.keys);
+	      var pathname = match[0];
+	      var isExact = pathname === location.pathname;
+
+	      return { params: params, isExact: isExact, pathname: pathname };
+	    } else {
+	      return null;
+	    }
+	  }
+	};
+
+	exports.default = matchPattern;
+
+/***/ },
+/* 301 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var isarray = __webpack_require__(302)
+
+	/**
+	 * Expose `pathToRegexp`.
+	 */
+	module.exports = pathToRegexp
+	module.exports.parse = parse
+	module.exports.compile = compile
+	module.exports.tokensToFunction = tokensToFunction
+	module.exports.tokensToRegExp = tokensToRegExp
+
+	/**
+	 * The main path matching regexp utility.
+	 *
+	 * @type {RegExp}
+	 */
+	var PATH_REGEXP = new RegExp([
+	  // Match escaped characters that would otherwise appear in future matches.
+	  // This allows the user to escape special characters that won't transform.
+	  '(\\\\.)',
+	  // Match Express-style parameters and un-named parameters with a prefix
+	  // and optional suffixes. Matches appear as:
+	  //
+	  // "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?", undefined]
+	  // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
+	  // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
+	  '([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?|(\\*))'
+	].join('|'), 'g')
+
+	/**
+	 * Parse a string for the raw tokens.
+	 *
+	 * @param  {string}  str
+	 * @param  {Object=} options
+	 * @return {!Array}
+	 */
+	function parse (str, options) {
+	  var tokens = []
+	  var key = 0
+	  var index = 0
+	  var path = ''
+	  var defaultDelimiter = options && options.delimiter || '/'
+	  var res
+
+	  while ((res = PATH_REGEXP.exec(str)) != null) {
+	    var m = res[0]
+	    var escaped = res[1]
+	    var offset = res.index
+	    path += str.slice(index, offset)
+	    index = offset + m.length
+
+	    // Ignore already escaped sequences.
+	    if (escaped) {
+	      path += escaped[1]
+	      continue
+	    }
+
+	    var next = str[index]
+	    var prefix = res[2]
+	    var name = res[3]
+	    var capture = res[4]
+	    var group = res[5]
+	    var modifier = res[6]
+	    var asterisk = res[7]
+
+	    // Push the current path onto the tokens.
+	    if (path) {
+	      tokens.push(path)
+	      path = ''
+	    }
+
+	    var partial = prefix != null && next != null && next !== prefix
+	    var repeat = modifier === '+' || modifier === '*'
+	    var optional = modifier === '?' || modifier === '*'
+	    var delimiter = res[2] || defaultDelimiter
+	    var pattern = capture || group
+
+	    tokens.push({
+	      name: name || key++,
+	      prefix: prefix || '',
+	      delimiter: delimiter,
+	      optional: optional,
+	      repeat: repeat,
+	      partial: partial,
+	      asterisk: !!asterisk,
+	      pattern: pattern ? escapeGroup(pattern) : (asterisk ? '.*' : '[^' + escapeString(delimiter) + ']+?')
+	    })
+	  }
+
+	  // Match any characters still remaining.
+	  if (index < str.length) {
+	    path += str.substr(index)
+	  }
+
+	  // If the path exists, push it onto the end.
+	  if (path) {
+	    tokens.push(path)
+	  }
+
+	  return tokens
+	}
+
+	/**
+	 * Compile a string to a template function for the path.
+	 *
+	 * @param  {string}             str
+	 * @param  {Object=}            options
+	 * @return {!function(Object=, Object=)}
+	 */
+	function compile (str, options) {
+	  return tokensToFunction(parse(str, options))
+	}
+
+	/**
+	 * Prettier encoding of URI path segments.
+	 *
+	 * @param  {string}
+	 * @return {string}
+	 */
+	function encodeURIComponentPretty (str) {
+	  return encodeURI(str).replace(/[\/?#]/g, function (c) {
+	    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
+	  })
+	}
+
+	/**
+	 * Encode the asterisk parameter. Similar to `pretty`, but allows slashes.
+	 *
+	 * @param  {string}
+	 * @return {string}
+	 */
+	function encodeAsterisk (str) {
+	  return encodeURI(str).replace(/[?#]/g, function (c) {
+	    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
+	  })
+	}
+
+	/**
+	 * Expose a method for transforming tokens into the path function.
+	 */
+	function tokensToFunction (tokens) {
+	  // Compile all the tokens into regexps.
+	  var matches = new Array(tokens.length)
+
+	  // Compile all the patterns before compilation.
+	  for (var i = 0; i < tokens.length; i++) {
+	    if (typeof tokens[i] === 'object') {
+	      matches[i] = new RegExp('^(?:' + tokens[i].pattern + ')$')
+	    }
+	  }
+
+	  return function (obj, opts) {
+	    var path = ''
+	    var data = obj || {}
+	    var options = opts || {}
+	    var encode = options.pretty ? encodeURIComponentPretty : encodeURIComponent
+
+	    for (var i = 0; i < tokens.length; i++) {
+	      var token = tokens[i]
+
+	      if (typeof token === 'string') {
+	        path += token
+
+	        continue
+	      }
+
+	      var value = data[token.name]
+	      var segment
+
+	      if (value == null) {
+	        if (token.optional) {
+	          // Prepend partial segment prefixes.
+	          if (token.partial) {
+	            path += token.prefix
+	          }
+
+	          continue
+	        } else {
+	          throw new TypeError('Expected "' + token.name + '" to be defined')
+	        }
+	      }
+
+	      if (isarray(value)) {
+	        if (!token.repeat) {
+	          throw new TypeError('Expected "' + token.name + '" to not repeat, but received `' + JSON.stringify(value) + '`')
+	        }
+
+	        if (value.length === 0) {
+	          if (token.optional) {
+	            continue
+	          } else {
+	            throw new TypeError('Expected "' + token.name + '" to not be empty')
+	          }
+	        }
+
+	        for (var j = 0; j < value.length; j++) {
+	          segment = encode(value[j])
+
+	          if (!matches[i].test(segment)) {
+	            throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received `' + JSON.stringify(segment) + '`')
+	          }
+
+	          path += (j === 0 ? token.prefix : token.delimiter) + segment
+	        }
+
+	        continue
+	      }
+
+	      segment = token.asterisk ? encodeAsterisk(value) : encode(value)
+
+	      if (!matches[i].test(segment)) {
+	        throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"')
+	      }
+
+	      path += token.prefix + segment
+	    }
+
+	    return path
+	  }
+	}
+
+	/**
+	 * Escape a regular expression string.
+	 *
+	 * @param  {string} str
+	 * @return {string}
+	 */
+	function escapeString (str) {
+	  return str.replace(/([.+*?=^!:${}()[\]|\/\\])/g, '\\$1')
+	}
+
+	/**
+	 * Escape the capturing group by escaping special characters and meaning.
+	 *
+	 * @param  {string} group
+	 * @return {string}
+	 */
+	function escapeGroup (group) {
+	  return group.replace(/([=!:$\/()])/g, '\\$1')
+	}
+
+	/**
+	 * Attach the keys as a property of the regexp.
+	 *
+	 * @param  {!RegExp} re
+	 * @param  {Array}   keys
+	 * @return {!RegExp}
+	 */
+	function attachKeys (re, keys) {
+	  re.keys = keys
+	  return re
+	}
+
+	/**
+	 * Get the flags for a regexp from the options.
+	 *
+	 * @param  {Object} options
+	 * @return {string}
+	 */
+	function flags (options) {
+	  return options.sensitive ? '' : 'i'
+	}
+
+	/**
+	 * Pull out keys from a regexp.
+	 *
+	 * @param  {!RegExp} path
+	 * @param  {!Array}  keys
+	 * @return {!RegExp}
+	 */
+	function regexpToRegexp (path, keys) {
+	  // Use a negative lookahead to match only capturing groups.
+	  var groups = path.source.match(/\((?!\?)/g)
+
+	  if (groups) {
+	    for (var i = 0; i < groups.length; i++) {
+	      keys.push({
+	        name: i,
+	        prefix: null,
+	        delimiter: null,
+	        optional: false,
+	        repeat: false,
+	        partial: false,
+	        asterisk: false,
+	        pattern: null
+	      })
+	    }
+	  }
+
+	  return attachKeys(path, keys)
+	}
+
+	/**
+	 * Transform an array into a regexp.
+	 *
+	 * @param  {!Array}  path
+	 * @param  {Array}   keys
+	 * @param  {!Object} options
+	 * @return {!RegExp}
+	 */
+	function arrayToRegexp (path, keys, options) {
+	  var parts = []
+
+	  for (var i = 0; i < path.length; i++) {
+	    parts.push(pathToRegexp(path[i], keys, options).source)
+	  }
+
+	  var regexp = new RegExp('(?:' + parts.join('|') + ')', flags(options))
+
+	  return attachKeys(regexp, keys)
+	}
+
+	/**
+	 * Create a path regexp from string input.
+	 *
+	 * @param  {string}  path
+	 * @param  {!Array}  keys
+	 * @param  {!Object} options
+	 * @return {!RegExp}
+	 */
+	function stringToRegexp (path, keys, options) {
+	  return tokensToRegExp(parse(path, options), keys, options)
+	}
+
+	/**
+	 * Expose a function for taking tokens and returning a RegExp.
+	 *
+	 * @param  {!Array}          tokens
+	 * @param  {(Array|Object)=} keys
+	 * @param  {Object=}         options
+	 * @return {!RegExp}
+	 */
+	function tokensToRegExp (tokens, keys, options) {
+	  if (!isarray(keys)) {
+	    options = /** @type {!Object} */ (keys || options)
+	    keys = []
+	  }
+
+	  options = options || {}
+
+	  var strict = options.strict
+	  var end = options.end !== false
+	  var route = ''
+
+	  // Iterate over the tokens and create our regexp string.
+	  for (var i = 0; i < tokens.length; i++) {
+	    var token = tokens[i]
+
+	    if (typeof token === 'string') {
+	      route += escapeString(token)
+	    } else {
+	      var prefix = escapeString(token.prefix)
+	      var capture = '(?:' + token.pattern + ')'
+
+	      keys.push(token)
+
+	      if (token.repeat) {
+	        capture += '(?:' + prefix + capture + ')*'
+	      }
+
+	      if (token.optional) {
+	        if (!token.partial) {
+	          capture = '(?:' + prefix + '(' + capture + '))?'
+	        } else {
+	          capture = prefix + '(' + capture + ')?'
+	        }
+	      } else {
+	        capture = prefix + '(' + capture + ')'
+	      }
+
+	      route += capture
+	    }
+	  }
+
+	  var delimiter = escapeString(options.delimiter || '/')
+	  var endsWithDelimiter = route.slice(-delimiter.length) === delimiter
+
+	  // In non-strict mode we allow a slash at the end of match. If the path to
+	  // match already ends with a slash, we remove it for consistency. The slash
+	  // is valid at the end of a path match, not in the middle. This is important
+	  // in non-ending mode, where "/test/" shouldn't match "/test//route".
+	  if (!strict) {
+	    route = (endsWithDelimiter ? route.slice(0, -delimiter.length) : route) + '(?:' + delimiter + '(?=$))?'
+	  }
+
+	  if (end) {
+	    route += '$'
+	  } else {
+	    // In non-ending mode, we need the capturing groups to match as much as
+	    // possible by using a positive lookahead to the end or next path segment.
+	    route += strict && endsWithDelimiter ? '' : '(?=' + delimiter + '|$)'
+	  }
+
+	  return attachKeys(new RegExp('^' + route, flags(options)), keys)
+	}
+
+	/**
+	 * Normalize the given path string, returning a regular expression.
+	 *
+	 * An empty array can be passed in for the keys, which will hold the
+	 * placeholder key descriptions. For example, using `/user/:id`, `keys` will
+	 * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
+	 *
+	 * @param  {(string|RegExp|Array)} path
+	 * @param  {(Array|Object)=}       keys
+	 * @param  {Object=}               options
+	 * @return {!RegExp}
+	 */
+	function pathToRegexp (path, keys, options) {
+	  if (!isarray(keys)) {
+	    options = /** @type {!Object} */ (keys || options)
+	    keys = []
+	  }
+
+	  options = options || {}
+
+	  if (path instanceof RegExp) {
+	    return regexpToRegexp(path, /** @type {!Array} */ (keys))
+	  }
+
+	  if (isarray(path)) {
+	    return arrayToRegexp(/** @type {!Array} */ (path), /** @type {!Array} */ (keys), options)
+	  }
+
+	  return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
+	}
+
+
+/***/ },
+/* 302 */
+/***/ function(module, exports) {
+
+	module.exports = Array.isArray || function (arr) {
+	  return Object.prototype.toString.call(arr) == '[object Array]';
+	};
+
+
+/***/ },
+/* 303 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	// Simple cache - NEW cached items are added to cachedKeys array. When cache is
+	// full, oldest key is removed from array and item is removed from cache
+
+	var DEFAULT_OPTIONS = {
+	  limit: 200
+	};
+
+	var MatcherCache = function () {
+	  function MatcherCache() {
+	    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+	    _classCallCheck(this, MatcherCache);
+
+	    this.cache = {};
+	    this.cachedKeys = [];
+
+	    var mergedOptions = _extends({}, DEFAULT_OPTIONS, options);
+	    this.options = mergedOptions;
+	  }
+
+	  MatcherCache.prototype.set = function set(key, value) {
+	    // If this key is not cached add key to cachedKeys array
+	    if (this.cache[key] === undefined) {
+	      this.cachedKeys.push(key);
+	    }
+	    this.cache[key] = value;
+	    this.checkCacheLimit();
+	  };
+
+	  MatcherCache.prototype.get = function get(key) {
+	    return this.cache[key];
+	  };
+
+	  MatcherCache.prototype.checkCacheLimit = function checkCacheLimit() {
+	    // Clear a cache item if we are over limit
+	    if (this.cachedKeys.length > this.options.limit) {
+	      var keyToUncache = this.cachedKeys.shift();
+	      delete this.cache[keyToUncache];
+	    }
+	  };
+
+	  return MatcherCache;
+	}();
+
+	exports.default = MatcherCache;
+
+/***/ },
+/* 304 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _react = __webpack_require__(120);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Broadcasts = __webpack_require__(292);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Miss = function (_React$Component) {
+	  _inherits(Miss, _React$Component);
+
+	  function Miss(props, context) {
+	    _classCallCheck(this, Miss);
+
+	    // ignore if rendered out of context (probably for unit tests)
+	    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props, context));
+
+	    if (context.match && !context.serverRouter) {
+	      _this.unsubscribe = _this.context.match.subscribe(function (matchesFound) {
+	        _this.setState({
+	          noMatchesInContext: !matchesFound
+	        });
+	      });
+	    }
+
+	    if (context.serverRouter) {
+	      context.serverRouter.registerMissPresence(context.match.serverRouterIndex);
+	    }
+
+	    _this.state = {
+	      noMatchesInContext: false
+	    };
+	    return _this;
+	  }
+
+	  Miss.prototype.componentWillUnmount = function componentWillUnmount() {
+	    if (this.unsubscribe) {
+	      this.unsubscribe();
+	    }
+	  };
+
+	  Miss.prototype.render = function render() {
+	    var _this2 = this;
+
+	    return _react2.default.createElement(
+	      _Broadcasts.LocationSubscriber,
+	      null,
+	      function (location) {
+	        var _props = _this2.props,
+	            render = _props.render,
+	            Component = _props.component;
+	        var noMatchesInContext = _this2.state.noMatchesInContext;
+	        var _context = _this2.context,
+	            serverRouter = _context.serverRouter,
+	            match = _context.match;
+
+	        var noMatchesOnServerContext = serverRouter && serverRouter.missedAtIndex(match.serverRouterIndex);
+	        if (noMatchesInContext || noMatchesOnServerContext) {
+	          return render ? render({ location: location }) : _react2.default.createElement(Component, { location: location });
+	        } else {
+	          return null;
+	        }
+	      }
+	    );
+	  };
+
+	  return Miss;
+	}(_react2.default.Component);
+
+	Miss.contextTypes = {
+	  match: _react.PropTypes.object,
+	  serverRouter: _react.PropTypes.object
+	};
+
+
+	if (process.env.NODE_ENV !== 'production') {
+	  Miss.propTypes = {
+	    children: _react.PropTypes.node,
+	    render: _react.PropTypes.func,
+	    component: _react.PropTypes.func
+	  };
+	}
+
+	exports.default = Miss;
+
+/***/ },
+/* 305 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _react = __webpack_require__(120);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _PropTypes = __webpack_require__(297);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var NavigationPrompt = function (_React$Component) {
+	  _inherits(NavigationPrompt, _React$Component);
+
+	  function NavigationPrompt() {
+	    _classCallCheck(this, NavigationPrompt);
+
+	    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
+	  }
+
+	  NavigationPrompt.prototype.block = function block() {
+	    if (!this.teardownPrompt) this.teardownPrompt = this.context.history.block(this.props.message);
+	  };
+
+	  NavigationPrompt.prototype.unblock = function unblock() {
+	    if (this.teardownPrompt) {
+	      this.teardownPrompt();
+	      this.teardownPrompt = null;
+	    }
+	  };
+
+	  NavigationPrompt.prototype.componentWillMount = function componentWillMount() {
+	    if (this.props.when) this.block();
+	  };
+
+	  NavigationPrompt.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+	    if (nextProps.when) {
+	      this.block();
+	    } else {
+	      this.unblock();
+	    }
+	  };
+
+	  NavigationPrompt.prototype.componentWillUnmount = function componentWillUnmount() {
+	    this.unblock();
+	  };
+
+	  NavigationPrompt.prototype.render = function render() {
+	    return null;
+	  };
+
+	  return NavigationPrompt;
+	}(_react2.default.Component);
+
+	NavigationPrompt.contextTypes = {
+	  history: _PropTypes.historyContext.isRequired
+	};
+	NavigationPrompt.defaultProps = {
+	  when: true
+	};
+
+
+	if (process.env.NODE_ENV !== 'production') {
+	  NavigationPrompt.propTypes = {
+	    when: _react.PropTypes.bool,
+	    message: _react.PropTypes.oneOfType([_react.PropTypes.func, _react.PropTypes.string]).isRequired
+	  };
+	}
+
+	exports.default = NavigationPrompt;
+
+/***/ },
+/* 306 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _react = __webpack_require__(120);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _PropTypes = __webpack_require__(297);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Redirect = function (_React$Component) {
+	  _inherits(Redirect, _React$Component);
+
+	  function Redirect() {
+	    _classCallCheck(this, Redirect);
+
+	    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
+	  }
+
+	  Redirect.prototype.componentWillMount = function componentWillMount() {
+	    if (this.context.serverRouter) this.redirect();
+	  };
+
+	  Redirect.prototype.componentDidMount = function componentDidMount() {
+	    this.redirect();
+	  };
+
+	  Redirect.prototype.redirect = function redirect() {
+	    var router = this.context.router;
+	    var _props = this.props,
+	        to = _props.to,
+	        push = _props.push;
+	    // so that folks can unit test w/o hassle
+
+	    if (router) {
+	      var navigate = push ? router.transitionTo : router.replaceWith;
+	      navigate(to);
+	    }
+	  };
+
+	  Redirect.prototype.render = function render() {
+	    return null;
+	  };
+
+	  return Redirect;
+	}(_react2.default.Component);
+
+	Redirect.defaultProps = {
+	  push: false
+	};
+	Redirect.contextTypes = {
+	  router: _PropTypes.routerContext,
+	  serverRouter: _react.PropTypes.object
+	};
+
+
+	if (process.env.NODE_ENV !== 'production') {
+	  Redirect.propTypes = {
+	    to: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.object]).isRequired,
+	    push: _react.PropTypes.bool
+	  };
+	}
+
+	exports.default = Redirect;
+
+/***/ },
+/* 307 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(120);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _createBrowserHistory = __webpack_require__(308);
+
+	var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
+
+	var _StaticRouter = __webpack_require__(317);
+
+	var _StaticRouter2 = _interopRequireDefault(_StaticRouter);
+
+	var _History = __webpack_require__(321);
+
+	var _History2 = _interopRequireDefault(_History);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-	var _React$PropTypes = _react2.default.PropTypes,
-	    func = _React$PropTypes.func,
-	    object = _React$PropTypes.object;
+	var BrowserRouter = function BrowserRouter(_ref) {
+	  var basename = _ref.basename,
+	      forceRefresh = _ref.forceRefresh,
+	      getUserConfirmation = _ref.getUserConfirmation,
+	      keyLength = _ref.keyLength,
+	      routerProps = _objectWithoutProperties(_ref, ['basename', 'forceRefresh', 'getUserConfirmation', 'keyLength']);
 
-	/**
-	 * A <Router> is a high-level API for automatically setting up
-	 * a router that renders a <RouterContext> with all the props
-	 * it needs each time the URL changes.
-	 */
-
-	var Router = _react2.default.createClass({
-	  displayName: 'Router',
-
-
-	  propTypes: {
-	    history: object,
-	    children: _InternalPropTypes.routes,
-	    routes: _InternalPropTypes.routes, // alias for children
-	    render: func,
-	    createElement: func,
-	    onError: func,
-	    onUpdate: func,
-
-	    // PRIVATE: For client-side rehydration of server match.
-	    matchContext: object
-	  },
-
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      render: function render(props) {
-	        return _react2.default.createElement(_RouterContext2.default, props);
+	  return _react2.default.createElement(
+	    _History2.default,
+	    {
+	      createHistory: _createBrowserHistory2.default,
+	      historyOptions: {
+	        basename: basename,
+	        forceRefresh: forceRefresh,
+	        getUserConfirmation: getUserConfirmation,
+	        keyLength: keyLength
 	      }
-	    };
-	  },
-	  getInitialState: function getInitialState() {
-	    return {
-	      location: null,
-	      routes: null,
-	      params: null,
-	      components: null
-	    };
-	  },
-	  handleError: function handleError(error) {
-	    if (this.props.onError) {
-	      this.props.onError.call(this, error);
-	    } else {
-	      // Throw errors by default so we don't silently swallow them!
-	      throw error; // This error probably occurred in getChildRoutes or getComponents.
+	    },
+	    function (_ref2) {
+	      var history = _ref2.history,
+	          action = _ref2.action,
+	          location = _ref2.location;
+	      return _react2.default.createElement(_StaticRouter2.default, _extends({
+	        action: action,
+	        location: location,
+	        basename: basename,
+	        onPush: history.push,
+	        onReplace: history.replace,
+	        blockTransitions: history.block
+	      }, routerProps));
 	    }
-	  },
-	  createRouterObject: function createRouterObject(state) {
-	    var matchContext = this.props.matchContext;
+	  );
+	};
 
-	    if (matchContext) {
-	      return matchContext.router;
-	    }
+	if (process.env.NODE_ENV !== 'production') {
+	  BrowserRouter.propTypes = {
+	    basename: _react.PropTypes.string,
+	    forceRefresh: _react.PropTypes.bool,
+	    getUserConfirmation: _react.PropTypes.func,
+	    keyLength: _react.PropTypes.number,
+	    children: _react.PropTypes.oneOfType([_react.PropTypes.func, _react.PropTypes.node])
+	  };
+	}
 
-	    var history = this.props.history;
-
-	    return (0, _RouterUtils.createRouterObject)(history, this.transitionManager, state);
-	  },
-	  createTransitionManager: function createTransitionManager() {
-	    var matchContext = this.props.matchContext;
-
-	    if (matchContext) {
-	      return matchContext.transitionManager;
-	    }
-
-	    var history = this.props.history;
-	    var _props = this.props,
-	        routes = _props.routes,
-	        children = _props.children;
-
-
-	    !history.getCurrentLocation ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'You have provided a history object created with history v2.x or ' + 'earlier. This version of React Router is only compatible with v3 ' + 'history objects. Please upgrade to history v3.x.') : (0, _invariant2.default)(false) : void 0;
-
-	    return (0, _createTransitionManager3.default)(history, (0, _RouteUtils.createRoutes)(routes || children));
-	  },
-	  componentWillMount: function componentWillMount() {
-	    var _this = this;
-
-	    this.transitionManager = this.createTransitionManager();
-	    this.router = this.createRouterObject(this.state);
-
-	    this._unlisten = this.transitionManager.listen(function (error, state) {
-	      if (error) {
-	        _this.handleError(error);
-	      } else {
-	        // Keep the identity of this.router because of a caveat in ContextUtils:
-	        // they only work if the object identity is preserved.
-	        (0, _RouterUtils.assignRouterState)(_this.router, state);
-	        _this.setState(state, _this.props.onUpdate);
-	      }
-	    });
-	  },
-
-
-	  /* istanbul ignore next: sanity check */
-	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-	    process.env.NODE_ENV !== 'production' ? (0, _routerWarning2.default)(nextProps.history === this.props.history, 'You cannot change <Router history>; it will be ignored') : void 0;
-
-	    process.env.NODE_ENV !== 'production' ? (0, _routerWarning2.default)((nextProps.routes || nextProps.children) === (this.props.routes || this.props.children), 'You cannot change <Router routes>; it will be ignored') : void 0;
-	  },
-	  componentWillUnmount: function componentWillUnmount() {
-	    if (this._unlisten) this._unlisten();
-	  },
-	  render: function render() {
-	    var _state = this.state,
-	        location = _state.location,
-	        routes = _state.routes,
-	        params = _state.params,
-	        components = _state.components;
-
-	    var _props2 = this.props,
-	        createElement = _props2.createElement,
-	        render = _props2.render,
-	        props = _objectWithoutProperties(_props2, ['createElement', 'render']);
-
-	    if (location == null) return null; // Async match
-
-	    // Only forward non-Router-specific props to routing context, as those are
-	    // the only ones that might be custom routing context props.
-	    Object.keys(Router.propTypes).forEach(function (propType) {
-	      return delete props[propType];
-	    });
-
-	    return render(_extends({}, props, {
-	      router: this.router,
-	      location: location,
-	      routes: routes,
-	      params: params,
-	      components: components,
-	      createElement: createElement
-	    }));
-	  }
-	});
-
-	exports.default = Router;
-	module.exports = exports['default'];
+	exports.default = BrowserRouter;
 
 /***/ },
-/* 336 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	exports.default = createTransitionManager;
-
-	var _routerWarning = __webpack_require__(337);
-
-	var _routerWarning2 = _interopRequireDefault(_routerWarning);
-
-	var _computeChangedRoutes2 = __webpack_require__(339);
-
-	var _computeChangedRoutes3 = _interopRequireDefault(_computeChangedRoutes2);
-
-	var _TransitionUtils = __webpack_require__(340);
-
-	var _isActive2 = __webpack_require__(342);
-
-	var _isActive3 = _interopRequireDefault(_isActive2);
-
-	var _getComponents = __webpack_require__(343);
-
-	var _getComponents2 = _interopRequireDefault(_getComponents);
-
-	var _matchRoutes = __webpack_require__(345);
-
-	var _matchRoutes2 = _interopRequireDefault(_matchRoutes);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function hasAnyProperties(object) {
-	  for (var p in object) {
-	    if (Object.prototype.hasOwnProperty.call(object, p)) return true;
-	  }return false;
-	}
-
-	function createTransitionManager(history, routes) {
-	  var state = {};
-
-	  // Signature should be (location, indexOnly), but needs to support (path,
-	  // query, indexOnly)
-	  function isActive(location, indexOnly) {
-	    location = history.createLocation(location);
-
-	    return (0, _isActive3.default)(location, indexOnly, state.location, state.routes, state.params);
-	  }
-
-	  var partialNextState = void 0;
-
-	  function match(location, callback) {
-	    if (partialNextState && partialNextState.location === location) {
-	      // Continue from where we left off.
-	      finishMatch(partialNextState, callback);
-	    } else {
-	      (0, _matchRoutes2.default)(routes, location, function (error, nextState) {
-	        if (error) {
-	          callback(error);
-	        } else if (nextState) {
-	          finishMatch(_extends({}, nextState, { location: location }), callback);
-	        } else {
-	          callback();
-	        }
-	      });
-	    }
-	  }
-
-	  function finishMatch(nextState, callback) {
-	    var _computeChangedRoutes = (0, _computeChangedRoutes3.default)(state, nextState),
-	        leaveRoutes = _computeChangedRoutes.leaveRoutes,
-	        changeRoutes = _computeChangedRoutes.changeRoutes,
-	        enterRoutes = _computeChangedRoutes.enterRoutes;
-
-	    (0, _TransitionUtils.runLeaveHooks)(leaveRoutes, state);
-
-	    // Tear down confirmation hooks for left routes
-	    leaveRoutes.filter(function (route) {
-	      return enterRoutes.indexOf(route) === -1;
-	    }).forEach(removeListenBeforeHooksForRoute);
-
-	    // change and enter hooks are run in series
-	    (0, _TransitionUtils.runChangeHooks)(changeRoutes, state, nextState, function (error, redirectInfo) {
-	      if (error || redirectInfo) return handleErrorOrRedirect(error, redirectInfo);
-
-	      (0, _TransitionUtils.runEnterHooks)(enterRoutes, nextState, finishEnterHooks);
-	    });
-
-	    function finishEnterHooks(error, redirectInfo) {
-	      if (error || redirectInfo) return handleErrorOrRedirect(error, redirectInfo);
-
-	      // TODO: Fetch components after state is updated.
-	      (0, _getComponents2.default)(nextState, function (error, components) {
-	        if (error) {
-	          callback(error);
-	        } else {
-	          // TODO: Make match a pure function and have some other API
-	          // for "match and update state".
-	          callback(null, null, state = _extends({}, nextState, { components: components }));
-	        }
-	      });
-	    }
-
-	    function handleErrorOrRedirect(error, redirectInfo) {
-	      if (error) callback(error);else callback(null, redirectInfo);
-	    }
-	  }
-
-	  var RouteGuid = 1;
-
-	  function getRouteID(route) {
-	    var create = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
-	    return route.__id__ || create && (route.__id__ = RouteGuid++);
-	  }
-
-	  var RouteHooks = Object.create(null);
-
-	  function getRouteHooksForRoutes(routes) {
-	    return routes.map(function (route) {
-	      return RouteHooks[getRouteID(route)];
-	    }).filter(function (hook) {
-	      return hook;
-	    });
-	  }
-
-	  function transitionHook(location, callback) {
-	    (0, _matchRoutes2.default)(routes, location, function (error, nextState) {
-	      if (nextState == null) {
-	        // TODO: We didn't actually match anything, but hang
-	        // onto error/nextState so we don't have to matchRoutes
-	        // again in the listen callback.
-	        callback();
-	        return;
-	      }
-
-	      // Cache some state here so we don't have to
-	      // matchRoutes() again in the listen callback.
-	      partialNextState = _extends({}, nextState, { location: location });
-
-	      var hooks = getRouteHooksForRoutes((0, _computeChangedRoutes3.default)(state, partialNextState).leaveRoutes);
-
-	      var result = void 0;
-	      for (var i = 0, len = hooks.length; result == null && i < len; ++i) {
-	        // Passing the location arg here indicates to
-	        // the user that this is a transition hook.
-	        result = hooks[i](location);
-	      }
-
-	      callback(result);
-	    });
-	  }
-
-	  /* istanbul ignore next: untestable with Karma */
-	  function beforeUnloadHook() {
-	    // Synchronously check to see if any route hooks want
-	    // to prevent the current window/tab from closing.
-	    if (state.routes) {
-	      var hooks = getRouteHooksForRoutes(state.routes);
-
-	      var message = void 0;
-	      for (var i = 0, len = hooks.length; typeof message !== 'string' && i < len; ++i) {
-	        // Passing no args indicates to the user that this is a
-	        // beforeunload hook. We don't know the next location.
-	        message = hooks[i]();
-	      }
-
-	      return message;
-	    }
-	  }
-
-	  var unlistenBefore = void 0,
-	      unlistenBeforeUnload = void 0;
-
-	  function removeListenBeforeHooksForRoute(route) {
-	    var routeID = getRouteID(route);
-	    if (!routeID) {
-	      return;
-	    }
-
-	    delete RouteHooks[routeID];
-
-	    if (!hasAnyProperties(RouteHooks)) {
-	      // teardown transition & beforeunload hooks
-	      if (unlistenBefore) {
-	        unlistenBefore();
-	        unlistenBefore = null;
-	      }
-
-	      if (unlistenBeforeUnload) {
-	        unlistenBeforeUnload();
-	        unlistenBeforeUnload = null;
-	      }
-	    }
-	  }
-
-	  /**
-	   * Registers the given hook function to run before leaving the given route.
-	   *
-	   * During a normal transition, the hook function receives the next location
-	   * as its only argument and can return either a prompt message (string) to show the user,
-	   * to make sure they want to leave the page; or `false`, to prevent the transition.
-	   * Any other return value will have no effect.
-	   *
-	   * During the beforeunload event (in browsers) the hook receives no arguments.
-	   * In this case it must return a prompt message to prevent the transition.
-	   *
-	   * Returns a function that may be used to unbind the listener.
-	   */
-	  function listenBeforeLeavingRoute(route, hook) {
-	    var thereWereNoRouteHooks = !hasAnyProperties(RouteHooks);
-	    var routeID = getRouteID(route, true);
-
-	    RouteHooks[routeID] = hook;
-
-	    if (thereWereNoRouteHooks) {
-	      // setup transition & beforeunload hooks
-	      unlistenBefore = history.listenBefore(transitionHook);
-
-	      if (history.listenBeforeUnload) unlistenBeforeUnload = history.listenBeforeUnload(beforeUnloadHook);
-	    }
-
-	    return function () {
-	      removeListenBeforeHooksForRoute(route);
-	    };
-	  }
-
-	  /**
-	   * This is the API for stateful environments. As the location
-	   * changes, we update state and call the listener. We can also
-	   * gracefully handle errors and redirects.
-	   */
-	  function listen(listener) {
-	    function historyListener(location) {
-	      if (state.location === location) {
-	        listener(null, state);
-	      } else {
-	        match(location, function (error, redirectLocation, nextState) {
-	          if (error) {
-	            listener(error);
-	          } else if (redirectLocation) {
-	            history.replace(redirectLocation);
-	          } else if (nextState) {
-	            listener(null, nextState);
-	          } else {
-	            process.env.NODE_ENV !== 'production' ? (0, _routerWarning2.default)(false, 'Location "%s" did not match any routes', location.pathname + location.search + location.hash) : void 0;
-	          }
-	        });
-	      }
-	    }
-
-	    // TODO: Only use a single history listener. Otherwise we'll end up with
-	    // multiple concurrent calls to match.
-
-	    // Set up the history listener first in case the initial match redirects.
-	    var unsubscribe = history.listen(historyListener);
-
-	    if (state.location) {
-	      // Picking up on a matchContext.
-	      listener(null, state);
-	    } else {
-	      historyListener(history.getCurrentLocation());
-	    }
-
-	    return unsubscribe;
-	  }
-
-	  return {
-	    isActive: isActive,
-	    match: match,
-	    listenBeforeLeavingRoute: listenBeforeLeavingRoute,
-	    listen: listen
-	  };
-	}
-	module.exports = exports['default'];
-
-/***/ },
-/* 337 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.default = routerWarning;
-	exports._resetWarned = _resetWarned;
-
-	var _warning = __webpack_require__(338);
+	var _warning = __webpack_require__(309);
 
 	var _warning2 = _interopRequireDefault(_warning);
 
+	var _invariant = __webpack_require__(295);
+
+	var _invariant2 = _interopRequireDefault(_invariant);
+
+	var _LocationUtils = __webpack_require__(310);
+
+	var _PathUtils = __webpack_require__(313);
+
+	var _createTransitionManager = __webpack_require__(314);
+
+	var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
+
+	var _ExecutionEnvironment = __webpack_require__(315);
+
+	var _DOMUtils = __webpack_require__(316);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var warned = {};
+	var PopStateEvent = 'popstate';
+	var HashChangeEvent = 'hashchange';
 
-	function routerWarning(falseToWarn, message) {
-	  // Only issue deprecation warnings once.
-	  if (message.indexOf('deprecated') !== -1) {
-	    if (warned[message]) {
-	      return;
+	var getHistoryState = function getHistoryState() {
+	  try {
+	    return window.history.state || {};
+	  } catch (e) {
+	    // IE 11 sometimes throws when accessing window.history.state
+	    // See https://github.com/mjackson/history/pull/289
+	    return {};
+	  }
+	};
+
+	/**
+	 * Creates a history object that uses the HTML5 history API including
+	 * pushState, replaceState, and the popstate event.
+	 */
+	var createBrowserHistory = function createBrowserHistory() {
+	  var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+	  !_ExecutionEnvironment.canUseDOM ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'Browser history needs a DOM') : (0, _invariant2.default)(false) : void 0;
+
+	  var globalHistory = window.history;
+	  var canUseHistory = (0, _DOMUtils.supportsHistory)();
+	  var needsHashChangeListener = !(0, _DOMUtils.supportsPopStateOnHashChange)();
+
+	  var _props$basename = props.basename,
+	      basename = _props$basename === undefined ? '' : _props$basename,
+	      _props$forceRefresh = props.forceRefresh,
+	      forceRefresh = _props$forceRefresh === undefined ? false : _props$forceRefresh,
+	      _props$getUserConfirm = props.getUserConfirmation,
+	      getUserConfirmation = _props$getUserConfirm === undefined ? _DOMUtils.getConfirmation : _props$getUserConfirm,
+	      _props$keyLength = props.keyLength,
+	      keyLength = _props$keyLength === undefined ? 6 : _props$keyLength;
+
+
+	  var getDOMLocation = function getDOMLocation(historyState) {
+	    var _ref = historyState || {},
+	        key = _ref.key,
+	        state = _ref.state;
+
+	    var _window$location = window.location,
+	        pathname = _window$location.pathname,
+	        search = _window$location.search,
+	        hash = _window$location.hash;
+
+
+	    var path = pathname + search + hash;
+
+	    if (basename) path = (0, _PathUtils.stripPrefix)(path, basename);
+
+	    return _extends({}, (0, _PathUtils.parsePath)(path), {
+	      state: state,
+	      key: key
+	    });
+	  };
+
+	  var createKey = function createKey() {
+	    return Math.random().toString(36).substr(2, keyLength);
+	  };
+
+	  var transitionManager = (0, _createTransitionManager2.default)();
+
+	  var setState = function setState(nextState) {
+	    _extends(history, nextState);
+
+	    history.length = globalHistory.length;
+
+	    transitionManager.notifyListeners(history.location, history.action);
+	  };
+
+	  var handlePopState = function handlePopState(event) {
+	    // Ignore extraneous popstate events in WebKit.
+	    if ((0, _DOMUtils.isExtraneousPopstateEvent)(event)) return;
+
+	    handlePop(getDOMLocation(event.state));
+	  };
+
+	  var handleHashChange = function handleHashChange() {
+	    handlePop(getDOMLocation(getHistoryState()));
+	  };
+
+	  var forceNextPop = false;
+
+	  var handlePop = function handlePop(location) {
+	    if (forceNextPop) {
+	      forceNextPop = false;
+	      setState();
+	    } else {
+	      (function () {
+	        var action = 'POP';
+
+	        transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+	          if (ok) {
+	            setState({ action: action, location: location });
+	          } else {
+	            revertPop(location);
+	          }
+	        });
+	      })();
+	    }
+	  };
+
+	  var revertPop = function revertPop(fromLocation) {
+	    var toLocation = history.location;
+
+	    // TODO: We could probably make this more reliable by
+	    // keeping a list of keys we've seen in sessionStorage.
+	    // Instead, we just default to 0 for keys we don't know.
+
+	    var toIndex = allKeys.indexOf(toLocation.key);
+
+	    if (toIndex === -1) toIndex = 0;
+
+	    var fromIndex = allKeys.indexOf(fromLocation.key);
+
+	    if (fromIndex === -1) fromIndex = 0;
+
+	    var delta = toIndex - fromIndex;
+
+	    if (delta) {
+	      forceNextPop = true;
+	      go(delta);
+	    }
+	  };
+
+	  var initialLocation = getDOMLocation(getHistoryState());
+	  var allKeys = [initialLocation.key];
+
+	  // Public interface
+
+	  var createHref = function createHref(location) {
+	    return basename + (0, _PathUtils.createPath)(location);
+	  };
+
+	  var push = function push(path, state) {
+	    process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(!((typeof path === 'undefined' ? 'undefined' : _typeof(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to push when the 1st ' + 'argument is a location-like object that already has state; it is ignored') : void 0;
+
+	    var action = 'PUSH';
+	    var location = (0, _LocationUtils.createLocation)(path, state, createKey(), history.location);
+
+	    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+	      if (!ok) return;
+
+	      var href = createHref(location);
+	      var key = location.key,
+	          state = location.state;
+
+
+	      if (canUseHistory) {
+	        globalHistory.pushState({ key: key, state: state }, null, href);
+
+	        if (forceRefresh) {
+	          window.location.href = href;
+	        } else {
+	          var prevIndex = allKeys.indexOf(history.location.key);
+	          var nextKeys = allKeys.slice(0, prevIndex === -1 ? 0 : prevIndex + 1);
+
+	          nextKeys.push(location.key);
+	          allKeys = nextKeys;
+
+	          setState({ action: action, location: location });
+	        }
+	      } else {
+	        process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(state === undefined, 'Browser history cannot push state in browsers that do not support HTML5 history') : void 0;
+
+	        window.location.href = href;
+	      }
+	    });
+	  };
+
+	  var replace = function replace(path, state) {
+	    process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(!((typeof path === 'undefined' ? 'undefined' : _typeof(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to replace when the 1st ' + 'argument is a location-like object that already has state; it is ignored') : void 0;
+
+	    var action = 'REPLACE';
+	    var location = (0, _LocationUtils.createLocation)(path, state, createKey(), history.location);
+
+	    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+	      if (!ok) return;
+
+	      var href = createHref(location);
+	      var key = location.key,
+	          state = location.state;
+
+
+	      if (canUseHistory) {
+	        globalHistory.replaceState({ key: key, state: state }, null, href);
+
+	        if (forceRefresh) {
+	          window.location.replace(href);
+	        } else {
+	          var prevIndex = allKeys.indexOf(history.location.key);
+
+	          if (prevIndex !== -1) allKeys[prevIndex] = location.key;
+
+	          setState({ action: action, location: location });
+	        }
+	      } else {
+	        process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(state === undefined, 'Browser history cannot replace state in browsers that do not support HTML5 history') : void 0;
+
+	        window.location.replace(href);
+	      }
+	    });
+	  };
+
+	  var go = function go(n) {
+	    globalHistory.go(n);
+	  };
+
+	  var goBack = function goBack() {
+	    return go(-1);
+	  };
+
+	  var goForward = function goForward() {
+	    return go(1);
+	  };
+
+	  var listenerCount = 0;
+
+	  var checkDOMListeners = function checkDOMListeners(delta) {
+	    listenerCount += delta;
+
+	    if (listenerCount === 1) {
+	      (0, _DOMUtils.addEventListener)(window, PopStateEvent, handlePopState);
+
+	      if (needsHashChangeListener) (0, _DOMUtils.addEventListener)(window, HashChangeEvent, handleHashChange);
+	    } else if (listenerCount === 0) {
+	      (0, _DOMUtils.removeEventListener)(window, PopStateEvent, handlePopState);
+
+	      if (needsHashChangeListener) (0, _DOMUtils.removeEventListener)(window, HashChangeEvent, handleHashChange);
+	    }
+	  };
+
+	  var isBlocked = false;
+
+	  var block = function block() {
+	    var prompt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+	    var unblock = transitionManager.setPrompt(prompt);
+
+	    if (!isBlocked) {
+	      checkDOMListeners(1);
+	      isBlocked = true;
 	    }
 
-	    warned[message] = true;
-	  }
+	    return function () {
+	      if (isBlocked) {
+	        isBlocked = false;
+	        checkDOMListeners(-1);
+	      }
 
-	  message = '[react-router] ' + message;
+	      return unblock();
+	    };
+	  };
 
-	  for (var _len = arguments.length, args = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-	    args[_key - 2] = arguments[_key];
-	  }
+	  var listen = function listen(listener) {
+	    var unlisten = transitionManager.appendListener(listener);
+	    checkDOMListeners(1);
 
-	  _warning2.default.apply(undefined, [falseToWarn, message].concat(args));
-	}
+	    return function () {
+	      checkDOMListeners(-1);
+	      return unlisten();
+	    };
+	  };
 
-	function _resetWarned() {
-	  warned = {};
-	}
+	  var history = {
+	    length: globalHistory.length,
+	    action: 'POP',
+	    location: initialLocation,
+	    createHref: createHref,
+	    push: push,
+	    replace: replace,
+	    go: go,
+	    goBack: goBack,
+	    goForward: goForward,
+	    block: block,
+	    listen: listen
+	  };
+
+	  return history;
+	};
+
+	exports.default = createBrowserHistory;
 
 /***/ },
-/* 338 */
+/* 309 */
 /***/ function(module, exports) {
 
 	/**
@@ -81869,343 +60765,151 @@
 
 
 /***/ },
-/* 339 */
+/* 310 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
+	exports.locationsAreEqual = exports.createLocation = undefined;
 
-	var _PatternUtils = __webpack_require__(333);
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	function routeParamsChanged(route, prevState, nextState) {
-	  if (!route.path) return false;
+	var _resolvePathname = __webpack_require__(311);
 
-	  var paramNames = (0, _PatternUtils.getParamNames)(route.path);
+	var _resolvePathname2 = _interopRequireDefault(_resolvePathname);
 
-	  return paramNames.some(function (paramName) {
-	    return prevState.params[paramName] !== nextState.params[paramName];
-	  });
-	}
+	var _valueEqual = __webpack_require__(312);
 
-	/**
-	 * Returns an object of { leaveRoutes, changeRoutes, enterRoutes } determined by
-	 * the change from prevState to nextState. We leave routes if either
-	 * 1) they are not in the next state or 2) they are in the next state
-	 * but their params have changed (i.e. /users/123 => /users/456).
-	 *
-	 * leaveRoutes are ordered starting at the leaf route of the tree
-	 * we're leaving up to the common parent route. enterRoutes are ordered
-	 * from the top of the tree we're entering down to the leaf route.
-	 *
-	 * changeRoutes are any routes that didn't leave or enter during
-	 * the transition.
-	 */
-	function computeChangedRoutes(prevState, nextState) {
-	  var prevRoutes = prevState && prevState.routes;
-	  var nextRoutes = nextState.routes;
+	var _valueEqual2 = _interopRequireDefault(_valueEqual);
 
-	  var leaveRoutes = void 0,
-	      changeRoutes = void 0,
-	      enterRoutes = void 0;
-	  if (prevRoutes) {
-	    (function () {
-	      var parentIsLeaving = false;
-	      leaveRoutes = prevRoutes.filter(function (route) {
-	        if (parentIsLeaving) {
-	          return true;
-	        } else {
-	          var isLeaving = nextRoutes.indexOf(route) === -1 || routeParamsChanged(route, prevState, nextState);
-	          if (isLeaving) parentIsLeaving = true;
-	          return isLeaving;
-	        }
-	      });
+	var _PathUtils = __webpack_require__(313);
 
-	      // onLeave hooks start at the leaf route.
-	      leaveRoutes.reverse();
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	      enterRoutes = [];
-	      changeRoutes = [];
-
-	      nextRoutes.forEach(function (route) {
-	        var isNew = prevRoutes.indexOf(route) === -1;
-	        var paramsChanged = leaveRoutes.indexOf(route) !== -1;
-
-	        if (isNew || paramsChanged) enterRoutes.push(route);else changeRoutes.push(route);
-	      });
-	    })();
+	var createLocation = exports.createLocation = function createLocation(path, state, key, currentLocation) {
+	  var location = void 0;
+	  if (typeof path === 'string') {
+	    // Two-arg form: push(path, state)
+	    location = (0, _PathUtils.parsePath)(path);
+	    location.state = state;
 	  } else {
-	    leaveRoutes = [];
-	    changeRoutes = [];
-	    enterRoutes = nextRoutes;
+	    // One-arg form: push(location)
+	    location = _extends({}, path);
+
+	    if (location.pathname === undefined) location.pathname = '';
+
+	    if (location.search) {
+	      if (location.search.charAt(0) !== '?') location.search = '?' + location.search;
+	    } else {
+	      location.search = '';
+	    }
+
+	    if (location.hash) {
+	      if (location.hash.charAt(0) !== '#') location.hash = '#' + location.hash;
+	    } else {
+	      location.hash = '';
+	    }
+
+	    if (state !== undefined && location.state === undefined) location.state = state;
 	  }
 
-	  return {
-	    leaveRoutes: leaveRoutes,
-	    changeRoutes: changeRoutes,
-	    enterRoutes: enterRoutes
-	  };
-	}
+	  location.key = key;
 
-	exports.default = computeChangedRoutes;
-	module.exports = exports['default'];
+	  if (currentLocation) {
+	    // Resolve incomplete/relative pathname relative to current location.
+	    if (!location.pathname) {
+	      location.pathname = currentLocation.pathname;
+	    } else if (location.pathname.charAt(0) !== '/') {
+	      location.pathname = (0, _resolvePathname2.default)(location.pathname, currentLocation.pathname);
+	    }
+	  }
 
-/***/ },
-/* 340 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.runEnterHooks = runEnterHooks;
-	exports.runChangeHooks = runChangeHooks;
-	exports.runLeaveHooks = runLeaveHooks;
-
-	var _AsyncUtils = __webpack_require__(341);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var PendingHooks = function PendingHooks() {
-	  var _this = this;
-
-	  _classCallCheck(this, PendingHooks);
-
-	  this.hooks = [];
-
-	  this.add = function (hook) {
-	    return _this.hooks.push(hook);
-	  };
-
-	  this.remove = function (hook) {
-	    return _this.hooks = _this.hooks.filter(function (h) {
-	      return h !== hook;
-	    });
-	  };
-
-	  this.has = function (hook) {
-	    return _this.hooks.indexOf(hook) !== -1;
-	  };
-
-	  this.clear = function () {
-	    return _this.hooks = [];
-	  };
+	  return location;
 	};
 
-	var enterHooks = new PendingHooks();
-	var changeHooks = new PendingHooks();
-
-	function createTransitionHook(hook, route, asyncArity, pendingHooks) {
-	  var isSync = hook.length < asyncArity;
-
-	  var transitionHook = function transitionHook() {
-	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	      args[_key] = arguments[_key];
-	    }
-
-	    hook.apply(route, args);
-
-	    if (isSync) {
-	      var callback = args[args.length - 1];
-	      // Assume hook executes synchronously and
-	      // automatically call the callback.
-	      callback();
-	    }
-	  };
-
-	  pendingHooks.add(transitionHook);
-
-	  return transitionHook;
-	}
-
-	function getEnterHooks(routes) {
-	  return routes.reduce(function (hooks, route) {
-	    if (route.onEnter) hooks.push(createTransitionHook(route.onEnter, route, 3, enterHooks));
-	    return hooks;
-	  }, []);
-	}
-
-	function getChangeHooks(routes) {
-	  return routes.reduce(function (hooks, route) {
-	    if (route.onChange) hooks.push(createTransitionHook(route.onChange, route, 4, changeHooks));
-	    return hooks;
-	  }, []);
-	}
-
-	function runTransitionHooks(length, iter, callback) {
-	  if (!length) {
-	    callback();
-	    return;
-	  }
-
-	  var redirectInfo = void 0;
-	  function replace(location) {
-	    redirectInfo = location;
-	  }
-
-	  (0, _AsyncUtils.loopAsync)(length, function (index, next, done) {
-	    iter(index, replace, function (error) {
-	      if (error || redirectInfo) {
-	        done(error, redirectInfo); // No need to continue.
-	      } else {
-	        next();
-	      }
-	    });
-	  }, callback);
-	}
-
-	/**
-	 * Runs all onEnter hooks in the given array of routes in order
-	 * with onEnter(nextState, replace, callback) and calls
-	 * callback(error, redirectInfo) when finished. The first hook
-	 * to use replace short-circuits the loop.
-	 *
-	 * If a hook needs to run asynchronously, it may use the callback
-	 * function. However, doing so will cause the transition to pause,
-	 * which could lead to a non-responsive UI if the hook is slow.
-	 */
-	function runEnterHooks(routes, nextState, callback) {
-	  enterHooks.clear();
-	  var hooks = getEnterHooks(routes);
-	  return runTransitionHooks(hooks.length, function (index, replace, next) {
-	    var wrappedNext = function wrappedNext() {
-	      if (enterHooks.has(hooks[index])) {
-	        next.apply(undefined, arguments);
-	        enterHooks.remove(hooks[index]);
-	      }
-	    };
-	    hooks[index](nextState, replace, wrappedNext);
-	  }, callback);
-	}
-
-	/**
-	 * Runs all onChange hooks in the given array of routes in order
-	 * with onChange(prevState, nextState, replace, callback) and calls
-	 * callback(error, redirectInfo) when finished. The first hook
-	 * to use replace short-circuits the loop.
-	 *
-	 * If a hook needs to run asynchronously, it may use the callback
-	 * function. However, doing so will cause the transition to pause,
-	 * which could lead to a non-responsive UI if the hook is slow.
-	 */
-	function runChangeHooks(routes, state, nextState, callback) {
-	  changeHooks.clear();
-	  var hooks = getChangeHooks(routes);
-	  return runTransitionHooks(hooks.length, function (index, replace, next) {
-	    var wrappedNext = function wrappedNext() {
-	      if (changeHooks.has(hooks[index])) {
-	        next.apply(undefined, arguments);
-	        changeHooks.remove(hooks[index]);
-	      }
-	    };
-	    hooks[index](state, nextState, replace, wrappedNext);
-	  }, callback);
-	}
-
-	/**
-	 * Runs all onLeave hooks in the given array of routes in order.
-	 */
-	function runLeaveHooks(routes, prevState) {
-	  for (var i = 0, len = routes.length; i < len; ++i) {
-	    if (routes[i].onLeave) routes[i].onLeave.call(routes[i], prevState);
-	  }
-	}
+	var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a, b) {
+	  return a.pathname === b.pathname && a.search === b.search && a.hash === b.hash && a.key === b.key && (0, _valueEqual2.default)(a.state, b.state);
+	};
 
 /***/ },
-/* 341 */
+/* 311 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 
-	exports.__esModule = true;
-	exports.loopAsync = loopAsync;
-	exports.mapAsync = mapAsync;
-	function loopAsync(turns, work, callback) {
-	  var currentTurn = 0,
-	      isDone = false;
-	  var sync = false,
-	      hasNext = false,
-	      doneArgs = void 0;
+	var isAbsolute = function isAbsolute(pathname) {
+	  return pathname.charAt(0) === '/';
+	};
 
-	  function done() {
-	    isDone = true;
-	    if (sync) {
-	      // Iterate instead of recursing if possible.
-	      doneArgs = [].concat(Array.prototype.slice.call(arguments));
-	      return;
-	    }
+	// About 1.5x faster than the two-arg version of Array#splice()
+	var spliceOne = function spliceOne(list, index) {
+	  for (var i = index, k = i + 1, n = list.length; k < n; i += 1, k += 1) {
+	    list[i] = list[k];
+	  }list.pop();
+	};
 
-	    callback.apply(this, arguments);
+	// This implementation is based heavily on node's url.parse
+	var resolvePathname = function resolvePathname(to) {
+	  var from = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
+
+	  var toParts = to && to.split('/') || [];
+	  var fromParts = from && from.split('/') || [];
+
+	  var isToAbs = to && isAbsolute(to);
+	  var isFromAbs = from && isAbsolute(from);
+	  var mustEndAbs = isToAbs || isFromAbs;
+
+	  if (to && isAbsolute(to)) {
+	    // to is absolute
+	    fromParts = toParts;
+	  } else if (toParts.length) {
+	    // to is relative, drop the filename
+	    fromParts.pop();
+	    fromParts = fromParts.concat(toParts);
 	  }
 
-	  function next() {
-	    if (isDone) {
-	      return;
-	    }
+	  if (!fromParts.length) return '/';
 
-	    hasNext = true;
-	    if (sync) {
-	      // Iterate instead of recursing if possible.
-	      return;
-	    }
-
-	    sync = true;
-
-	    while (!isDone && currentTurn < turns && hasNext) {
-	      hasNext = false;
-	      work.call(this, currentTurn++, next, done);
-	    }
-
-	    sync = false;
-
-	    if (isDone) {
-	      // This means the loop finished synchronously.
-	      callback.apply(this, doneArgs);
-	      return;
-	    }
-
-	    if (currentTurn >= turns && hasNext) {
-	      isDone = true;
-	      callback();
-	    }
+	  var hasTrailingSlash = void 0;
+	  if (fromParts.length) {
+	    var last = fromParts[fromParts.length - 1];
+	    hasTrailingSlash = last === '.' || last === '..' || last === '';
+	  } else {
+	    hasTrailingSlash = false;
 	  }
 
-	  next();
-	}
+	  var up = 0;
+	  for (var i = fromParts.length; i >= 0; i--) {
+	    var part = fromParts[i];
 
-	function mapAsync(array, work, callback) {
-	  var length = array.length;
-	  var values = [];
-
-	  if (length === 0) return callback(null, values);
-
-	  var isDone = false,
-	      doneCount = 0;
-
-	  function done(index, error, value) {
-	    if (isDone) return;
-
-	    if (error) {
-	      isDone = true;
-	      callback(error);
-	    } else {
-	      values[index] = value;
-
-	      isDone = ++doneCount === length;
-
-	      if (isDone) callback(null, values);
+	    if (part === '.') {
+	      spliceOne(fromParts, i);
+	    } else if (part === '..') {
+	      spliceOne(fromParts, i);
+	      up++;
+	    } else if (up) {
+	      spliceOne(fromParts, i);
+	      up--;
 	    }
 	  }
 
-	  array.forEach(function (item, index) {
-	    work(item, index, function (error, value) {
-	      done(index, error, value);
-	    });
-	  });
-	}
+	  if (!mustEndAbs) for (; up--; up) {
+	    fromParts.unshift('..');
+	  }if (mustEndAbs && fromParts[0] !== '' && (!fromParts[0] || !isAbsolute(fromParts[0]))) fromParts.unshift('');
+
+	  var result = fromParts.join('/');
+
+	  if (hasTrailingSlash && result.substr(-1) !== '/') result += '/';
+
+	  return result;
+	};
+
+	module.exports = resolvePathname;
 
 /***/ },
-/* 342 */
-/***/ function(module, exports, __webpack_require__) {
+/* 312 */
+/***/ function(module, exports) {
 
 	'use strict';
 
@@ -82213,1841 +60917,421 @@
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-	exports.default = isActive;
-
-	var _PatternUtils = __webpack_require__(333);
-
-	function deepEqual(a, b) {
-	  if (a == b) return true;
+	var valueEqual = function valueEqual(a, b) {
+	  if (a === b) return true;
 
 	  if (a == null || b == null) return false;
 
 	  if (Array.isArray(a)) {
-	    return Array.isArray(b) && a.length === b.length && a.every(function (item, index) {
-	      return deepEqual(item, b[index]);
+	    if (!Array.isArray(b) || a.length !== b.length) return false;
+
+	    return a.every(function (item, index) {
+	      return valueEqual(item, b[index]);
 	    });
 	  }
 
-	  if ((typeof a === 'undefined' ? 'undefined' : _typeof(a)) === 'object') {
-	    for (var p in a) {
-	      if (!Object.prototype.hasOwnProperty.call(a, p)) {
-	        continue;
-	      }
+	  var aType = typeof a === 'undefined' ? 'undefined' : _typeof(a);
+	  var bType = typeof b === 'undefined' ? 'undefined' : _typeof(b);
 
-	      if (a[p] === undefined) {
-	        if (b[p] !== undefined) {
-	          return false;
-	        }
-	      } else if (!Object.prototype.hasOwnProperty.call(b, p)) {
-	        return false;
-	      } else if (!deepEqual(a[p], b[p])) {
-	        return false;
-	      }
-	    }
+	  if (aType !== bType) return false;
 
-	    return true;
-	  }
+	  if (aType === 'object') {
+	    var aValue = a.valueOf();
+	    var bValue = b.valueOf();
 
-	  return String(a) === String(b);
-	}
+	    if (aValue !== a || bValue !== b) return valueEqual(aValue, bValue);
 
-	/**
-	 * Returns true if the current pathname matches the supplied one, net of
-	 * leading and trailing slash normalization. This is sufficient for an
-	 * indexOnly route match.
-	 */
-	function pathIsActive(pathname, currentPathname) {
-	  // Normalize leading slash for consistency. Leading slash on pathname has
-	  // already been normalized in isActive. See caveat there.
-	  if (currentPathname.charAt(0) !== '/') {
-	    currentPathname = '/' + currentPathname;
-	  }
+	    var aKeys = Object.keys(a);
+	    var bKeys = Object.keys(b);
 
-	  // Normalize the end of both path names too. Maybe `/foo/` shouldn't show
-	  // `/foo` as active, but in this case, we would already have failed the
-	  // match.
-	  if (pathname.charAt(pathname.length - 1) !== '/') {
-	    pathname += '/';
-	  }
-	  if (currentPathname.charAt(currentPathname.length - 1) !== '/') {
-	    currentPathname += '/';
-	  }
+	    if (aKeys.length !== bKeys.length) return false;
 
-	  return currentPathname === pathname;
-	}
-
-	/**
-	 * Returns true if the given pathname matches the active routes and params.
-	 */
-	function routeIsActive(pathname, routes, params) {
-	  var remainingPathname = pathname,
-	      paramNames = [],
-	      paramValues = [];
-
-	  // for...of would work here but it's probably slower post-transpilation.
-	  for (var i = 0, len = routes.length; i < len; ++i) {
-	    var route = routes[i];
-	    var pattern = route.path || '';
-
-	    if (pattern.charAt(0) === '/') {
-	      remainingPathname = pathname;
-	      paramNames = [];
-	      paramValues = [];
-	    }
-
-	    if (remainingPathname !== null && pattern) {
-	      var matched = (0, _PatternUtils.matchPattern)(pattern, remainingPathname);
-	      if (matched) {
-	        remainingPathname = matched.remainingPathname;
-	        paramNames = [].concat(paramNames, matched.paramNames);
-	        paramValues = [].concat(paramValues, matched.paramValues);
-	      } else {
-	        remainingPathname = null;
-	      }
-
-	      if (remainingPathname === '') {
-	        // We have an exact match on the route. Just check that all the params
-	        // match.
-	        // FIXME: This doesn't work on repeated params.
-	        return paramNames.every(function (paramName, index) {
-	          return String(paramValues[index]) === String(params[paramName]);
-	        });
-	      }
-	    }
+	    return aKeys.every(function (key) {
+	      return valueEqual(a[key], b[key]);
+	    });
 	  }
 
 	  return false;
-	}
+	};
 
-	/**
-	 * Returns true if all key/value pairs in the given query are
-	 * currently active.
-	 */
-	function queryIsActive(query, activeQuery) {
-	  if (activeQuery == null) return query == null;
-
-	  if (query == null) return true;
-
-	  return deepEqual(query, activeQuery);
-	}
-
-	/**
-	 * Returns true if a <Link> to the given pathname/query combination is
-	 * currently active.
-	 */
-	function isActive(_ref, indexOnly, currentLocation, routes, params) {
-	  var pathname = _ref.pathname,
-	      query = _ref.query;
-
-	  if (currentLocation == null) return false;
-
-	  // TODO: This is a bit ugly. It keeps around support for treating pathnames
-	  // without preceding slashes as absolute paths, but possibly also works
-	  // around the same quirks with basenames as in matchRoutes.
-	  if (pathname.charAt(0) !== '/') {
-	    pathname = '/' + pathname;
-	  }
-
-	  if (!pathIsActive(pathname, currentLocation.pathname)) {
-	    // The path check is necessary and sufficient for indexOnly, but otherwise
-	    // we still need to check the routes.
-	    if (indexOnly || !routeIsActive(pathname, routes, params)) {
-	      return false;
-	    }
-	  }
-
-	  return queryIsActive(query, currentLocation.query);
-	}
-	module.exports = exports['default'];
+	exports.default = valueEqual;
 
 /***/ },
-/* 343 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _AsyncUtils = __webpack_require__(341);
-
-	var _PromiseUtils = __webpack_require__(344);
-
-	function getComponentsForRoute(nextState, route, callback) {
-	  if (route.component || route.components) {
-	    callback(null, route.component || route.components);
-	    return;
-	  }
-
-	  var getComponent = route.getComponent || route.getComponents;
-	  if (getComponent) {
-	    var componentReturn = getComponent.call(route, nextState, callback);
-	    if ((0, _PromiseUtils.isPromise)(componentReturn)) componentReturn.then(function (component) {
-	      return callback(null, component);
-	    }, callback);
-	  } else {
-	    callback();
-	  }
-	}
-
-	/**
-	 * Asynchronously fetches all components needed for the given router
-	 * state and calls callback(error, components) when finished.
-	 *
-	 * Note: This operation may finish synchronously if no routes have an
-	 * asynchronous getComponents method.
-	 */
-	function getComponents(nextState, callback) {
-	  (0, _AsyncUtils.mapAsync)(nextState.routes, function (route, index, callback) {
-	    getComponentsForRoute(nextState, route, callback);
-	  }, callback);
-	}
-
-	exports.default = getComponents;
-	module.exports = exports['default'];
-
-/***/ },
-/* 344 */
+/* 313 */
 /***/ function(module, exports) {
 
 	'use strict';
 
 	exports.__esModule = true;
-	exports.isPromise = isPromise;
-	function isPromise(obj) {
-	  return obj && typeof obj.then === 'function';
-	}
+	var addLeadingSlash = exports.addLeadingSlash = function addLeadingSlash(path) {
+	  return path.charAt(0) === '/' ? path : '/' + path;
+	};
 
-/***/ },
-/* 345 */
-/***/ function(module, exports, __webpack_require__) {
+	var stripLeadingSlash = exports.stripLeadingSlash = function stripLeadingSlash(path) {
+	  return path.charAt(0) === '/' ? path.substr(1) : path;
+	};
 
-	'use strict';
+	var stripPrefix = exports.stripPrefix = function stripPrefix(path, prefix) {
+	  return path.indexOf(prefix) === 0 ? path.substr(prefix.length) : path;
+	};
 
-	exports.__esModule = true;
+	var parsePath = exports.parsePath = function parsePath(path) {
+	  var pathname = path || '/';
+	  var search = '';
+	  var hash = '';
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-	exports.default = matchRoutes;
-
-	var _AsyncUtils = __webpack_require__(341);
-
-	var _PromiseUtils = __webpack_require__(344);
-
-	var _PatternUtils = __webpack_require__(333);
-
-	var _routerWarning = __webpack_require__(337);
-
-	var _routerWarning2 = _interopRequireDefault(_routerWarning);
-
-	var _RouteUtils = __webpack_require__(331);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function getChildRoutes(route, location, paramNames, paramValues, callback) {
-	  if (route.childRoutes) {
-	    return [null, route.childRoutes];
-	  }
-	  if (!route.getChildRoutes) {
-	    return [];
+	  var hashIndex = pathname.indexOf('#');
+	  if (hashIndex !== -1) {
+	    hash = pathname.substr(hashIndex);
+	    pathname = pathname.substr(0, hashIndex);
 	  }
 
-	  var sync = true,
-	      result = void 0;
+	  var searchIndex = pathname.indexOf('?');
+	  if (searchIndex !== -1) {
+	    search = pathname.substr(searchIndex);
+	    pathname = pathname.substr(0, searchIndex);
+	  }
 
-	  var partialNextState = {
-	    location: location,
-	    params: createParams(paramNames, paramValues)
+	  return {
+	    pathname: pathname,
+	    search: search === '?' ? '' : search,
+	    hash: hash === '#' ? '' : hash
 	  };
+	};
 
-	  var childRoutesReturn = route.getChildRoutes(partialNextState, function (error, childRoutes) {
-	    childRoutes = !error && (0, _RouteUtils.createRoutes)(childRoutes);
-	    if (sync) {
-	      result = [error, childRoutes];
-	      return;
-	    }
+	var createPath = exports.createPath = function createPath(location) {
+	  var pathname = location.pathname,
+	      search = location.search,
+	      hash = location.hash;
 
-	    callback(error, childRoutes);
-	  });
 
-	  if ((0, _PromiseUtils.isPromise)(childRoutesReturn)) childRoutesReturn.then(function (childRoutes) {
-	    return callback(null, (0, _RouteUtils.createRoutes)(childRoutes));
-	  }, callback);
+	  var path = pathname || '/';
 
-	  sync = false;
-	  return result; // Might be undefined.
-	}
+	  if (search && search !== '?') path += search.charAt(0) === '?' ? search : '?' + search;
 
-	function getIndexRoute(route, location, paramNames, paramValues, callback) {
-	  if (route.indexRoute) {
-	    callback(null, route.indexRoute);
-	  } else if (route.getIndexRoute) {
-	    var partialNextState = {
-	      location: location,
-	      params: createParams(paramNames, paramValues)
-	    };
+	  if (hash && hash !== '#') path += hash.charAt(0) === '#' ? hash : '#' + hash;
 
-	    var indexRoutesReturn = route.getIndexRoute(partialNextState, function (error, indexRoute) {
-	      callback(error, !error && (0, _RouteUtils.createRoutes)(indexRoute)[0]);
-	    });
-
-	    if ((0, _PromiseUtils.isPromise)(indexRoutesReturn)) indexRoutesReturn.then(function (indexRoute) {
-	      return callback(null, (0, _RouteUtils.createRoutes)(indexRoute)[0]);
-	    }, callback);
-	  } else if (route.childRoutes || route.getChildRoutes) {
-	    var onChildRoutes = function onChildRoutes(error, childRoutes) {
-	      if (error) {
-	        callback(error);
-	        return;
-	      }
-
-	      var pathless = childRoutes.filter(function (childRoute) {
-	        return !childRoute.path;
-	      });
-
-	      (0, _AsyncUtils.loopAsync)(pathless.length, function (index, next, done) {
-	        getIndexRoute(pathless[index], location, paramNames, paramValues, function (error, indexRoute) {
-	          if (error || indexRoute) {
-	            var routes = [pathless[index]].concat(Array.isArray(indexRoute) ? indexRoute : [indexRoute]);
-	            done(error, routes);
-	          } else {
-	            next();
-	          }
-	        });
-	      }, function (err, routes) {
-	        callback(null, routes);
-	      });
-	    };
-
-	    var result = getChildRoutes(route, location, paramNames, paramValues, onChildRoutes);
-	    if (result) {
-	      onChildRoutes.apply(undefined, result);
-	    }
-	  } else {
-	    callback();
-	  }
-	}
-
-	function assignParams(params, paramNames, paramValues) {
-	  return paramNames.reduce(function (params, paramName, index) {
-	    var paramValue = paramValues && paramValues[index];
-
-	    if (Array.isArray(params[paramName])) {
-	      params[paramName].push(paramValue);
-	    } else if (paramName in params) {
-	      params[paramName] = [params[paramName], paramValue];
-	    } else {
-	      params[paramName] = paramValue;
-	    }
-
-	    return params;
-	  }, params);
-	}
-
-	function createParams(paramNames, paramValues) {
-	  return assignParams({}, paramNames, paramValues);
-	}
-
-	function matchRouteDeep(route, location, remainingPathname, paramNames, paramValues, callback) {
-	  var pattern = route.path || '';
-
-	  if (pattern.charAt(0) === '/') {
-	    remainingPathname = location.pathname;
-	    paramNames = [];
-	    paramValues = [];
-	  }
-
-	  // Only try to match the path if the route actually has a pattern, and if
-	  // we're not just searching for potential nested absolute paths.
-	  if (remainingPathname !== null && pattern) {
-	    try {
-	      var matched = (0, _PatternUtils.matchPattern)(pattern, remainingPathname);
-	      if (matched) {
-	        remainingPathname = matched.remainingPathname;
-	        paramNames = [].concat(paramNames, matched.paramNames);
-	        paramValues = [].concat(paramValues, matched.paramValues);
-	      } else {
-	        remainingPathname = null;
-	      }
-	    } catch (error) {
-	      callback(error);
-	    }
-
-	    // By assumption, pattern is non-empty here, which is the prerequisite for
-	    // actually terminating a match.
-	    if (remainingPathname === '') {
-	      var _ret = function () {
-	        var match = {
-	          routes: [route],
-	          params: createParams(paramNames, paramValues)
-	        };
-
-	        getIndexRoute(route, location, paramNames, paramValues, function (error, indexRoute) {
-	          if (error) {
-	            callback(error);
-	          } else {
-	            if (Array.isArray(indexRoute)) {
-	              var _match$routes;
-
-	              process.env.NODE_ENV !== 'production' ? (0, _routerWarning2.default)(indexRoute.every(function (route) {
-	                return !route.path;
-	              }), 'Index routes should not have paths') : void 0;
-	              (_match$routes = match.routes).push.apply(_match$routes, indexRoute);
-	            } else if (indexRoute) {
-	              process.env.NODE_ENV !== 'production' ? (0, _routerWarning2.default)(!indexRoute.path, 'Index routes should not have paths') : void 0;
-	              match.routes.push(indexRoute);
-	            }
-
-	            callback(null, match);
-	          }
-	        });
-
-	        return {
-	          v: void 0
-	        };
-	      }();
-
-	      if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
-	    }
-	  }
-
-	  if (remainingPathname != null || route.childRoutes) {
-	    // Either a) this route matched at least some of the path or b)
-	    // we don't have to load this route's children asynchronously. In
-	    // either case continue checking for matches in the subtree.
-	    var onChildRoutes = function onChildRoutes(error, childRoutes) {
-	      if (error) {
-	        callback(error);
-	      } else if (childRoutes) {
-	        // Check the child routes to see if any of them match.
-	        matchRoutes(childRoutes, location, function (error, match) {
-	          if (error) {
-	            callback(error);
-	          } else if (match) {
-	            // A child route matched! Augment the match and pass it up the stack.
-	            match.routes.unshift(route);
-	            callback(null, match);
-	          } else {
-	            callback();
-	          }
-	        }, remainingPathname, paramNames, paramValues);
-	      } else {
-	        callback();
-	      }
-	    };
-
-	    var result = getChildRoutes(route, location, paramNames, paramValues, onChildRoutes);
-	    if (result) {
-	      onChildRoutes.apply(undefined, result);
-	    }
-	  } else {
-	    callback();
-	  }
-	}
-
-	/**
-	 * Asynchronously matches the given location to a set of routes and calls
-	 * callback(error, state) when finished. The state object will have the
-	 * following properties:
-	 *
-	 * - routes       An array of routes that matched, in hierarchical order
-	 * - params       An object of URL parameters
-	 *
-	 * Note: This operation may finish synchronously if no routes have an
-	 * asynchronous getChildRoutes method.
-	 */
-	function matchRoutes(routes, location, callback, remainingPathname) {
-	  var paramNames = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : [];
-	  var paramValues = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : [];
-
-	  if (remainingPathname === undefined) {
-	    // TODO: This is a little bit ugly, but it works around a quirk in history
-	    // that strips the leading slash from pathnames when using basenames with
-	    // trailing slashes.
-	    if (location.pathname.charAt(0) !== '/') {
-	      location = _extends({}, location, {
-	        pathname: '/' + location.pathname
-	      });
-	    }
-	    remainingPathname = location.pathname;
-	  }
-
-	  (0, _AsyncUtils.loopAsync)(routes.length, function (index, next, done) {
-	    matchRouteDeep(routes[index], location, remainingPathname, paramNames, paramValues, function (error, match) {
-	      if (error || match) {
-	        done(error, match);
-	      } else {
-	        next();
-	      }
-	    });
-	  }, callback);
-	}
-	module.exports = exports['default'];
+	  return path;
+	};
 
 /***/ },
-/* 346 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.routes = exports.route = exports.components = exports.component = exports.history = undefined;
-	exports.falsy = falsy;
-
-	var _react = __webpack_require__(160);
-
-	var func = _react.PropTypes.func,
-	    object = _react.PropTypes.object,
-	    arrayOf = _react.PropTypes.arrayOf,
-	    oneOfType = _react.PropTypes.oneOfType,
-	    element = _react.PropTypes.element,
-	    shape = _react.PropTypes.shape,
-	    string = _react.PropTypes.string;
-	function falsy(props, propName, componentName) {
-	  if (props[propName]) return new Error('<' + componentName + '> should not have a "' + propName + '" prop');
-	}
-
-	var history = exports.history = shape({
-	  listen: func.isRequired,
-	  push: func.isRequired,
-	  replace: func.isRequired,
-	  go: func.isRequired,
-	  goBack: func.isRequired,
-	  goForward: func.isRequired
-	});
-
-	var component = exports.component = oneOfType([func, string]);
-	var components = exports.components = oneOfType([component, object]);
-	var route = exports.route = oneOfType([object, element]);
-	var routes = exports.routes = oneOfType([route, arrayOf(route)]);
-
-/***/ },
-/* 347 */
+/* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	var _warning = __webpack_require__(309);
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-	var _invariant = __webpack_require__(334);
-
-	var _invariant2 = _interopRequireDefault(_invariant);
-
-	var _react = __webpack_require__(160);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _getRouteParams = __webpack_require__(348);
-
-	var _getRouteParams2 = _interopRequireDefault(_getRouteParams);
-
-	var _ContextUtils = __webpack_require__(349);
-
-	var _RouteUtils = __webpack_require__(331);
+	var _warning2 = _interopRequireDefault(_warning);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var _React$PropTypes = _react2.default.PropTypes,
-	    array = _React$PropTypes.array,
-	    func = _React$PropTypes.func,
-	    object = _React$PropTypes.object;
+	var createTransitionManager = function createTransitionManager() {
+	  var prompt = null;
 
-	/**
-	 * A <RouterContext> renders the component tree for a given router state
-	 * and sets the history object and the current location in context.
-	 */
+	  var setPrompt = function setPrompt(nextPrompt) {
+	    process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(prompt == null, 'A history supports only one prompt at a time') : void 0;
 
-	var RouterContext = _react2.default.createClass({
-	  displayName: 'RouterContext',
-
-
-	  mixins: [(0, _ContextUtils.ContextProvider)('router')],
-
-	  propTypes: {
-	    router: object.isRequired,
-	    location: object.isRequired,
-	    routes: array.isRequired,
-	    params: object.isRequired,
-	    components: array.isRequired,
-	    createElement: func.isRequired
-	  },
-
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      createElement: _react2.default.createElement
-	    };
-	  },
-
-
-	  childContextTypes: {
-	    router: object.isRequired
-	  },
-
-	  getChildContext: function getChildContext() {
-	    return {
-	      router: this.props.router
-	    };
-	  },
-	  createElement: function createElement(component, props) {
-	    return component == null ? null : this.props.createElement(component, props);
-	  },
-	  render: function render() {
-	    var _this = this;
-
-	    var _props = this.props,
-	        location = _props.location,
-	        routes = _props.routes,
-	        params = _props.params,
-	        components = _props.components,
-	        router = _props.router;
-
-	    var element = null;
-
-	    if (components) {
-	      element = components.reduceRight(function (element, components, index) {
-	        if (components == null) return element; // Don't create new children; use the grandchildren.
-
-	        var route = routes[index];
-	        var routeParams = (0, _getRouteParams2.default)(route, params);
-	        var props = {
-	          location: location,
-	          params: params,
-	          route: route,
-	          router: router,
-	          routeParams: routeParams,
-	          routes: routes
-	        };
-
-	        if ((0, _RouteUtils.isReactChildren)(element)) {
-	          props.children = element;
-	        } else if (element) {
-	          for (var prop in element) {
-	            if (Object.prototype.hasOwnProperty.call(element, prop)) props[prop] = element[prop];
-	          }
-	        }
-
-	        if ((typeof components === 'undefined' ? 'undefined' : _typeof(components)) === 'object') {
-	          var elements = {};
-
-	          for (var key in components) {
-	            if (Object.prototype.hasOwnProperty.call(components, key)) {
-	              // Pass through the key as a prop to createElement to allow
-	              // custom createElement functions to know which named component
-	              // they're rendering, for e.g. matching up to fetched data.
-	              elements[key] = _this.createElement(components[key], _extends({
-	                key: key }, props));
-	            }
-	          }
-
-	          return elements;
-	        }
-
-	        return _this.createElement(components, props);
-	      }, element);
-	    }
-
-	    !(element === null || element === false || _react2.default.isValidElement(element)) ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'The root route must render a single element') : (0, _invariant2.default)(false) : void 0;
-
-	    return element;
-	  }
-	});
-
-	exports.default = RouterContext;
-	module.exports = exports['default'];
-
-/***/ },
-/* 348 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _PatternUtils = __webpack_require__(333);
-
-	/**
-	 * Extracts an object of params the given route cares about from
-	 * the given params object.
-	 */
-	function getRouteParams(route, params) {
-	  var routeParams = {};
-
-	  if (!route.path) return routeParams;
-
-	  (0, _PatternUtils.getParamNames)(route.path).forEach(function (p) {
-	    if (Object.prototype.hasOwnProperty.call(params, p)) {
-	      routeParams[p] = params[p];
-	    }
-	  });
-
-	  return routeParams;
-	}
-
-	exports.default = getRouteParams;
-	module.exports = exports['default'];
-
-/***/ },
-/* 349 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.ContextProvider = ContextProvider;
-	exports.ContextSubscriber = ContextSubscriber;
-
-	var _react = __webpack_require__(160);
-
-	// Works around issues with context updates failing to propagate.
-	// Caveat: the context value is expected to never change its identity.
-	// https://github.com/facebook/react/issues/2517
-	// https://github.com/reactjs/react-router/issues/470
-
-	var contextProviderShape = _react.PropTypes.shape({
-	  subscribe: _react.PropTypes.func.isRequired,
-	  eventIndex: _react.PropTypes.number.isRequired
-	});
-
-	function makeContextName(name) {
-	  return '@@contextSubscriber/' + name;
-	}
-
-	function ContextProvider(name) {
-	  var _childContextTypes, _ref2;
-
-	  var contextName = makeContextName(name);
-	  var listenersKey = contextName + '/listeners';
-	  var eventIndexKey = contextName + '/eventIndex';
-	  var subscribeKey = contextName + '/subscribe';
-
-	  return _ref2 = {
-	    childContextTypes: (_childContextTypes = {}, _childContextTypes[contextName] = contextProviderShape.isRequired, _childContextTypes),
-
-	    getChildContext: function getChildContext() {
-	      var _ref;
-
-	      return _ref = {}, _ref[contextName] = {
-	        eventIndex: this[eventIndexKey],
-	        subscribe: this[subscribeKey]
-	      }, _ref;
-	    },
-	    componentWillMount: function componentWillMount() {
-	      this[listenersKey] = [];
-	      this[eventIndexKey] = 0;
-	    },
-	    componentWillReceiveProps: function componentWillReceiveProps() {
-	      this[eventIndexKey]++;
-	    },
-	    componentDidUpdate: function componentDidUpdate() {
-	      var _this = this;
-
-	      this[listenersKey].forEach(function (listener) {
-	        return listener(_this[eventIndexKey]);
-	      });
-	    }
-	  }, _ref2[subscribeKey] = function (listener) {
-	    var _this2 = this;
-
-	    // No need to immediately call listener here.
-	    this[listenersKey].push(listener);
+	    prompt = nextPrompt;
 
 	    return function () {
-	      _this2[listenersKey] = _this2[listenersKey].filter(function (item) {
+	      if (prompt === nextPrompt) prompt = null;
+	    };
+	  };
+
+	  var confirmTransitionTo = function confirmTransitionTo(location, action, getUserConfirmation, callback) {
+	    // TODO: If another transition starts while we're still confirming
+	    // the previous one, we may end up in a weird state. Figure out the
+	    // best way to handle this.
+	    if (prompt != null) {
+	      var result = typeof prompt === 'function' ? prompt(location, action) : prompt;
+
+	      if (typeof result === 'string') {
+	        if (typeof getUserConfirmation === 'function') {
+	          getUserConfirmation(result, callback);
+	        } else {
+	          process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(false, 'A history needs a getUserConfirmation function in order to use a prompt message') : void 0;
+
+	          callback(true);
+	        }
+	      } else {
+	        // Return false from a transition hook to cancel the transition.
+	        callback(result !== false);
+	      }
+	    } else {
+	      callback(true);
+	    }
+	  };
+
+	  var listeners = [];
+
+	  var appendListener = function appendListener(fn) {
+	    var isActive = true;
+
+	    var listener = function listener() {
+	      if (isActive) fn.apply(undefined, arguments);
+	    };
+
+	    listeners.push(listener);
+
+	    return function () {
+	      isActive = false;
+	      listeners = listeners.filter(function (item) {
 	        return item !== listener;
 	      });
 	    };
-	  }, _ref2;
-	}
-
-	function ContextSubscriber(name) {
-	  var _contextTypes, _ref4;
-
-	  var contextName = makeContextName(name);
-	  var lastRenderedEventIndexKey = contextName + '/lastRenderedEventIndex';
-	  var handleContextUpdateKey = contextName + '/handleContextUpdate';
-	  var unsubscribeKey = contextName + '/unsubscribe';
-
-	  return _ref4 = {
-	    contextTypes: (_contextTypes = {}, _contextTypes[contextName] = contextProviderShape, _contextTypes),
-
-	    getInitialState: function getInitialState() {
-	      var _ref3;
-
-	      if (!this.context[contextName]) {
-	        return {};
-	      }
-
-	      return _ref3 = {}, _ref3[lastRenderedEventIndexKey] = this.context[contextName].eventIndex, _ref3;
-	    },
-	    componentDidMount: function componentDidMount() {
-	      if (!this.context[contextName]) {
-	        return;
-	      }
-
-	      this[unsubscribeKey] = this.context[contextName].subscribe(this[handleContextUpdateKey]);
-	    },
-	    componentWillReceiveProps: function componentWillReceiveProps() {
-	      var _setState;
-
-	      if (!this.context[contextName]) {
-	        return;
-	      }
-
-	      this.setState((_setState = {}, _setState[lastRenderedEventIndexKey] = this.context[contextName].eventIndex, _setState));
-	    },
-	    componentWillUnmount: function componentWillUnmount() {
-	      if (!this[unsubscribeKey]) {
-	        return;
-	      }
-
-	      this[unsubscribeKey]();
-	      this[unsubscribeKey] = null;
-	    }
-	  }, _ref4[handleContextUpdateKey] = function (eventIndex) {
-	    if (eventIndex !== this.state[lastRenderedEventIndexKey]) {
-	      var _setState2;
-
-	      this.setState((_setState2 = {}, _setState2[lastRenderedEventIndexKey] = eventIndex, _setState2));
-	    }
-	  }, _ref4;
-	}
-
-/***/ },
-/* 350 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	exports.__esModule = true;
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	exports.createRouterObject = createRouterObject;
-	exports.assignRouterState = assignRouterState;
-	function createRouterObject(history, transitionManager, state) {
-	  var router = _extends({}, history, {
-	    setRouteLeaveHook: transitionManager.listenBeforeLeavingRoute,
-	    isActive: transitionManager.isActive
-	  });
-
-	  return assignRouterState(router, state);
-	}
-
-	function assignRouterState(router, _ref) {
-	  var location = _ref.location,
-	      params = _ref.params,
-	      routes = _ref.routes;
-
-	  router.location = location;
-	  router.params = params;
-	  router.routes = routes;
-
-	  return router;
-	}
-
-/***/ },
-/* 351 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(160);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _invariant = __webpack_require__(334);
-
-	var _invariant2 = _interopRequireDefault(_invariant);
-
-	var _PropTypes = __webpack_require__(332);
-
-	var _ContextUtils = __webpack_require__(349);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-	var _React$PropTypes = _react2.default.PropTypes,
-	    bool = _React$PropTypes.bool,
-	    object = _React$PropTypes.object,
-	    string = _React$PropTypes.string,
-	    func = _React$PropTypes.func,
-	    oneOfType = _React$PropTypes.oneOfType;
-
-
-	function isLeftClickEvent(event) {
-	  return event.button === 0;
-	}
-
-	function isModifiedEvent(event) {
-	  return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
-	}
-
-	// TODO: De-duplicate against hasAnyProperties in createTransitionManager.
-	function isEmptyObject(object) {
-	  for (var p in object) {
-	    if (Object.prototype.hasOwnProperty.call(object, p)) return false;
-	  }return true;
-	}
-
-	function resolveToLocation(to, router) {
-	  return typeof to === 'function' ? to(router.location) : to;
-	}
-
-	/**
-	 * A <Link> is used to create an <a> element that links to a route.
-	 * When that route is active, the link gets the value of its
-	 * activeClassName prop.
-	 *
-	 * For example, assuming you have the following route:
-	 *
-	 *   <Route path="/posts/:postID" component={Post} />
-	 *
-	 * You could use the following component to link to that route:
-	 *
-	 *   <Link to={`/posts/${post.id}`} />
-	 *
-	 * Links may pass along location state and/or query string parameters
-	 * in the state/query props, respectively.
-	 *
-	 *   <Link ... query={{ show: true }} state={{ the: 'state' }} />
-	 */
-	var Link = _react2.default.createClass({
-	  displayName: 'Link',
-
-
-	  mixins: [(0, _ContextUtils.ContextSubscriber)('router')],
-
-	  contextTypes: {
-	    router: _PropTypes.routerShape
-	  },
-
-	  propTypes: {
-	    to: oneOfType([string, object, func]),
-	    query: object,
-	    hash: string,
-	    state: object,
-	    activeStyle: object,
-	    activeClassName: string,
-	    onlyActiveOnIndex: bool.isRequired,
-	    onClick: func,
-	    target: string
-	  },
-
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      onlyActiveOnIndex: false,
-	      style: {}
-	    };
-	  },
-	  handleClick: function handleClick(event) {
-	    if (this.props.onClick) this.props.onClick(event);
-
-	    if (event.defaultPrevented) return;
-
-	    var router = this.context.router;
-
-	    !router ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, '<Link>s rendered outside of a router context cannot navigate.') : (0, _invariant2.default)(false) : void 0;
-
-	    if (isModifiedEvent(event) || !isLeftClickEvent(event)) return;
-
-	    // If target prop is set (e.g. to "_blank"), let browser handle link.
-	    /* istanbul ignore if: untestable with Karma */
-	    if (this.props.target) return;
-
-	    event.preventDefault();
-
-	    router.push(resolveToLocation(this.props.to, router));
-	  },
-	  render: function render() {
-	    var _props = this.props,
-	        to = _props.to,
-	        activeClassName = _props.activeClassName,
-	        activeStyle = _props.activeStyle,
-	        onlyActiveOnIndex = _props.onlyActiveOnIndex,
-	        props = _objectWithoutProperties(_props, ['to', 'activeClassName', 'activeStyle', 'onlyActiveOnIndex']);
-
-	    // Ignore if rendered outside the context of router to simplify unit testing.
-
-
-	    var router = this.context.router;
-
-
-	    if (router) {
-	      // If user does not specify a `to` prop, return an empty anchor tag.
-	      if (!to) {
-	        return _react2.default.createElement('a', props);
-	      }
-
-	      var toLocation = resolveToLocation(to, router);
-	      props.href = router.createHref(toLocation);
-
-	      if (activeClassName || activeStyle != null && !isEmptyObject(activeStyle)) {
-	        if (router.isActive(toLocation, onlyActiveOnIndex)) {
-	          if (activeClassName) {
-	            if (props.className) {
-	              props.className += ' ' + activeClassName;
-	            } else {
-	              props.className = activeClassName;
-	            }
-	          }
-
-	          if (activeStyle) props.style = _extends({}, props.style, activeStyle);
-	        }
-	      }
-	    }
-
-	    return _react2.default.createElement('a', _extends({}, props, { onClick: this.handleClick }));
-	  }
-	});
-
-	exports.default = Link;
-	module.exports = exports['default'];
-
-/***/ },
-/* 352 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(160);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _Link = __webpack_require__(351);
-
-	var _Link2 = _interopRequireDefault(_Link);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	/**
-	 * An <IndexLink> is used to link to an <IndexRoute>.
-	 */
-	var IndexLink = _react2.default.createClass({
-	  displayName: 'IndexLink',
-	  render: function render() {
-	    return _react2.default.createElement(_Link2.default, _extends({}, this.props, { onlyActiveOnIndex: true }));
-	  }
-	});
-
-	exports.default = IndexLink;
-	module.exports = exports['default'];
-
-/***/ },
-/* 353 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	exports.default = withRouter;
-
-	var _invariant = __webpack_require__(334);
-
-	var _invariant2 = _interopRequireDefault(_invariant);
-
-	var _react = __webpack_require__(160);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _hoistNonReactStatics = __webpack_require__(354);
-
-	var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
-
-	var _ContextUtils = __webpack_require__(349);
-
-	var _PropTypes = __webpack_require__(332);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function getDisplayName(WrappedComponent) {
-	  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
-	}
-
-	function withRouter(WrappedComponent, options) {
-	  var withRef = options && options.withRef;
-
-	  var WithRouter = _react2.default.createClass({
-	    displayName: 'WithRouter',
-
-	    mixins: [(0, _ContextUtils.ContextSubscriber)('router')],
-
-	    contextTypes: { router: _PropTypes.routerShape },
-	    propTypes: { router: _PropTypes.routerShape },
-
-	    getWrappedInstance: function getWrappedInstance() {
-	      !withRef ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'To access the wrapped instance, you need to specify ' + '`{ withRef: true }` as the second argument of the withRouter() call.') : (0, _invariant2.default)(false) : void 0;
-
-	      return this.wrappedInstance;
-	    },
-	    render: function render() {
-	      var _this = this;
-
-	      var router = this.props.router || this.context.router;
-	      if (!router) {
-	        return _react2.default.createElement(WrappedComponent, this.props);
-	      }
-
-	      var params = router.params,
-	          location = router.location,
-	          routes = router.routes;
-
-	      var props = _extends({}, this.props, { router: router, params: params, location: location, routes: routes });
-
-	      if (withRef) {
-	        props.ref = function (c) {
-	          _this.wrappedInstance = c;
-	        };
-	      }
-
-	      return _react2.default.createElement(WrappedComponent, props);
-	    }
-	  });
-
-	  WithRouter.displayName = 'withRouter(' + getDisplayName(WrappedComponent) + ')';
-	  WithRouter.WrappedComponent = WrappedComponent;
-
-	  return (0, _hoistNonReactStatics2.default)(WithRouter, WrappedComponent);
-	}
-	module.exports = exports['default'];
-
-/***/ },
-/* 354 */
-/***/ function(module, exports) {
-
-	/**
-	 * Copyright 2015, Yahoo! Inc.
-	 * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
-	 */
-	'use strict';
-
-	var REACT_STATICS = {
-	    childContextTypes: true,
-	    contextTypes: true,
-	    defaultProps: true,
-	    displayName: true,
-	    getDefaultProps: true,
-	    mixins: true,
-	    propTypes: true,
-	    type: true
-	};
-
-	var KNOWN_STATICS = {
-	    name: true,
-	    length: true,
-	    prototype: true,
-	    caller: true,
-	    arguments: true,
-	    arity: true
-	};
-
-	var isGetOwnPropertySymbolsAvailable = typeof Object.getOwnPropertySymbols === 'function';
-
-	module.exports = function hoistNonReactStatics(targetComponent, sourceComponent, customStatics) {
-	    if (typeof sourceComponent !== 'string') { // don't hoist over string (html) components
-	        var keys = Object.getOwnPropertyNames(sourceComponent);
-
-	        /* istanbul ignore else */
-	        if (isGetOwnPropertySymbolsAvailable) {
-	            keys = keys.concat(Object.getOwnPropertySymbols(sourceComponent));
-	        }
-
-	        for (var i = 0; i < keys.length; ++i) {
-	            if (!REACT_STATICS[keys[i]] && !KNOWN_STATICS[keys[i]] && (!customStatics || !customStatics[keys[i]])) {
-	                try {
-	                    targetComponent[keys[i]] = sourceComponent[keys[i]];
-	                } catch (error) {
-
-	                }
-	            }
-	        }
-	    }
-
-	    return targetComponent;
-	};
-
-
-/***/ },
-/* 355 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _react = __webpack_require__(160);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _routerWarning = __webpack_require__(337);
-
-	var _routerWarning2 = _interopRequireDefault(_routerWarning);
-
-	var _invariant = __webpack_require__(334);
-
-	var _invariant2 = _interopRequireDefault(_invariant);
-
-	var _Redirect = __webpack_require__(356);
-
-	var _Redirect2 = _interopRequireDefault(_Redirect);
-
-	var _InternalPropTypes = __webpack_require__(346);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var _React$PropTypes = _react2.default.PropTypes,
-	    string = _React$PropTypes.string,
-	    object = _React$PropTypes.object;
-
-	/**
-	 * An <IndexRedirect> is used to redirect from an indexRoute.
-	 */
-	/* eslint-disable react/require-render-return */
-
-	var IndexRedirect = _react2.default.createClass({
-	  displayName: 'IndexRedirect',
-
-
-	  statics: {
-	    createRouteFromReactElement: function createRouteFromReactElement(element, parentRoute) {
-	      /* istanbul ignore else: sanity check */
-	      if (parentRoute) {
-	        parentRoute.indexRoute = _Redirect2.default.createRouteFromReactElement(element);
-	      } else {
-	        process.env.NODE_ENV !== 'production' ? (0, _routerWarning2.default)(false, 'An <IndexRedirect> does not make sense at the root of your route config') : void 0;
-	      }
-	    }
-	  },
-
-	  propTypes: {
-	    to: string.isRequired,
-	    query: object,
-	    state: object,
-	    onEnter: _InternalPropTypes.falsy,
-	    children: _InternalPropTypes.falsy
-	  },
-
-	  /* istanbul ignore next: sanity check */
-	  render: function render() {
-	     true ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, '<IndexRedirect> elements are for router configuration only and should not be rendered') : (0, _invariant2.default)(false) : void 0;
-	  }
-	});
-
-	exports.default = IndexRedirect;
-	module.exports = exports['default'];
-
-/***/ },
-/* 356 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _react = __webpack_require__(160);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _invariant = __webpack_require__(334);
-
-	var _invariant2 = _interopRequireDefault(_invariant);
-
-	var _RouteUtils = __webpack_require__(331);
-
-	var _PatternUtils = __webpack_require__(333);
-
-	var _InternalPropTypes = __webpack_require__(346);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var _React$PropTypes = _react2.default.PropTypes,
-	    string = _React$PropTypes.string,
-	    object = _React$PropTypes.object;
-
-	/**
-	 * A <Redirect> is used to declare another URL path a client should
-	 * be sent to when they request a given URL.
-	 *
-	 * Redirects are placed alongside routes in the route configuration
-	 * and are traversed in the same manner.
-	 */
-	/* eslint-disable react/require-render-return */
-
-	var Redirect = _react2.default.createClass({
-	  displayName: 'Redirect',
-
-
-	  statics: {
-	    createRouteFromReactElement: function createRouteFromReactElement(element) {
-	      var route = (0, _RouteUtils.createRouteFromReactElement)(element);
-
-	      if (route.from) route.path = route.from;
-
-	      route.onEnter = function (nextState, replace) {
-	        var location = nextState.location,
-	            params = nextState.params;
-
-
-	        var pathname = void 0;
-	        if (route.to.charAt(0) === '/') {
-	          pathname = (0, _PatternUtils.formatPattern)(route.to, params);
-	        } else if (!route.to) {
-	          pathname = location.pathname;
-	        } else {
-	          var routeIndex = nextState.routes.indexOf(route);
-	          var parentPattern = Redirect.getRoutePattern(nextState.routes, routeIndex - 1);
-	          var pattern = parentPattern.replace(/\/*$/, '/') + route.to;
-	          pathname = (0, _PatternUtils.formatPattern)(pattern, params);
-	        }
-
-	        replace({
-	          pathname: pathname,
-	          query: route.query || location.query,
-	          state: route.state || location.state
-	        });
-	      };
-
-	      return route;
-	    },
-	    getRoutePattern: function getRoutePattern(routes, routeIndex) {
-	      var parentPattern = '';
-
-	      for (var i = routeIndex; i >= 0; i--) {
-	        var route = routes[i];
-	        var pattern = route.path || '';
-
-	        parentPattern = pattern.replace(/\/*$/, '/') + parentPattern;
-
-	        if (pattern.indexOf('/') === 0) break;
-	      }
-
-	      return '/' + parentPattern;
-	    }
-	  },
-
-	  propTypes: {
-	    path: string,
-	    from: string, // Alias for path
-	    to: string.isRequired,
-	    query: object,
-	    state: object,
-	    onEnter: _InternalPropTypes.falsy,
-	    children: _InternalPropTypes.falsy
-	  },
-
-	  /* istanbul ignore next: sanity check */
-	  render: function render() {
-	     true ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, '<Redirect> elements are for router configuration only and should not be rendered') : (0, _invariant2.default)(false) : void 0;
-	  }
-	});
-
-	exports.default = Redirect;
-	module.exports = exports['default'];
-
-/***/ },
-/* 357 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _react = __webpack_require__(160);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _routerWarning = __webpack_require__(337);
-
-	var _routerWarning2 = _interopRequireDefault(_routerWarning);
-
-	var _invariant = __webpack_require__(334);
-
-	var _invariant2 = _interopRequireDefault(_invariant);
-
-	var _RouteUtils = __webpack_require__(331);
-
-	var _InternalPropTypes = __webpack_require__(346);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var func = _react2.default.PropTypes.func;
-
-	/**
-	 * An <IndexRoute> is used to specify its parent's <Route indexRoute> in
-	 * a JSX route config.
-	 */
-	/* eslint-disable react/require-render-return */
-
-	var IndexRoute = _react2.default.createClass({
-	  displayName: 'IndexRoute',
-
-
-	  statics: {
-	    createRouteFromReactElement: function createRouteFromReactElement(element, parentRoute) {
-	      /* istanbul ignore else: sanity check */
-	      if (parentRoute) {
-	        parentRoute.indexRoute = (0, _RouteUtils.createRouteFromReactElement)(element);
-	      } else {
-	        process.env.NODE_ENV !== 'production' ? (0, _routerWarning2.default)(false, 'An <IndexRoute> does not make sense at the root of your route config') : void 0;
-	      }
-	    }
-	  },
-
-	  propTypes: {
-	    path: _InternalPropTypes.falsy,
-	    component: _InternalPropTypes.component,
-	    components: _InternalPropTypes.components,
-	    getComponent: func,
-	    getComponents: func
-	  },
-
-	  /* istanbul ignore next: sanity check */
-	  render: function render() {
-	     true ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, '<IndexRoute> elements are for router configuration only and should not be rendered') : (0, _invariant2.default)(false) : void 0;
-	  }
-	});
-
-	exports.default = IndexRoute;
-	module.exports = exports['default'];
-
-/***/ },
-/* 358 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _react = __webpack_require__(160);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _invariant = __webpack_require__(334);
-
-	var _invariant2 = _interopRequireDefault(_invariant);
-
-	var _RouteUtils = __webpack_require__(331);
-
-	var _InternalPropTypes = __webpack_require__(346);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var _React$PropTypes = _react2.default.PropTypes,
-	    string = _React$PropTypes.string,
-	    func = _React$PropTypes.func;
-
-	/**
-	 * A <Route> is used to declare which components are rendered to the
-	 * page when the URL matches a given pattern.
-	 *
-	 * Routes are arranged in a nested tree structure. When a new URL is
-	 * requested, the tree is searched depth-first to find a route whose
-	 * path matches the URL.  When one is found, all routes in the tree
-	 * that lead to it are considered "active" and their components are
-	 * rendered into the DOM, nested in the same order as in the tree.
-	 */
-	/* eslint-disable react/require-render-return */
-
-	var Route = _react2.default.createClass({
-	  displayName: 'Route',
-
-
-	  statics: {
-	    createRouteFromReactElement: _RouteUtils.createRouteFromReactElement
-	  },
-
-	  propTypes: {
-	    path: string,
-	    component: _InternalPropTypes.component,
-	    components: _InternalPropTypes.components,
-	    getComponent: func,
-	    getComponents: func
-	  },
-
-	  /* istanbul ignore next: sanity check */
-	  render: function render() {
-	     true ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, '<Route> elements are for router configuration only and should not be rendered') : (0, _invariant2.default)(false) : void 0;
-	  }
-	});
-
-	exports.default = Route;
-	module.exports = exports['default'];
-
-/***/ },
-/* 359 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _Actions = __webpack_require__(360);
-
-	var _invariant = __webpack_require__(334);
-
-	var _invariant2 = _interopRequireDefault(_invariant);
-
-	var _createMemoryHistory = __webpack_require__(361);
-
-	var _createMemoryHistory2 = _interopRequireDefault(_createMemoryHistory);
-
-	var _createTransitionManager = __webpack_require__(336);
-
-	var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
-
-	var _RouteUtils = __webpack_require__(331);
-
-	var _RouterUtils = __webpack_require__(350);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-	/**
-	 * A high-level API to be used for server-side rendering.
-	 *
-	 * This function matches a location to a set of routes and calls
-	 * callback(error, redirectLocation, renderProps) when finished.
-	 *
-	 * Note: You probably don't want to use this in a browser unless you're using
-	 * server-side rendering with async routes.
-	 */
-	function match(_ref, callback) {
-	  var history = _ref.history,
-	      routes = _ref.routes,
-	      location = _ref.location,
-	      options = _objectWithoutProperties(_ref, ['history', 'routes', 'location']);
-
-	  !(history || location) ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'match needs a history or a location') : (0, _invariant2.default)(false) : void 0;
-
-	  history = history ? history : (0, _createMemoryHistory2.default)(options);
-	  var transitionManager = (0, _createTransitionManager2.default)(history, (0, _RouteUtils.createRoutes)(routes));
-
-	  if (location) {
-	    // Allow match({ location: '/the/path', ... })
-	    location = history.createLocation(location);
-	  } else {
-	    location = history.getCurrentLocation();
-	  }
-
-	  transitionManager.match(location, function (error, redirectLocation, nextState) {
-	    var renderProps = void 0;
-
-	    if (nextState) {
-	      var router = (0, _RouterUtils.createRouterObject)(history, transitionManager, nextState);
-	      renderProps = _extends({}, nextState, {
-	        router: router,
-	        matchContext: { transitionManager: transitionManager, router: router }
-	      });
-	    }
-
-	    callback(error, redirectLocation && history.createLocation(redirectLocation, _Actions.REPLACE), renderProps);
-	  });
-	}
-
-	exports.default = match;
-	module.exports = exports['default'];
-
-/***/ },
-/* 360 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	/**
-	 * Indicates that navigation was caused by a call to history.push.
-	 */
-	var PUSH = exports.PUSH = 'PUSH';
-
-	/**
-	 * Indicates that navigation was caused by a call to history.replace.
-	 */
-	var REPLACE = exports.REPLACE = 'REPLACE';
-
-	/**
-	 * Indicates that navigation was caused by some other action such
-	 * as using a browser's back/forward buttons and/or manually manipulating
-	 * the URL in a browser's location bar. This is the default.
-	 *
-	 * See https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onpopstate
-	 * for more information.
-	 */
-	var POP = exports.POP = 'POP';
-
-/***/ },
-/* 361 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.default = createMemoryHistory;
-
-	var _useQueries = __webpack_require__(362);
-
-	var _useQueries2 = _interopRequireDefault(_useQueries);
-
-	var _useBasename = __webpack_require__(368);
-
-	var _useBasename2 = _interopRequireDefault(_useBasename);
-
-	var _createMemoryHistory = __webpack_require__(369);
-
-	var _createMemoryHistory2 = _interopRequireDefault(_createMemoryHistory);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function createMemoryHistory(options) {
-	  // signatures and type checking differ between `useQueries` and
-	  // `createMemoryHistory`, have to create `memoryHistory` first because
-	  // `useQueries` doesn't understand the signature
-	  var memoryHistory = (0, _createMemoryHistory2.default)(options);
-	  var createHistory = function createHistory() {
-	    return memoryHistory;
 	  };
-	  var history = (0, _useQueries2.default)((0, _useBasename2.default)(createHistory))(options);
-	  return history;
-	}
-	module.exports = exports['default'];
+
+	  var notifyListeners = function notifyListeners() {
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    listeners.forEach(function (listener) {
+	      return listener.apply(undefined, args);
+	    });
+	  };
+
+	  return {
+	    setPrompt: setPrompt,
+	    confirmTransitionTo: confirmTransitionTo,
+	    appendListener: appendListener,
+	    notifyListeners: notifyListeners
+	  };
+	};
+
+	exports.default = createTransitionManager;
 
 /***/ },
-/* 362 */
+/* 315 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	var canUseDOM = exports.canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+
+/***/ },
+/* 316 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	var addEventListener = exports.addEventListener = function addEventListener(node, event, listener) {
+	  return node.addEventListener ? node.addEventListener(event, listener, false) : node.attachEvent('on' + event, listener);
+	};
+
+	var removeEventListener = exports.removeEventListener = function removeEventListener(node, event, listener) {
+	  return node.removeEventListener ? node.removeEventListener(event, listener, false) : node.detachEvent('on' + event, listener);
+	};
+
+	var getConfirmation = exports.getConfirmation = function getConfirmation(message, callback) {
+	  return callback(window.confirm(message));
+	}; // eslint-disable-line no-alert
+
+	/**
+	 * Returns true if the HTML5 history API is supported. Taken from Modernizr.
+	 *
+	 * https://github.com/Modernizr/Modernizr/blob/master/LICENSE
+	 * https://github.com/Modernizr/Modernizr/blob/master/feature-detects/history.js
+	 * changed to avoid false negatives for Windows Phones: https://github.com/reactjs/react-router/issues/586
+	 */
+	var supportsHistory = exports.supportsHistory = function supportsHistory() {
+	  var ua = window.navigator.userAgent;
+
+	  if ((ua.indexOf('Android 2.') !== -1 || ua.indexOf('Android 4.0') !== -1) && ua.indexOf('Mobile Safari') !== -1 && ua.indexOf('Chrome') === -1 && ua.indexOf('Windows Phone') === -1) return false;
+
+	  return window.history && 'pushState' in window.history;
+	};
+
+	/**
+	 * Returns true if browser fires popstate on hash change.
+	 * IE10 and IE11 do not.
+	 */
+	var supportsPopStateOnHashChange = exports.supportsPopStateOnHashChange = function supportsPopStateOnHashChange() {
+	  return window.navigator.userAgent.indexOf('Trident') === -1;
+	};
+
+	/**
+	 * Returns false if using go(n) with hash history causes a full page reload.
+	 */
+	var supportsGoWithoutReloadUsingHash = exports.supportsGoWithoutReloadUsingHash = function supportsGoWithoutReloadUsingHash() {
+	  return window.navigator.userAgent.indexOf('Firefox') === -1;
+	};
+
+	/**
+	 * Returns true if a given popstate event is an extraneous WebKit event.
+	 * Accounts for the fact that Chrome on iOS fires real popstate events
+	 * containing undefined state when pressing the back button.
+	 */
+	var isExtraneousPopstateEvent = exports.isExtraneousPopstateEvent = function isExtraneousPopstateEvent(event) {
+	  return event.state === undefined && navigator.userAgent.indexOf('CriOS') === -1;
+	};
+
+/***/ },
+/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	var _react = __webpack_require__(120);
 
-	var _queryString = __webpack_require__(363);
+	var _react2 = _interopRequireDefault(_react);
 
-	var _runTransitionHook = __webpack_require__(365);
+	var _queryString = __webpack_require__(318);
 
-	var _runTransitionHook2 = _interopRequireDefault(_runTransitionHook);
+	var _MatchProvider = __webpack_require__(299);
 
-	var _LocationUtils = __webpack_require__(366);
+	var _MatchProvider2 = _interopRequireDefault(_MatchProvider);
 
-	var _PathUtils = __webpack_require__(367);
+	var _Broadcasts = __webpack_require__(292);
+
+	var _LocationUtils = __webpack_require__(320);
+
+	var _PropTypes = __webpack_require__(297);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var defaultStringifyQuery = function defaultStringifyQuery(query) {
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var stringifyQuery = function stringifyQuery(query) {
 	  return (0, _queryString.stringify)(query).replace(/%20/g, '+');
 	};
 
-	var defaultParseQueryString = _queryString.parse;
+	var StaticRouter = function (_React$Component) {
+	  _inherits(StaticRouter, _React$Component);
 
-	/**
-	 * Returns a new createHistory function that may be used to create
-	 * history objects that know how to handle URL queries.
-	 */
-	var useQueries = function useQueries(createHistory) {
-	  return function () {
-	    var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	  function StaticRouter() {
+	    var _temp, _this, _ret;
 
-	    var history = createHistory(options);
-	    var stringifyQuery = options.stringifyQuery;
-	    var parseQueryString = options.parseQueryString;
+	    _classCallCheck(this, StaticRouter);
 
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
 
-	    if (typeof stringifyQuery !== 'function') stringifyQuery = defaultStringifyQuery;
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.transitionTo = function (location) {
+	      _this.props.onPush(_this.createLocation(location));
+	    }, _this.replaceWith = function (location) {
+	      _this.props.onReplace(_this.createLocation(location));
+	    }, _this.blockTransitions = function (prompt) {
+	      return _this.props.blockTransitions(prompt);
+	    }, _this.createHref = function (to) {
+	      var path = (0, _LocationUtils.createRouterPath)(to, _this.props.stringifyQuery);
 
-	    if (typeof parseQueryString !== 'function') parseQueryString = defaultParseQueryString;
+	      if (_this.props.basename) if (path === '/') path = _this.props.basename;else if (path.length >= 2 && path.charAt(0) === '/' && path.charAt(1) === '?') path = _this.props.basename + path.substring(1);else path = _this.props.basename + path;
 
-	    var decodeQuery = function decodeQuery(location) {
-	      if (!location) return location;
+	      return _this.props.createHref(path);
+	    }, _this.state = {
+	      location: null
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
 
-	      if (location.query == null) location.query = parseQueryString(location.search.substring(1));
+	  StaticRouter.prototype.createLocation = function createLocation(location) {
+	    var _props = this.props,
+	        parseQueryString = _props.parseQueryString,
+	        stringifyQuery = _props.stringifyQuery;
 
-	      return location;
+	    return (0, _LocationUtils.createRouterLocation)(location, parseQueryString, stringifyQuery);
+	  };
+
+	  StaticRouter.prototype.getRouterContext = function getRouterContext() {
+	    return {
+	      transitionTo: this.transitionTo,
+	      replaceWith: this.replaceWith,
+	      blockTransitions: this.blockTransitions,
+	      createHref: this.createHref
 	    };
+	  };
 
-	    var encodeQuery = function encodeQuery(location, query) {
-	      if (query == null) return location;
-
-	      var object = typeof location === 'string' ? (0, _PathUtils.parsePath)(location) : location;
-	      var queryString = stringifyQuery(query);
-	      var search = queryString ? '?' + queryString : '';
-
-	      return _extends({}, object, {
-	        search: search
-	      });
+	  StaticRouter.prototype.getChildContext = function getChildContext() {
+	    return {
+	      router: this.getRouterContext()
 	    };
+	  };
 
-	    // Override all read methods with query-aware versions.
-	    var getCurrentLocation = function getCurrentLocation() {
-	      return decodeQuery(history.getCurrentLocation());
-	    };
-
-	    var listenBefore = function listenBefore(hook) {
-	      return history.listenBefore(function (location, callback) {
-	        return (0, _runTransitionHook2.default)(hook, decodeQuery(location), callback);
-	      });
-	    };
-
-	    var listen = function listen(listener) {
-	      return history.listen(function (location) {
-	        return listener(decodeQuery(location));
-	      });
-	    };
-
-	    // Override all write methods with query-aware versions.
-	    var push = function push(location) {
-	      return history.push(encodeQuery(location, location.query));
-	    };
-
-	    var replace = function replace(location) {
-	      return history.replace(encodeQuery(location, location.query));
-	    };
-
-	    var createPath = function createPath(location) {
-	      return history.createPath(encodeQuery(location, location.query));
-	    };
-
-	    var createHref = function createHref(location) {
-	      return history.createHref(encodeQuery(location, location.query));
-	    };
-
-	    var createLocation = function createLocation(location) {
-	      for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-	        args[_key - 1] = arguments[_key];
-	      }
-
-	      var newLocation = history.createLocation.apply(history, [encodeQuery(location, location.query)].concat(args));
-
-	      if (location.query) newLocation.query = (0, _LocationUtils.createQuery)(location.query);
-
-	      return decodeQuery(newLocation);
-	    };
-
-	    return _extends({}, history, {
-	      getCurrentLocation: getCurrentLocation,
-	      listenBefore: listenBefore,
-	      listen: listen,
-	      push: push,
-	      replace: replace,
-	      createPath: createPath,
-	      createHref: createHref,
-	      createLocation: createLocation
+	  StaticRouter.prototype.componentWillMount = function componentWillMount() {
+	    this.setState({
+	      location: this.createLocation(this.props.location)
 	    });
 	  };
+
+	  StaticRouter.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+	    var nextLocation = this.createLocation(nextProps.location);
+
+	    if (!(0, _LocationUtils.locationsAreEqual)(this.state.location, nextLocation)) this.setState({ location: nextLocation });
+	  };
+
+	  StaticRouter.prototype.render = function render() {
+	    var location = this.state.location;
+	    var _props2 = this.props,
+	        action = _props2.action,
+	        children = _props2.children;
+
+
+	    return _react2.default.createElement(
+	      _Broadcasts.LocationBroadcast,
+	      { value: location },
+	      _react2.default.createElement(
+	        _MatchProvider2.default,
+	        null,
+	        typeof children === 'function' ? children({ action: action, location: location, router: this.getRouterContext() }) : _react2.default.Children.only(children)
+	      )
+	    );
+	  };
+
+	  return StaticRouter;
+	}(_react2.default.Component);
+
+	StaticRouter.defaultProps = {
+	  stringifyQuery: stringifyQuery,
+	  parseQueryString: _queryString.parse,
+	  createHref: function createHref(path) {
+	    return path;
+	  }
+	};
+	StaticRouter.childContextTypes = {
+	  router: _PropTypes.routerContext.isRequired
 	};
 
-	exports.default = useQueries;
+
+	if (process.env.NODE_ENV !== 'production') {
+	  StaticRouter.propTypes = {
+	    children: _react.PropTypes.oneOfType([_react.PropTypes.node, _react.PropTypes.func]),
+
+	    action: _PropTypes.action.isRequired,
+	    location: _react.PropTypes.oneOfType([_react.PropTypes.object, _react.PropTypes.string]).isRequired,
+
+	    onPush: _react.PropTypes.func.isRequired,
+	    onReplace: _react.PropTypes.func.isRequired,
+	    blockTransitions: _react.PropTypes.func,
+
+	    stringifyQuery: _react.PropTypes.func.isRequired,
+	    parseQueryString: _react.PropTypes.func.isRequired,
+	    createHref: _react.PropTypes.func.isRequired, // TODO: Clarify why this is useful
+
+	    basename: _react.PropTypes.string // TODO: Feels like we should be able to remove this
+	  };
+	}
+
+	exports.default = StaticRouter;
 
 /***/ },
-/* 363 */
+/* 318 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var strictUriEncode = __webpack_require__(364);
-	var objectAssign = __webpack_require__(162);
-
-	function encoderForArrayFormat(opts) {
-		switch (opts.arrayFormat) {
-			case 'index':
-				return function (key, value, index) {
-					return value === null ? [
-						encode(key, opts),
-						'[',
-						index,
-						']'
-					].join('') : [
-						encode(key, opts),
-						'[',
-						encode(index, opts),
-						']=',
-						encode(value, opts)
-					].join('');
-				};
-
-			case 'bracket':
-				return function (key, value) {
-					return value === null ? encode(key, opts) : [
-						encode(key, opts),
-						'[]=',
-						encode(value, opts)
-					].join('');
-				};
-
-			default:
-				return function (key, value) {
-					return value === null ? encode(key, opts) : [
-						encode(key, opts),
-						'=',
-						encode(value, opts)
-					].join('');
-				};
-		}
-	}
-
-	function parserForArrayFormat(opts) {
-		var result;
-
-		switch (opts.arrayFormat) {
-			case 'index':
-				return function (key, value, accumulator) {
-					result = /\[(\d*)]$/.exec(key);
-
-					key = key.replace(/\[\d*]$/, '');
-
-					if (!result) {
-						accumulator[key] = value;
-						return;
-					}
-
-					if (accumulator[key] === undefined) {
-						accumulator[key] = {};
-					}
-
-					accumulator[key][result[1]] = value;
-				};
-
-			case 'bracket':
-				return function (key, value, accumulator) {
-					result = /(\[])$/.exec(key);
-
-					key = key.replace(/\[]$/, '');
-
-					if (!result || accumulator[key] === undefined) {
-						accumulator[key] = value;
-						return;
-					}
-
-					accumulator[key] = [].concat(accumulator[key], value);
-				};
-
-			default:
-				return function (key, value, accumulator) {
-					if (accumulator[key] === undefined) {
-						accumulator[key] = value;
-						return;
-					}
-
-					accumulator[key] = [].concat(accumulator[key], value);
-				};
-		}
-	}
+	var strictUriEncode = __webpack_require__(319);
+	var objectAssign = __webpack_require__(122);
 
 	function encode(value, opts) {
 		if (opts.encode) {
@@ -84057,29 +61341,11 @@
 		return value;
 	}
 
-	function keysSorter(input) {
-		if (Array.isArray(input)) {
-			return input.sort();
-		} else if (typeof input === 'object') {
-			return keysSorter(Object.keys(input)).sort(function (a, b) {
-				return Number(a) - Number(b);
-			}).map(function (key) {
-				return input[key];
-			});
-		}
-
-		return input;
-	}
-
 	exports.extract = function (str) {
 		return str.split('?')[1] || '';
 	};
 
-	exports.parse = function (str, opts) {
-		opts = objectAssign({arrayFormat: 'none'}, opts);
-
-		var formatter = parserForArrayFormat(opts);
-
+	exports.parse = function (str) {
 		// Create an object with no prototype
 		// https://github.com/sindresorhus/query-string/issues/47
 		var ret = Object.create(null);
@@ -84101,36 +61367,31 @@
 			var key = parts.shift();
 			var val = parts.length > 0 ? parts.join('=') : undefined;
 
+			key = decodeURIComponent(key);
+
 			// missing `=` should be `null`:
 			// http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
 			val = val === undefined ? null : decodeURIComponent(val);
 
-			formatter(decodeURIComponent(key), val, ret);
+			if (ret[key] === undefined) {
+				ret[key] = val;
+			} else if (Array.isArray(ret[key])) {
+				ret[key].push(val);
+			} else {
+				ret[key] = [ret[key], val];
+			}
 		});
 
-		return Object.keys(ret).sort().reduce(function (result, key) {
-			var val = ret[key];
-			if (Boolean(val) && typeof val === 'object' && !Array.isArray(val)) {
-				// Sort object keys, not values
-				result[key] = keysSorter(val);
-			} else {
-				result[key] = val;
-			}
-
-			return result;
-		}, Object.create(null));
+		return ret;
 	};
 
 	exports.stringify = function (obj, opts) {
 		var defaults = {
 			encode: true,
-			strict: true,
-			arrayFormat: 'none'
+			strict: true
 		};
 
 		opts = objectAssign(defaults, opts);
-
-		var formatter = encoderForArrayFormat(opts);
 
 		return obj ? Object.keys(obj).sort().map(function (key) {
 			var val = obj[key];
@@ -84151,7 +61412,11 @@
 						return;
 					}
 
-					result.push(formatter(key, val2, result.length));
+					if (val2 === null) {
+						result.push(encode(key, opts));
+					} else {
+						result.push(encode(key, opts) + '=' + encode(val2, opts));
+					}
 				});
 
 				return result.join('&');
@@ -84165,7 +61430,7 @@
 
 
 /***/ },
-/* 364 */
+/* 319 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -84177,849 +61442,141 @@
 
 
 /***/ },
-/* 365 */
+/* 320 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
+	exports.createRouterPath = exports.createRouterLocation = exports.locationsAreEqual = undefined;
 
-	var _warning = __webpack_require__(338);
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _warning2 = _interopRequireDefault(_warning);
+	var _LocationUtils = __webpack_require__(310);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	Object.defineProperty(exports, 'locationsAreEqual', {
+	  enumerable: true,
+	  get: function get() {
+	    return _LocationUtils.locationsAreEqual;
+	  }
+	});
 
-	var runTransitionHook = function runTransitionHook(hook, location, callback) {
-	  var result = hook(location, callback);
+	var _PathUtils = __webpack_require__(313);
 
-	  if (hook.length < 2) {
-	    // Assume the hook runs synchronously and automatically
-	    // call the callback with the return value.
-	    callback(result);
+	var createRouterLocation = exports.createRouterLocation = function createRouterLocation(input, parseQueryString, stringifyQuery) {
+	  if (typeof input === 'string') {
+	    var location = (0, _PathUtils.parsePath)(input);
+	    location.query = location.search !== '' ? parseQueryString(location.search) : null;
+	    return location;
 	  } else {
-	    process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(result === undefined, 'You should not "return" in a transition hook with a callback argument; ' + 'call the callback instead') : void 0;
+	    // got a location descriptor
+	    return {
+	      pathname: input.pathname || '',
+	      search: input.search || (input.query ? '?' + stringifyQuery(input.query) : ''),
+	      hash: input.hash || '',
+	      state: input.state || null,
+	      query: input.query || (input.search ? parseQueryString(input.search) : null),
+	      key: input.key
+	    };
 	  }
 	};
 
-	exports.default = runTransitionHook;
-
-/***/ },
-/* 366 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.locationsAreEqual = exports.statesAreEqual = exports.createLocation = exports.createQuery = undefined;
-
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _invariant = __webpack_require__(334);
-
-	var _invariant2 = _interopRequireDefault(_invariant);
-
-	var _warning = __webpack_require__(338);
-
-	var _warning2 = _interopRequireDefault(_warning);
-
-	var _PathUtils = __webpack_require__(367);
-
-	var _Actions = __webpack_require__(360);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var createQuery = exports.createQuery = function createQuery(props) {
-	  return _extends(Object.create(null), props);
-	};
-
-	var createLocation = exports.createLocation = function createLocation() {
-	  var input = arguments.length <= 0 || arguments[0] === undefined ? '/' : arguments[0];
-	  var action = arguments.length <= 1 || arguments[1] === undefined ? _Actions.POP : arguments[1];
-	  var key = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
-
-	  var object = typeof input === 'string' ? (0, _PathUtils.parsePath)(input) : input;
-
-	  process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(!object.path, 'Location descriptor objects should have a `pathname`, not a `path`.') : void 0;
-
-	  var pathname = object.pathname || '/';
-	  var search = object.search || '';
-	  var hash = object.hash || '';
-	  var state = object.state;
-
-	  return {
-	    pathname: pathname,
-	    search: search,
-	    hash: hash,
-	    state: state,
-	    action: action,
-	    key: key
-	  };
-	};
-
-	var isDate = function isDate(object) {
-	  return Object.prototype.toString.call(object) === '[object Date]';
-	};
-
-	var statesAreEqual = exports.statesAreEqual = function statesAreEqual(a, b) {
-	  if (a === b) return true;
-
-	  var typeofA = typeof a === 'undefined' ? 'undefined' : _typeof(a);
-	  var typeofB = typeof b === 'undefined' ? 'undefined' : _typeof(b);
-
-	  if (typeofA !== typeofB) return false;
-
-	  !(typeofA !== 'function') ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'You must not store functions in location state') : (0, _invariant2.default)(false) : void 0;
-
-	  // Not the same object, but same type.
-	  if (typeofA === 'object') {
-	    !!(isDate(a) && isDate(b)) ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'You must not store Date objects in location state') : (0, _invariant2.default)(false) : void 0;
-
-	    if (!Array.isArray(a)) {
-	      var keysofA = Object.keys(a);
-	      var keysofB = Object.keys(b);
-	      return keysofA.length === keysofB.length && keysofA.every(function (key) {
-	        return statesAreEqual(a[key], b[key]);
-	      });
-	    }
-
-	    return Array.isArray(b) && a.length === b.length && a.every(function (item, index) {
-	      return statesAreEqual(item, b[index]);
-	    });
-	  }
-
-	  // All other serializable types (string, number, boolean)
-	  // should be strict equal.
-	  return false;
-	};
-
-	var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a, b) {
-	  return a.key === b.key &&
-	  // a.action === b.action && // Different action !== location change.
-	  a.pathname === b.pathname && a.search === b.search && a.hash === b.hash && statesAreEqual(a.state, b.state);
-	};
-
-/***/ },
-/* 367 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.createPath = exports.parsePath = exports.getQueryStringValueFromPath = exports.stripQueryStringValueFromPath = exports.addQueryStringValueToPath = undefined;
-
-	var _warning = __webpack_require__(338);
-
-	var _warning2 = _interopRequireDefault(_warning);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var addQueryStringValueToPath = exports.addQueryStringValueToPath = function addQueryStringValueToPath(path, key, value) {
-	  var _parsePath = parsePath(path);
-
-	  var pathname = _parsePath.pathname;
-	  var search = _parsePath.search;
-	  var hash = _parsePath.hash;
-
-
-	  return createPath({
-	    pathname: pathname,
-	    search: search + (search.indexOf('?') === -1 ? '?' : '&') + key + '=' + value,
-	    hash: hash
-	  });
-	};
-
-	var stripQueryStringValueFromPath = exports.stripQueryStringValueFromPath = function stripQueryStringValueFromPath(path, key) {
-	  var _parsePath2 = parsePath(path);
-
-	  var pathname = _parsePath2.pathname;
-	  var search = _parsePath2.search;
-	  var hash = _parsePath2.hash;
-
-
-	  return createPath({
-	    pathname: pathname,
-	    search: search.replace(new RegExp('([?&])' + key + '=[a-zA-Z0-9]+(&?)'), function (match, prefix, suffix) {
-	      return prefix === '?' ? prefix : suffix;
-	    }),
-	    hash: hash
-	  });
-	};
-
-	var getQueryStringValueFromPath = exports.getQueryStringValueFromPath = function getQueryStringValueFromPath(path, key) {
-	  var _parsePath3 = parsePath(path);
-
-	  var search = _parsePath3.search;
-
-	  var match = search.match(new RegExp('[?&]' + key + '=([a-zA-Z0-9]+)'));
-	  return match && match[1];
-	};
-
-	var extractPath = function extractPath(string) {
-	  var match = string.match(/^(https?:)?\/\/[^\/]*/);
-	  return match == null ? string : string.substring(match[0].length);
-	};
-
-	var parsePath = exports.parsePath = function parsePath(path) {
-	  var pathname = extractPath(path);
-	  var search = '';
-	  var hash = '';
-
-	  process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(path === pathname, 'A path must be pathname + search + hash only, not a full URL like "%s"', path) : void 0;
-
-	  var hashIndex = pathname.indexOf('#');
-	  if (hashIndex !== -1) {
-	    hash = pathname.substring(hashIndex);
-	    pathname = pathname.substring(0, hashIndex);
-	  }
-
-	  var searchIndex = pathname.indexOf('?');
-	  if (searchIndex !== -1) {
-	    search = pathname.substring(searchIndex);
-	    pathname = pathname.substring(0, searchIndex);
-	  }
-
-	  if (pathname === '') pathname = '/';
-
-	  return {
-	    pathname: pathname,
-	    search: search,
-	    hash: hash
-	  };
-	};
-
-	var createPath = exports.createPath = function createPath(location) {
-	  if (location == null || typeof location === 'string') return location;
-
-	  var basename = location.basename;
-	  var pathname = location.pathname;
-	  var search = location.search;
-	  var hash = location.hash;
-
-	  var path = (basename || '') + pathname;
-
-	  if (search && search !== '?') path += search;
-
-	  if (hash) path += hash;
-
-	  return path;
-	};
-
-/***/ },
-/* 368 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _runTransitionHook = __webpack_require__(365);
-
-	var _runTransitionHook2 = _interopRequireDefault(_runTransitionHook);
-
-	var _PathUtils = __webpack_require__(367);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var useBasename = function useBasename(createHistory) {
-	  return function () {
-	    var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-	    var history = createHistory(options);
-	    var basename = options.basename;
-
-
-	    var addBasename = function addBasename(location) {
-	      if (!location) return location;
-
-	      if (basename && location.basename == null) {
-	        if (location.pathname.indexOf(basename) === 0) {
-	          location.pathname = location.pathname.substring(basename.length);
-	          location.basename = basename;
-
-	          if (location.pathname === '') location.pathname = '/';
-	        } else {
-	          location.basename = '';
-	        }
-	      }
-
-	      return location;
-	    };
-
-	    var prependBasename = function prependBasename(location) {
-	      if (!basename) return location;
-
-	      var object = typeof location === 'string' ? (0, _PathUtils.parsePath)(location) : location;
-	      var pname = object.pathname;
-	      var normalizedBasename = basename.slice(-1) === '/' ? basename : basename + '/';
-	      var normalizedPathname = pname.charAt(0) === '/' ? pname.slice(1) : pname;
-	      var pathname = normalizedBasename + normalizedPathname;
-
-	      return _extends({}, object, {
-	        pathname: pathname
-	      });
-	    };
-
-	    // Override all read methods with basename-aware versions.
-	    var getCurrentLocation = function getCurrentLocation() {
-	      return addBasename(history.getCurrentLocation());
-	    };
-
-	    var listenBefore = function listenBefore(hook) {
-	      return history.listenBefore(function (location, callback) {
-	        return (0, _runTransitionHook2.default)(hook, addBasename(location), callback);
-	      });
-	    };
-
-	    var listen = function listen(listener) {
-	      return history.listen(function (location) {
-	        return listener(addBasename(location));
-	      });
-	    };
-
-	    // Override all write methods with basename-aware versions.
-	    var push = function push(location) {
-	      return history.push(prependBasename(location));
-	    };
-
-	    var replace = function replace(location) {
-	      return history.replace(prependBasename(location));
-	    };
-
-	    var createPath = function createPath(location) {
-	      return history.createPath(prependBasename(location));
-	    };
-
-	    var createHref = function createHref(location) {
-	      return history.createHref(prependBasename(location));
-	    };
-
-	    var createLocation = function createLocation(location) {
-	      for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-	        args[_key - 1] = arguments[_key];
-	      }
-
-	      return addBasename(history.createLocation.apply(history, [prependBasename(location)].concat(args)));
-	    };
-
-	    return _extends({}, history, {
-	      getCurrentLocation: getCurrentLocation,
-	      listenBefore: listenBefore,
-	      listen: listen,
-	      push: push,
-	      replace: replace,
-	      createPath: createPath,
-	      createHref: createHref,
-	      createLocation: createLocation
-	    });
-	  };
-	};
-
-	exports.default = useBasename;
-
-/***/ },
-/* 369 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _warning = __webpack_require__(338);
-
-	var _warning2 = _interopRequireDefault(_warning);
-
-	var _invariant = __webpack_require__(334);
-
-	var _invariant2 = _interopRequireDefault(_invariant);
-
-	var _LocationUtils = __webpack_require__(366);
-
-	var _PathUtils = __webpack_require__(367);
-
-	var _createHistory = __webpack_require__(370);
-
-	var _createHistory2 = _interopRequireDefault(_createHistory);
-
-	var _Actions = __webpack_require__(360);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var createStateStorage = function createStateStorage(entries) {
-	  return entries.filter(function (entry) {
-	    return entry.state;
-	  }).reduce(function (memo, entry) {
-	    memo[entry.key] = entry.state;
-	    return memo;
-	  }, {});
-	};
-
-	var createMemoryHistory = function createMemoryHistory() {
-	  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-	  if (Array.isArray(options)) {
-	    options = { entries: options };
-	  } else if (typeof options === 'string') {
-	    options = { entries: [options] };
-	  }
-
-	  var getCurrentLocation = function getCurrentLocation() {
-	    var entry = entries[current];
-	    var path = (0, _PathUtils.createPath)(entry);
-
-	    var key = void 0,
-	        state = void 0;
-	    if (entry.key) {
-	      key = entry.key;
-	      state = readState(key);
-	    }
-
-	    var init = (0, _PathUtils.parsePath)(path);
-
-	    return (0, _LocationUtils.createLocation)(_extends({}, init, { state: state }), undefined, key);
-	  };
-
-	  var canGo = function canGo(n) {
-	    var index = current + n;
-	    return index >= 0 && index < entries.length;
-	  };
-
-	  var go = function go(n) {
-	    if (!n) return;
-
-	    if (!canGo(n)) {
-	      process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(false, 'Cannot go(%s) there is not enough history', n) : void 0;
-
-	      return;
-	    }
-
-	    current += n;
-	    var currentLocation = getCurrentLocation();
-
-	    // Change action to POP
-	    history.transitionTo(_extends({}, currentLocation, { action: _Actions.POP }));
-	  };
-
-	  var pushLocation = function pushLocation(location) {
-	    current += 1;
-
-	    if (current < entries.length) entries.splice(current);
-
-	    entries.push(location);
-
-	    saveState(location.key, location.state);
-	  };
-
-	  var replaceLocation = function replaceLocation(location) {
-	    entries[current] = location;
-	    saveState(location.key, location.state);
-	  };
-
-	  var history = (0, _createHistory2.default)(_extends({}, options, {
-	    getCurrentLocation: getCurrentLocation,
-	    pushLocation: pushLocation,
-	    replaceLocation: replaceLocation,
-	    go: go
+	var createRouterPath = exports.createRouterPath = function createRouterPath(input, stringifyQuery) {
+	  return typeof input === 'string' ? input : (0, _PathUtils.createPath)(_extends({}, input, {
+	    search: input.search || (input.query ? '?' + stringifyQuery(input.query) : '')
 	  }));
-
-	  var _options = options;
-	  var entries = _options.entries;
-	  var current = _options.current;
-
-
-	  if (typeof entries === 'string') {
-	    entries = [entries];
-	  } else if (!Array.isArray(entries)) {
-	    entries = ['/'];
-	  }
-
-	  entries = entries.map(function (entry) {
-	    return (0, _LocationUtils.createLocation)(entry);
-	  });
-
-	  if (current == null) {
-	    current = entries.length - 1;
-	  } else {
-	    !(current >= 0 && current < entries.length) ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'Current index must be >= 0 and < %s, was %s', entries.length, current) : (0, _invariant2.default)(false) : void 0;
-	  }
-
-	  var storage = createStateStorage(entries);
-
-	  var saveState = function saveState(key, state) {
-	    return storage[key] = state;
-	  };
-
-	  var readState = function readState(key) {
-	    return storage[key];
-	  };
-
-	  return _extends({}, history, {
-	    canGo: canGo
-	  });
 	};
 
-	exports.default = createMemoryHistory;
-
 /***/ },
-/* 370 */
+/* 321 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _AsyncUtils = __webpack_require__(371);
-
-	var _PathUtils = __webpack_require__(367);
-
-	var _runTransitionHook = __webpack_require__(365);
-
-	var _runTransitionHook2 = _interopRequireDefault(_runTransitionHook);
-
-	var _Actions = __webpack_require__(360);
-
-	var _LocationUtils = __webpack_require__(366);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var createHistory = function createHistory() {
-	  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-	  var getCurrentLocation = options.getCurrentLocation;
-	  var getUserConfirmation = options.getUserConfirmation;
-	  var pushLocation = options.pushLocation;
-	  var replaceLocation = options.replaceLocation;
-	  var go = options.go;
-	  var keyLength = options.keyLength;
-
-
-	  var currentLocation = void 0;
-	  var pendingLocation = void 0;
-	  var beforeListeners = [];
-	  var listeners = [];
-	  var allKeys = [];
-
-	  var getCurrentIndex = function getCurrentIndex() {
-	    if (pendingLocation && pendingLocation.action === _Actions.POP) return allKeys.indexOf(pendingLocation.key);
-
-	    if (currentLocation) return allKeys.indexOf(currentLocation.key);
-
-	    return -1;
-	  };
-
-	  var updateLocation = function updateLocation(nextLocation) {
-	    var currentIndex = getCurrentIndex();
-
-	    currentLocation = nextLocation;
-
-	    if (currentLocation.action === _Actions.PUSH) {
-	      allKeys = [].concat(allKeys.slice(0, currentIndex + 1), [currentLocation.key]);
-	    } else if (currentLocation.action === _Actions.REPLACE) {
-	      allKeys[currentIndex] = currentLocation.key;
-	    }
-
-	    listeners.forEach(function (listener) {
-	      return listener(currentLocation);
-	    });
-	  };
-
-	  var listenBefore = function listenBefore(listener) {
-	    beforeListeners.push(listener);
-
-	    return function () {
-	      return beforeListeners = beforeListeners.filter(function (item) {
-	        return item !== listener;
-	      });
-	    };
-	  };
-
-	  var listen = function listen(listener) {
-	    listeners.push(listener);
-
-	    return function () {
-	      return listeners = listeners.filter(function (item) {
-	        return item !== listener;
-	      });
-	    };
-	  };
-
-	  var confirmTransitionTo = function confirmTransitionTo(location, callback) {
-	    (0, _AsyncUtils.loopAsync)(beforeListeners.length, function (index, next, done) {
-	      (0, _runTransitionHook2.default)(beforeListeners[index], location, function (result) {
-	        return result != null ? done(result) : next();
-	      });
-	    }, function (message) {
-	      if (getUserConfirmation && typeof message === 'string') {
-	        getUserConfirmation(message, function (ok) {
-	          return callback(ok !== false);
-	        });
-	      } else {
-	        callback(message !== false);
-	      }
-	    });
-	  };
-
-	  var transitionTo = function transitionTo(nextLocation) {
-	    if (currentLocation && (0, _LocationUtils.locationsAreEqual)(currentLocation, nextLocation) || pendingLocation && (0, _LocationUtils.locationsAreEqual)(pendingLocation, nextLocation)) return; // Nothing to do
-
-	    pendingLocation = nextLocation;
-
-	    confirmTransitionTo(nextLocation, function (ok) {
-	      if (pendingLocation !== nextLocation) return; // Transition was interrupted during confirmation
-
-	      pendingLocation = null;
-
-	      if (ok) {
-	        // Treat PUSH to same path like REPLACE to be consistent with browsers
-	        if (nextLocation.action === _Actions.PUSH) {
-	          var prevPath = (0, _PathUtils.createPath)(currentLocation);
-	          var nextPath = (0, _PathUtils.createPath)(nextLocation);
-
-	          if (nextPath === prevPath && (0, _LocationUtils.statesAreEqual)(currentLocation.state, nextLocation.state)) nextLocation.action = _Actions.REPLACE;
-	        }
-
-	        if (nextLocation.action === _Actions.POP) {
-	          updateLocation(nextLocation);
-	        } else if (nextLocation.action === _Actions.PUSH) {
-	          if (pushLocation(nextLocation) !== false) updateLocation(nextLocation);
-	        } else if (nextLocation.action === _Actions.REPLACE) {
-	          if (replaceLocation(nextLocation) !== false) updateLocation(nextLocation);
-	        }
-	      } else if (currentLocation && nextLocation.action === _Actions.POP) {
-	        var prevIndex = allKeys.indexOf(currentLocation.key);
-	        var nextIndex = allKeys.indexOf(nextLocation.key);
-
-	        if (prevIndex !== -1 && nextIndex !== -1) go(prevIndex - nextIndex); // Restore the URL
-	      }
-	    });
-	  };
-
-	  var push = function push(input) {
-	    return transitionTo(createLocation(input, _Actions.PUSH));
-	  };
-
-	  var replace = function replace(input) {
-	    return transitionTo(createLocation(input, _Actions.REPLACE));
-	  };
-
-	  var goBack = function goBack() {
-	    return go(-1);
-	  };
-
-	  var goForward = function goForward() {
-	    return go(1);
-	  };
-
-	  var createKey = function createKey() {
-	    return Math.random().toString(36).substr(2, keyLength || 6);
-	  };
-
-	  var createHref = function createHref(location) {
-	    return (0, _PathUtils.createPath)(location);
-	  };
-
-	  var createLocation = function createLocation(location, action) {
-	    var key = arguments.length <= 2 || arguments[2] === undefined ? createKey() : arguments[2];
-	    return (0, _LocationUtils.createLocation)(location, action, key);
-	  };
-
-	  return {
-	    getCurrentLocation: getCurrentLocation,
-	    listenBefore: listenBefore,
-	    listen: listen,
-	    transitionTo: transitionTo,
-	    push: push,
-	    replace: replace,
-	    go: go,
-	    goBack: goBack,
-	    goForward: goForward,
-	    createKey: createKey,
-	    createPath: _PathUtils.createPath,
-	    createHref: createHref,
-	    createLocation: createLocation
-	  };
-	};
-
-	exports.default = createHistory;
-
-/***/ },
-/* 371 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	exports.__esModule = true;
-	var loopAsync = exports.loopAsync = function loopAsync(turns, work, callback) {
-	  var currentTurn = 0,
-	      isDone = false;
-	  var isSync = false,
-	      hasNext = false,
-	      doneArgs = void 0;
-
-	  var done = function done() {
-	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	      args[_key] = arguments[_key];
-	    }
-
-	    isDone = true;
-
-	    if (isSync) {
-	      // Iterate instead of recursing if possible.
-	      doneArgs = args;
-	      return;
-	    }
-
-	    callback.apply(undefined, args);
-	  };
-
-	  var next = function next() {
-	    if (isDone) return;
-
-	    hasNext = true;
-
-	    if (isSync) return; // Iterate instead of recursing if possible.
-
-	    isSync = true;
-
-	    while (!isDone && currentTurn < turns && hasNext) {
-	      hasNext = false;
-	      work(currentTurn++, next, done);
-	    }
-
-	    isSync = false;
-
-	    if (isDone) {
-	      // This means the loop finished synchronously.
-	      callback.apply(undefined, doneArgs);
-	      return;
-	    }
-
-	    if (currentTurn >= turns && hasNext) {
-	      isDone = true;
-	      callback();
-	    }
-	  };
-
-	  next();
-	};
-
-/***/ },
-/* 372 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.default = useRouterHistory;
-
-	var _useQueries = __webpack_require__(362);
-
-	var _useQueries2 = _interopRequireDefault(_useQueries);
-
-	var _useBasename = __webpack_require__(368);
-
-	var _useBasename2 = _interopRequireDefault(_useBasename);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function useRouterHistory(createHistory) {
-	  return function (options) {
-	    var history = (0, _useQueries2.default)((0, _useBasename2.default)(createHistory))(options);
-	    return history;
-	  };
-	}
-	module.exports = exports['default'];
-
-/***/ },
-/* 373 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(160);
+	var _react = __webpack_require__(120);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _RouterContext = __webpack_require__(347);
-
-	var _RouterContext2 = _interopRequireDefault(_RouterContext);
-
-	var _routerWarning = __webpack_require__(337);
-
-	var _routerWarning2 = _interopRequireDefault(_routerWarning);
+	var _PropTypes = __webpack_require__(297);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = function () {
-	  for (var _len = arguments.length, middlewares = Array(_len), _key = 0; _key < _len; _key++) {
-	    middlewares[_key] = arguments[_key];
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	/**
+	 * The common public API for all *History components.
+	 */
+	var History = function (_React$Component) {
+	  _inherits(History, _React$Component);
+
+	  function History() {
+	    _classCallCheck(this, History);
+
+	    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
 	  }
 
-	  if (process.env.NODE_ENV !== 'production') {
-	    middlewares.forEach(function (middleware, index) {
-	      process.env.NODE_ENV !== 'production' ? (0, _routerWarning2.default)(middleware.renderRouterContext || middleware.renderRouteComponent, 'The middleware specified at index ' + index + ' does not appear to be ' + 'a valid React Router middleware.') : void 0;
-	    });
-	  }
-
-	  var withContext = middlewares.map(function (middleware) {
-	    return middleware.renderRouterContext;
-	  }).filter(Boolean);
-	  var withComponent = middlewares.map(function (middleware) {
-	    return middleware.renderRouteComponent;
-	  }).filter(Boolean);
-
-	  var makeCreateElement = function makeCreateElement() {
-	    var baseCreateElement = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _react.createElement;
-	    return function (Component, props) {
-	      return withComponent.reduceRight(function (previous, renderRouteComponent) {
-	        return renderRouteComponent(previous, props);
-	      }, baseCreateElement(Component, props));
+	  History.prototype.getChildContext = function getChildContext() {
+	    return {
+	      history: this.history
 	    };
 	  };
 
-	  return function (renderProps) {
-	    return withContext.reduceRight(function (previous, renderRouterContext) {
-	      return renderRouterContext(previous, renderProps);
-	    }, _react2.default.createElement(_RouterContext2.default, _extends({}, renderProps, {
-	      createElement: makeCreateElement(renderProps.createElement)
-	    })));
+	  History.prototype.componentWillMount = function componentWillMount() {
+	    var _this2 = this;
+
+	    var _props = this.props,
+	        createHistory = _props.createHistory,
+	        historyOptions = _props.historyOptions;
+
+	    this.history = createHistory(historyOptions);
+	    this.unlisten = this.history.listen(function () {
+	      return _this2.forceUpdate();
+	    });
 	  };
+
+	  History.prototype.componentWillUnmount = function componentWillUnmount() {
+	    this.unlisten();
+	  };
+
+	  History.prototype.render = function render() {
+	    var history = this.history;
+	    var location = history.location,
+	        action = history.action;
+
+
+	    return this.props.children({
+	      history: history,
+	      location: location,
+	      action: action
+	    });
+	  };
+
+	  return History;
+	}(_react2.default.Component);
+
+	History.childContextTypes = {
+	  history: _PropTypes.historyContext.isRequired
 	};
 
-	module.exports = exports['default'];
+
+	if (process.env.NODE_ENV !== 'production') {
+	  History.propTypes = {
+	    children: _react.PropTypes.func.isRequired,
+	    createHistory: _react.PropTypes.func.isRequired,
+	    historyOptions: _react.PropTypes.object
+	  };
+	}
+
+	exports.default = History;
 
 /***/ },
-/* 374 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _createBrowserHistory = __webpack_require__(375);
-
-	var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
-
-	var _createRouterHistory = __webpack_require__(381);
-
-	var _createRouterHistory2 = _interopRequireDefault(_createRouterHistory);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = (0, _createRouterHistory2.default)(_createBrowserHistory2.default);
-	module.exports = exports['default'];
-
-/***/ },
-/* 375 */
+/* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -85028,430 +61585,98 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _invariant = __webpack_require__(334);
+	var _react = __webpack_require__(120);
 
-	var _invariant2 = _interopRequireDefault(_invariant);
+	var _react2 = _interopRequireDefault(_react);
 
-	var _ExecutionEnvironment = __webpack_require__(376);
-
-	var _BrowserProtocol = __webpack_require__(377);
-
-	var BrowserProtocol = _interopRequireWildcard(_BrowserProtocol);
-
-	var _RefreshProtocol = __webpack_require__(380);
-
-	var RefreshProtocol = _interopRequireWildcard(_RefreshProtocol);
-
-	var _DOMUtils = __webpack_require__(378);
-
-	var _createHistory = __webpack_require__(370);
-
-	var _createHistory2 = _interopRequireDefault(_createHistory);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	/**
-	 * Creates and returns a history object that uses HTML5's history API
-	 * (pushState, replaceState, and the popstate event) to manage history.
-	 * This is the recommended method of managing history in browsers because
-	 * it provides the cleanest URLs.
-	 *
-	 * Note: In browsers that do not support the HTML5 history API full
-	 * page reloads will be used to preserve clean URLs. You can force this
-	 * behavior using { forceRefresh: true } in options.
-	 */
-	var createBrowserHistory = function createBrowserHistory() {
-	  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-	  !_ExecutionEnvironment.canUseDOM ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'Browser history needs a DOM') : (0, _invariant2.default)(false) : void 0;
-
-	  var useRefresh = options.forceRefresh || !(0, _DOMUtils.supportsHistory)();
-	  var Protocol = useRefresh ? RefreshProtocol : BrowserProtocol;
-
-	  var getUserConfirmation = Protocol.getUserConfirmation;
-	  var getCurrentLocation = Protocol.getCurrentLocation;
-	  var pushLocation = Protocol.pushLocation;
-	  var replaceLocation = Protocol.replaceLocation;
-	  var go = Protocol.go;
-
-
-	  var history = (0, _createHistory2.default)(_extends({
-	    getUserConfirmation: getUserConfirmation }, options, {
-	    getCurrentLocation: getCurrentLocation,
-	    pushLocation: pushLocation,
-	    replaceLocation: replaceLocation,
-	    go: go
-	  }));
-
-	  var listenerCount = 0,
-	      stopListener = void 0;
-
-	  var startListener = function startListener(listener, before) {
-	    if (++listenerCount === 1) stopListener = BrowserProtocol.startListener(history.transitionTo);
-
-	    var unlisten = before ? history.listenBefore(listener) : history.listen(listener);
-
-	    return function () {
-	      unlisten();
-
-	      if (--listenerCount === 0) stopListener();
-	    };
-	  };
-
-	  var listenBefore = function listenBefore(listener) {
-	    return startListener(listener, true);
-	  };
-
-	  var listen = function listen(listener) {
-	    return startListener(listener, false);
-	  };
-
-	  return _extends({}, history, {
-	    listenBefore: listenBefore,
-	    listen: listen
-	  });
-	};
-
-	exports.default = createBrowserHistory;
-
-/***/ },
-/* 376 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	var canUseDOM = exports.canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
-
-/***/ },
-/* 377 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.go = exports.replaceLocation = exports.pushLocation = exports.startListener = exports.getUserConfirmation = exports.getCurrentLocation = undefined;
-
-	var _LocationUtils = __webpack_require__(366);
-
-	var _DOMUtils = __webpack_require__(378);
-
-	var _DOMStateStorage = __webpack_require__(379);
-
-	var _PathUtils = __webpack_require__(367);
-
-	var _ExecutionEnvironment = __webpack_require__(376);
-
-	var PopStateEvent = 'popstate';
-	var HashChangeEvent = 'hashchange';
-
-	var needsHashchangeListener = _ExecutionEnvironment.canUseDOM && !(0, _DOMUtils.supportsPopstateOnHashchange)();
-
-	var _createLocation = function _createLocation(historyState) {
-	  var key = historyState && historyState.key;
-
-	  return (0, _LocationUtils.createLocation)({
-	    pathname: window.location.pathname,
-	    search: window.location.search,
-	    hash: window.location.hash,
-	    state: key ? (0, _DOMStateStorage.readState)(key) : undefined
-	  }, undefined, key);
-	};
-
-	var getCurrentLocation = exports.getCurrentLocation = function getCurrentLocation() {
-	  var historyState = void 0;
-	  try {
-	    historyState = window.history.state || {};
-	  } catch (error) {
-	    // IE 11 sometimes throws when accessing window.history.state
-	    // See https://github.com/ReactTraining/history/pull/289
-	    historyState = {};
-	  }
-
-	  return _createLocation(historyState);
-	};
-
-	var getUserConfirmation = exports.getUserConfirmation = function getUserConfirmation(message, callback) {
-	  return callback(window.confirm(message));
-	}; // eslint-disable-line no-alert
-
-	var startListener = exports.startListener = function startListener(listener) {
-	  var handlePopState = function handlePopState(event) {
-	    if (event.state !== undefined) // Ignore extraneous popstate events in WebKit
-	      listener(_createLocation(event.state));
-	  };
-
-	  (0, _DOMUtils.addEventListener)(window, PopStateEvent, handlePopState);
-
-	  var handleUnpoppedHashChange = function handleUnpoppedHashChange() {
-	    return listener(getCurrentLocation());
-	  };
-
-	  if (needsHashchangeListener) {
-	    (0, _DOMUtils.addEventListener)(window, HashChangeEvent, handleUnpoppedHashChange);
-	  }
-
-	  return function () {
-	    (0, _DOMUtils.removeEventListener)(window, PopStateEvent, handlePopState);
-
-	    if (needsHashchangeListener) {
-	      (0, _DOMUtils.removeEventListener)(window, HashChangeEvent, handleUnpoppedHashChange);
-	    }
-	  };
-	};
-
-	var updateLocation = function updateLocation(location, updateState) {
-	  var state = location.state;
-	  var key = location.key;
-
-
-	  if (state !== undefined) (0, _DOMStateStorage.saveState)(key, state);
-
-	  updateState({ key: key }, (0, _PathUtils.createPath)(location));
-	};
-
-	var pushLocation = exports.pushLocation = function pushLocation(location) {
-	  return updateLocation(location, function (state, path) {
-	    return window.history.pushState(state, null, path);
-	  });
-	};
-
-	var replaceLocation = exports.replaceLocation = function replaceLocation(location) {
-	  return updateLocation(location, function (state, path) {
-	    return window.history.replaceState(state, null, path);
-	  });
-	};
-
-	var go = exports.go = function go(n) {
-	  if (n) window.history.go(n);
-	};
-
-/***/ },
-/* 378 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	var addEventListener = exports.addEventListener = function addEventListener(node, event, listener) {
-	  return node.addEventListener ? node.addEventListener(event, listener, false) : node.attachEvent('on' + event, listener);
-	};
-
-	var removeEventListener = exports.removeEventListener = function removeEventListener(node, event, listener) {
-	  return node.removeEventListener ? node.removeEventListener(event, listener, false) : node.detachEvent('on' + event, listener);
-	};
-
-	/**
-	 * Returns true if the HTML5 history API is supported. Taken from Modernizr.
-	 *
-	 * https://github.com/Modernizr/Modernizr/blob/master/LICENSE
-	 * https://github.com/Modernizr/Modernizr/blob/master/feature-detects/history.js
-	 * changed to avoid false negatives for Windows Phones: https://github.com/reactjs/react-router/issues/586
-	 */
-	var supportsHistory = exports.supportsHistory = function supportsHistory() {
-	  var ua = window.navigator.userAgent;
-
-	  if ((ua.indexOf('Android 2.') !== -1 || ua.indexOf('Android 4.0') !== -1) && ua.indexOf('Mobile Safari') !== -1 && ua.indexOf('Chrome') === -1 && ua.indexOf('Windows Phone') === -1) return false;
-
-	  return window.history && 'pushState' in window.history;
-	};
-
-	/**
-	 * Returns false if using go(n) with hash history causes a full page reload.
-	 */
-	var supportsGoWithoutReloadUsingHash = exports.supportsGoWithoutReloadUsingHash = function supportsGoWithoutReloadUsingHash() {
-	  return window.navigator.userAgent.indexOf('Firefox') === -1;
-	};
-
-	/**
-	 * Returns true if browser fires popstate on hash change.
-	 * IE10 and IE11 do not.
-	 */
-	var supportsPopstateOnHashchange = exports.supportsPopstateOnHashchange = function supportsPopstateOnHashchange() {
-	  return window.navigator.userAgent.indexOf('Trident') === -1;
-	};
-
-/***/ },
-/* 379 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.readState = exports.saveState = undefined;
-
-	var _warning = __webpack_require__(338);
-
-	var _warning2 = _interopRequireDefault(_warning);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var QuotaExceededErrors = {
-	  QuotaExceededError: true,
-	  QUOTA_EXCEEDED_ERR: true
-	};
-
-	var SecurityErrors = {
-	  SecurityError: true
-	};
-
-	var KeyPrefix = '@@History/';
-
-	var createKey = function createKey(key) {
-	  return KeyPrefix + key;
-	};
-
-	var saveState = exports.saveState = function saveState(key, state) {
-	  if (!window.sessionStorage) {
-	    // Session storage is not available or hidden.
-	    // sessionStorage is undefined in Internet Explorer when served via file protocol.
-	    process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(false, '[history] Unable to save state; sessionStorage is not available') : void 0;
-
-	    return;
-	  }
-
-	  try {
-	    if (state == null) {
-	      window.sessionStorage.removeItem(createKey(key));
-	    } else {
-	      window.sessionStorage.setItem(createKey(key), JSON.stringify(state));
-	    }
-	  } catch (error) {
-	    if (SecurityErrors[error.name]) {
-	      // Blocking cookies in Chrome/Firefox/Safari throws SecurityError on any
-	      // attempt to access window.sessionStorage.
-	      process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(false, '[history] Unable to save state; sessionStorage is not available due to security settings') : void 0;
-
-	      return;
-	    }
-
-	    if (QuotaExceededErrors[error.name] && window.sessionStorage.length === 0) {
-	      // Safari "private mode" throws QuotaExceededError.
-	      process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(false, '[history] Unable to save state; sessionStorage is not available in Safari private mode') : void 0;
-
-	      return;
-	    }
-
-	    throw error;
-	  }
-	};
-
-	var readState = exports.readState = function readState(key) {
-	  var json = void 0;
-	  try {
-	    json = window.sessionStorage.getItem(createKey(key));
-	  } catch (error) {
-	    if (SecurityErrors[error.name]) {
-	      // Blocking cookies in Chrome/Firefox/Safari throws SecurityError on any
-	      // attempt to access window.sessionStorage.
-	      process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(false, '[history] Unable to read state; sessionStorage is not available due to security settings') : void 0;
-
-	      return undefined;
-	    }
-	  }
-
-	  if (json) {
-	    try {
-	      return JSON.parse(json);
-	    } catch (error) {
-	      // Ignore invalid JSON.
-	    }
-	  }
-
-	  return undefined;
-	};
-
-/***/ },
-/* 380 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.replaceLocation = exports.pushLocation = exports.getCurrentLocation = exports.go = exports.getUserConfirmation = undefined;
-
-	var _BrowserProtocol = __webpack_require__(377);
-
-	Object.defineProperty(exports, 'getUserConfirmation', {
-	  enumerable: true,
-	  get: function get() {
-	    return _BrowserProtocol.getUserConfirmation;
-	  }
-	});
-	Object.defineProperty(exports, 'go', {
-	  enumerable: true,
-	  get: function get() {
-	    return _BrowserProtocol.go;
-	  }
-	});
-
-	var _LocationUtils = __webpack_require__(366);
-
-	var _PathUtils = __webpack_require__(367);
-
-	var getCurrentLocation = exports.getCurrentLocation = function getCurrentLocation() {
-	  return (0, _LocationUtils.createLocation)(window.location);
-	};
-
-	var pushLocation = exports.pushLocation = function pushLocation(location) {
-	  window.location.href = (0, _PathUtils.createPath)(location);
-	  return false; // Don't update location
-	};
-
-	var replaceLocation = exports.replaceLocation = function replaceLocation(location) {
-	  window.location.replace((0, _PathUtils.createPath)(location));
-	  return false; // Don't update location
-	};
-
-/***/ },
-/* 381 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	exports.default = function (createHistory) {
-	  var history = void 0;
-	  if (canUseDOM) history = (0, _useRouterHistory2.default)(createHistory)();
-	  return history;
-	};
-
-	var _useRouterHistory = __webpack_require__(372);
-
-	var _useRouterHistory2 = _interopRequireDefault(_useRouterHistory);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
-
-	module.exports = exports['default'];
-
-/***/ },
-/* 382 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _createHashHistory = __webpack_require__(383);
+	var _createHashHistory = __webpack_require__(323);
 
 	var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
 
-	var _createRouterHistory = __webpack_require__(381);
+	var _History = __webpack_require__(321);
 
-	var _createRouterHistory2 = _interopRequireDefault(_createRouterHistory);
+	var _History2 = _interopRequireDefault(_History);
+
+	var _PathUtils = __webpack_require__(313);
+
+	var _StaticRouter = __webpack_require__(317);
+
+	var _StaticRouter2 = _interopRequireDefault(_StaticRouter);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = (0, _createRouterHistory2.default)(_createHashHistory2.default);
-	module.exports = exports['default'];
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	var createHref = function createHref(hashType) {
+	  return function (path) {
+	    var newPath = void 0;
+
+	    switch (hashType) {
+	      case 'hashbang':
+	        newPath = path.charAt(0) === '!' ? path : '!/' + (0, _PathUtils.stripLeadingSlash)(path);
+	        break;
+	      case 'noslash':
+	        newPath = (0, _PathUtils.stripLeadingSlash)(path);
+	        break;
+	      case 'slash':
+	      default:
+	        newPath = (0, _PathUtils.addLeadingSlash)(path);
+	        break;
+	    }
+
+	    return '#' + newPath;
+	  };
+	};
+
+	/**
+	 * A router that uses the URL hash.
+	 */
+	var HashRouter = function HashRouter(_ref) {
+	  var basename = _ref.basename,
+	      getUserConfirmation = _ref.getUserConfirmation,
+	      hashType = _ref.hashType,
+	      routerProps = _objectWithoutProperties(_ref, ['basename', 'getUserConfirmation', 'hashType']);
+
+	  return _react2.default.createElement(
+	    _History2.default,
+	    {
+	      createHistory: _createHashHistory2.default,
+	      historyOptions: {
+	        basename: basename,
+	        getUserConfirmation: getUserConfirmation,
+	        hashType: hashType
+	      }
+	    },
+	    function (_ref2) {
+	      var history = _ref2.history,
+	          action = _ref2.action,
+	          location = _ref2.location;
+	      return _react2.default.createElement(_StaticRouter2.default, _extends({
+	        action: action,
+	        location: location,
+	        basename: basename,
+	        onPush: history.push,
+	        onReplace: history.replace,
+	        blockTransitions: history.block,
+	        createHref: createHref(hashType)
+	      }, routerProps));
+	    }
+	  );
+	};
+
+	if (process.env.NODE_ENV !== 'production') {
+	  HashRouter.propTypes = {
+	    basename: _react.PropTypes.string,
+	    getUserConfirmation: _react.PropTypes.func,
+	    hashType: _react.PropTypes.string,
+	    children: _react.PropTypes.oneOfType([_react.PropTypes.func, _react.PropTypes.node])
+	  };
+	}
+
+	exports.default = HashRouter;
 
 /***/ },
-/* 383 */
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -85460,187 +61685,48 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _warning = __webpack_require__(338);
+	var _warning = __webpack_require__(309);
 
 	var _warning2 = _interopRequireDefault(_warning);
 
-	var _invariant = __webpack_require__(334);
+	var _invariant = __webpack_require__(295);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
-	var _ExecutionEnvironment = __webpack_require__(376);
+	var _LocationUtils = __webpack_require__(310);
 
-	var _DOMUtils = __webpack_require__(378);
+	var _PathUtils = __webpack_require__(313);
 
-	var _HashProtocol = __webpack_require__(384);
+	var _createTransitionManager = __webpack_require__(314);
 
-	var HashProtocol = _interopRequireWildcard(_HashProtocol);
+	var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
-	var _createHistory = __webpack_require__(370);
+	var _ExecutionEnvironment = __webpack_require__(315);
 
-	var _createHistory2 = _interopRequireDefault(_createHistory);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	var _DOMUtils = __webpack_require__(316);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var DefaultQueryKey = '_k';
-
-	var addLeadingSlash = function addLeadingSlash(path) {
-	  return path.charAt(0) === '/' ? path : '/' + path;
-	};
+	var HashChangeEvent = 'hashchange';
 
 	var HashPathCoders = {
 	  hashbang: {
 	    encodePath: function encodePath(path) {
-	      return path.charAt(0) === '!' ? path : '!' + path;
+	      return path.charAt(0) === '!' ? path : '!/' + (0, _PathUtils.stripLeadingSlash)(path);
 	    },
 	    decodePath: function decodePath(path) {
-	      return path.charAt(0) === '!' ? path.substring(1) : path;
+	      return path.charAt(0) === '!' ? path.substr(1) : path;
 	    }
 	  },
 	  noslash: {
-	    encodePath: function encodePath(path) {
-	      return path.charAt(0) === '/' ? path.substring(1) : path;
-	    },
-	    decodePath: addLeadingSlash
+	    encodePath: _PathUtils.stripLeadingSlash,
+	    decodePath: _PathUtils.addLeadingSlash
 	  },
 	  slash: {
-	    encodePath: addLeadingSlash,
-	    decodePath: addLeadingSlash
+	    encodePath: _PathUtils.addLeadingSlash,
+	    decodePath: _PathUtils.addLeadingSlash
 	  }
 	};
-
-	var createHashHistory = function createHashHistory() {
-	  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-	  !_ExecutionEnvironment.canUseDOM ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'Hash history needs a DOM') : (0, _invariant2.default)(false) : void 0;
-
-	  var queryKey = options.queryKey;
-	  var hashType = options.hashType;
-
-
-	  process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(queryKey !== false, 'Using { queryKey: false } no longer works. Instead, just don\'t ' + 'use location state if you don\'t want a key in your URL query string') : void 0;
-
-	  if (typeof queryKey !== 'string') queryKey = DefaultQueryKey;
-
-	  if (hashType == null) hashType = 'slash';
-
-	  if (!(hashType in HashPathCoders)) {
-	    process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(false, 'Invalid hash type: %s', hashType) : void 0;
-
-	    hashType = 'slash';
-	  }
-
-	  var pathCoder = HashPathCoders[hashType];
-
-	  var getUserConfirmation = HashProtocol.getUserConfirmation;
-
-
-	  var getCurrentLocation = function getCurrentLocation() {
-	    return HashProtocol.getCurrentLocation(pathCoder, queryKey);
-	  };
-
-	  var pushLocation = function pushLocation(location) {
-	    return HashProtocol.pushLocation(location, pathCoder, queryKey);
-	  };
-
-	  var replaceLocation = function replaceLocation(location) {
-	    return HashProtocol.replaceLocation(location, pathCoder, queryKey);
-	  };
-
-	  var history = (0, _createHistory2.default)(_extends({
-	    getUserConfirmation: getUserConfirmation }, options, {
-	    getCurrentLocation: getCurrentLocation,
-	    pushLocation: pushLocation,
-	    replaceLocation: replaceLocation,
-	    go: HashProtocol.go
-	  }));
-
-	  var listenerCount = 0,
-	      stopListener = void 0;
-
-	  var startListener = function startListener(listener, before) {
-	    if (++listenerCount === 1) stopListener = HashProtocol.startListener(history.transitionTo, pathCoder, queryKey);
-
-	    var unlisten = before ? history.listenBefore(listener) : history.listen(listener);
-
-	    return function () {
-	      unlisten();
-
-	      if (--listenerCount === 0) stopListener();
-	    };
-	  };
-
-	  var listenBefore = function listenBefore(listener) {
-	    return startListener(listener, true);
-	  };
-
-	  var listen = function listen(listener) {
-	    return startListener(listener, false);
-	  };
-
-	  var goIsSupportedWithoutReload = (0, _DOMUtils.supportsGoWithoutReloadUsingHash)();
-
-	  var go = function go(n) {
-	    process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(goIsSupportedWithoutReload, 'Hash history go(n) causes a full page reload in this browser') : void 0;
-
-	    history.go(n);
-	  };
-
-	  var createHref = function createHref(path) {
-	    return '#' + pathCoder.encodePath(history.createHref(path));
-	  };
-
-	  return _extends({}, history, {
-	    listenBefore: listenBefore,
-	    listen: listen,
-	    go: go,
-	    createHref: createHref
-	  });
-	};
-
-	exports.default = createHashHistory;
-
-/***/ },
-/* 384 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.replaceLocation = exports.pushLocation = exports.startListener = exports.getCurrentLocation = exports.go = exports.getUserConfirmation = undefined;
-
-	var _BrowserProtocol = __webpack_require__(377);
-
-	Object.defineProperty(exports, 'getUserConfirmation', {
-	  enumerable: true,
-	  get: function get() {
-	    return _BrowserProtocol.getUserConfirmation;
-	  }
-	});
-	Object.defineProperty(exports, 'go', {
-	  enumerable: true,
-	  get: function get() {
-	    return _BrowserProtocol.go;
-	  }
-	});
-
-	var _warning = __webpack_require__(338);
-
-	var _warning2 = _interopRequireDefault(_warning);
-
-	var _LocationUtils = __webpack_require__(366);
-
-	var _DOMUtils = __webpack_require__(378);
-
-	var _DOMStateStorage = __webpack_require__(379);
-
-	var _PathUtils = __webpack_require__(367);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var HashChangeEvent = 'hashchange';
 
 	var getHashPath = function getHashPath() {
 	  // We can't use window.location.hash here because it's not
@@ -85660,153 +61746,702 @@
 	  window.location.replace(window.location.href.slice(0, hashIndex >= 0 ? hashIndex : 0) + '#' + path);
 	};
 
-	var getCurrentLocation = exports.getCurrentLocation = function getCurrentLocation(pathCoder, queryKey) {
-	  var path = pathCoder.decodePath(getHashPath());
-	  var key = (0, _PathUtils.getQueryStringValueFromPath)(path, queryKey);
+	var createHashHistory = function createHashHistory() {
+	  var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-	  var state = void 0;
-	  if (key) {
-	    path = (0, _PathUtils.stripQueryStringValueFromPath)(path, queryKey);
-	    state = (0, _DOMStateStorage.readState)(key);
-	  }
+	  !_ExecutionEnvironment.canUseDOM ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'Hash history needs a DOM') : (0, _invariant2.default)(false) : void 0;
 
-	  var init = (0, _PathUtils.parsePath)(path);
-	  init.state = state;
+	  var globalHistory = window.history;
+	  var canGoWithoutReload = (0, _DOMUtils.supportsGoWithoutReloadUsingHash)();
 
-	  return (0, _LocationUtils.createLocation)(init, undefined, key);
-	};
+	  var _props$basename = props.basename,
+	      basename = _props$basename === undefined ? '' : _props$basename,
+	      _props$getUserConfirm = props.getUserConfirmation,
+	      getUserConfirmation = _props$getUserConfirm === undefined ? _DOMUtils.getConfirmation : _props$getUserConfirm,
+	      _props$hashType = props.hashType,
+	      hashType = _props$hashType === undefined ? 'slash' : _props$hashType;
+	  var _HashPathCoders$hashT = HashPathCoders[hashType],
+	      encodePath = _HashPathCoders$hashT.encodePath,
+	      decodePath = _HashPathCoders$hashT.decodePath;
 
-	var prevLocation = void 0;
 
-	var startListener = exports.startListener = function startListener(listener, pathCoder, queryKey) {
+	  var getDOMLocation = function getDOMLocation() {
+	    var path = decodePath(getHashPath());
+
+	    if (basename) path = (0, _PathUtils.stripPrefix)(path, basename);
+
+	    return (0, _PathUtils.parsePath)(path);
+	  };
+
+	  var transitionManager = (0, _createTransitionManager2.default)();
+
+	  var setState = function setState(nextState) {
+	    _extends(history, nextState);
+
+	    history.length = globalHistory.length;
+
+	    transitionManager.notifyListeners(history.location, history.action);
+	  };
+
+	  var forceNextPop = false;
+	  var ignorePath = null;
+
 	  var handleHashChange = function handleHashChange() {
 	    var path = getHashPath();
-	    var encodedPath = pathCoder.encodePath(path);
+	    var encodedPath = encodePath(path);
 
 	    if (path !== encodedPath) {
-	      // Always be sure we have a properly-encoded hash.
+	      // Ensure we always have a properly-encoded hash.
 	      replaceHashPath(encodedPath);
 	    } else {
-	      var currentLocation = getCurrentLocation(pathCoder, queryKey);
+	      var location = getDOMLocation();
+	      var prevLocation = history.location;
 
-	      if (prevLocation && currentLocation.key && prevLocation.key === currentLocation.key) return; // Ignore extraneous hashchange events
+	      if (!forceNextPop && (0, _LocationUtils.locationsAreEqual)(prevLocation, location)) return; // A hashchange doesn't always == location change.
 
-	      prevLocation = currentLocation;
+	      if (ignorePath === (0, _PathUtils.createPath)(location)) return; // Ignore this change; we already setState in push/replace.
 
-	      listener(currentLocation);
+	      ignorePath = null;
+
+	      handlePop(location);
 	    }
 	  };
 
-	  // Ensure the hash is encoded properly.
+	  var handlePop = function handlePop(location) {
+	    if (forceNextPop) {
+	      forceNextPop = false;
+	      setState();
+	    } else {
+	      (function () {
+	        var action = 'POP';
+
+	        transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+	          if (ok) {
+	            setState({ action: action, location: location });
+	          } else {
+	            revertPop(location);
+	          }
+	        });
+	      })();
+	    }
+	  };
+
+	  var revertPop = function revertPop(fromLocation) {
+	    var toLocation = history.location;
+
+	    // TODO: We could probably make this more reliable by
+	    // keeping a list of paths we've seen in sessionStorage.
+	    // Instead, we just default to 0 for paths we don't know.
+
+	    var toIndex = allPaths.lastIndexOf((0, _PathUtils.createPath)(toLocation));
+
+	    if (toIndex === -1) toIndex = 0;
+
+	    var fromIndex = allPaths.lastIndexOf((0, _PathUtils.createPath)(fromLocation));
+
+	    if (fromIndex === -1) fromIndex = 0;
+
+	    var delta = toIndex - fromIndex;
+
+	    if (delta) {
+	      forceNextPop = true;
+	      go(delta);
+	    }
+	  };
+
+	  // Ensure the hash is encoded properly before doing anything else.
 	  var path = getHashPath();
-	  var encodedPath = pathCoder.encodePath(path);
+	  var encodedPath = encodePath(path);
 
 	  if (path !== encodedPath) replaceHashPath(encodedPath);
 
-	  (0, _DOMUtils.addEventListener)(window, HashChangeEvent, handleHashChange);
+	  var initialLocation = getDOMLocation();
+	  var allPaths = [(0, _PathUtils.createPath)(initialLocation)];
 
-	  return function () {
-	    return (0, _DOMUtils.removeEventListener)(window, HashChangeEvent, handleHashChange);
+	  // Public interface
+
+	  var createHref = function createHref(location) {
+	    return '#' + encodePath(basename + (0, _PathUtils.createPath)(location));
 	  };
-	};
 
-	var updateLocation = function updateLocation(location, pathCoder, queryKey, updateHash) {
-	  var state = location.state;
-	  var key = location.key;
+	  var push = function push(path, state) {
+	    process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(state === undefined, 'Hash history cannot push state; it is ignored') : void 0;
 
+	    var action = 'PUSH';
+	    var location = (0, _LocationUtils.createLocation)(path, undefined, undefined, history.location);
 
-	  var path = pathCoder.encodePath((0, _PathUtils.createPath)(location));
+	    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+	      if (!ok) return;
 
-	  if (state !== undefined) {
-	    path = (0, _PathUtils.addQueryStringValueToPath)(path, queryKey, key);
-	    (0, _DOMStateStorage.saveState)(key, state);
-	  }
+	      var path = (0, _PathUtils.createPath)(location);
+	      var encodedPath = encodePath(basename + path);
+	      var hashChanged = getHashPath() !== encodedPath;
 
-	  prevLocation = location;
+	      if (hashChanged) {
+	        // We cannot tell if a hashchange was caused by a PUSH, so we'd
+	        // rather setState here and ignore the hashchange. The caveat here
+	        // is that other hash histories in the page will consider it a POP.
+	        ignorePath = path;
+	        pushHashPath(encodedPath);
 
-	  updateHash(path);
-	};
+	        var prevIndex = allPaths.lastIndexOf((0, _PathUtils.createPath)(history.location));
+	        var nextPaths = allPaths.slice(0, prevIndex === -1 ? 0 : prevIndex + 1);
 
-	var pushLocation = exports.pushLocation = function pushLocation(location, pathCoder, queryKey) {
-	  return updateLocation(location, pathCoder, queryKey, function (path) {
-	    if (getHashPath() !== path) {
-	      pushHashPath(path);
-	    } else {
-	      process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(false, 'You cannot PUSH the same path using hash history') : void 0;
+	        nextPaths.push(path);
+	        allPaths = nextPaths;
+
+	        setState({ action: action, location: location });
+	      } else {
+	        process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(false, 'Hash history cannot PUSH the same path; a new entry will not be added to the history stack') : void 0;
+
+	        setState();
+	      }
+	    });
+	  };
+
+	  var replace = function replace(path, state) {
+	    process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(state === undefined, 'Hash history cannot replace state; it is ignored') : void 0;
+
+	    var action = 'REPLACE';
+	    var location = (0, _LocationUtils.createLocation)(path, undefined, undefined, history.location);
+
+	    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+	      if (!ok) return;
+
+	      var path = (0, _PathUtils.createPath)(location);
+	      var encodedPath = encodePath(basename + path);
+	      var hashChanged = getHashPath() !== encodedPath;
+
+	      if (hashChanged) {
+	        // We cannot tell if a hashchange was caused by a REPLACE, so we'd
+	        // rather setState here and ignore the hashchange. The caveat here
+	        // is that other hash histories in the page will consider it a POP.
+	        ignorePath = path;
+	        replaceHashPath(encodedPath);
+	      }
+
+	      var prevIndex = allPaths.indexOf((0, _PathUtils.createPath)(history.location));
+
+	      if (prevIndex !== -1) allPaths[prevIndex] = path;
+
+	      setState({ action: action, location: location });
+	    });
+	  };
+
+	  var go = function go(n) {
+	    process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(canGoWithoutReload, 'Hash history go(n) causes a full page reload in this browser') : void 0;
+
+	    globalHistory.go(n);
+	  };
+
+	  var goBack = function goBack() {
+	    return go(-1);
+	  };
+
+	  var goForward = function goForward() {
+	    return go(1);
+	  };
+
+	  var listenerCount = 0;
+
+	  var checkDOMListeners = function checkDOMListeners(delta) {
+	    listenerCount += delta;
+
+	    if (listenerCount === 1) {
+	      (0, _DOMUtils.addEventListener)(window, HashChangeEvent, handleHashChange);
+	    } else if (listenerCount === 0) {
+	      (0, _DOMUtils.removeEventListener)(window, HashChangeEvent, handleHashChange);
 	    }
-	  });
+	  };
+
+	  var isBlocked = false;
+
+	  var block = function block() {
+	    var prompt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+	    var unblock = transitionManager.setPrompt(prompt);
+
+	    if (!isBlocked) {
+	      checkDOMListeners(1);
+	      isBlocked = true;
+	    }
+
+	    return function () {
+	      if (isBlocked) {
+	        isBlocked = false;
+	        checkDOMListeners(-1);
+	      }
+
+	      return unblock();
+	    };
+	  };
+
+	  var listen = function listen(listener) {
+	    var unlisten = transitionManager.appendListener(listener);
+	    checkDOMListeners(1);
+
+	    return function () {
+	      checkDOMListeners(-1);
+	      return unlisten();
+	    };
+	  };
+
+	  var history = {
+	    length: globalHistory.length,
+	    action: 'POP',
+	    location: initialLocation,
+	    createHref: createHref,
+	    push: push,
+	    replace: replace,
+	    go: go,
+	    goBack: goBack,
+	    goForward: goForward,
+	    block: block,
+	    listen: listen
+	  };
+
+	  return history;
 	};
 
-	var replaceLocation = exports.replaceLocation = function replaceLocation(location, pathCoder, queryKey) {
-	  return updateLocation(location, pathCoder, queryKey, function (path) {
-	    if (getHashPath() !== path) replaceHashPath(path);
-	  });
-	};
+	exports.default = createHashHistory;
 
 /***/ },
-/* 385 */
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(__dirname) {'use strict';
+	'use strict';
 
-	var _express = __webpack_require__(2);
+	exports.__esModule = true;
 
-	var _express2 = _interopRequireDefault(_express);
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _path = __webpack_require__(35);
+	var _react = __webpack_require__(120);
 
-	var _path2 = _interopRequireDefault(_path);
+	var _react2 = _interopRequireDefault(_react);
 
-	var _morgan = __webpack_require__(91);
+	var _createMemoryHistory = __webpack_require__(325);
 
-	var _morgan2 = _interopRequireDefault(_morgan);
+	var _createMemoryHistory2 = _interopRequireDefault(_createMemoryHistory);
 
-	var _cookieParser = __webpack_require__(101);
+	var _StaticRouter = __webpack_require__(317);
 
-	var _cookieParser2 = _interopRequireDefault(_cookieParser);
+	var _StaticRouter2 = _interopRequireDefault(_StaticRouter);
 
-	var _bodyParser = __webpack_require__(104);
+	var _History = __webpack_require__(321);
 
-	var _bodyParser2 = _interopRequireDefault(_bodyParser);
-
-	var _routes = __webpack_require__(387);
-
-	var _routes2 = _interopRequireDefault(_routes);
+	var _History2 = _interopRequireDefault(_History);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var app = (0, _express2.default)();
-	app.use((0, _morgan2.default)('dev'));
-	app.use(_bodyParser2.default.json());
-	app.use(_bodyParser2.default.urlencoded({ extended: false }));
-	app.use((0, _cookieParser2.default)());
-	app.use(_express2.default.static(_path2.default.join(__dirname, 'static')));
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-	app.use('/', _routes2.default);
+	var MemoryRouter = function MemoryRouter(_ref) {
+	  var getUserConfirmation = _ref.getUserConfirmation,
+	      initialEntries = _ref.initialEntries,
+	      initialIndex = _ref.initialIndex,
+	      keyLength = _ref.keyLength,
+	      routerProps = _objectWithoutProperties(_ref, ['getUserConfirmation', 'initialEntries', 'initialIndex', 'keyLength']);
 
-	// catch 404 and forward to error handler
-	app.use(function (req, res, next) {
-	  var err = new Error('Not Found');
-	  err.status = 404;
-	  next(err);
-	});
+	  return _react2.default.createElement(
+	    _History2.default,
+	    {
+	      createHistory: _createMemoryHistory2.default,
+	      historyOptions: {
+	        getUserConfirmation: getUserConfirmation,
+	        initialEntries: initialEntries,
+	        initialIndex: initialIndex,
+	        keyLength: keyLength
+	      }
+	    },
+	    function (_ref2) {
+	      var history = _ref2.history,
+	          action = _ref2.action,
+	          location = _ref2.location;
+	      return _react2.default.createElement(_StaticRouter2.default, _extends({
+	        action: action,
+	        location: location,
+	        onPush: history.push,
+	        onReplace: history.replace,
+	        blockTransitions: history.block
+	      }, routerProps));
+	    }
+	  );
+	};
 
-	// error handler
-	app.use(function (err, req, res, next) {
-	  // set locals, only providing error in development
-	  res.locals.message = err.message;
-	  res.locals.error = req.app.get('env') === 'development' ? err : {};
+	if (process.env.NODE_ENV !== 'production') {
+	  MemoryRouter.propTypes = {
+	    getUserConfirmation: _react.PropTypes.func,
+	    initialEntries: _react.PropTypes.array,
+	    initialIndex: _react.PropTypes.number,
+	    keyLength: _react.PropTypes.number,
+	    children: _react.PropTypes.oneOfType([_react.PropTypes.func, _react.PropTypes.node])
+	  };
+	}
 
-	  // render the error page
-	  res.status(err.status || 500);
-	  //res.render('error');
-	});
-
-	module.exports = app;
-	/* WEBPACK VAR INJECTION */}.call(exports, "/"))
+	exports.default = MemoryRouter;
 
 /***/ },
-/* 386 */
+/* 325 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _warning = __webpack_require__(309);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	var _PathUtils = __webpack_require__(313);
+
+	var _LocationUtils = __webpack_require__(310);
+
+	var _createTransitionManager = __webpack_require__(314);
+
+	var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var clamp = function clamp(n, lowerBound, upperBound) {
+	  return Math.min(Math.max(n, lowerBound), upperBound);
+	};
+
+	/**
+	 * Creates a history object that stores locations in memory.
+	 */
+	var createMemoryHistory = function createMemoryHistory() {
+	  var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  var getUserConfirmation = props.getUserConfirmation,
+	      _props$initialEntries = props.initialEntries,
+	      initialEntries = _props$initialEntries === undefined ? ['/'] : _props$initialEntries,
+	      _props$initialIndex = props.initialIndex,
+	      initialIndex = _props$initialIndex === undefined ? 0 : _props$initialIndex,
+	      _props$keyLength = props.keyLength,
+	      keyLength = _props$keyLength === undefined ? 6 : _props$keyLength;
+
+
+	  var transitionManager = (0, _createTransitionManager2.default)();
+
+	  var setState = function setState(nextState) {
+	    _extends(history, nextState);
+
+	    history.length = history.entries.length;
+
+	    transitionManager.notifyListeners(history.location, history.action);
+	  };
+
+	  var createKey = function createKey() {
+	    return Math.random().toString(36).substr(2, keyLength);
+	  };
+
+	  var index = clamp(initialIndex, 0, initialEntries.length - 1);
+	  var entries = initialEntries.map(function (entry, index) {
+	    return typeof entry === 'string' ? (0, _LocationUtils.createLocation)(entry, undefined, index ? createKey() : undefined) : (0, _LocationUtils.createLocation)(entry, undefined, index ? entry.key || createKey() : undefined);
+	  });
+
+	  // Public interface
+
+	  var createHref = _PathUtils.createPath;
+
+	  var push = function push(path, state) {
+	    process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(!((typeof path === 'undefined' ? 'undefined' : _typeof(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to push when the 1st ' + 'argument is a location-like object that already has state; it is ignored') : void 0;
+
+	    var action = 'PUSH';
+	    var location = (0, _LocationUtils.createLocation)(path, state, createKey(), history.location);
+
+	    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+	      if (!ok) return;
+
+	      var prevIndex = history.index;
+	      var nextIndex = prevIndex + 1;
+
+	      var nextEntries = history.entries.slice(0);
+	      if (nextEntries.length > nextIndex) {
+	        nextEntries.splice(nextIndex, nextEntries.length - nextIndex, location);
+	      } else {
+	        nextEntries.push(location);
+	      }
+
+	      setState({
+	        action: action,
+	        location: location,
+	        index: nextIndex,
+	        entries: nextEntries
+	      });
+	    });
+	  };
+
+	  var replace = function replace(path, state) {
+	    process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(!((typeof path === 'undefined' ? 'undefined' : _typeof(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to replace when the 1st ' + 'argument is a location-like object that already has state; it is ignored') : void 0;
+
+	    var action = 'REPLACE';
+	    var location = (0, _LocationUtils.createLocation)(path, state, createKey(), history.location);
+
+	    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+	      if (!ok) return;
+
+	      history.entries[history.index] = location;
+
+	      setState({ action: action, location: location });
+	    });
+	  };
+
+	  var go = function go(n) {
+	    var nextIndex = clamp(history.index + n, 0, history.entries.length - 1);
+
+	    var action = 'POP';
+	    var location = history.entries[nextIndex];
+
+	    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+	      if (ok) {
+	        setState({
+	          action: action,
+	          location: location,
+	          index: nextIndex
+	        });
+	      } else {
+	        // Mimic the behavior of DOM histories by
+	        // causing a render after a cancelled POP.
+	        setState();
+	      }
+	    });
+	  };
+
+	  var goBack = function goBack() {
+	    return go(-1);
+	  };
+
+	  var goForward = function goForward() {
+	    return go(1);
+	  };
+
+	  var canGo = function canGo(n) {
+	    var nextIndex = history.index + n;
+	    return nextIndex >= 0 && nextIndex < history.entries.length;
+	  };
+
+	  var block = function block() {
+	    var prompt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+	    return transitionManager.setPrompt(prompt);
+	  };
+
+	  var listen = function listen(listener) {
+	    return transitionManager.appendListener(listener);
+	  };
+
+	  var history = {
+	    length: entries.length,
+	    action: 'POP',
+	    location: entries[index],
+	    index: index,
+	    entries: entries,
+	    createHref: createHref,
+	    push: push,
+	    replace: replace,
+	    go: go,
+	    goBack: goBack,
+	    goForward: goForward,
+	    canGo: canGo,
+	    block: block,
+	    listen: listen
+	  };
+
+	  return history;
+	};
+
+	exports.default = createMemoryHistory;
+
+/***/ },
+/* 326 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(120);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _StaticRouter = __webpack_require__(317);
+
+	var _StaticRouter2 = _interopRequireDefault(_StaticRouter);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ServerRouter = function (_React$Component) {
+	  _inherits(ServerRouter, _React$Component);
+
+	  function ServerRouter() {
+	    _classCallCheck(this, ServerRouter);
+
+	    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
+	  }
+
+	  ServerRouter.prototype.getChildContext = function getChildContext() {
+	    return {
+	      serverRouter: this.props.context
+	    };
+	  };
+
+	  ServerRouter.prototype.render = function render() {
+	    var _props = this.props,
+	        context = _props.context,
+	        location = _props.location,
+	        basename = _props.basename,
+	        rest = _objectWithoutProperties(_props, ['context', 'location', 'basename']);
+
+	    var redirect = function redirect(location) {
+	      context.setRedirect(location);
+	    };
+	    return _react2.default.createElement(_StaticRouter2.default, _extends({
+	      action: 'POP',
+	      location: location,
+	      basename: basename,
+	      onReplace: redirect,
+	      onPush: redirect
+	    }, rest));
+	  };
+
+	  return ServerRouter;
+	}(_react2.default.Component);
+
+	ServerRouter.childContextTypes = {
+	  serverRouter: _react.PropTypes.object.isRequired
+	};
+
+
+	if (process.env.NODE_ENV !== 'production') {
+	  ServerRouter.propTypes = {
+	    basename: _react.PropTypes.string,
+	    context: _react.PropTypes.object.isRequired,
+	    location: _react.PropTypes.string.isRequired,
+	    children: _react.PropTypes.oneOfType([_react.PropTypes.func, _react.PropTypes.node])
+	  };
+	}
+
+	exports.default = ServerRouter;
+
+/***/ },
+/* 327 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	exports.__esModule = true;
+	var k = function k() {};
+
+	var createServerRenderContext = function createServerRenderContext() {
+	  var flushed = false;
+	  var redirect = null;
+	  var matchContexts = [
+	    /* { hasMissComponent: bool, matchesByIdentity: [] } */
+	  ];
+
+	  var setRedirect = flushed ? k : function (location) {
+	    if (!redirect) redirect = location;
+	  };
+
+	  var registerMatchContext = flushed ? k : function (matchesByIdentity) {
+	    return matchContexts.push({
+	      hasMissComponent: false,
+	      matchesByIdentity: matchesByIdentity
+	    }) - 1;
+	  };
+
+	  // We need to know there is a potential to miss, if there are no Miss
+	  // components under a Match, then we need to not worry about it
+	  var registerMissPresence = flushed ? k : function (index) {
+	    matchContexts[index].hasMissComponent = true;
+	  };
+
+	  var getResult = function getResult() {
+	    flushed = true;
+	    var missed = matchContexts.some(function (context, index) {
+	      return missedAtIndex(index);
+	    });
+
+	    return {
+	      redirect: redirect,
+	      missed: missed
+	    };
+	  };
+
+	  var missedAtIndex = function missedAtIndex(index) {
+	    var context = matchContexts[index];
+	    return context.matchesByIdentity.length === 0 && context.hasMissComponent;
+	  };
+
+	  return {
+	    setRedirect: setRedirect,
+	    registerMatchContext: registerMatchContext,
+	    registerMissPresence: registerMissPresence,
+	    getResult: getResult,
+	    missedAtIndex: missedAtIndex
+	  };
+	};
+
+	exports.default = createServerRenderContext;
+
+/***/ },
+/* 328 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(120);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(290);
+
+	var _Home = __webpack_require__(329);
+
+	var _Home2 = _interopRequireDefault(_Home);
+
+	var _Posts = __webpack_require__(332);
+
+	var _Posts2 = _interopRequireDefault(_Posts);
+
+	var _About = __webpack_require__(334);
+
+	var _About2 = _interopRequireDefault(_About);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function Pages() {
+	    return _react2.default.createElement(
+	        'main',
+	        { role: 'application' },
+	        _react2.default.createElement(_reactRouter.Match, { pattern: '/', exactly: true, component: _Home2.default }),
+	        _react2.default.createElement(_reactRouter.Match, { pattern: '/posts', exactly: true, component: _Posts2.default }),
+	        _react2.default.createElement(_reactRouter.Match, { pattern: '/posts', exactly: true, component: _About2.default })
+	    );
+	} /**
+	   * Created by Juan on 1/19/2017.
+	   */
+	exports.default = Pages;
+
+/***/ },
+/* 329 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -85817,17 +62452,15 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _react = __webpack_require__(160);
+	var _react = __webpack_require__(120);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRouter = __webpack_require__(330);
-
-	var _ContentHeader = __webpack_require__(388);
+	var _ContentHeader = __webpack_require__(330);
 
 	var _ContentHeader2 = _interopRequireDefault(_ContentHeader);
 
-	var _Navigation = __webpack_require__(389);
+	var _Navigation = __webpack_require__(331);
 
 	var _Navigation2 = _interopRequireDefault(_Navigation);
 
@@ -85871,47 +62504,7 @@
 	exports.default = Home;
 
 /***/ },
-/* 387 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _express = __webpack_require__(2);
-
-	var _express2 = _interopRequireDefault(_express);
-
-	var _react = __webpack_require__(160);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _server = __webpack_require__(190);
-
-	var _reactRouter = __webpack_require__(330);
-
-	var _Home = __webpack_require__(386);
-
-	var _Home2 = _interopRequireDefault(_Home);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var router = _express2.default.Router();
-
-	/* GET home page. */
-	router.get('/', function (req, res, next) {
-	  res.setHeader('Content-Type', 'text/html');
-	  var html = (0, _server.renderToString)(_react2.default.createElement(_Home2.default, null));
-	  res.write(html);
-	  res.end();
-	});
-
-	exports.default = router;
-
-/***/ },
-/* 388 */
+/* 330 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -85922,11 +62515,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _react = __webpack_require__(160);
+	var _react = __webpack_require__(120);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRouter = __webpack_require__(330);
+	var _reactRouter = __webpack_require__(290);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -85985,7 +62578,7 @@
 	exports.default = ContentHeader;
 
 /***/ },
-/* 389 */
+/* 331 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -85996,11 +62589,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _react = __webpack_require__(160);
+	var _react = __webpack_require__(120);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRouter = __webpack_require__(330);
+	var _reactRouter = __webpack_require__(290);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -86026,23 +62619,18 @@
 	                'section',
 	                { name: 'home' },
 	                _react2.default.createElement(
-	                    'h1',
-	                    null,
-	                    'Navigation'
-	                ),
-	                _react2.default.createElement(
 	                    _reactRouter.Link,
-	                    { to: 'posts' },
+	                    { to: '/posts' },
 	                    'posts'
 	                ),
 	                _react2.default.createElement(
 	                    _reactRouter.Link,
-	                    { to: 'news' },
+	                    { to: '/news' },
 	                    'news'
 	                ),
 	                _react2.default.createElement(
 	                    _reactRouter.Link,
-	                    { to: 'projects' },
+	                    { to: '/projects' },
 	                    'projects'
 	                )
 	            );
@@ -86053,6 +62641,168 @@
 	}(_react.Component);
 
 	exports.default = Navigation;
+
+/***/ },
+/* 332 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(120);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Posts = function (_Component) {
+	    _inherits(Posts, _Component);
+
+	    function Posts() {
+	        _classCallCheck(this, Posts);
+
+	        return _possibleConstructorReturn(this, (Posts.__proto__ || Object.getPrototypeOf(Posts)).apply(this, arguments));
+	    }
+
+	    _createClass(Posts, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "section",
+	                { name: "posts" },
+	                _react2.default.createElement(
+	                    "h1",
+	                    null,
+	                    "Posts"
+	                ),
+	                _react2.default.createElement(ContentHeader, { title: "posts" })
+	            );
+	        }
+	    }]);
+
+	    return Posts;
+	}(_react.Component);
+
+	exports.default = Posts;
+
+/***/ },
+/* 333 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(120);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _server = __webpack_require__(150);
+
+	var _reactRouter = __webpack_require__(290);
+
+	var _Page = __webpack_require__(328);
+
+	var _Page2 = _interopRequireDefault(_Page);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/* GET home page. */
+	var router = function router(req, res, next) {
+
+	    var context = (0, _reactRouter.createServerRenderContext)();
+
+	    res.setHeader('Content-Type', 'text/html');
+
+	    var html = (0, _server.renderToString)(_react2.default.createElement(
+	        _reactRouter.ServerRouter,
+	        { location: req.originalUrl, context: context },
+	        _react2.default.createElement(_Page2.default, null)
+	    ));
+
+	    var result = context.getResult();
+
+	    if (result.redirect) {
+	        res.writeHead(301, { Location: result.redirect.pathname });
+	        res.end();
+	    }
+
+	    if (result.missed) {
+	        res.writeHead(404);
+	    }
+
+	    res.write(html);
+	    res.end();
+	};
+
+	exports.default = router;
+
+/***/ },
+/* 334 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(120);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var About = function (_Component) {
+	    _inherits(About, _Component);
+
+	    function About() {
+	        _classCallCheck(this, About);
+
+	        return _possibleConstructorReturn(this, (About.__proto__ || Object.getPrototypeOf(About)).apply(this, arguments));
+	    }
+
+	    _createClass(About, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "section",
+	                { name: "about" },
+	                _react2.default.createElement(
+	                    "h1",
+	                    null,
+	                    "Quienes somos"
+	                ),
+	                _react2.default.createElement(ContentHeader, { title: "Quienes somos" })
+	            );
+	        }
+	    }]);
+
+	    return About;
+	}(_react.Component);
+
+	exports.default = About;
 
 /***/ }
 /******/ ]);
