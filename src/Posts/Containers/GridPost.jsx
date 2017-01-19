@@ -15,29 +15,23 @@ class GridPost extends Component {
     }
 
     componentDidMount() {
-        //const posts = await api.posts.getList(this.state.page);
-
         this.setState({
-            //posts,
-            //page: this.state.page + 1,
             loading: false,
         })
-        console.log('Aca se deberia hacer la petición a la API');
-        console.log('hay ' + this.props.posts.length + ' posts')
     }
 
     render() {
         return (
         <div className="row">
+
             {this.state.loading && (
                 <h2>loading posts...</h2>
             )}
-            <div className="col-xs-12 col-sm-3">
+
+            <div className="col-xs-12">
                 <div className={styles.margin_bot}>
                     {
                         this.state.posts.map(function (post) {
-                            this.state.count++;
-
                             return <ImgPost
                                 key={post.id}
                                 picture={post.picture}
