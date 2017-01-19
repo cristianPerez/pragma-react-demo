@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-
-import Navigation from './Navigation.jsx';
-import styles from './Header.css'
+import Navigation from '../Components/Navigation.jsx';
 
 class Header extends Component {
     render(){

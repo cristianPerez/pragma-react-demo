@@ -2,7 +2,7 @@ import React from 'react'
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { ServerRouter, createServerRenderContext } from 'react-router';
 
-import Layout from '../components/Layout.jsx';
+import Layout from '../Components/Layout.jsx';
 import Pages from './Page.jsx';
 
 /* GET home page. */

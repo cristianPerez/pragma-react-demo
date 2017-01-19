@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
-import Header from '../../shared/Header.jsx';
-import ContentHeader from './ContentHeader.jsx';
+import Header from '../../Shared/Containers/Header.jsx';
+import SubHeaderContent from '../../Shared/Containers/SubHeaderContent.jsx';
 import GridPost from '../../Posts/Containers/GridPost.jsx'
 
 let posts = [
@@ -22,8 +22,7 @@ class Posts extends Component {
         return(
             <section name="posts">
                 <Header/>
-                <ContentHeader title="Los posts"/>
-                <h1>Posts</h1>
+                <SubHeaderContent title="Los posts"/>
                 <GridPost  posts={ posts }/>
             </section>
         );

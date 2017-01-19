@@ -1,0 +1,14 @@
+.subHeaderContainer {
+    width: 100%;
+    background: #67d5bf;
+    height: 50px;
+    padding-left: 2%;
+    margin-bottom: 1em;
+}
+
+.titleSubHeader{
+    color: white;
+    font-size: 20px;
+    padding-top: 0.5em;
+    margin: 0 !important;
+}
