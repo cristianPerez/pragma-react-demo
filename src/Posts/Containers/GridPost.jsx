@@ -26,7 +26,11 @@ class GridPost extends Component {
         let leftContent = this.props.posts.filter((val,index) => {return index%5 == 0});
         return (
                 <HalfSplitter
-                    left={<ImgPost key={leftContent.id} picture={leftContent.picture} post_name={leftContent.post_name} type="large"/>}
+                    left={
+                        rightContent.map(function(post,index){
+                            console.log(post.id);
+                            return <ImgPost key={post.id} picture={post.picture} post_name={post.post_name} type={index%parseInt(Math.random()*10)==0?"large":"small"}/>
+                        })}
                     right={
                         rightContent.map(function(post){
                         console.log(post.id);

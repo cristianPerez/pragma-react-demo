@@ -12,8 +12,13 @@ let posts = [
     { id: 5, post_name: "Post 5", picture: "5", width: "100%"},
     { id: 6, post_name: "Post 6", picture: "6", width: "100%"},
     { id: 7, post_name: "Post 7", picture: "7", width: "100%"},
-    { id: 8, post_name: "Post 8", picture: "8", width: "100%"}
-
+    { id: 8, post_name: "Post 8", picture: "8", width: "100%"},
+    { id:  9, post_name: "Post  9", picture: " 2", width: "100%"},
+    { id: 10, post_name: "Post 10", picture: "3", width: "100%"},
+    { id: 11, post_name: "Post 11", picture: "4", width: "100%"},
+    { id: 12, post_name: "Post 12", picture: "7", width: "100%"},
+    { id: 13, post_name: "Post 13", picture: "1", width: "100%"},
+    { id: 14, post_name: "Post 14", picture: "2", width: "100%"}
 ]
 
 

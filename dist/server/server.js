@@ -62648,7 +62648,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var posts = [{ id: 1, post_name: "Post 1", picture: "1", width: "100%" }, { id: 2, post_name: "Post 2", picture: "2", width: "100%" }, { id: 3, post_name: "Post 3", picture: "3", width: "100%" }, { id: 4, post_name: "Post 4", picture: "4", width: "100%" }, { id: 5, post_name: "Post 5", picture: "5", width: "100%" }, { id: 6, post_name: "Post 6", picture: "6", width: "100%" }, { id: 7, post_name: "Post 7", picture: "7", width: "100%" }, { id: 8, post_name: "Post 8", picture: "8", width: "100%" }];
+	var posts = [{ id: 1, post_name: "Post 1", picture: "1", width: "100%" }, { id: 2, post_name: "Post 2", picture: "2", width: "100%" }, { id: 3, post_name: "Post 3", picture: "3", width: "100%" }, { id: 4, post_name: "Post 4", picture: "4", width: "100%" }, { id: 5, post_name: "Post 5", picture: "5", width: "100%" }, { id: 6, post_name: "Post 6", picture: "6", width: "100%" }, { id: 7, post_name: "Post 7", picture: "7", width: "100%" }, { id: 8, post_name: "Post 8", picture: "8", width: "100%" }, { id: 9, post_name: "Post  9", picture: " 2", width: "100%" }, { id: 10, post_name: "Post 10", picture: "3", width: "100%" }, { id: 11, post_name: "Post 11", picture: "4", width: "100%" }, { id: 12, post_name: "Post 12", picture: "7", width: "100%" }, { id: 13, post_name: "Post 13", picture: "1", width: "100%" }, { id: 14, post_name: "Post 14", picture: "2", width: "100%" }];
 
 	var Posts = function (_Component) {
 	    _inherits(Posts, _Component);
@@ -62841,7 +62841,10 @@
 	                return index % 5 == 0;
 	            });
 	            return _react2.default.createElement(_HalfSplitter2.default, {
-	                left: _react2.default.createElement(_ImgPost2.default, { key: leftContent.id, picture: leftContent.picture, post_name: leftContent.post_name, type: 'large' }),
+	                left: rightContent.map(function (post, index) {
+	                    console.log(post.id);
+	                    return _react2.default.createElement(_ImgPost2.default, { key: post.id, picture: post.picture, post_name: post.post_name, type: index % parseInt(Math.random() * 10) == 0 ? "large" : "small" });
+	                }),
 	                right: rightContent.map(function (post) {
 	                    console.log(post.id);
 	                    return _react2.default.createElement(_ImgPost2.default, { key: post.id, picture: post.picture, post_name: post.post_name, type: 'small' });
