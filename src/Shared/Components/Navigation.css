@@ -22,7 +22,7 @@ img{
 
 .pageLink:hover {
     padding-bottom:2px;
-    border-bottom:4px solid #ff5207;
+    border-bottom:4px solid #4a90e2;
 }
 
 .navStyle{
@@ -48,17 +48,16 @@ img{
 .navLinkContainer {
     display: inline-block;
     width:90%;
-    margin-top:2em;
+    margin-top: 2em;
 }
 
 .lineTop {
     position: relative;
     height: 5px;
-    background: red; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(left, #ff5207, #67d5bf , #0fa367 ); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, #ff5207, #67d5bf, #0fa367 ); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, #ff5207, #67d5bf, #0fa367); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, #ff5207, #67d5bf , #0fa367); /* Standard syntax (must be last) */
+    background: -webkit-linear-gradient(left, #ffc507, #61dafb , #4a90e2 ); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #ffc507, #61dafb, #4a90e2 ); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #ffc507, #61dafb, #4a90e2); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #ffc507, #61dafb , #4a90e2); /* Standard syntax (must be last) */
     top:0;
     left:0;
 }

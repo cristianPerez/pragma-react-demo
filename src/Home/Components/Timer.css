@@ -1,0 +1,52 @@
+.textTimer {
+    text-align: center;
+    margin: 0 !important;
+}
+
+.textTimer b{
+    font-size: 70px;
+    font-weight: 700;
+    color: gray;
+    position: absolute;
+    top: 27%;
+    left: 15%;
+}
+
+.bannerContainer {
+    width: 100%;
+    height: auto;
+    background: linear-gradient(50deg,#fff,#f3f3f3 50%,#ededed 0,#fff);
+}
+
+.imgBanner {
+    width: 200px;
+    height: 200px;
+}
+
+.containerImage {
+    margin: 0 auto;
+    text-align:center;
+    margin-top: 3em;
+}
+
+.textContent {
+    color: gray;
+    text-align: center;
+}
+
+.textTimerContainer{
+    border: solid 2px #4a90e2;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    margin: 0 auto;
+    position: relative;
+    transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+    margin-top: 10%;
+}
+
+.textTimerContainer:hover{
+    transform: scale(1.03);
+}

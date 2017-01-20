@@ -22,7 +22,7 @@ class Posts extends Component {
         return(
             <section name="posts">
                 <Header/>
-                <SubHeaderContent title="Los posts"/>
+                <SubHeaderContent title="POSTS"/>
                 <GridPost  posts={ posts }/>
             </section>
         );

@@ -22,7 +22,7 @@ img{
 
 ._2yDHNHh2srDJdmkS1dgGmU:hover {
     padding-bottom:2px;
-    border-bottom:4px solid #ff5207;
+    border-bottom:4px solid #4a90e2;
 }
 
 .pCAnTdBSIyjxNqJqFH7zv{
@@ -48,17 +48,16 @@ img{
 ._1OMB-KntRYI59x6ow02JFI {
     display: inline-block;
     width:90%;
-    margin-top:2em;
+    margin-top: 2em;
 }
 
 ._1xeeCE9hjWy2bXRsM6Md90 {
     position: relative;
     height: 5px;
-    background: red; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(left, #ff5207, #67d5bf , #0fa367 ); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, #ff5207, #67d5bf, #0fa367 ); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, #ff5207, #67d5bf, #0fa367); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, #ff5207, #67d5bf , #0fa367); /* Standard syntax (must be last) */
+    background: -webkit-linear-gradient(left, #ffc507, #61dafb , #4a90e2 ); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #ffc507, #61dafb, #4a90e2 ); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #ffc507, #61dafb, #4a90e2); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #ffc507, #61dafb , #4a90e2); /* Standard syntax (must be last) */
     top:0;
     left:0;
 }
@@ -66,10 +65,9 @@ img{
 
 ._1H5G1wEDy-SUQhDrhG_KJ4 {
     width: 100%;
-    background: #67d5bf;
+    background: #4a90e2;
     height: 50px;
     padding-left: 2%;
-    margin-bottom: 1em;
 }
 
 ._3bdx_FkDSmQddNArCmdbBr{
@@ -77,6 +75,138 @@ img{
     font-size: 20px;
     padding-top: 0.5em;
     margin: 0 !important;
+}._3YGBEdbjMtwU00SWjj40N9{
+    width: 100%;
+    height: auto;
+    background: linear-gradient(125deg,#fff,#f3f3f3 50%,#ededed 0,#fff);
+}
+
+._3aXaMfRYh_fwUsJEjrR6GV {
+    width: 162px;
+    height: 265px;
+}
+
+.mZX9gFyZ5WCsqGZvfo7gG {
+    color: gray;
+    text-align: center;
+}
+
+._3DCuUedyMjonknPZETUgNB {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+._4Cwfjr9m9Fc_rkVl6skAt {
+    font-size: 15px;
+}
+
+.szr6GcnnUZeSxI1mrja6i {
+    padding: 2% 8%;
+}
+
+.OpHr1lpHBXKYWFt4spCe {
+    border-radius: 100px;
+    display: inline-block;
+    font-size: 10px;
+    padding: 15px 25px;
+    margin: 10px;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    position: relative;
+    top: 0;
+    text-decoration: none;
+    transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+    color: gray;
+}
+
+._1gSlryc42P3GB2jXyjGTDH {
+    border-radius: 100px;
+    display: inline-block;
+    font-size: 10px;
+    padding: 15px 25px;
+    background: #4a90e2;
+    box-shadow: 0 10px 30px rgba(1,1,1,.25);
+    text-decoration: none;
+    transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+    color: white;
+}
+
+._1gSlryc42P3GB2jXyjGTDH:hover{
+    transform: scale(1.03);
+    color: white;
+    cursor: pointer;
+}
+
+.JXLtSpyXsOeGZACZ2rwr_{
+    text-align: center;
+}
+
+.OpHr1lpHBXKYWFt4spCe:hover{
+    transform: scale(1.03);
+    color: gray;
+    cursor: pointer;
+}
+
+._3ZvkaXLothEOCsaKLVAxJY {
+    font-size: 130px;
+    color: gray;
+    margin: 0 !important;
+    font-weight: 700;
+}.wo8_0DmijXtrdiHVAHcA9 {
+    text-align: center;
+    margin: 0 !important;
+}
+
+.wo8_0DmijXtrdiHVAHcA9 b{
+    font-size: 70px;
+    font-weight: 700;
+    color: gray;
+    position: absolute;
+    top: 27%;
+    left: 15%;
+}
+
+.HV-cnzLuiv2vhmjB079gU {
+    width: 100%;
+    height: auto;
+    background: linear-gradient(50deg,#fff,#f3f3f3 50%,#ededed 0,#fff);
+}
+
+._3a82-b8nUXIQHLc-AzLssM {
+    width: 200px;
+    height: 200px;
+}
+
+._1HjGt4Z93wJhTDyC22HU4m {
+    margin: 0 auto;
+    text-align:center;
+    margin-top: 3em;
+}
+
+._1NyKQQkzHKFHyyMNllvzT- {
+    color: gray;
+    text-align: center;
+}
+
+._3qyq3RoLAAwDdNpcL1TsOq{
+    border: solid 2px #4a90e2;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    margin: 0 auto;
+    position: relative;
+    transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+    margin-top: 10%;
+}
+
+._3qyq3RoLAAwDdNpcL1TsOq:hover{
+    transform: scale(1.03);
 }._22Jz96tL6AKnlzI63LmUQ8 {
     position: relative;
     width: 100%;

@@ -25432,11 +25432,11 @@
 
 	var _Home2 = _interopRequireDefault(_Home);
 
-	var _Posts = __webpack_require__(224);
+	var _Posts = __webpack_require__(228);
 
 	var _Posts2 = _interopRequireDefault(_Posts);
 
-	var _About = __webpack_require__(234);
+	var _About = __webpack_require__(238);
 
 	var _About2 = _interopRequireDefault(_About);
 
@@ -25475,6 +25475,18 @@
 
 	var _Header2 = _interopRequireDefault(_Header);
 
+	var _SubHeaderContent = __webpack_require__(229);
+
+	var _SubHeaderContent2 = _interopRequireDefault(_SubHeaderContent);
+
+	var _BannerEvents = __webpack_require__(243);
+
+	var _BannerEvents2 = _interopRequireDefault(_BannerEvents);
+
+	var _BannerTimer = __webpack_require__(244);
+
+	var _BannerTimer2 = _interopRequireDefault(_BannerTimer);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25498,7 +25510,10 @@
 	            return _react2.default.createElement(
 	                'section',
 	                { name: 'home' },
-	                _react2.default.createElement(_Header2.default, null)
+	                _react2.default.createElement(_Header2.default, null),
+	                _react2.default.createElement(_SubHeaderContent2.default, { title: 'REACT' }),
+	                _react2.default.createElement(_BannerEvents2.default, null),
+	                _react2.default.createElement(_BannerTimer2.default, null)
 	            );
 	        }
 	    }]);
@@ -25595,7 +25610,7 @@
 	                'div',
 	                { className: _Navigation2.default.logoHeader },
 	                _react2.default.createElement('img', { className: _Navigation2.default.logoSm,
-	                    src: 'https://s3-us-west-1.amazonaws.com/glanz-react/assets/logo2.png' })
+	                    src: 'https://s3-us-west-1.amazonaws.com/glanz-react/assets/logo3.png' })
 	            ),
 	            _react2.default.createElement(
 	                'div',
@@ -25628,7 +25643,145 @@
 /* 221 */,
 /* 222 */,
 /* 223 */,
-/* 224 */
+/* 224 */,
+/* 225 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _BannerComponent = __webpack_require__(226);
+
+	var _BannerComponent2 = _interopRequireDefault(_BannerComponent);
+
+	var _reactRouter = __webpack_require__(178);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var BannerComponent = function (_Component) {
+	    _inherits(BannerComponent, _Component);
+
+	    function BannerComponent(props) {
+	        _classCallCheck(this, BannerComponent);
+
+	        var _this = _possibleConstructorReturn(this, (BannerComponent.__proto__ || Object.getPrototypeOf(BannerComponent)).call(this, props));
+
+	        _this.state = {
+	            count: 0
+	        };
+	        _this.handleClick = _this.handleClick.bind(_this);
+	        return _this;
+	    }
+
+	    _createClass(BannerComponent, [{
+	        key: 'handleClick',
+	        value: function handleClick() {
+	            this.setState({
+	                count: this.state.count + 1
+	            });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'article',
+	                { className: _BannerComponent2.default.bannerContainer },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: _BannerComponent2.default.containerBack },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-xs-12 col-sm-4' },
+	                            _react2.default.createElement('img', { className: _BannerComponent2.default.imgBanner,
+	                                src: 'https://s3-us-west-1.amazonaws.com/glanz-react/assets/morral.png' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-xs-12 col-sm-4' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: _BannerComponent2.default.textAlignCenter },
+	                                _react2.default.createElement(
+	                                    'p',
+	                                    { className: _BannerComponent2.default.countNumber },
+	                                    this.state.count
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: _BannerComponent2.default.btnBlue, onClick: this.handleClick },
+	                                    'SUMAR'
+	                                )
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-xs-12 col-sm-4' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: _BannerComponent2.default.textContent },
+	                                _react2.default.createElement(
+	                                    'p',
+	                                    { className: _BannerComponent2.default.textTitleBanner },
+	                                    'REACT PARA ',
+	                                    _react2.default.createElement('br', null),
+	                                    ' PRINCIPIANTES'
+	                                ),
+	                                _react2.default.createElement(
+	                                    'p',
+	                                    { className: _BannerComponent2.default.entradilla },
+	                                    'Empezemos con los eventos'
+	                                ),
+	                                _react2.default.createElement(
+	                                    _reactRouter.Link,
+	                                    { className: _BannerComponent2.default.btnPost, to: '/posts' },
+	                                    'VER MAS POST'
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: _BannerComponent2.default.btnPost, onClick: this.handleClick },
+	                                    'EVENTO CLICK'
+	                                )
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return BannerComponent;
+	}(_react.Component);
+
+	exports.default = BannerComponent;
+
+/***/ },
+/* 226 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"bannerContainer":"_3YGBEdbjMtwU00SWjj40N9","imgBanner":"_3aXaMfRYh_fwUsJEjrR6GV","textContent":"mZX9gFyZ5WCsqGZvfo7gG","textTitleBanner":"_3DCuUedyMjonknPZETUgNB","entradilla":"_4Cwfjr9m9Fc_rkVl6skAt","containerBack":"szr6GcnnUZeSxI1mrja6i","btnPost":"OpHr1lpHBXKYWFt4spCe","btnBlue":"_1gSlryc42P3GB2jXyjGTDH","textAlignCenter":"JXLtSpyXsOeGZACZ2rwr_","countNumber":"_3ZvkaXLothEOCsaKLVAxJY"};
+
+/***/ },
+/* 227 */,
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25647,11 +25800,11 @@
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _SubHeaderContent = __webpack_require__(225);
+	var _SubHeaderContent = __webpack_require__(229);
 
 	var _SubHeaderContent2 = _interopRequireDefault(_SubHeaderContent);
 
-	var _GridPost = __webpack_require__(229);
+	var _GridPost = __webpack_require__(233);
 
 	var _GridPost2 = _interopRequireDefault(_GridPost);
 
@@ -25681,7 +25834,7 @@
 	                'section',
 	                { name: 'posts' },
 	                _react2.default.createElement(_Header2.default, null),
-	                _react2.default.createElement(_SubHeaderContent2.default, { title: 'Los posts' }),
+	                _react2.default.createElement(_SubHeaderContent2.default, { title: 'POSTS' }),
 	                _react2.default.createElement(_GridPost2.default, { posts: posts })
 	            );
 	        }
@@ -25693,7 +25846,7 @@
 	exports.default = Posts;
 
 /***/ },
-/* 225 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25708,7 +25861,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _SubHeader = __webpack_require__(226);
+	var _SubHeader = __webpack_require__(230);
 
 	var _SubHeader2 = _interopRequireDefault(_SubHeader);
 
@@ -25749,7 +25902,7 @@
 	exports.default = SubHeaderContent;
 
 /***/ },
-/* 226 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25762,7 +25915,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _SubHeader = __webpack_require__(227);
+	var _SubHeader = __webpack_require__(231);
 
 	var _SubHeader2 = _interopRequireDefault(_SubHeader);
 
@@ -25783,15 +25936,15 @@
 	exports.default = SubHeader;
 
 /***/ },
-/* 227 */
+/* 231 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"subHeaderContainer":"_1H5G1wEDy-SUQhDrhG_KJ4","titleSubHeader":"_3bdx_FkDSmQddNArCmdbBr"};
 
 /***/ },
-/* 228 */,
-/* 229 */
+/* 232 */,
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25806,7 +25959,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ImgPost = __webpack_require__(230);
+	var _ImgPost = __webpack_require__(234);
 
 	var _ImgPost2 = _interopRequireDefault(_ImgPost);
 
@@ -25866,7 +26019,7 @@
 	exports.default = GridPost;
 
 /***/ },
-/* 230 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25879,11 +26032,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(231);
+	var _classnames = __webpack_require__(235);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _ImgPost = __webpack_require__(232);
+	var _ImgPost = __webpack_require__(236);
 
 	var _ImgPost2 = _interopRequireDefault(_ImgPost);
 
@@ -25925,7 +26078,7 @@
 	exports.default = ImgPost;
 
 /***/ },
-/* 231 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -25979,15 +26132,15 @@
 
 
 /***/ },
-/* 232 */
+/* 236 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"imgcontainer":"_22Jz96tL6AKnlzI63LmUQ8","captioncontainer":"_1QsSKWWsfwitA66r2giqWX","textcaption":"_1Ef76vWpOVrOMqmkYdep-4","imgpostcontainer":"Vl40ct87iTGRuA6zeA8vl","margin_bot":"_39YvfJahRw-OFUHzazGhhA"};
 
 /***/ },
-/* 233 */,
-/* 234 */
+/* 237 */,
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -26039,6 +26192,250 @@
 	}(_react.Component);
 
 	exports.default = About;
+
+/***/ },
+/* 239 */,
+/* 240 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Timer = __webpack_require__(241);
+
+	var _Timer2 = _interopRequireDefault(_Timer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Timer = _react2.default.createClass({
+	    displayName: 'Timer',
+
+
+	    getInitialState: function getInitialState() {
+
+	        // This is called before our render function. The object that is
+	        // returned is assigned to this.state, so we can use it later.
+
+	        return { elapsed: 0 };
+	    },
+
+	    componentDidMount: function componentDidMount() {
+
+	        // componentDidMount is called by react when the component
+	        // has been rendered on the page. We can set the interval here:
+
+	        this.timer = setInterval(this.tick, 50);
+	    },
+
+	    componentWillUnmount: function componentWillUnmount() {
+
+	        // This method is called immediately before the component is removed
+	        // from the page and destroyed. We can clear the interval here:
+
+	        clearInterval(this.timer);
+	    },
+
+	    tick: function tick() {
+
+	        // This function is called every 50 ms. It updates the
+	        // elapsed counter. Calling setState causes the component to be re-rendered
+
+	        this.setState({ elapsed: new Date() - this.props.start });
+	    },
+
+	    render: function render() {
+
+	        var elapsed = Math.round(this.state.elapsed / 100);
+
+	        // This will give a number with one digit after the decimal dot (xx.x):
+	        var seconds = (elapsed / 10).toFixed(1);
+
+	        // Although we return an entire <p> element, react will smartly update
+	        // only the changed parts, which contain the seconds variable.
+
+	        return _react2.default.createElement(
+	            'article',
+	            { className: _Timer2.default.bannerContainer },
+	            _react2.default.createElement(
+	                'div',
+	                { className: _Timer2.default.containerBack },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-xs-12 col-sm-6' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: _Timer2.default.textTimerContainer },
+	                            _react2.default.createElement(
+	                                'p',
+	                                { className: _Timer2.default.textTimer },
+	                                _react2.default.createElement(
+	                                    'b',
+	                                    null,
+	                                    seconds
+	                                )
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-xs-12 col-sm-6' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { id: 'imgTimer', className: _Timer2.default.containerImage },
+	                            _react2.default.createElement('img', { className: _Timer2.default.imgBanner,
+	                                src: 'https://s3-us-west-1.amazonaws.com/glanz-react/assets/reactjs.png' })
+	                        )
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+
+	exports.default = Timer;
+
+/***/ },
+/* 241 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"textTimer":"wo8_0DmijXtrdiHVAHcA9","bannerContainer":"HV-cnzLuiv2vhmjB079gU","imgBanner":"_3a82-b8nUXIQHLc-AzLssM","containerImage":"_1HjGt4Z93wJhTDyC22HU4m","textContent":"_1NyKQQkzHKFHyyMNllvzT-","textTimerContainer":"_3qyq3RoLAAwDdNpcL1TsOq"};
+
+/***/ },
+/* 242 */,
+/* 243 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _BannerComponent = __webpack_require__(225);
+
+	var _BannerComponent2 = _interopRequireDefault(_BannerComponent);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var BannerEvents = function (_Component) {
+	    _inherits(BannerEvents, _Component);
+
+	    function BannerEvents(props) {
+	        _classCallCheck(this, BannerEvents);
+
+	        var _this = _possibleConstructorReturn(this, (BannerEvents.__proto__ || Object.getPrototypeOf(BannerEvents)).call(this, props));
+
+	        _this.state = {
+	            //open: false
+	        };
+	        return _this;
+	    }
+
+	    _createClass(BannerEvents, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'section',
+	                null,
+	                _react2.default.createElement(_BannerComponent2.default, null)
+	            );
+	        }
+	    }]);
+
+	    return BannerEvents;
+	}(_react.Component);
+
+	exports.default = BannerEvents;
+
+/***/ },
+/* 244 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(32);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _Timer = __webpack_require__(240);
+
+	var _Timer2 = _interopRequireDefault(_Timer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var BannerTimer = function (_Component) {
+	    _inherits(BannerTimer, _Component);
+
+	    function BannerTimer(props) {
+	        _classCallCheck(this, BannerTimer);
+
+	        var _this = _possibleConstructorReturn(this, (BannerTimer.__proto__ || Object.getPrototypeOf(BannerTimer)).call(this, props));
+
+	        _this.state = {
+	            //open: false
+	        };
+	        return _this;
+	    }
+
+	    _createClass(BannerTimer, [{
+	        key: 'render',
+	        value: function render() {
+	            /*setTimeout(() => {
+	                ReactDOM.render(
+	                    React.createElement(<h1>Hola</h1>, null),
+	                    document.getElementById('imgTimer'));},1000);*/
+
+	            return _react2.default.createElement(
+	                'section',
+	                null,
+	                _react2.default.createElement(_Timer2.default, { start: Date.now() })
+	            );
+	        }
+	    }]);
+
+	    return BannerTimer;
+	}(_react.Component);
+
+	exports.default = BannerTimer;
 
 /***/ }
 /******/ ]);
