@@ -12,7 +12,7 @@ const API = {
                    'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
                    'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
                },
-               body:"method=flickr.photos.search&api_key=40f9d15a08f7e832a7ad16a10a670e7c&tags=Code&format=json&nojsoncallback=1&per_page=11"
+               body:`method=flickr.photos.search&api_key=40f9d15a08f7e832a7ad16a10a670e7c&text=Austria&format=json&nojsoncallback=1&per_page=11&page=${page}`
            });
            var data = await response.json();
             //{ id: 8, post_name: "Post 8", picture: "8", width: "100%"},
