@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ImgPost from '../components/ImgPost.jsx'
+import HalfSplitter from '../components/HalfSplitter.jsx'
 
 class GridPost extends Component {
 
@@ -21,20 +22,17 @@ class GridPost extends Component {
     }
 
     render() {
+        let rightContent = this.props.posts.filter((val,index) => {return index > 0});
+        let leftContent = this.props.posts.filter((val,index) => {return index%5 == 0});
         return (
-            <div className="row">
-                {
-                    this.state.posts.map(function (post,index) {
-                        let large = index === 0;
-                        return <ImgPost
-                            key={post.id}
-                            picture={post.picture}
-                            post_name={post.post_name}
-                            type={large}
-                        />
-                    })
-                }
-            </div>
+                <HalfSplitter
+                    left={<ImgPost key={leftContent.id} picture={leftContent.picture} post_name={leftContent.post_name} type="large"/>}
+                    right={
+                        rightContent.map(function(post){
+                        console.log(post.id);
+                        return <ImgPost key={post.id} picture={post.picture} post_name={post.post_name} type="small"/>
+                    })}
+                />
         );
     }
 }

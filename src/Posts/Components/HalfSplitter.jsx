@@ -1,14 +1,17 @@
 import React, {Component} from 'react';
-import ImgPost from '../components/ImgPost.jsx'
 
 function HalfSplitter(props){
     return(
-        <div>
+        <div className="row">
             <div className="col-xs-6">
-                {props.left}
+                <div className="row">
+                    {props.left}
+                </div>
             </div>
             <div className="col-xs-6">
-                {props.right}
+                <div className="row">
+                    {props.right}
+                </div>
             </div>
         </div>
     )

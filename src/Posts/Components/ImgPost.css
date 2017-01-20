@@ -1,6 +1,8 @@
 .imgcontainer {
     position: relative;
     width: 100%;
+    min-width: 300px;
+    min-height: 150px;
     height: auto;
     transition: all .3s;
     -moz-transition: all .3s;
@@ -44,6 +46,7 @@
 
 figure.imgpostcontainer > img{
     width:100%;
+    min-height:200px;
 }
 
 body {
@@ -51,5 +54,5 @@ body {
 }
 
 .margin_bot {
-    margin-bottom: 10px !important;
+    margin-bottom: 10px;
 }
