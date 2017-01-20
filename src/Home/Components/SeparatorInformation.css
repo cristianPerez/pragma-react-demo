@@ -1,0 +1,16 @@
+.separatorInformationContainer {
+    width: 100%;
+    height: auto;
+    background-color: #252525;
+}
+
+.containerBack {
+    padding: 2% 8%;
+}
+
+.titleSeparator {
+    width: 100%;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+}

@@ -49,12 +49,15 @@ var Timer = React.createClass({
             <article className={styles.bannerContainer}>
                 <div className={styles.containerBack}>
                     <div className="row">
-                        <div className="col-xs-12 col-sm-6">
+                        <div className="col-xs-12 col-sm-4">
                             <div className={styles.textTimerContainer}>
                                 <p className={styles.textTimer}><b>{seconds}</b></p>
                             </div>
                         </div>
-                        <div className="col-xs-12 col-sm-6">
+                        <div className="col-xs-12 col-sm-4">
+                            <p className={styles.textCenterTimer}>TIMER</p>
+                        </div>
+                        <div className="col-xs-12 col-sm-4">
                             <div id="imgTimer" className={styles.containerImage}>
                                 <img className={styles.imgBanner}
                                      src="https://s3-us-west-1.amazonaws.com/glanz-react/assets/reactjs.png"/>

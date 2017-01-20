@@ -34,23 +34,23 @@ class BannerComponent extends Component {
                                     {this.state.count}
                                 </p>
                                 <div className={styles.btnBlue} onClick={this.handleClick}>
-                                    SUMAR
+                                    ADD
                                 </div>
                             </div>
                         </div>
                         <div className="col-xs-12 col-sm-4">
                             <div className={styles.textContent}>
                                 <p className={styles.textTitleBanner}>
-                                    REACT PARA <br /> PRINCIPIANTES
+                                    REACT FOR <br /> BEGINNERS
                                 </p>
                                 <p className={styles.entradilla}>
-                                    Empezemos con los eventos
+                                    Start with Events
                                 </p>
                                 <Link className={styles.btnPost} to="/posts">
-                                    VER MAS POST
+                                    POSTS
                                 </Link>
                                 <div className={styles.btnPost} onClick={this.handleClick}>
-                                    EVENTO CLICK
+                                    CLICK EVENT
                                 </div>
                             </div>
                         </div>
