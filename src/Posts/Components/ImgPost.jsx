@@ -8,7 +8,7 @@ import styles from './ImgPost.css'
 function ImgPost(props) {
     return (
 
-        <div className={cx("col-xs-6",{"col-xs-12":props.type})}>
+        <div className={cx({"col-xs-6":!props.type,"col-xs-12":props.type})}>
             <div className={styles.margin_bot}>
                 <div className={styles.imgcontainer}>
                     <figure className={styles.imgpostcontainer}>
