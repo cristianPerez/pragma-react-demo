@@ -1,0 +1,75 @@
+input[type=text]{
+    text-align: center;
+    font: inherit;
+    border: 6px solid #4a90e2;
+    padding: 13px 12px;
+    font-size: 15px;
+    box-shadow: 0 1px 1px #DDD;
+    width: 100%;
+    outline: none;
+    display: block;
+    color: #7B8585;
+    margin: 0 auto 20px;
+}
+
+ul{
+    list-style: none;
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+ul li{
+    display: block;
+    padding: 15px 20px;
+    background-color: #F8F8F8;
+    color: #7B8585;
+    margin-bottom: 3px;
+    position: relative;
+    transition: 0.3s;
+    opacity: 0.5;
+}
+
+ul li a{
+    position: absolute;
+    left: 160px;
+    font-size: 12px;
+    line-height: 16px;
+    color: #969d9d;
+}
+
+ul li:hover {
+    background-color:#ffc507;
+    color:gray;
+    opacity: 0.5;
+}
+
+.separatorInformationContainer {
+    width: 100%;
+    height: auto;
+    background: linear-gradient(125deg,#fff,#f3f3f3 50%,#ededed 0,#fff);
+}
+
+.containerBack {
+    padding: 2% 8%;
+}
+
+.titleSearchInformation {
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+    color: gray;
+}
+
+.imagenIdea {
+    width: 200px;
+    height: 200px;
+
+}
+
+.ideaImageContainer {
+    margin:0 auto;
+    text-align: center;
+}

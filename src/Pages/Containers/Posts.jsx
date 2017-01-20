@@ -18,8 +18,6 @@ let posts = [
     { id:  9, post_name: "Post  9", picture: " 2", width: "100%"}
 ]
 
-
-
 class Posts extends Component {
 
     constructor(props){

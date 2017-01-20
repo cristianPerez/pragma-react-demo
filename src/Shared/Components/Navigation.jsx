@@ -11,7 +11,7 @@ function Navigation() {
 
                 <div className={styles.logoHeader}>
                     <img className={styles.logoSm}
-                         src="https://s3-us-west-1.amazonaws.com/glanz-react/assets/logo2.png"/>
+                         src="https://s3-us-west-1.amazonaws.com/glanz-react/assets/logo3.png"/>
                 </div>
                 <div className={ styles.navLinkContainer }>
                     <Link className={styles.pageLink} to="/">
