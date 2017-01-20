@@ -18,7 +18,7 @@ module.exports = {
                 exclude: /(node_modules)/,
                 query : {
                     presets : ['es2015', 'es2016', 'es2017', 'react'],
-                    plugins : ['transform-es2015-modules-commonjs']
+                    plugins : ['transform-es2015-modules-commonjs','transform-regenerator', 'transform-runtime']
                 }
             },
             {

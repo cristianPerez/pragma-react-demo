@@ -4,6 +4,8 @@ import Header from '../../Shared/Containers/Header.jsx';
 import SubHeaderContent from '../../Shared/Containers/SubHeaderContent.jsx';
 import GridPost from '../../Posts/Containers/GridPost.jsx'
 
+import flickr from '../../Apis/flickr/flickr.js';
+
 let posts = [
     { id: 1, post_name: "Post 1", picture: "1", width: "100%"},
     { id: 2, post_name: "Post 2", picture: "2", width: "100%"},
@@ -17,13 +19,31 @@ let posts = [
 ]
 
 
+
 class Posts extends Component {
+
+    constructor(props){
+        super(props);
+        this.state={
+            page: 1,
+            images : []
+        }
+    }
+    async componentDidMount(){
+        const images = await flickr.gallery.getImages(this.state.page);
+        this.setState({
+            images,
+            page: this.state.page + 1,
+            loading: false
+        })
+    }
+
     render(){
         return(
             <section name="posts">
                 <Header/>
                 <SubHeaderContent title="Ingenieria Pragma"/>
-                <GridPost  posts={ posts }/>
+                <GridPost  posts={ this.state.images }/>
             </section>
         );
     }

@@ -12,7 +12,7 @@ function ImgPost(props) {
                 <div className={styles.imgcontainer}>
                     <figure className={styles.imgpostcontainer}>
                         <img className={styles.mediaobject} width={props.width} height={props.height}
-                             src={'http://lorempixel.com/600/200/technics/'+props.picture}/>
+                             src={props.picture}/>
                     </figure>
                     <div className={styles.captioncontainer} id="Title">
                         <p className={styles.textcaption}>  {props.post_name}</p>
