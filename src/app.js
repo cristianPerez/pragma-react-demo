@@ -16,9 +16,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'static')));
 
-app.all('/*?',router);
+app.use(express.static(path.join(__dirname, '../statics')));
+app.use(express.static(__dirname));
+
+app.get('/',router);
+app.get('/home',router);
+app.get('/posts',router);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

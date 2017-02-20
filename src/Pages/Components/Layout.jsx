@@ -8,7 +8,7 @@ function  Layout(props) {
             <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
-            <link rel="stylesheet" href="http://localhost:3001/styles.css"/>
+            <link rel="stylesheet" href="/styles.css"/>
         </head>
         <body>
         <div id="render-target"
@@ -16,7 +16,7 @@ function  Layout(props) {
                  __html: props.content
              }}>
         </div>
-        <script src="http://localhost:3001/app.js"></script>
+        <script src="/app.js"></script>
         </body>
         </html>
     )
